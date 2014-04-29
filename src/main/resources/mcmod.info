@@ -1,0 +1,17 @@
+[
+{
+  "modid": "simplyjetpacks",
+  "name": "Simply Jetpacks",
+  "description": "A mod that adds jetpacks that work on Redstone Flux, and only that.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "logoFile": "",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["tonius11"],
+  "credits": "tonius11, Pathaleon, kevba10",
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
