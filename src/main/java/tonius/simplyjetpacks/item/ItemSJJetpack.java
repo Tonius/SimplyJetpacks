@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
@@ -91,40 +92,40 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         }
     }
 
-    public void useJetpack(EntityPlayer player, ItemStack itemStack) {
+    public void useJetpack(EntityLivingBase user, ItemStack itemStack) {
         boolean flown = false;
         if (!(this.isHoverModeActive(itemStack))) {
             this.subtractEnergy(itemStack, this.tickEnergy, false);
             if (this.getEnergyStored(itemStack) > 0) {
-                player.motionY = Math.min(player.motionY + this.acceleration, this.maxSpeed);
+                user.motionY = Math.min(user.motionY + this.acceleration, this.maxSpeed);
                 flown = true;
             }
         } else {
             this.subtractEnergy(itemStack, this.tickEnergyHover, false);
             if (this.getEnergyStored(itemStack) > 0) {
-                player.motionY = Math.min(player.motionY + this.acceleration, this.hoverModeActiveSpeed);
+                user.motionY = Math.min(user.motionY + this.acceleration, this.hoverModeActiveSpeed);
                 flown = true;
             }
         }
         if (flown) {
-            if (KeyboardTracker.isForwardKeyDown(player)) {
-                player.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
+            if (KeyboardTracker.isForwardKeyDown(user)) {
+                user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
             }
-            player.fallDistance = 0.0F;
-            if (player instanceof EntityPlayerMP) {
-                ((EntityPlayerMP) player).playerNetServerHandler.ticksForFloatKick = 0;
+            user.fallDistance = 0.0F;
+            if (user instanceof EntityPlayerMP) {
+                ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
             }
-            sendJetpackPacket(player, this.isHoverModeActive(itemStack));
+            sendJetpackPacket(user, this.isHoverModeActive(itemStack));
         }
         this.updateEnergyDisplay(itemStack);
     }
 
-    public void sendJetpackPacket(EntityPlayer player, boolean hoverMode) {
+    public void sendJetpackPacket(EntityLivingBase user, boolean hoverMode) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         DataOutputStream data = new DataOutputStream(bytes);
         try {
             data.writeInt(PacketHandler.JETPACK_TICK);
-            data.writeInt(player.entityId);
+            data.writeInt(user.entityId);
             data.writeBoolean(hoverMode);
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,7 +134,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         packet.channel = "SmpJet";
         packet.data = bytes.toByteArray();
         packet.length = bytes.size();
-        PacketDispatcher.sendPacketToAllAround(player.posX, player.posY, player.posZ, 128, player.worldObj.provider.dimensionId, packet);
+        PacketDispatcher.sendPacketToAllAround(user.posX, user.posY, user.posZ, 128, user.worldObj.provider.dimensionId, packet);
     }
 
     public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {

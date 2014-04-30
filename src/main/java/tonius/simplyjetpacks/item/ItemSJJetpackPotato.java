@@ -3,6 +3,7 @@ package tonius.simplyjetpacks.item;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -19,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemSJJetpackPotato extends ItemSJJetpack {
 
     public ItemSJJetpackPotato(int id, EnumArmorMaterial material) {
-        super(id, material, "jetpackTier0", 1200, 0, 30, 1.0D, 0.32D, 0, 0.25, 0.25);
+        super(id, material, "jetpackTier0", 1200, 0, 40, 1.0D, 0.32D, 0, 0.25, 0.25);
     }
 
     @SideOnly(Side.CLIENT)
@@ -33,34 +34,34 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
     }
 
     @Override
-    public void useJetpack(EntityPlayer player, ItemStack itemStack) {
+    public void useJetpack(EntityLivingBase user, ItemStack itemStack) {
         boolean flown = false;
         this.subtractEnergy(itemStack, this.tickEnergy, false);
         if (getEnergyStored(itemStack) > 0) {
-            player.motionY = Math.min(player.motionY + this.acceleration, this.maxSpeed);
+            user.motionY = Math.min(user.motionY + this.acceleration, this.maxSpeed);
             flown = true;
         } else {
-            player.inventory.armorInventory[2] = null;
-            if (!player.worldObj.isRemote) {
+            user.setCurrentItemOrArmor(3, null);
+            if (!user.worldObj.isRemote) {
                 Random rand = new Random();
-                player.worldObj.createExplosion(player, player.posX, player.posY, player.posZ, 4.0F, false);
+                user.worldObj.createExplosion(user, user.posX, user.posY, user.posZ, 4.0F, false);
                 for (int i = 0; i <= rand.nextInt(3) + 4; i++) {
                     ItemStack firework = FireworksGenerator.randomFirework();
-                    player.worldObj.spawnEntityInWorld(new EntityFireworkRocket(player.worldObj, player.posX + rand.nextDouble() * 6 - 3, player.posY, player.posZ + rand.nextDouble() * 6 - 3, firework));
+                    user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6 - 3, user.posY, user.posZ + rand.nextDouble() * 6 - 3, firework));
                 }
-                player.attackEntityFrom(DamageSourceJetpackPotato.causeJetpackPotatoDamage(player), 20.0F);
-                player.dropItem(Item.poisonousPotato.itemID, rand.nextInt(4) + 2);
+                user.attackEntityFrom(DamageSourceJetpackPotato.causeJetpackPotatoDamage(user), 20.0F);
+                user.dropItem(Item.poisonousPotato.itemID, rand.nextInt(4) + 2);
             }
         }
         if (flown) {
-            if (KeyboardTracker.isForwardKeyDown(player)) {
-                player.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
+            if (KeyboardTracker.isForwardKeyDown(user)) {
+                user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
             }
-            player.fallDistance = 0.0F;
-            if (player instanceof EntityPlayerMP) {
-                ((EntityPlayerMP) player).playerNetServerHandler.ticksForFloatKick = 0;
+            user.fallDistance = 0.0F;
+            if (user instanceof EntityPlayerMP) {
+                ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
             }
-            sendJetpackPacket(player, this.isHoverModeActive(itemStack));
+            sendJetpackPacket(user, this.isHoverModeActive(itemStack));
         }
         updateEnergyDisplay(itemStack);
     }
