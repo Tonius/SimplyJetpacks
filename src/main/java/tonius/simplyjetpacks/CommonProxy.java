@@ -13,7 +13,7 @@ public class CommonProxy {
     public void sendPacketToServer(int packetType, boolean key1, boolean key2) {
     }
 
-    public void showJetpackParticles(World world, String username, boolean hoverMode) {
+    public void showJetpackParticles(World world, int entityID, boolean hoverMode) {
     }
 
 }

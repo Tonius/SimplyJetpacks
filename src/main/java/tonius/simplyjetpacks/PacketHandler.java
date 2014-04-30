@@ -28,9 +28,9 @@ public class PacketHandler implements IPacketHandler {
             try {
                 switch (dataStream.readInt()) {
                 case JETPACK_TICK:
-                    String username = dataStream.readUTF();
+                    int entityID = dataStream.readInt();
                     boolean hoverMode = dataStream.readBoolean();
-                    SimplyJetpacks.proxy.showJetpackParticles(entityPlayer.worldObj, username, hoverMode);
+                    SimplyJetpacks.proxy.showJetpackParticles(entityPlayer.worldObj, entityID, hoverMode);
                     break;
                 case KEY_STATE:
                     KeyboardTracker.processKeyUpdate(entityPlayer, dataStream.readBoolean(), dataStream.readBoolean());

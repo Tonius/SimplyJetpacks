@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.CommonProxy;
@@ -66,37 +67,38 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void showJetpackParticles(World world, String username, boolean hoverMode) {
+    public void showJetpackParticles(World world, int entityID, boolean hoverMode) {
         if (ConfigReader.enableJetpackParticles) {
-            EntityPlayer player = world.getPlayerEntityByName(username);
-            if (player != null) {
-                Vector3 playerPos = new Vector3(player);
+            Entity entity = world.getEntityByID(entityID);
+            if (entity != null && entity instanceof EntityLivingBase) {
+                EntityLivingBase wearer = (EntityLivingBase) entity;
+                Vector3 playerPos = new Vector3(wearer);
 
-                if (!(player.equals(mc.thePlayer))) {
+                if (!(wearer.equals(mc.thePlayer))) {
                     playerPos.translate(new Vector3(0, 1.90, 0));
                 }
 
                 Vector3 vLeft = new Vector3();
                 vLeft.z -= 0.55;
                 vLeft.x -= 0.35;
-                vLeft.rotate(player.renderYawOffset);
+                vLeft.rotate(wearer.renderYawOffset);
                 vLeft.y -= 0.80;
 
                 Vector3 vRight = new Vector3();
                 vRight.z -= 0.55;
                 vRight.x += 0.35;
-                vRight.rotate(player.renderYawOffset);
+                vRight.rotate(wearer.renderYawOffset);
                 vRight.y -= 0.80;
 
                 Vector3 vCenter = new Vector3();
                 vCenter.z -= 0.50;
                 vCenter.x = (rand.nextFloat() - 0.5F) * 0.25F;
-                vCenter.rotate(player.renderYawOffset);
+                vCenter.rotate(wearer.renderYawOffset);
                 vCenter.y -= 0.85;
 
-                vLeft = Vector3.translate(vLeft.clone(), new Vector3(-player.motionX, -player.motionY, -player.motionZ));
-                vRight = Vector3.translate(vRight.clone(), new Vector3(-player.motionX, -player.motionY, -player.motionZ));
-                vCenter = Vector3.translate(vCenter.clone(), new Vector3(-player.motionX, -player.motionY, -player.motionZ));
+                vLeft = Vector3.translate(vLeft.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
+                vRight = Vector3.translate(vRight.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
+                vCenter = Vector3.translate(vCenter.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
 
                 Vector3 v = new Vector3(playerPos).translate(vLeft);
                 if (!(hoverMode)) {

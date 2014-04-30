@@ -120,11 +120,11 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     }
 
     public void sendJetpackPacket(EntityPlayer player, boolean hoverMode) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream(8);
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         DataOutputStream data = new DataOutputStream(bytes);
         try {
             data.writeInt(PacketHandler.JETPACK_TICK);
-            data.writeUTF(player.username);
+            data.writeInt(player.entityId);
             data.writeBoolean(hoverMode);
         } catch (IOException e) {
             e.printStackTrace();
