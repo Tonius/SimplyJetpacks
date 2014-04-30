@@ -83,9 +83,9 @@ public class SimplyJetpacks {
         LanguageRegistry.addName(jetpackTier4, EnumChatFormatting.AQUA + "Resonant Jetpack");
         LanguageRegistry.addName(metaItem1, "Metaitem 1");
         LanguageRegistry.instance().addStringLocalization("itemGroup.tabSimplyJetpacks", "en_US", "Simply Jetpacks");
-        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato", "%1$s underestimated the power of potatoes");
-        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato.player", "%1$s underestimated the power of potatoes");
-        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato.item", "%1$s underestimated the power of potatoes");
+        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato", "%1$s attempted to fly a potato");
+        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato.player", "%1$s attempted to fly a potato");
+        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato.item", "%1$s attempted to fly a potato");
 
         logger.info("Registering handlers");
         proxy.registerHandlers();
