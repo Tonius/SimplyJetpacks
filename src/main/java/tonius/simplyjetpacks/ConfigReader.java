@@ -10,7 +10,7 @@ public class ConfigReader {
     public static int jetpackTier3ID;
     public static int jetpackTier4ID;
     public static boolean enableJetpackParticles;
-    public static boolean enableUpgradingRecipes;
+    public static boolean upgradingRecipesOnly;
 
     // meta-items
     public static int metaItem1ID;
@@ -63,7 +63,7 @@ public class ConfigReader {
             jetpackTier3ID = cfg.getItem("jetpackTier3", 18003).getInt() - 256;
             jetpackTier4ID = cfg.getItem("jetpackTier4", 18004).getInt() - 256;
             enableJetpackParticles = cfg.get("itemconfig", "enableJetpackParticles", true).getBoolean(true);
-            enableUpgradingRecipes = cfg.get("itemconfig", "enableUpgradingRecipes", true).getBoolean(true);
+            upgradingRecipesOnly = cfg.get("itemconfig", "upgradingRecipesOnly", false).getBoolean(false);
 
             // meta-items
             metaItem1ID = cfg.getItem("metaItem1", 18005).getInt() - 256;
