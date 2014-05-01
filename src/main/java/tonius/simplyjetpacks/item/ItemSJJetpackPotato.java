@@ -29,9 +29,9 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
         list.add(EnumChatFormatting.GOLD + "Charge: " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
         list.add(EnumChatFormatting.BLUE + "Energy usage: " + EnumChatFormatting.GRAY + this.tickEnergy + " RF/t");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Allows a short and deadly flight.");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Must be worn in the chestplate slot.");
-        list.add(EnumChatFormatting.RED + "" + EnumChatFormatting.ITALIC + "Note: Do not use if you do not wish to die.");
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "It doesn't seem to be able to start.");
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Maybe if you try long enough...");
+        list.add(EnumChatFormatting.RED + "" + EnumChatFormatting.ITALIC + "Note: Flying potatoes is a deadly practice.");
     }
 
     @Override
