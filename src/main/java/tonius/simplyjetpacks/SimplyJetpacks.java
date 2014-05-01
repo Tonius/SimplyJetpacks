@@ -111,10 +111,13 @@ public class SimplyJetpacks {
         ItemStack dynamoSteam = GameRegistry.findItemStack("ThermalExpansion", "dynamoSteam", 1);
         ItemStack pneumaticServo = GameRegistry.findItemStack("ThermalExpansion", "pneumaticServo", 1);
         ItemStack powerCoilGold = GameRegistry.findItemStack("ThermalExpansion", "powerCoilGold", 1);
-        ItemStack fullJetpackPotato = new ItemStack(jetpackTier0, 1, 31);
-        ItemSJJetpackPotato fullJetpackPotatoItem = ((ItemSJJetpackPotato) fullJetpackPotato.getItem());
-        fullJetpackPotatoItem.addEnergy(fullJetpackPotato, fullJetpackPotatoItem.getMaxEnergyStored(fullJetpackPotato), false);
-        GameRegistry.addRecipe(new ShapedOreRecipe(fullJetpackPotato, new Object[] { "S S", "NPN", "R R", 'S', Item.silk, 'N', "nuggetTin", 'P', capacitorPotato, 'R', "dustRedstone" }));
+
+        if (ConfigReader.enableCraftingJetpackTier0) {
+            ItemStack fullJetpackPotato = new ItemStack(jetpackTier0, 1, 31);
+            ItemSJJetpackPotato fullJetpackPotatoItem = ((ItemSJJetpackPotato) fullJetpackPotato.getItem());
+            fullJetpackPotatoItem.addEnergy(fullJetpackPotato, fullJetpackPotatoItem.getMaxEnergyStored(fullJetpackPotato), false);
+            GameRegistry.addRecipe(new ShapedOreRecipe(fullJetpackPotato, new Object[] { "S S", "NPN", "R R", 'S', Item.silk, 'N', "nuggetTin", 'P', capacitorPotato, 'R', "dustRedstone" }));
+        }
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 0), new Object[] { "PCP", "GBG", "DSD", 'P', conduitItemOpaque, 'C', powerCoilGold, 'B', capacitorBasic, 'G', "gearCopper", 'D', dynamoSteam, 'S', pneumaticServo }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 1), new Object[] { "PCP", "GBG", "DSD", 'P', conduitItemFastOpaque, 'C', powerCoilGold, 'B', capacitorHardened, 'G', "gearBronze", 'D', dynamoCompression, 'S', pneumaticServo }));
