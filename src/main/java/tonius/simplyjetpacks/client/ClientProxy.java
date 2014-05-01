@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.ConfigReader;
 import tonius.simplyjetpacks.util.Vector3;
@@ -26,6 +27,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerHandlers() {
         super.registerHandlers();
+        MinecraftForge.EVENT_BUS.register(new SoundLoader());
         TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
         KeyBindingRegistry.registerKeyBinding(new SJKeyHandler());
     }

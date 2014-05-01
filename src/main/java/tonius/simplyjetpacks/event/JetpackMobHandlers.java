@@ -20,7 +20,7 @@ public class JetpackMobHandlers {
             ItemStack armor = evt.entityLiving.getCurrentItemOrArmor(3);
             if (armor != null && armor.getItem() instanceof ItemSJJetpack) {
                 Item jetpack = armor.getItem();
-                if (rand.nextInt(3) == 0) {
+                if (rand.nextInt(2) == 0) {
                     ((ItemSJJetpack) jetpack).useJetpack(evt.entityLiving, armor);
                 }
                 if (evt.entityLiving.posY > evt.entityLiving.worldObj.getActualHeight() + 10) {
