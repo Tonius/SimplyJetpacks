@@ -1,5 +1,7 @@
 package tonius.simplyjetpacks;
 
+import static net.minecraftforge.oredict.RecipeSorter.Category.SHAPED;
+
 import java.io.File;
 import java.util.logging.Logger;
 
@@ -10,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemSJJetpack;
 import tonius.simplyjetpacks.item.ItemSJJetpackPotato;
@@ -96,6 +100,11 @@ public class SimplyJetpacks {
     @EventHandler
     public static void postInit(FMLPostInitializationEvent evt) {
         logger.info("Registering recipes");
+        
+        // Use our recipes before the ShapedOreRecipes we register for NEI 
+        RecipeSorter.register("simplyJetpacks:shaped",     RecipeUpgradeLeadstoneJetpack.class,    SHAPED,    "before:forge:shapedore");
+        RecipeSorter.register("simplyJetpacks:shaped",     RecipeUpgradeHardenedJetpack.class,    SHAPED,    "before:forge:shapedore");
+        RecipeSorter.register("simplyJetpacks:shaped",     RecipeUpgradeRedstoneJetpack.class,    SHAPED,    "before:forge:shapedore");
 
         ItemStack armorInvarPlate = GameRegistry.findItemStack("ThermalExpansion", "armorInvarPlate", 1);
         ItemStack capacitorBasic = GameRegistry.findItemStack("ThermalExpansion", "capacitorBasic", 1);
@@ -127,6 +136,10 @@ public class SimplyJetpacks {
         GameRegistry.addRecipe(new RecipeUpgradeLeadstoneJetpack());
         GameRegistry.addRecipe(new RecipeUpgradeHardenedJetpack());
         GameRegistry.addRecipe(new RecipeUpgradeRedstoneJetpack());
+        // add ShapedOreRecipe for NEI
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier2, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier3, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', new ItemStack(jetpackTier2, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier4, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', new ItemStack(jetpackTier3, 1, OreDictionary.WILDCARD_VALUE) }));
 
         if (!ConfigReader.upgradingRecipesOnly) {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier2, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', Item.plateLeather }));
