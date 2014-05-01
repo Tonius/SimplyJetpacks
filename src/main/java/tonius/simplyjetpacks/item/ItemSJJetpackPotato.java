@@ -54,7 +54,9 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
             }
         }
         if (flown) {
-            if (KeyboardTracker.isForwardKeyDown(user)) {
+            if (!(user instanceof EntityPlayer)) {
+                user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
+            } else if (KeyboardTracker.isForwardKeyDown((EntityPlayer) user)) {
                 user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
             }
             user.fallDistance = 0.0F;

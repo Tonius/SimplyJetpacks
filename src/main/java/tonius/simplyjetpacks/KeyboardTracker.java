@@ -3,7 +3,6 @@ package tonius.simplyjetpacks;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class KeyboardTracker {
@@ -15,12 +14,8 @@ public class KeyboardTracker {
         return jumpKeyState.containsKey(player) && jumpKeyState.get(player).booleanValue();
     }
 
-    public static boolean isForwardKeyDown(EntityLivingBase user) {
-        if (user instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) user;
-            return forwardKeyState.containsKey(player) && forwardKeyState.get(player).booleanValue();
-        }
-        return true;
+    public static boolean isForwardKeyDown(EntityPlayer player) {
+        return forwardKeyState.containsKey(player) && forwardKeyState.get(player).booleanValue();
     }
 
     public static void processKeyUpdate(EntityPlayer player, boolean key1, boolean key2) {

@@ -75,7 +75,7 @@ public class ClientProxy extends CommonProxy {
                 Vector3 playerPos = new Vector3(wearer);
 
                 if (!(wearer.equals(mc.thePlayer))) {
-                    playerPos.translate(new Vector3(0, 1.90, 0));
+                    playerPos.translate(new Vector3(0, 1.50, 0));
                 }
 
                 Vector3 vLeft = new Vector3();
