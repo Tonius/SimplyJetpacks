@@ -15,8 +15,6 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
     protected int maxInput;
     protected int maxOutput;
     protected ArmorProperties properties = new ArmorProperties(0, 1, 0);
-    protected String msgActivate = "Enabled";
-    protected String msgDeactivate = "Disabled";
 
     public ItemSJArmorEnergy(int id, EnumArmorMaterial material, int renderIndex, int armorType, String name, int maxEnergy, int maxInput, int maxOutput) {
         super(id, material, renderIndex, armorType, name, name);
@@ -29,12 +27,20 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
 
     public void toggle(ItemStack itemStack, EntityPlayer player) {
         if (isOn(itemStack)) {
-            player.addChatMessage(msgDeactivate);
+            player.addChatMessage(this.getDeactivateMsg());
             itemStack.stackTagCompound.setBoolean("On", false);
         } else {
-            player.addChatMessage(msgActivate);
+            player.addChatMessage(this.getActivateMsg());
             itemStack.stackTagCompound.setBoolean("On", true);
         }
+    }
+    
+    public String getActivateMsg() {
+        return "Enabled";
+    }
+    
+    public String getDeactivateMsg() {
+        return "Disabled";
     }
 
     public boolean isOn(ItemStack itemStack) {

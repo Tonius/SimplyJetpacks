@@ -42,8 +42,6 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         this.forwardThrust = forwardThrust;
         this.hoverModeIdleSpeed = hoverModeIdleSpeed;
         this.hoverModeActiveSpeed = hoverModeActiveSpeed;
-        this.msgActivate = SJTranslator.translate("jetpack.chat.engine") + " " + EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.chat.enabled");
-        this.msgDeactivate = SJTranslator.translate("jetpack.chat.engine") + " " + EnumChatFormatting.RED + SJTranslator.translate("jetpack.chat.disabled");
     }
 
     @Override
@@ -79,6 +77,16 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
             return EnumChatFormatting.AQUA + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);
+    }
+
+    @Override
+    public String getActivateMsg() {
+        return SJTranslator.translate("jetpack.chat.engine") + " " + EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.chat.enabled");
+    }
+
+    @Override
+    public String getDeactivateMsg() {
+        return SJTranslator.translate("jetpack.chat.engine") + " " + EnumChatFormatting.RED + SJTranslator.translate("jetpack.chat.disabled");
     }
 
     @Override

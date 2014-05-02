@@ -27,7 +27,7 @@ simplyjetpacks.jetpack.tooltip.energyUsage=Energieverbrauch
 simplyjetpacks.jetpack.tooltip.description.1=Erlaubt Flug wenn aktiviert.
 simplyjetpacks.jetpack.tooltip.description.2=Muss als Brustpanzer getragen werden.
 simplyjetpacks.jetpackPotato.tooltip.description.1=Scheint nicht startbar zu sein.
-simplyjetpacks.jetpackPotato.tooltip.description.2=Villeicht musst du es einfach länger versuchen...
+simplyjetpacks.jetpackPotato.tooltip.description.2=Vielleicht musst du es einfach länger versuchen...
 simplyjetpacks.jetpackPotato.tooltip.warning=Merke: Fliegen mit Kartoffelkraft ist eine tödliche Erfahrung.
 
 death.attack.jetpackpotato=%1$s hat versucht auf einer Kartoffel zu fliegen
