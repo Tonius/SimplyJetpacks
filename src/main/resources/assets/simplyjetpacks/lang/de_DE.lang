@@ -1,0 +1,35 @@
+itemGroup.tabSimplyJetpacks=Simply Jetpacks
+
+item.simplyjetpacks.jetpackTier0.name=Knolliges Jetpack
+item.simplyjetpacks.jetpackTier1.name=Leadstone-Jetpack
+item.simplyjetpacks.jetpackTier2.name=Gehärtetes Jetpack
+item.simplyjetpacks.jetpackTier3.name=Redstone-Jetpack
+item.simplyjetpacks.jetpackTier4.name=Resonantes Jetpack
+
+item.simplyjetpacks.metaItem1_0.name=Leadstone-Schubdüse
+item.simplyjetpacks.metaItem1_1.name=Gehärtete Schubdüse
+item.simplyjetpacks.metaItem1_2.name=Redstone-Schubdüse
+item.simplyjetpacks.metaItem1_3.name=Resonante Schubdüse
+
+simplyjetpacks.jetpack.chat.engine=Jetpack-Maschine
+simplyjetpacks.jetpack.chat.hoverMode=Schwebemodus
+simplyjetpacks.jetpack.chat.enabled=aktiviert
+simplyjetpacks.jetpack.chat.disabled=deaktiviert
+
+simplyjetpacks.jetpack.tooltip.charge=Ladestand
+simplyjetpacks.jetpack.tooltip.state=Status
+simplyjetpacks.jetpack.tooltip.state.on=An
+simplyjetpacks.jetpack.tooltip.state.off=Aus
+simplyjetpacks.jetpack.tooltip.hoverMode=Schwebemodus
+simplyjetpacks.jetpack.tooltip.hoverMode.enabled=Aktiv
+simplyjetpacks.jetpack.tooltip.hoverMode.disabled=Inaktiv
+simplyjetpacks.jetpack.tooltip.energyUsage=Energieverbrauch
+simplyjetpacks.jetpack.tooltip.description.1=Erlaubt Flug wenn aktiviert.
+simplyjetpacks.jetpack.tooltip.description.2=Muss als Brustpanzer getragen werden.
+simplyjetpacks.jetpackPotato.tooltip.description.1=Scheint nicht startbar zu sein.
+simplyjetpacks.jetpackPotato.tooltip.description.2=Villeicht musst du es einfach länger versuchen...
+simplyjetpacks.jetpackPotato.tooltip.warning=Merke: Fliegen mit Kartoffelkraft ist eine tödliche Erfahrung.
+
+death.attack.jetpackpotato=%1$s hat versucht auf einer Kartoffel zu fliegen
+death.attack.jetpackpotato.player=%1$s hat versucht auf einer Kartoffel zu fliegen
+death.attack.jetpackpotato.item=%1$s hat versucht auf einer Kartoffel zu fliegen
