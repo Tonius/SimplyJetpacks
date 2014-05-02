@@ -15,6 +15,7 @@ import net.minecraft.util.EnumChatFormatting;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.util.DamageSourceJetpackPotato;
 import tonius.simplyjetpacks.util.FireworksGenerator;
+import tonius.simplyjetpacks.util.SJTranslator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -27,11 +28,11 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        list.add(EnumChatFormatting.GOLD + "Charge: " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
-        list.add(EnumChatFormatting.BLUE + "Energy usage: " + EnumChatFormatting.GRAY + this.tickEnergy + " RF/t");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "It doesn't seem to be able to start.");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Maybe if you try long enough...");
-        list.add(EnumChatFormatting.RED + "" + EnumChatFormatting.ITALIC + "Note: Flying potatoes is a deadly practice.");
+        list.add(EnumChatFormatting.GOLD + SJTranslator.translate("jetpack.tooltip.charge") + ": " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
+        list.add(EnumChatFormatting.BLUE + SJTranslator.translate("jetpack.tooltip.energyUsage") + ": " + EnumChatFormatting.GRAY + this.tickEnergy + " RF/t");
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpackPotato.tooltip.description.1"));
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpackPotato.tooltip.description.2"));
+        list.add(EnumChatFormatting.RED + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpackPotato.tooltip.warning"));
     }
 
     @Override

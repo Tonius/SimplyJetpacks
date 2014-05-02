@@ -17,6 +17,8 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.PacketHandler;
+import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.util.SJTranslator;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -40,8 +42,8 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         this.forwardThrust = forwardThrust;
         this.hoverModeIdleSpeed = hoverModeIdleSpeed;
         this.hoverModeActiveSpeed = hoverModeActiveSpeed;
-        this.msgActivate = "Jetpack engine " + EnumChatFormatting.GREEN + "enabled";
-        this.msgDeactivate = "Jetpack engine " + EnumChatFormatting.RED + "disabled";
+        this.msgActivate = SJTranslator.translate("jetpack.chat.engine") + " " + EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.chat.enabled");
+        this.msgDeactivate = SJTranslator.translate("jetpack.chat.engine") + " " + EnumChatFormatting.RED + SJTranslator.translate("jetpack.chat.disabled");
     }
 
     @Override
@@ -57,15 +59,26 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        list.add(EnumChatFormatting.GOLD + "Charge: " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
-        String onOrOff = this.isOn(itemStack) ? EnumChatFormatting.GREEN + "On" : EnumChatFormatting.RED + "Off";
-        list.add(EnumChatFormatting.GOLD + "State: " + onOrOff);
-        String enabledOrDisabled = this.isHoverModeActive(itemStack) ? EnumChatFormatting.GREEN + "Enabled" : EnumChatFormatting.RED + "Disabled";
-        list.add(EnumChatFormatting.GOLD + "Hover Mode: " + enabledOrDisabled);
+        list.add(EnumChatFormatting.GOLD + SJTranslator.translate("jetpack.tooltip.charge") + ": " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
+        String onOrOff = this.isOn(itemStack) ? EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.tooltip.state.on") : EnumChatFormatting.RED + SJTranslator.translate("jetpack.tooltip.state.off");
+        list.add(EnumChatFormatting.GOLD + SJTranslator.translate("jetpack.tooltip.state") + ": " + onOrOff);
+        String enabledOrDisabled = this.isHoverModeActive(itemStack) ? EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.tooltip.hoverMode.enabled") : EnumChatFormatting.RED + SJTranslator.translate("jetpack.tooltip.hoverMode.disabled");
+        list.add(EnumChatFormatting.GOLD + SJTranslator.translate("jetpack.tooltip.hoverMode") + ": " + enabledOrDisabled);
         int currentTickEnergy = this.isHoverModeActive(itemStack) ? this.tickEnergyHover : this.tickEnergy;
-        list.add(EnumChatFormatting.BLUE + "Energy usage: " + EnumChatFormatting.GRAY + currentTickEnergy + " RF/t");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Allows flight when active.");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Must be worn in the chestplate slot.");
+        list.add(EnumChatFormatting.BLUE + SJTranslator.translate("jetpack.tooltip.energyUsage") + ": " + EnumChatFormatting.GRAY + currentTickEnergy + " RF/t");
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpack.tooltip.description.1"));
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpack.tooltip.description.2"));
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public String getItemDisplayName(ItemStack itemStack) {
+        if (itemStack.getItem() == SimplyJetpacks.jetpackTier3) {
+            return EnumChatFormatting.YELLOW + super.getItemDisplayName(itemStack);
+        } else if (itemStack.getItem() == SimplyJetpacks.jetpackTier4) {
+            return EnumChatFormatting.AQUA + super.getItemDisplayName(itemStack);
+        }
+        return super.getItemDisplayName(itemStack);
     }
 
     @Override
@@ -141,10 +154,10 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
 
     public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
         if (this.isHoverModeActive(itemStack)) {
-            player.addChatMessage("Hover Mode " + EnumChatFormatting.RED + "disabled");
+            player.addChatMessage(SJTranslator.translate("jetpack.chat.hoverMode") + " " + EnumChatFormatting.RED + SJTranslator.translate("jetpack.chat.disabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", false);
         } else {
-            player.addChatMessage("Hover Mode " + EnumChatFormatting.GREEN + "enabled");
+            player.addChatMessage(SJTranslator.translate("jetpack.chat.hoverMode") + " " + EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.chat.enabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", true);
         }
     }

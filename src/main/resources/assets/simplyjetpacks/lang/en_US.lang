@@ -1,0 +1,35 @@
+itemGroup.tabSimplyJetpacks=Simply Jetpacks
+
+item.simplyjetpacks.jetpackTier0.name=Tuberous Jetpack
+item.simplyjetpacks.jetpackTier1.name=Leadstone Jetpack
+item.simplyjetpacks.jetpackTier2.name=Hardened Jetpack
+item.simplyjetpacks.jetpackTier3.name=Redstone Jetpack
+item.simplyjetpacks.jetpackTier4.name=Resonant Jetpack
+
+item.simplyjetpacks.metaItem1_0.name=Leadstone Thruster
+item.simplyjetpacks.metaItem1_1.name=Hardened Thruster
+item.simplyjetpacks.metaItem1_2.name=Redstone Thruster
+item.simplyjetpacks.metaItem1_3.name=Resonant Thruster
+
+simplyjetpacks.jetpack.chat.engine=Jetpack engine
+simplyjetpacks.jetpack.chat.hoverMode=Hover Mode
+simplyjetpacks.jetpack.chat.enabled=enabled
+simplyjetpacks.jetpack.chat.disabled=disabled
+
+simplyjetpacks.jetpack.tooltip.charge=Charge
+simplyjetpacks.jetpack.tooltip.state=State
+simplyjetpacks.jetpack.tooltip.state.on=On
+simplyjetpacks.jetpack.tooltip.state.off=Off
+simplyjetpacks.jetpack.tooltip.hoverMode=Hover Mode
+simplyjetpacks.jetpack.tooltip.hoverMode.enabled=Enabled
+simplyjetpacks.jetpack.tooltip.hoverMode.disabled=Disabled
+simplyjetpacks.jetpack.tooltip.energyUsage=Energy usage
+simplyjetpacks.jetpack.tooltip.description.1=Allows flight when active.
+simplyjetpacks.jetpack.tooltip.description.2=Must be worn in the chestplate slot.
+simplyjetpacks.jetpackPotato.tooltip.description.1=It doesn't seem to be able to start.
+simplyjetpacks.jetpackPotato.tooltip.description.2=Maybe if you try long enough...
+simplyjetpacks.jetpackPotato.tooltip.warning=Note: Flying potatoes is a deadly practice.
+
+death.attack.jetpackpotato=%1$s attempted to fly a potato
+death.attack.jetpackpotato.player=%1$s attempted to fly a potato
+death.attack.jetpackpotato.item=%1$s attempted to fly a potato

@@ -1,0 +1,35 @@
+itemGroup.tabSimplyJetpacks=Simply Jetpacks
+
+item.simplyjetpacks.jetpackTier0.name=Aardappel-jetpack
+item.simplyjetpacks.jetpackTier1.name=Leadstone-jetpack
+item.simplyjetpacks.jetpackTier2.name=Geharde jetpack
+item.simplyjetpacks.jetpackTier3.name=Redstone-jetpack
+item.simplyjetpacks.jetpackTier4.name=Resonante jetpack
+
+item.simplyjetpacks.metaItem1_0.name=Leadstone-thruster
+item.simplyjetpacks.metaItem1_1.name=Geharde thruster
+item.simplyjetpacks.metaItem1_2.name=Redstone-thruster
+item.simplyjetpacks.metaItem1_3.name=Resonante thruster
+
+simplyjetpacks.jetpack.chat.engine=Jetpackmotor
+simplyjetpacks.jetpack.chat.hoverMode=Zweefmodus
+simplyjetpacks.jetpack.chat.enabled=aangezet
+simplyjetpacks.jetpack.chat.disabled=uitgezet
+
+simplyjetpacks.jetpack.tooltip.charge=Lading
+simplyjetpacks.jetpack.tooltip.state=Staat
+simplyjetpacks.jetpack.tooltip.state.on=Aan
+simplyjetpacks.jetpack.tooltip.state.off=Uit
+simplyjetpacks.jetpack.tooltip.hoverMode=Zweefmodus
+simplyjetpacks.jetpack.tooltip.hoverMode.enabled=Actief
+simplyjetpacks.jetpack.tooltip.hoverMode.disabled=Inactief
+simplyjetpacks.jetpack.tooltip.energyUsage=Energieverbruik
+simplyjetpacks.jetpack.tooltip.description.1=Laat je vliegen wanneer actief.
+simplyjetpacks.jetpack.tooltip.description.2=Moet gedragen worden in de borstplaat-slot.
+simplyjetpacks.jetpackPotato.tooltip.description.1=Het lijkt erop dat hij niet wil starten.
+simplyjetpacks.jetpackPotato.tooltip.description.2=Misschien als je het lang genoeg probeert...
+simplyjetpacks.jetpackPotato.tooltip.warning=Let op: vliegen met aardappels is erg gevaarlijk.
+
+death.attack.jetpackpotato=%1$s probeerde met een aardappel te vliegen
+death.attack.jetpackpotato.player=%1$s probeerde met een aardappel te vliegen
+death.attack.jetpackpotato.item=%1$s probeerde met een aardappel te vliegen

@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
@@ -24,7 +23,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "required-after:CoFHCore;required-after:ThermalExpansion")
 @NetworkMod(channels = { "SmpJet" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
@@ -55,7 +53,6 @@ public class SimplyJetpacks {
     public static Item jetpackTier3 = null;
     public static Item jetpackTier4 = null;
     public static Item metaItem1 = null;
-    public static final String[] METAITEM1_NAMES = new String[] { "Leadstone Thruster", "Hardened Thruster", EnumChatFormatting.YELLOW + "Redstone Thruster", EnumChatFormatting.AQUA + "Resonant Thruster" };
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent evt) {
@@ -73,20 +70,7 @@ public class SimplyJetpacks {
         jetpackTier2 = new ItemSJJetpack(ConfigReader.jetpackTier2ID, enumArmorJetpack, "jetpackTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed);
         jetpackTier3 = new ItemSJJetpack(ConfigReader.jetpackTier3ID, enumArmorJetpack, "jetpackTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed);
         jetpackTier4 = new ItemSJJetpack(ConfigReader.jetpackTier4ID, enumArmorJetpack, "jetpackTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed);
-        metaItem1 = new ItemSJSimpleMeta(ConfigReader.metaItem1ID, "metaItem1", METAITEM1_NAMES);
-
-        logger.info("Registering localized names");
-
-        LanguageRegistry.addName(jetpackTier0, "Tuberous Jetpack");
-        LanguageRegistry.addName(jetpackTier1, "Leadstone Jetpack");
-        LanguageRegistry.addName(jetpackTier2, "Hardened Jetpack");
-        LanguageRegistry.addName(jetpackTier3, EnumChatFormatting.YELLOW + "Redstone Jetpack");
-        LanguageRegistry.addName(jetpackTier4, EnumChatFormatting.AQUA + "Resonant Jetpack");
-        LanguageRegistry.addName(metaItem1, "Metaitem 1");
-        LanguageRegistry.instance().addStringLocalization("itemGroup.tabSimplyJetpacks", "en_US", "Simply Jetpacks");
-        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato", "%1$s attempted to fly a potato");
-        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato.player", "%1$s attempted to fly a potato");
-        LanguageRegistry.instance().addStringLocalization("death.attack.jetpackpotato.item", "%1$s attempted to fly a potato");
+        metaItem1 = new ItemSJSimpleMeta(ConfigReader.metaItem1ID, "metaItem1", 4);
 
         logger.info("Registering handlers");
         proxy.registerHandlers();
