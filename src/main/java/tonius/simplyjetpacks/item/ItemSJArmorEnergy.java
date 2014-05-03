@@ -34,11 +34,11 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
             itemStack.stackTagCompound.setBoolean("On", true);
         }
     }
-    
+
     public String getActivateMsg() {
         return "Enabled";
     }
-    
+
     public String getDeactivateMsg() {
         return "Disabled";
     }

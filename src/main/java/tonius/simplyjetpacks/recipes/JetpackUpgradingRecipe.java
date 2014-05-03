@@ -4,7 +4,6 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemSJJetpack;
 import cofh.api.energy.IEnergyContainerItem;
@@ -12,7 +11,6 @@ import cofh.api.energy.IEnergyContainerItem;
 public class JetpackUpgradingRecipe extends ShapedOreRecipe {
 
     private Item resultItem;
-    private ItemStack result;
 
     public JetpackUpgradingRecipe(ItemStack result, Object[] recipe) {
         super(result, recipe);
@@ -20,8 +18,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
     }
 
     @Override
-    public boolean matches(InventoryCrafting inventoryCrafting, World world) {
-        this.result = null;
+    public ItemStack getCraftingResult(InventoryCrafting inventoryCrafting) {
         int resultEnergy = 0;
 
         ItemStack slotStack;
@@ -32,24 +29,19 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
             }
         }
 
-        this.result = new ItemStack(resultItem);
+        ItemStack result = new ItemStack(resultItem);
         IEnergyContainerItem helperItem = (IEnergyContainerItem) this.resultItem;
-
-        if (result.getTagCompound() == null) {
-            result.setTagCompound(new NBTTagCompound());
-        }
 
         if (resultEnergy > helperItem.getMaxEnergyStored(result)) {
             resultEnergy = helperItem.getMaxEnergyStored(result);
         }
-        result.getTagCompound().setInteger("Energy", resultEnergy);
+
+        if (result.stackTagCompound == null) {
+            result.stackTagCompound = new NBTTagCompound();
+        }
+        result.stackTagCompound.setInteger("Energy", resultEnergy);
         ((ItemSJJetpack) result.getItem()).updateEnergyDisplay(result);
 
-        return super.matches(inventoryCrafting, world);
-    }
-
-    @Override
-    public ItemStack getCraftingResult(InventoryCrafting inventoryCrafting) {
         return result.copy();
     }
 
