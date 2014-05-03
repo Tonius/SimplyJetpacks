@@ -30,6 +30,6 @@ simplyjetpacks.jetpackPotato.tooltip.description.1=Scheint nicht startbar zu sei
 simplyjetpacks.jetpackPotato.tooltip.description.2=Vielleicht musst du es einfach länger versuchen...
 simplyjetpacks.jetpackPotato.tooltip.warning=Merke: Fliegen mit Kartoffelkraft ist eine tödliche Erfahrung.
 
-death.attack.jetpackpotato=%1$s hat versucht auf einer Kartoffel zu fliegen
-death.attack.jetpackpotato.player=%1$s hat versucht auf einer Kartoffel zu fliegen
-death.attack.jetpackpotato.item=%1$s hat versucht auf einer Kartoffel zu fliegen
+death.attack.jetpackpotato=%1$s versuchte, eine Kartoffel zu fliegen
+death.attack.jetpackpotato.player=%1$s versuchte, eine Kartoffel zu fliegen
+death.attack.jetpackpotato.item=%1$s versuchte, eine Kartoffel zu fliegen
