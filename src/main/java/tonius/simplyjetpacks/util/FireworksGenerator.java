@@ -99,7 +99,7 @@ public class FireworksGenerator {
 
         Firework firework = new Firework();
 
-        switch (rand.nextInt(2)) {
+        switch (rand.nextInt(3)) {
         case 0:
             firework.setFlicker();
             break;
@@ -107,11 +107,10 @@ public class FireworksGenerator {
             firework.setTrail();
         }
 
-        int type = rand.nextInt(3);
-        type = type == 3 ? type = 4 : type;
+        int type = rand.nextInt(5);
         firework.setType(type);
 
-        for (int i = 0; i <= rand.nextInt(5); i++) {
+        for (int i = 0; i <= rand.nextInt(6); i++) {
             Color randomColor = new Color(Color.HSBtoRGB(rand.nextFloat() * 360, rand.nextFloat() * 0.15F + 0.85F, 1.0F));
             firework.addColor(randomColor.getRed(), randomColor.getGreen(), randomColor.getBlue());
         }
