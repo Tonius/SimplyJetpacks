@@ -81,22 +81,22 @@ public class ClientProxy extends CommonProxy {
                 }
 
                 Vector3 vLeft = new Vector3();
-                vLeft.z -= 0.55;
-                vLeft.x -= 0.35;
+                vLeft.z -= 0.38;
+                vLeft.x -= 0.28;
                 vLeft.rotate(wearer.renderYawOffset);
-                vLeft.y -= 0.80;
+                vLeft.y -= 1.0;
 
                 Vector3 vRight = new Vector3();
-                vRight.z -= 0.55;
-                vRight.x += 0.35;
+                vRight.z -= 0.38;
+                vRight.x += 0.28;
                 vRight.rotate(wearer.renderYawOffset);
-                vRight.y -= 0.80;
+                vRight.y -= 1.0;
 
                 Vector3 vCenter = new Vector3();
-                vCenter.z -= 0.50;
+                vCenter.z -= 0.30;
                 vCenter.x = (rand.nextFloat() - 0.5F) * 0.25F;
                 vCenter.rotate(wearer.renderYawOffset);
-                vCenter.y -= 0.85;
+                vCenter.y -= 1.05;
 
                 vLeft = Vector3.translate(vLeft.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
                 vRight = Vector3.translate(vRight.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
