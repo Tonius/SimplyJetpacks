@@ -11,14 +11,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.PacketHandler;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.util.SJTranslator;
+import tonius.simplyjetpacks.util.LangUtils;
+import tonius.simplyjetpacks.util.StackUtils;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -49,23 +49,22 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         list.add(new ItemStack(id, 1, 31));
 
         ItemStack fullJetpack = new ItemStack(id, 1, 1);
-        fullJetpack.stackTagCompound = new NBTTagCompound();
-        fullJetpack.stackTagCompound.setInteger("Energy", this.getMaxEnergyStored(fullJetpack));
+        StackUtils.getNBT(fullJetpack).setInteger("Energy", this.getMaxEnergyStored(fullJetpack));
         list.add(fullJetpack);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        list.add(EnumChatFormatting.GOLD + SJTranslator.translate("jetpack.tooltip.charge") + ": " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
-        String onOrOff = this.isOn(itemStack) ? EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.tooltip.state.on") : EnumChatFormatting.RED + SJTranslator.translate("jetpack.tooltip.state.off");
-        list.add(EnumChatFormatting.GOLD + SJTranslator.translate("jetpack.tooltip.state") + ": " + onOrOff);
-        String enabledOrDisabled = this.isHoverModeActive(itemStack) ? EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.tooltip.hoverMode.enabled") : EnumChatFormatting.RED + SJTranslator.translate("jetpack.tooltip.hoverMode.disabled");
-        list.add(EnumChatFormatting.GOLD + SJTranslator.translate("jetpack.tooltip.hoverMode") + ": " + enabledOrDisabled);
+        list.add(EnumChatFormatting.GOLD + LangUtils.translate("jetpack.tooltip.charge") + ": " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
+        String onOrOff = this.isOn(itemStack) ? EnumChatFormatting.GREEN + LangUtils.translate("jetpack.tooltip.state.on") : EnumChatFormatting.RED + LangUtils.translate("jetpack.tooltip.state.off");
+        list.add(EnumChatFormatting.GOLD + LangUtils.translate("jetpack.tooltip.state") + ": " + onOrOff);
+        String enabledOrDisabled = this.isHoverModeActive(itemStack) ? EnumChatFormatting.GREEN + LangUtils.translate("jetpack.tooltip.hoverMode.enabled") : EnumChatFormatting.RED + LangUtils.translate("jetpack.tooltip.hoverMode.disabled");
+        list.add(EnumChatFormatting.GOLD + LangUtils.translate("jetpack.tooltip.hoverMode") + ": " + enabledOrDisabled);
         int currentTickEnergy = this.isHoverModeActive(itemStack) ? this.tickEnergyHover : this.tickEnergy;
-        list.add(EnumChatFormatting.BLUE + SJTranslator.translate("jetpack.tooltip.energyUsage") + ": " + EnumChatFormatting.GRAY + currentTickEnergy + " RF/t");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpack.tooltip.description.1"));
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpack.tooltip.description.2"));
+        list.add(EnumChatFormatting.BLUE + LangUtils.translate("jetpack.tooltip.energyUsage") + ": " + EnumChatFormatting.GRAY + currentTickEnergy + " RF/t");
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpack.tooltip.description.1"));
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpack.tooltip.description.2"));
     }
 
     @SideOnly(Side.CLIENT)
@@ -81,12 +80,12 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
 
     @Override
     public String getActivateMsg() {
-        return SJTranslator.translate("jetpack.chat.engine") + " " + EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.chat.enabled");
+        return LangUtils.translate("jetpack.chat.engine") + " " + EnumChatFormatting.GREEN + LangUtils.translate("jetpack.chat.enabled");
     }
 
     @Override
     public String getDeactivateMsg() {
-        return SJTranslator.translate("jetpack.chat.engine") + " " + EnumChatFormatting.RED + SJTranslator.translate("jetpack.chat.disabled");
+        return LangUtils.translate("jetpack.chat.engine") + " " + EnumChatFormatting.RED + LangUtils.translate("jetpack.chat.disabled");
     }
 
     @Override
@@ -162,19 +161,16 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
 
     public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
         if (this.isHoverModeActive(itemStack)) {
-            player.addChatMessage(SJTranslator.translate("jetpack.chat.hoverMode") + " " + EnumChatFormatting.RED + SJTranslator.translate("jetpack.chat.disabled"));
+            player.addChatMessage(LangUtils.translate("jetpack.chat.hoverMode") + " " + EnumChatFormatting.RED + LangUtils.translate("jetpack.chat.disabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", false);
         } else {
-            player.addChatMessage(SJTranslator.translate("jetpack.chat.hoverMode") + " " + EnumChatFormatting.GREEN + SJTranslator.translate("jetpack.chat.enabled"));
+            player.addChatMessage(LangUtils.translate("jetpack.chat.hoverMode") + " " + EnumChatFormatting.GREEN + LangUtils.translate("jetpack.chat.enabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", true);
         }
     }
 
     public boolean isHoverModeActive(ItemStack itemStack) {
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
-        }
-        return itemStack.stackTagCompound.getBoolean("HoverModeActive");
+        return StackUtils.getNBT(itemStack).getBoolean("HoverModeActive");
     }
 
     /* IEnergyContainerItem */

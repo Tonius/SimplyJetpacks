@@ -4,9 +4,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
+import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEnergyContainerItem {
@@ -44,10 +44,7 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
     }
 
     public boolean isOn(ItemStack itemStack) {
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
-        }
-        return itemStack.stackTagCompound.getBoolean("On");
+        return StackUtils.getNBT(itemStack).getBoolean("On");
     }
 
     public void updateEnergyDisplay(ItemStack itemStack) {
@@ -56,9 +53,7 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
     }
 
     public int addEnergy(ItemStack container, int energyToAdd, boolean simulate) {
-        if (container.stackTagCompound == null) {
-            container.stackTagCompound = new NBTTagCompound();
-        }
+        StackUtils.getNBT(container);
         int energyCurrent = container.stackTagCompound.getInteger("Energy");
         int energyAdded = Math.min(getMaxEnergyStored(container) - energyCurrent, energyToAdd);
 
@@ -72,9 +67,7 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
     }
 
     public int subtractEnergy(ItemStack container, int energyToSubtract, boolean simulate) {
-        if (container.stackTagCompound == null) {
-            container.stackTagCompound = new NBTTagCompound();
-        }
+        StackUtils.getNBT(container);
         int energyCurrent = container.stackTagCompound.getInteger("Energy");
         int energySubtracted = Math.min(energyCurrent, energyToSubtract);
 
@@ -105,15 +98,12 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
     /* IEnergyContainerItem */
     @Override
     public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
-        if (container.stackTagCompound == null) {
-            container.stackTagCompound = new NBTTagCompound();
-        }
         int energy = getEnergyStored(container);
         int energyReceived = Math.min(getMaxEnergyStored(container) - energy, Math.min(maxReceive, maxInput));
 
         if (!simulate) {
             energy += energyReceived;
-            container.stackTagCompound.setInteger("Energy", energy);
+            StackUtils.getNBT(container).setInteger("Energy", energy);
         }
         updateEnergyDisplay(container);
         return energyReceived;

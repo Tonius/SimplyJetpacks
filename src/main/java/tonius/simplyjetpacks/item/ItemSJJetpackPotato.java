@@ -10,12 +10,12 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.util.DamageSourceJetpackPotato;
 import tonius.simplyjetpacks.util.FireworksGenerator;
-import tonius.simplyjetpacks.util.SJTranslator;
+import tonius.simplyjetpacks.util.LangUtils;
+import tonius.simplyjetpacks.util.StackUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,11 +28,11 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        list.add(EnumChatFormatting.GOLD + SJTranslator.translate("jetpack.tooltip.charge") + ": " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
-        list.add(EnumChatFormatting.BLUE + SJTranslator.translate("jetpack.tooltip.energyUsage") + ": " + EnumChatFormatting.GRAY + this.tickEnergy + " RF/t");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpackPotato.tooltip.description.1"));
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpackPotato.tooltip.description.2"));
-        list.add(EnumChatFormatting.RED + "" + EnumChatFormatting.ITALIC + SJTranslator.translate("jetpackPotato.tooltip.warning"));
+        list.add(EnumChatFormatting.GOLD + LangUtils.translate("jetpack.tooltip.charge") + ": " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
+        list.add(EnumChatFormatting.BLUE + LangUtils.translate("jetpack.tooltip.energyUsage") + ": " + EnumChatFormatting.GRAY + this.tickEnergy + " RF/t");
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpackPotato.tooltip.description.1"));
+        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpackPotato.tooltip.description.2"));
+        list.add(EnumChatFormatting.RED + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpackPotato.tooltip.warning"));
     }
 
     @Override
@@ -100,38 +100,25 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
     }
 
     public boolean isFired(ItemStack itemStack) {
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
-        }
-        return itemStack.stackTagCompound.getBoolean("Fired");
+        return StackUtils.getNBT(itemStack).getBoolean("Fired");
     }
 
     public void setFired(ItemStack itemStack) {
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
-        }
-        itemStack.stackTagCompound.setBoolean("Fired", true);
+        StackUtils.getNBT(itemStack).setBoolean("Fired", true);
     }
 
     public void setTimer(ItemStack itemStack, int timer) {
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
-        }
+        StackUtils.getNBT(itemStack);
         itemStack.stackTagCompound.setInteger("RocketTimer", timer);
         itemStack.stackTagCompound.setBoolean("TimerSet", true);
     }
 
     public boolean isTimerSet(ItemStack itemStack) {
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
-        }
-        return itemStack.stackTagCompound.getBoolean("TimerSet");
+        return StackUtils.getNBT(itemStack).getBoolean("TimerSet");
     }
 
     public void decrementTimer(ItemStack itemStack, EntityLivingBase user) {
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
-        }
+        StackUtils.getNBT(itemStack);
         int timer = itemStack.stackTagCompound.getInteger("RocketTimer");
         timer = timer > 0 ? timer - 1 : 0;
         itemStack.stackTagCompound.setInteger("RocketTimer", timer);

@@ -12,13 +12,13 @@ import tonius.simplyjetpacks.item.ItemSJJetpack;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.TickType;
 
-public class SJKeyHandler extends KeyHandler {
+public class KeyHandlerSJ extends KeyHandler {
 
     public static Minecraft mc = Minecraft.getMinecraft();
     public static KeyBinding keyMode = new KeyBinding("[SimplyJetpacks] Switch mode", 46);
     public static KeyBinding keyToggle = new KeyBinding("[SimplyJetpacks] Turn on/off", 33);
 
-    public SJKeyHandler() {
+    public KeyHandlerSJ() {
         super(new KeyBinding[] { keyMode, keyToggle }, new boolean[] { false, false });
     }
 

@@ -3,9 +3,9 @@ package tonius.simplyjetpacks.recipes;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemSJJetpack;
+import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class JetpackUpgradingRecipe extends ShapedOreRecipe {
@@ -36,10 +36,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
             resultEnergy = helperItem.getMaxEnergyStored(result);
         }
 
-        if (result.stackTagCompound == null) {
-            result.stackTagCompound = new NBTTagCompound();
-        }
-        result.stackTagCompound.setInteger("Energy", resultEnergy);
+        StackUtils.getNBT(result).setInteger("Energy", resultEnergy);
         ((ItemSJJetpack) result.getItem()).updateEnergyDisplay(result);
 
         return result.copy();
