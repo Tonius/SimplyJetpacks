@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -49,9 +49,9 @@ public class ItemSJSimpleMeta extends Item {
     public String getItemDisplayName(ItemStack itemStack) {
         switch (itemStack.getItemDamage()) {
         case 2:
-            return EnumChatFormatting.YELLOW + super.getItemDisplayName(itemStack);
+            return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
         case 3:
-            return EnumChatFormatting.AQUA + super.getItemDisplayName(itemStack);
+            return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);
     }

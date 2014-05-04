@@ -10,12 +10,12 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.util.DamageSourceJetpackPotato;
 import tonius.simplyjetpacks.util.FireworksGenerator;
 import tonius.simplyjetpacks.util.LangUtils;
 import tonius.simplyjetpacks.util.StackUtils;
+import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,11 +28,17 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        list.add(EnumChatFormatting.GOLD + LangUtils.translate("jetpack.tooltip.charge") + ": " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
-        list.add(EnumChatFormatting.BLUE + LangUtils.translate("jetpack.tooltip.energyUsage") + ": " + EnumChatFormatting.GRAY + this.tickEnergy + " RF/t");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpackPotato.tooltip.description.1"));
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpackPotato.tooltip.description.2"));
-        list.add(EnumChatFormatting.RED + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpackPotato.tooltip.warning"));
+        if (StringUtils.isControlKeyDown() && StringUtils.isShiftKeyDown()) {
+            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpackPotato.description.1"));
+            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpackPotato.description.2"));
+            list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + LangUtils.translate("tooltip.jetpackPotato.warning"));
+        } else if (StringUtils.isShiftKeyDown()) {
+            list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
+            list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
+        } else {
+            list.add(StringUtils.getShiftText());
+            list.add(StringUtils.getCtrlShiftText());
+        }
     }
 
     @Override

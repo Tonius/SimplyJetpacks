@@ -12,13 +12,13 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.PacketHandler;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.util.LangUtils;
 import tonius.simplyjetpacks.util.StackUtils;
+import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -56,36 +56,40 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        list.add(EnumChatFormatting.GOLD + LangUtils.translate("jetpack.tooltip.charge") + ": " + EnumChatFormatting.GRAY + getEnergyStored(itemStack) + "/" + this.getMaxEnergyStored(itemStack) + " RF");
-        String onOrOff = this.isOn(itemStack) ? EnumChatFormatting.GREEN + LangUtils.translate("jetpack.tooltip.state.on") : EnumChatFormatting.RED + LangUtils.translate("jetpack.tooltip.state.off");
-        list.add(EnumChatFormatting.GOLD + LangUtils.translate("jetpack.tooltip.state") + ": " + onOrOff);
-        String enabledOrDisabled = this.isHoverModeActive(itemStack) ? EnumChatFormatting.GREEN + LangUtils.translate("jetpack.tooltip.hoverMode.enabled") : EnumChatFormatting.RED + LangUtils.translate("jetpack.tooltip.hoverMode.disabled");
-        list.add(EnumChatFormatting.GOLD + LangUtils.translate("jetpack.tooltip.hoverMode") + ": " + enabledOrDisabled);
-        int currentTickEnergy = this.isHoverModeActive(itemStack) ? this.tickEnergyHover : this.tickEnergy;
-        list.add(EnumChatFormatting.BLUE + LangUtils.translate("jetpack.tooltip.energyUsage") + ": " + EnumChatFormatting.GRAY + currentTickEnergy + " RF/t");
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpack.tooltip.description.1"));
-        list.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + LangUtils.translate("jetpack.tooltip.description.2"));
+        if (StringUtils.isControlKeyDown() && StringUtils.isShiftKeyDown()) {
+            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpack.description.1"));
+            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpack.description.2"));
+        } else if (StringUtils.isShiftKeyDown()) {
+            list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
+            list.add(StringUtils.getStateText(this.isOn(itemStack)));
+            list.add(StringUtils.getHoverModeText(this.isHoverModeActive(itemStack)));
+            int currentTickEnergy = this.isHoverModeActive(itemStack) ? this.tickEnergyHover : this.tickEnergy;
+            list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
+        } else {
+            list.add(StringUtils.getShiftText());
+            list.add(StringUtils.getCtrlShiftText());
+        }
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public String getItemDisplayName(ItemStack itemStack) {
         if (itemStack.getItem() == SimplyJetpacks.jetpackTier3) {
-            return EnumChatFormatting.YELLOW + super.getItemDisplayName(itemStack);
+            return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
         } else if (itemStack.getItem() == SimplyJetpacks.jetpackTier4) {
-            return EnumChatFormatting.AQUA + super.getItemDisplayName(itemStack);
+            return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);
     }
 
     @Override
     public String getActivateMsg() {
-        return LangUtils.translate("jetpack.chat.engine") + " " + EnumChatFormatting.GREEN + LangUtils.translate("jetpack.chat.enabled");
+        return LangUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + LangUtils.translate("chat.enabled");
     }
 
     @Override
     public String getDeactivateMsg() {
-        return LangUtils.translate("jetpack.chat.engine") + " " + EnumChatFormatting.RED + LangUtils.translate("jetpack.chat.disabled");
+        return LangUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + LangUtils.translate("chat.disabled");
     }
 
     @Override
@@ -161,10 +165,10 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
 
     public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
         if (this.isHoverModeActive(itemStack)) {
-            player.addChatMessage(LangUtils.translate("jetpack.chat.hoverMode") + " " + EnumChatFormatting.RED + LangUtils.translate("jetpack.chat.disabled"));
+            player.addChatMessage(LangUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + LangUtils.translate("chat.disabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", false);
         } else {
-            player.addChatMessage(LangUtils.translate("jetpack.chat.hoverMode") + " " + EnumChatFormatting.GREEN + LangUtils.translate("jetpack.chat.enabled"));
+            player.addChatMessage(LangUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + LangUtils.translate("chat.enabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", true);
         }
     }
