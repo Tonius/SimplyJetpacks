@@ -14,9 +14,9 @@ import cpw.mods.fml.common.TickType;
 
 public class KeyHandlerSJ extends KeyHandler {
 
-    public static Minecraft mc = Minecraft.getMinecraft();
-    public static KeyBinding keyMode = new KeyBinding("[SimplyJetpacks] Switch mode", 46);
-    public static KeyBinding keyToggle = new KeyBinding("[SimplyJetpacks] Turn on/off", 33);
+    private static Minecraft mc = Minecraft.getMinecraft();
+    private static KeyBinding keyMode = new KeyBinding("[SimplyJetpacks] Switch mode", 46);
+    private static KeyBinding keyToggle = new KeyBinding("[SimplyJetpacks] Turn on/off", 33);
 
     public KeyHandlerSJ() {
         super(new KeyBinding[] { keyMode, keyToggle }, new boolean[] { false, false });
@@ -24,16 +24,14 @@ public class KeyHandlerSJ extends KeyHandler {
 
     @Override
     public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
-        if (tickEnd && kb == keyMode && mc.inGameHasFocus) {
-            ItemStack itemStack = mc.thePlayer.inventory.armorItemInSlot(2);
-            if ((itemStack != null) && (itemStack.getItem() instanceof ItemSJJetpack)) {
-                SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_MODE, 1);
-            }
-        }
-        if (tickEnd && kb == keyToggle && mc.inGameHasFocus) {
-            ItemStack itemStack = mc.thePlayer.inventory.armorItemInSlot(2);
-            if ((itemStack != null) && (itemStack.getItem() instanceof ItemSJArmorEnergy)) {
-                SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_TOGGLE, 1);
+        if (tickEnd && mc.inGameHasFocus) {
+            ItemStack itemStack = mc.thePlayer.getCurrentItemOrArmor(3);
+            if (itemStack != null) {
+                if (kb == keyMode && itemStack.getItem() instanceof ItemSJJetpack) {
+                    SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_MODE, 1);
+                } else if (kb == keyToggle && itemStack.getItem() instanceof ItemSJArmorEnergy) {
+                    SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_TOGGLE, 1);
+                }
             }
         }
     }
@@ -49,7 +47,7 @@ public class KeyHandlerSJ extends KeyHandler {
 
     @Override
     public String getLabel() {
-        return "SmpJetKeyHandler";
+        return "SJKeyHandler";
     }
 
 }
