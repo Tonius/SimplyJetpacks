@@ -18,9 +18,9 @@ public class KeyboardTracker {
         return forwardKeyState.containsKey(player) && forwardKeyState.get(player).booleanValue();
     }
 
-    public static void processKeyUpdate(EntityPlayer player, boolean key1, boolean key2) {
-        jumpKeyState.put(player, key1);
-        forwardKeyState.put(player, key2);
+    public static void processKeyUpdate(EntityPlayer player, boolean keyJump, boolean keyForward) {
+        jumpKeyState.put(player, keyJump);
+        forwardKeyState.put(player, keyForward);
     }
 
 }

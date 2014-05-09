@@ -15,9 +15,13 @@ import cpw.mods.fml.common.network.Player;
 
 public class PacketHandler implements IPacketHandler {
 
+    // used for showing jetpack particles
     public static final int JETPACK_TICK = 0;
+    // used for passing key states of vanilla keybinds
     public static final int KEY_STATE = 1;
+    // used for handling the mode keybind
     public static final int KEY_MODE = 2;
+    // used for handling the toggle keybind
     public static final int KEY_TOGGLE = 3;
 
     @Override
