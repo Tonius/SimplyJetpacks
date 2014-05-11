@@ -47,12 +47,12 @@ public class SimplyJetpacks {
 
     public static EnumArmorMaterial enumArmorJetpack = EnumHelper.addArmorMaterial("enumArmorJetpack", 15, new int[] { 0, 0, 0, 0 }, 0);
 
-    public static Item jetpackTier0 = null;
-    public static Item jetpackTier1 = null;
-    public static Item jetpackTier2 = null;
-    public static Item jetpackTier3 = null;
-    public static Item jetpackTier4 = null;
-    public static Item metaItem1 = null;
+    public static ItemSJJetpack jetpackTier0 = null;
+    public static ItemSJJetpack jetpackTier1 = null;
+    public static ItemSJJetpack jetpackTier2 = null;
+    public static ItemSJJetpack jetpackTier3 = null;
+    public static ItemSJJetpack jetpackTier4 = null;
+    public static ItemSJSimpleMeta metaItem1 = null;
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent evt) {
@@ -98,10 +98,7 @@ public class SimplyJetpacks {
         ItemStack powerCoilGold = GameRegistry.findItemStack("ThermalExpansion", "powerCoilGold", 1);
 
         if (ConfigReader.enableCraftingJetpackTier0) {
-            ItemStack fullJetpackPotato = new ItemStack(jetpackTier0, 1, 31);
-            ItemSJJetpackPotato fullJetpackPotatoItem = ((ItemSJJetpackPotato) fullJetpackPotato.getItem());
-            fullJetpackPotatoItem.addEnergy(fullJetpackPotato, fullJetpackPotatoItem.getMaxEnergyStored(fullJetpackPotato), false);
-            GameRegistry.addRecipe(new ShapedOreRecipe(fullJetpackPotato, new Object[] { "S S", "NPN", "R R", 'S', Item.silk, 'N', "nuggetTin", 'P', capacitorPotato, 'R', "dustRedstone" }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(jetpackTier0.getChargedItem(jetpackTier0).copy(), new Object[] { "S S", "NPN", "R R", 'S', Item.silk, 'N', "nuggetTin", 'P', capacitorPotato, 'R', "dustRedstone" }));
         }
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 0), new Object[] { "PCP", "GBG", "DSD", 'P', conduitItemOpaque, 'C', powerCoilGold, 'B', capacitorBasic, 'G', "gearCopper", 'D', dynamoSteam, 'S', pneumaticServo }));

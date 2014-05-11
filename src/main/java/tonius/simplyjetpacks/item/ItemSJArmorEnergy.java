@@ -80,7 +80,12 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
         return energySubtracted;
     }
 
-    /* ISpecialArmor */
+    public ItemStack getChargedItem(ItemSJArmorEnergy item) {
+        ItemStack full = new ItemStack(item);
+        item.addEnergy(full, item.getMaxEnergyStored(full), false);
+        return full;
+    }
+
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
         return properties;
@@ -95,7 +100,6 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
     }
 
-    /* IEnergyContainerItem */
     @Override
     public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
         int energy = getEnergyStored(container);
@@ -104,33 +108,27 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
         if (!simulate) {
             energy += energyReceived;
             StackUtils.getNBT(container).setInteger("Energy", energy);
+            updateEnergyDisplay(container);
         }
-        updateEnergyDisplay(container);
         return energyReceived;
     }
 
     @Override
     public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
-        if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
-            return 0;
-        }
         int energy = getEnergyStored(container);
         int energyExtracted = Math.min(energy, Math.min(maxExtract, maxOutput));
 
         if (!simulate) {
             energy -= energyExtracted;
-            container.stackTagCompound.setInteger("Energy", energy);
+            StackUtils.getNBT(container).setInteger("Energy", energy);
+            updateEnergyDisplay(container);
         }
-        updateEnergyDisplay(container);
         return energyExtracted;
     }
 
     @Override
     public int getEnergyStored(ItemStack container) {
-        if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
-            return 0;
-        }
-        return container.stackTagCompound.getInteger("Energy");
+        return StackUtils.getNBT(container).getInteger("Energy");
     }
 
     @Override
