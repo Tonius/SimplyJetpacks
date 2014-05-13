@@ -44,13 +44,15 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         this.hoverModeActiveSpeed = hoverModeActiveSpeed;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
-        list.add(new ItemStack(id, 1, 31));
-
-        ItemStack fullJetpack = new ItemStack(id, 1, 1);
-        StackUtils.getNBT(fullJetpack).setInteger("Energy", this.getMaxEnergyStored(fullJetpack));
-        list.add(fullJetpack);
+    public String getItemDisplayName(ItemStack itemStack) {
+        if (itemStack.getItem() == SimplyJetpacks.jetpackTier3) {
+            return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
+        } else if (itemStack.getItem() == SimplyJetpacks.jetpackTier4) {
+            return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+        }
+        return super.getItemDisplayName(itemStack);
     }
 
     @SideOnly(Side.CLIENT)
@@ -71,79 +73,66 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public String getItemDisplayName(ItemStack itemStack) {
-        if (itemStack.getItem() == SimplyJetpacks.jetpackTier3) {
-            return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
-        } else if (itemStack.getItem() == SimplyJetpacks.jetpackTier4) {
-            return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
-        }
-        return super.getItemDisplayName(itemStack);
-    }
+    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
+        list.add(new ItemStack(id, 1, 31));
 
-    @Override
-    public String getActivateMsg() {
-        return LangUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + LangUtils.translate("chat.enabled");
-    }
-
-    @Override
-    public String getDeactivateMsg() {
-        return LangUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + LangUtils.translate("chat.disabled");
+        ItemStack fullJetpack = new ItemStack(id, 1, 1);
+        StackUtils.getNBT(fullJetpack).setInteger("Energy", this.getMaxEnergyStored(fullJetpack));
+        list.add(fullJetpack);
     }
 
     @Override
     public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack) {
-        if (this.isOn(itemStack)) {
-            double hoverSpeed = player.isSneaking() ? this.hoverModeActiveSpeed : this.hoverModeIdleSpeed;
-            if (KeyboardTracker.isJumpKeyDown(player)) {
-                this.useJetpack(player, itemStack);
-            } else if (this.isHoverModeActive(itemStack) && !player.onGround && player.motionY < -hoverSpeed) {
-                this.subtractEnergy(itemStack, this.tickEnergyHover, false);
-                if (this.getEnergyStored(itemStack) > 0) {
-                    player.motionY = -hoverSpeed;
-                    if (KeyboardTracker.isForwardKeyDown(player)) {
-                        player.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
+        this.useJetpack(player, itemStack, false);
+    }
+
+    public void useJetpack(EntityLivingBase user, ItemStack jetpack, boolean force) {
+        if (isOn(jetpack)) {
+            boolean hoverMode = this.isHoverModeActive(jetpack);
+            double hoverSpeed = user.isSneaking() ? this.hoverModeActiveSpeed : this.hoverModeIdleSpeed;
+            boolean jumpKeyDown = true;
+            if (!force && user instanceof EntityPlayer && !KeyboardTracker.isJumpKeyDown((EntityPlayer) user)) {
+                jumpKeyDown = false;
+            }
+
+            if (jumpKeyDown || (hoverMode && !user.onGround)) {
+                int usedPower = hoverMode ? this.tickEnergyHover : this.tickEnergy;
+                this.subtractEnergy(jetpack, usedPower, false);
+
+                if (this.getEnergyStored(jetpack) > 0) {
+                    if (jumpKeyDown) {
+                        if (!hoverMode) {
+                            user.motionY = Math.min(user.motionY + this.acceleration, this.maxSpeed);
+                        } else {
+                            user.motionY = Math.min(user.motionY + this.acceleration, this.hoverModeActiveSpeed);
+                        }
+                    } else {
+                        user.motionY = Math.max(user.motionY, -hoverSpeed);
                     }
-                    player.fallDistance = 0.0F;
-                    if (player instanceof EntityPlayerMP) {
-                        ((EntityPlayerMP) player).playerNetServerHandler.ticksForFloatKick = 0;
+
+                    user.fallDistance = 0.0F;
+                    if (user instanceof EntityPlayerMP) {
+                        ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
                     }
-                    updateEnergyDisplay(itemStack);
-                    sendJetpackPacket(player, true);
+                    this.sendJetpackPacket(user, hoverMode);
                 }
             }
         }
     }
 
-    public void useJetpack(EntityLivingBase user, ItemStack itemStack) {
-        boolean flown = false;
-        if (!(this.isHoverModeActive(itemStack))) {
-            this.subtractEnergy(itemStack, this.tickEnergy, false);
-            if (this.getEnergyStored(itemStack) > 0) {
-                user.motionY = Math.min(user.motionY + this.acceleration, this.maxSpeed);
-                flown = true;
-            }
+    public boolean isHoverModeActive(ItemStack itemStack) {
+        return StackUtils.getNBT(itemStack).getBoolean("HoverModeActive");
+    }
+
+    public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
+        if (this.isHoverModeActive(itemStack)) {
+            player.addChatMessage(LangUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + LangUtils.translate("chat.disabled"));
+            itemStack.stackTagCompound.setBoolean("HoverModeActive", false);
         } else {
-            this.subtractEnergy(itemStack, this.tickEnergyHover, false);
-            if (this.getEnergyStored(itemStack) > 0) {
-                user.motionY = Math.min(user.motionY + this.acceleration, this.hoverModeActiveSpeed);
-                flown = true;
-            }
+            player.addChatMessage(LangUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + LangUtils.translate("chat.enabled"));
+            itemStack.stackTagCompound.setBoolean("HoverModeActive", true);
         }
-        if (flown) {
-            if (!(user instanceof EntityPlayer)) {
-                user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
-            } else if (KeyboardTracker.isForwardKeyDown((EntityPlayer) user)) {
-                user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
-            }
-            user.fallDistance = 0.0F;
-            if (user instanceof EntityPlayerMP) {
-                ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
-            }
-            sendJetpackPacket(user, this.isHoverModeActive(itemStack));
-        }
-        this.updateEnergyDisplay(itemStack);
     }
 
     public void sendJetpackPacket(EntityLivingBase user, boolean hoverMode) {
@@ -163,21 +152,16 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         PacketDispatcher.sendPacketToAllAround(user.posX, user.posY, user.posZ, 128, user.worldObj.provider.dimensionId, packet);
     }
 
-    public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
-        if (this.isHoverModeActive(itemStack)) {
-            player.addChatMessage(LangUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + LangUtils.translate("chat.disabled"));
-            itemStack.stackTagCompound.setBoolean("HoverModeActive", false);
-        } else {
-            player.addChatMessage(LangUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + LangUtils.translate("chat.enabled"));
-            itemStack.stackTagCompound.setBoolean("HoverModeActive", true);
-        }
+    @Override
+    public String getActivateMsg() {
+        return LangUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + LangUtils.translate("chat.enabled");
     }
 
-    public boolean isHoverModeActive(ItemStack itemStack) {
-        return StackUtils.getNBT(itemStack).getBoolean("HoverModeActive");
+    @Override
+    public String getDeactivateMsg() {
+        return LangUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + LangUtils.translate("chat.disabled");
     }
 
-    /* IEnergyContainerItem */
     @Override
     public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
         return 0;

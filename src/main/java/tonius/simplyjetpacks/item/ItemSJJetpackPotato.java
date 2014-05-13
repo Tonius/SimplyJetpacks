@@ -6,7 +6,6 @@ import java.util.Random;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -42,14 +41,10 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
     }
 
     @Override
-    public void useJetpack(EntityLivingBase user, ItemStack itemStack) {
-        if (this.isFired(itemStack)) {
-            boolean flown = false;
-            this.subtractEnergy(itemStack, this.tickEnergy, false);
-            if (getEnergyStored(itemStack) > 0) {
-                user.motionY = Math.min(user.motionY + this.acceleration, this.maxSpeed);
-                flown = true;
-            } else {
+    public void useJetpack(EntityLivingBase user, ItemStack jetpack, boolean force) {
+        if (this.isFired(jetpack)) {
+            super.useJetpack(user, jetpack, true);
+            if (this.getEnergyStored(jetpack) == 0) {
                 user.setCurrentItemOrArmor(3, null);
                 if (!user.worldObj.isRemote) {
                     Random rand = new Random();
@@ -62,29 +57,22 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
                     user.dropItem(Item.poisonousPotato.itemID, rand.nextInt(4) + 2);
                 }
             }
-            if (flown) {
-                if (!(user instanceof EntityPlayer)) {
-                    user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
-                } else if (KeyboardTracker.isForwardKeyDown((EntityPlayer) user)) {
-                    user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
-                }
-                user.fallDistance = 0.0F;
-                if (user instanceof EntityPlayerMP) {
-                    ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
-                }
-                this.sendJetpackPacket(user, this.isHoverModeActive(itemStack));
-            }
         } else {
-            if (this.isTimerSet(itemStack)) {
-                if (user.getRNG().nextInt(5) == 0) {
-                    this.sendJetpackPacket(user, true);
+            boolean jumpKeyDown = true;
+            if (!force && user instanceof EntityPlayer && !KeyboardTracker.isJumpKeyDown((EntityPlayer) user)) {
+                jumpKeyDown = false;
+            }
+            if (jumpKeyDown) {
+                if (this.isTimerSet(jetpack)) {
+                    if (user.getRNG().nextInt(5) == 0) {
+                        this.sendJetpackPacket(user, true);
+                    }
+                    this.decrementTimer(jetpack, user);
+                } else {
+                    this.setTimer(jetpack, 50);
                 }
-                this.decrementTimer(itemStack, user);
-            } else {
-                this.setTimer(itemStack, 50);
             }
         }
-        updateEnergyDisplay(itemStack);
     }
 
     @Override

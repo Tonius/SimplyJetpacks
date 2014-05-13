@@ -21,7 +21,7 @@ public class JetpackMobHandlers {
             if (armor != null && armor.getItem() instanceof ItemSJJetpack) {
                 Item jetpack = armor.getItem();
                 if (rand.nextInt(2) == 0) {
-                    ((ItemSJJetpack) jetpack).useJetpack(evt.entityLiving, armor);
+                    ((ItemSJJetpack) jetpack).useJetpack(evt.entityLiving, armor, false);
                 }
                 if (evt.entityLiving.posY > evt.entityLiving.worldObj.getActualHeight() + 10) {
                     evt.entityLiving.attackEntityFrom(DamageSource.generic, 80);
