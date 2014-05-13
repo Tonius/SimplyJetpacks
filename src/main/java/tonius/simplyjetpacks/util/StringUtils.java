@@ -81,8 +81,8 @@ public final class StringUtils {
         return LIGHT_GRAY + LangUtils.translate("tooltip.holdShift1") + " " + YELLOW + ITALIC + LangUtils.translate("tooltip.holdShift2") + " " + END + LIGHT_GRAY + LangUtils.translate("tooltip.holdShift3");
     }
 
-    public static String getCtrlShiftText() {
-        return LIGHT_GRAY + LangUtils.translate("tooltip.holdCtrlShift1") + " " + YELLOW + ITALIC + LangUtils.translate("tooltip.holdCtrlShift2") + " " + END + LIGHT_GRAY + LangUtils.translate("tooltip.holdCtrlShift3");
+    public static String getCtrlText() {
+        return LIGHT_GRAY + LangUtils.translate("tooltip.holdCtrl1") + " " + YELLOW + ITALIC + LangUtils.translate("tooltip.holdCtrl2") + " " + END + LIGHT_GRAY + LangUtils.translate("tooltip.holdCtrl3");
     }
 
 }

@@ -19,9 +19,9 @@ simplyjetpacks.chat.jetpack.hoverMode=Hover Mode
 simplyjetpacks.tooltip.holdShift1=Hold
 simplyjetpacks.tooltip.holdShift2=Shift
 simplyjetpacks.tooltip.holdShift3=for details
-simplyjetpacks.tooltip.holdCtrlShift1=Hold
-simplyjetpacks.tooltip.holdCtrlShift2=Ctrl+Shift
-simplyjetpacks.tooltip.holdCtrlShift3=for a description
+simplyjetpacks.tooltip.holdCtrl1=Hold
+simplyjetpacks.tooltip.holdCtrl2=Ctrl
+simplyjetpacks.tooltip.holdCtrl3=for a description
 
 simplyjetpacks.tooltip.charge=Charge
 simplyjetpacks.tooltip.state=State

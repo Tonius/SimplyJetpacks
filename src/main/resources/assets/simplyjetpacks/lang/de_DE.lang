@@ -19,9 +19,9 @@ simplyjetpacks.chat.jetpack.hoverMode=Schwebemodus
 simplyjetpacks.tooltip.holdShift1=Halte
 simplyjetpacks.tooltip.holdShift2=Shift
 simplyjetpacks.tooltip.holdShift3=für Details
-simplyjetpacks.tooltip.holdCtrlShift1=Halte
-simplyjetpacks.tooltip.holdCtrlShift2=Ctrl+Shift
-simplyjetpacks.tooltip.holdCtrlShift3=für eine Beschreibung
+simplyjetpacks.tooltip.holdCtrl1=Halte
+simplyjetpacks.tooltip.holdCtrl2=Ctrl
+simplyjetpacks.tooltip.holdCtrl3=für eine Beschreibung
 
 simplyjetpacks.tooltip.charge=Ladestand
 simplyjetpacks.tooltip.state=Status

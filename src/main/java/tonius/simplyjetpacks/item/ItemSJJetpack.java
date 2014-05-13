@@ -58,18 +58,18 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        if (StringUtils.isControlKeyDown() && StringUtils.isShiftKeyDown()) {
-            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpack.description.1"));
-            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpack.description.2"));
-        } else if (StringUtils.isShiftKeyDown()) {
+        if (StringUtils.isShiftKeyDown()) {
             list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
             list.add(StringUtils.getStateText(this.isOn(itemStack)));
             list.add(StringUtils.getHoverModeText(this.isHoverModeActive(itemStack)));
             int currentTickEnergy = this.isHoverModeActive(itemStack) ? this.tickEnergyHover : this.tickEnergy;
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
+        } else if (StringUtils.isControlKeyDown()) {
+            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpack.description.1"));
+            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpack.description.2"));
         } else {
             list.add(StringUtils.getShiftText());
-            list.add(StringUtils.getCtrlShiftText());
+            list.add(StringUtils.getCtrlText());
         }
     }
 

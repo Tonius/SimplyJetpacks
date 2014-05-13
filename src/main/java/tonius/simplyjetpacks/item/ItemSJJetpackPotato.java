@@ -28,16 +28,16 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        if (StringUtils.isControlKeyDown() && StringUtils.isShiftKeyDown()) {
+        if (StringUtils.isShiftKeyDown()) {
+            list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
+            list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
+        } else if (StringUtils.isControlKeyDown()) {
             list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpackPotato.description.1"));
             list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpackPotato.description.2"));
             list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + LangUtils.translate("tooltip.jetpackPotato.warning"));
-        } else if (StringUtils.isShiftKeyDown()) {
-            list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
-            list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
         } else {
             list.add(StringUtils.getShiftText());
-            list.add(StringUtils.getCtrlShiftText());
+            list.add(StringUtils.getCtrlText());
         }
     }
 
