@@ -76,10 +76,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     @Override
     public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
         list.add(new ItemStack(id, 1, 31));
-
-        ItemStack fullJetpack = new ItemStack(id, 1, 1);
-        StackUtils.getNBT(fullJetpack).setInteger("Energy", this.getMaxEnergyStored(fullJetpack));
-        list.add(fullJetpack);
+        list.add(this.getChargedItem(this));
     }
 
     @Override

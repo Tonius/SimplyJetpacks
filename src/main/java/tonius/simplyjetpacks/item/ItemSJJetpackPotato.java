@@ -3,6 +3,7 @@ package tonius.simplyjetpacks.item;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,6 +39,11 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
             list.add(StringUtils.getShiftText());
             list.add(StringUtils.getCtrlShiftText());
         }
+    }
+
+    @Override
+    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
+        list.add(this.getChargedItem(this));
     }
 
     @Override
