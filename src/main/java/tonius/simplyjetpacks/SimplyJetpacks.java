@@ -13,6 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemSJJetpack;
 import tonius.simplyjetpacks.item.ItemSJJetpackPotato;
+import tonius.simplyjetpacks.item.ItemSJMeta1;
 import tonius.simplyjetpacks.item.ItemSJSimpleMeta;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
 import cpw.mods.fml.common.Mod;
@@ -70,7 +71,7 @@ public class SimplyJetpacks {
         jetpackTier2 = new ItemSJJetpack(ConfigReader.jetpackTier2ID, enumArmorJetpack, "jetpackTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed);
         jetpackTier3 = new ItemSJJetpack(ConfigReader.jetpackTier3ID, enumArmorJetpack, "jetpackTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed);
         jetpackTier4 = new ItemSJJetpack(ConfigReader.jetpackTier4ID, enumArmorJetpack, "jetpackTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed);
-        metaItem1 = new ItemSJSimpleMeta(ConfigReader.metaItem1ID, "metaItem1", 4);
+        metaItem1 = new ItemSJMeta1(ConfigReader.metaItem1ID);
 
         logger.info("Registering handlers");
         proxy.registerHandlers();

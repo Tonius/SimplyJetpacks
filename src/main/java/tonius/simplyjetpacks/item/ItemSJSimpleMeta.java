@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -42,18 +41,6 @@ public class ItemSJSimpleMeta extends Item {
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
         return super.getUnlocalizedName() + "_" + itemStack.getItemDamage();
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public String getItemDisplayName(ItemStack itemStack) {
-        switch (itemStack.getItemDamage()) {
-        case 2:
-            return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
-        case 3:
-            return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
-        }
-        return super.getItemDisplayName(itemStack);
     }
 
     @SideOnly(Side.CLIENT)
