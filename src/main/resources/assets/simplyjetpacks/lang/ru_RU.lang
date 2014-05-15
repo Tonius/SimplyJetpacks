@@ -1,0 +1,42 @@
+itemGroup.tabSimplyJetpacks=Simply Jetpacks
+
+item.simplyjetpacks.jetpackTier0.name=Неровный реактивный ранец
+item.simplyjetpacks.jetpackTier1.name=Свинцовый реактивный ранец
+item.simplyjetpacks.jetpackTier2.name=Укреплённый реактивный ранец
+item.simplyjetpacks.jetpackTier3.name=Красный реактивный ранец
+item.simplyjetpacks.jetpackTier4.name=Резонирующий реактивный ранец
+
+item.simplyjetpacks.metaItem1_0.name=Свинцовый реактивный двигатель
+item.simplyjetpacks.metaItem1_1.name=Укреплённый реактивный двигатель
+item.simplyjetpacks.metaItem1_2.name=Красный реактивный двигатель
+item.simplyjetpacks.metaItem1_3.name=Резонирующий реактивный двигатель
+
+simplyjetpacks.chat.enabled=включён
+simplyjetpacks.chat.disabled=выключен
+simplyjetpacks.chat.jetpack.engine=Двигатель реактивного ранца
+simplyjetpacks.chat.jetpack.hoverMode=Режим парения
+
+simplyjetpacks.tooltip.holdShift1=Зажмите
+simplyjetpacks.tooltip.holdShift2=Shift
+simplyjetpacks.tooltip.holdShift3=для информации
+simplyjetpacks.tooltip.holdCtrl1=Зажмите
+simplyjetpacks.tooltip.holdCtrl2=Ctrl
+simplyjetpacks.tooltip.holdCtrl3=для описания
+
+simplyjetpacks.tooltip.charge=Заряд
+simplyjetpacks.tooltip.state=Состояние
+simplyjetpacks.tooltip.state.on=Вкл.
+simplyjetpacks.tooltip.state.off=Выкл.
+simplyjetpacks.tooltip.energyUsage=Потребление энергии
+simplyjetpacks.tooltip.jetpack.hoverMode=Режим парения
+simplyjetpacks.tooltip.jetpack.hoverMode.enabled=Включён
+simplyjetpacks.tooltip.jetpack.hoverMode.disabled=Выключен
+simplyjetpacks.tooltip.jetpack.description.1=Позволяет летать, когда активен.
+simplyjetpacks.tooltip.jetpack.description.2=Необходимо одеть в слот кирасы.
+simplyjetpacks.tooltip.jetpackPotato.description.1=Не похоже, чтобы это работало.
+simplyjetpacks.tooltip.jetpackPotato.description.2=Может быть, если Вы попробуете чуть дольше...
+simplyjetpacks.tooltip.jetpackPotato.warning=Примечание: Летающая картошка - смертельная практика.
+
+death.attack.jetpackpotato=%1$s попробовал полететь на картошке
+death.attack.jetpackpotato.player=%1$s попробовал полететь на картошке
+death.attack.jetpackpotato.item=%1$s попробовал полететь на картошке
