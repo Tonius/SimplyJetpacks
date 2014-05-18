@@ -102,20 +102,20 @@ public class SimplyJetpacks {
             GameRegistry.addRecipe(new ShapedOreRecipe(jetpackTier0.getChargedItem(jetpackTier0).copy(), new Object[] { "S S", "NPN", "R R", 'S', Item.silk, 'N', "nuggetTin", 'P', capacitorPotato, 'R', "dustRedstone" }));
         }
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 0), new Object[] { "PCP", "GBG", "DSD", 'P', conduitItemOpaque, 'C', powerCoilGold, 'B', capacitorBasic, 'G', "gearCopper", 'D', dynamoSteam, 'S', pneumaticServo }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 1), new Object[] { "PCP", "GBG", "DSD", 'P', conduitItemFastOpaque, 'C', powerCoilGold, 'B', capacitorHardened, 'G', "gearBronze", 'D', dynamoCompression, 'S', pneumaticServo }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 2), new Object[] { "PCP", "GBG", "DSD", 'P', conduitEnergyReinforcedEmpty, 'C', powerCoilGold, 'B', capacitorReinforced, 'G', "gearInvar", 'D', dynamoReactant, 'S', pneumaticServo }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 3), new Object[] { "PCP", "GBG", "DSD", 'P', conduitEnergyReinforced, 'C', powerCoilGold, 'B', capacitorResonant, 'G', "gearElectrum", 'D', dynamoMagmatic, 'S', pneumaticServo }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 0), new Object[] { " C ", "PGP", "DSD", 'P', conduitItemOpaque, 'C', powerCoilGold, 'G', "gearCopper", 'D', dynamoSteam, 'S', pneumaticServo }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 1), new Object[] { " C ", "PGP", "DSD", 'P', conduitItemFastOpaque, 'C', powerCoilGold, 'G', "gearBronze", 'D', dynamoCompression, 'S', pneumaticServo }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 2), new Object[] { " C ", "PGP", "DSD", 'P', conduitEnergyReinforcedEmpty, 'C', powerCoilGold, 'G', "gearInvar", 'D', dynamoReactant, 'S', pneumaticServo }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 3), new Object[] { " C ", "PGP", "DSD", 'P', conduitEnergyReinforced, 'C', powerCoilGold, 'G', "gearElectrum", 'D', dynamoMagmatic, 'S', pneumaticServo }));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier1, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotLead", 'B', capacitorBasic, 'T', new ItemStack(metaItem1, 1, 0), 'J', Item.plateLeather }));
-        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier2, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
-        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier3, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', new ItemStack(jetpackTier2, 1, OreDictionary.WILDCARD_VALUE) }));
-        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier4, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', new ItemStack(jetpackTier3, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier1, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotLead", 'B', capacitorBasic, 'T', new ItemStack(metaItem1, 1, 0), 'J', Item.plateLeather }));
+        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier2, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier3, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', new ItemStack(jetpackTier2, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier4, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', new ItemStack(jetpackTier3, 1, OreDictionary.WILDCARD_VALUE) }));
 
         if (!ConfigReader.upgradingRecipesOnly) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier2, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', Item.plateLeather }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier3, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', Item.plateIron }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier4, 1, 31), new Object[] { "IBI", "IJI", " T ", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', armorInvarPlate }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier2, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', Item.plateLeather }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier3, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', Item.plateIron }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier4, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', armorInvarPlate }));
         }
     }
 
