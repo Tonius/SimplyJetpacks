@@ -19,9 +19,6 @@ simplyjetpacks.chat.jetpack.hoverMode=Режим парения
 simplyjetpacks.tooltip.holdShift1=Зажмите
 simplyjetpacks.tooltip.holdShift2=Shift
 simplyjetpacks.tooltip.holdShift3=для информации
-simplyjetpacks.tooltip.holdCtrl1=Зажмите
-simplyjetpacks.tooltip.holdCtrl2=Ctrl
-simplyjetpacks.tooltip.holdCtrl3=для описания
 
 simplyjetpacks.tooltip.charge=Заряд
 simplyjetpacks.tooltip.state=Состояние

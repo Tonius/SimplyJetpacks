@@ -19,9 +19,6 @@ simplyjetpacks.chat.jetpack.hoverMode=Hover Mode
 simplyjetpacks.tooltip.holdShift1=Hold
 simplyjetpacks.tooltip.holdShift2=Shift
 simplyjetpacks.tooltip.holdShift3=for details
-simplyjetpacks.tooltip.holdCtrl1=Hold
-simplyjetpacks.tooltip.holdCtrl2=Ctrl
-simplyjetpacks.tooltip.holdCtrl3=for a description
 
 simplyjetpacks.tooltip.charge=Charge
 simplyjetpacks.tooltip.state=State
@@ -36,6 +33,8 @@ simplyjetpacks.tooltip.jetpack.description.2=Must be worn in the chestplate slot
 simplyjetpacks.tooltip.jetpackPotato.description.1=It doesn't seem to be able to start.
 simplyjetpacks.tooltip.jetpackPotato.description.2=Maybe if you try long enough...
 simplyjetpacks.tooltip.jetpackPotato.warning=Note: Flying potatoes is a deadly practice.
+simplyjetpacks.tooltip.thruster.description.1=Used for making jetpacks.
+simplyjetpacks.tooltip.thruster.description.2=Converts RF into upward thrust.
 
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato

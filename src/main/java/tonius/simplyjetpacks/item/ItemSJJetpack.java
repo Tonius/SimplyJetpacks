@@ -64,12 +64,10 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
             list.add(StringUtils.getHoverModeText(this.isHoverModeActive(itemStack)));
             int currentTickEnergy = this.isHoverModeActive(itemStack) ? this.tickEnergyHover : this.tickEnergy;
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
-        } else if (StringUtils.isControlKeyDown()) {
-            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpack.description.1"));
-            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpack.description.2"));
+            list.add(StringUtils.BRIGHT_GREEN + LangUtils.translate("tooltip.jetpack.description.1"));
+            list.add(StringUtils.BRIGHT_GREEN + LangUtils.translate("tooltip.jetpack.description.2"));
         } else {
             list.add(StringUtils.getShiftText());
-            list.add(StringUtils.getCtrlText());
         }
     }
 

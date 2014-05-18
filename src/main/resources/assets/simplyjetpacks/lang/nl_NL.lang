@@ -19,9 +19,6 @@ simplyjetpacks.chat.jetpack.hoverMode=Zweefmodus
 simplyjetpacks.tooltip.holdShift1=Druk op
 simplyjetpacks.tooltip.holdShift2=Shift
 simplyjetpacks.tooltip.holdShift3=voor details
-simplyjetpacks.tooltip.holdCtrl1=Druk op
-simplyjetpacks.tooltip.holdCtrl2=Ctrl
-simplyjetpacks.tooltip.holdCtrl3=voor een beschrijving
 
 simplyjetpacks.tooltip.charge=Lading
 simplyjetpacks.tooltip.state=Staat

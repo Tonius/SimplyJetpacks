@@ -31,13 +31,11 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
         if (StringUtils.isShiftKeyDown()) {
             list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
             list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
-        } else if (StringUtils.isControlKeyDown()) {
-            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpackPotato.description.1"));
-            list.add(StringUtils.LIGHT_BLUE + LangUtils.translate("tooltip.jetpackPotato.description.2"));
+            list.add(StringUtils.BRIGHT_GREEN + LangUtils.translate("tooltip.jetpackPotato.description.1"));
+            list.add(StringUtils.BRIGHT_GREEN + LangUtils.translate("tooltip.jetpackPotato.description.2"));
             list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + LangUtils.translate("tooltip.jetpackPotato.warning"));
         } else {
             list.add(StringUtils.getShiftText());
-            list.add(StringUtils.getCtrlText());
         }
     }
 
