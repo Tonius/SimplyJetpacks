@@ -16,11 +16,12 @@ import tonius.simplyjetpacks.item.ItemSJJetpackPotato;
 import tonius.simplyjetpacks.item.ItemSJMeta1;
 import tonius.simplyjetpacks.item.ItemSJSimpleMeta;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
+import tonius.simplyjetpacks.util.TE3Utils;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -78,7 +79,7 @@ public class SimplyJetpacks {
     }
 
     @EventHandler
-    public static void postInit(FMLPostInitializationEvent evt) {
+    public static void init(FMLInitializationEvent evt) {
         logger.info("Registering recipes");
 
         ItemStack capacitorBasic = GameRegistry.findItemStack("ThermalExpansion", "capacitorBasic", 1);
@@ -106,6 +107,7 @@ public class SimplyJetpacks {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 2), new Object[] { " C ", "PGP", "DSD", 'P', conduitEnergyReinforcedEmpty, 'C', powerCoilGold, 'G', "gearInvar", 'D', dynamoReactant, 'S', pneumaticServo }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 3), new Object[] { " C ", "PGP", "DSD", 'P', conduitEnergyReinforced, 'C', powerCoilGold, 'G', "gearElectrum", 'D', dynamoMagmatic, 'S', pneumaticServo }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 4), new Object[] { "LIL", "LIL", 'L', Item.leather, 'I', "ingotIron" }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 5), new Object[] { "TIT", "III", "TIT", 'I', "ingotIron", 'T', "ingotTin" }));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier1, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotLead", 'B', capacitorBasic, 'T', new ItemStack(metaItem1, 1, 0), 'J', new ItemStack(metaItem1, 1, 4) }));
         GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier2, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
@@ -116,6 +118,28 @@ public class SimplyJetpacks {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier2, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', new ItemStack(metaItem1, 1, 4) }));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier3, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', new ItemStack(metaItem1, 1, 4) }));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier4, 1, 31), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', new ItemStack(metaItem1, 1, 4) }));
+        }
+
+        logger.info("Doing intermod communication");
+        ItemStack ingotBronze;
+        for (int i = 0; i < OreDictionary.getOres("ingotBronze").size(); i++) {
+            ingotBronze = OreDictionary.getOres("ingotBronze").get(i).copy();
+            ingotBronze.stackSize = 16;
+            TE3Utils.addSmelterRecipe(6400, new ItemStack(metaItem1, 1, 5), ingotBronze, new ItemStack(metaItem1, 1, 6), null, 0);
+        }
+
+        ItemStack ingotInvar;
+        for (int i = 0; i < OreDictionary.getOres("ingotInvar").size(); i++) {
+            ingotInvar = OreDictionary.getOres("ingotInvar").get(i).copy();
+            ingotInvar.stackSize = 16;
+            TE3Utils.addSmelterRecipe(9600, new ItemStack(metaItem1, 1, 6), ingotInvar, new ItemStack(metaItem1, 1, 7), null, 0);
+        }
+
+        ItemStack ingotEnderium;
+        for (int i = 0; i < OreDictionary.getOres("ingotEnderium").size(); i++) {
+            ingotEnderium = OreDictionary.getOres("ingotEnderium").get(i).copy();
+            ingotEnderium.stackSize = 16;
+            TE3Utils.addSmelterRecipe(12800, new ItemStack(metaItem1, 1, 7), ingotEnderium, new ItemStack(metaItem1, 1, 8), null, 0);
         }
     }
 

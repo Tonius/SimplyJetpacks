@@ -11,6 +11,10 @@ item.simplyjetpacks.metaItem1_1.name=Hardened Thruster
 item.simplyjetpacks.metaItem1_2.name=Redstone Thruster
 item.simplyjetpacks.metaItem1_3.name=Resonant Thruster
 item.simplyjetpacks.metaItem1_4.name=Leather Strap
+item.simplyjetpacks.metaItem1_5.name=Iron Armor Plating
+item.simplyjetpacks.metaItem1_6.name=Tinker's Alloy Armor Plating
+item.simplyjetpacks.metaItem1_7.name=Invar Armor Plating
+item.simplyjetpacks.metaItem1_8.name=Enderium Armor Plating
 
 simplyjetpacks.chat.enabled=enabled
 simplyjetpacks.chat.disabled=disabled
@@ -38,6 +42,8 @@ simplyjetpacks.tooltip.thruster.description.1=Used for making jetpacks.
 simplyjetpacks.tooltip.thruster.description.2=Converts RF into upward thrust.
 simplyjetpacks.tooltip.leatherStrap.description.1=Used for making jetpacks.
 simplyjetpacks.tooltip.leatherStrap.description.2=Keeps a jetpack from falling off.
+simplyjetpacks.tooltip.armorPlating.description.1=Some sturdy metal plates.
+simplyjetpacks.tooltip.armorPlating.description.2=Used to create armored jetpacks.
 
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato

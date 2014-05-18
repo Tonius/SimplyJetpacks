@@ -11,7 +11,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemSJMeta1 extends ItemSJSimpleMeta {
 
     public ItemSJMeta1(int id) {
-        super(id, "metaItem1", 5);
+        super(id, "metaItem1", 9);
     }
 
     @SideOnly(Side.CLIENT)
@@ -21,6 +21,7 @@ public class ItemSJMeta1 extends ItemSJSimpleMeta {
         case 2:
             return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
         case 3:
+        case 8:
             return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);
@@ -41,6 +42,13 @@ public class ItemSJMeta1 extends ItemSJSimpleMeta {
             case 4:
                 list.add(StringUtils.translate("tooltip.leatherStrap.description.1"));
                 list.add(StringUtils.translate("tooltip.leatherStrap.description.2"));
+                break;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+                list.add(StringUtils.translate("tooltip.armorPlating.description.1"));
+                list.add(StringUtils.translate("tooltip.armorPlating.description.2"));
             }
         } else {
             list.add(StringUtils.getShiftText());
