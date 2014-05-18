@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.PacketHandler;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.util.LangUtils;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -64,8 +63,8 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
             list.add(StringUtils.getHoverModeText(this.isHoverModeActive(itemStack)));
             int currentTickEnergy = this.isHoverModeActive(itemStack) ? this.tickEnergyHover : this.tickEnergy;
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
-            list.add(StringUtils.BRIGHT_GREEN + LangUtils.translate("tooltip.jetpack.description.1"));
-            list.add(StringUtils.BRIGHT_GREEN + LangUtils.translate("tooltip.jetpack.description.2"));
+            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
+            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
         } else {
             list.add(StringUtils.getShiftText());
         }
@@ -122,10 +121,10 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
 
     public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
         if (this.isHoverModeActive(itemStack)) {
-            player.addChatMessage(LangUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + LangUtils.translate("chat.disabled"));
+            player.addChatMessage(StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", false);
         } else {
-            player.addChatMessage(LangUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + LangUtils.translate("chat.enabled"));
+            player.addChatMessage(StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", true);
         }
     }
@@ -149,12 +148,12 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
 
     @Override
     public String getActivateMsg() {
-        return LangUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + LangUtils.translate("chat.enabled");
+        return StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
     }
 
     @Override
     public String getDeactivateMsg() {
-        return LangUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + LangUtils.translate("chat.disabled");
+        return StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
     }
 
     @Override

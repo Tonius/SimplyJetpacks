@@ -1,5 +1,7 @@
 package tonius.simplyjetpacks.util;
 
+import net.minecraft.util.StatCollector;
+
 import org.lwjgl.input.Keyboard;
 
 public final class StringUtils {
@@ -60,25 +62,29 @@ public final class StringUtils {
     }
 
     public static String getChargeText(int charge, int total) {
-        return ORANGE + LangUtils.translate("tooltip.charge") + ": " + LIGHT_GRAY + getScaledNumber(charge) + " / " + getScaledNumber(total) + " RF";
+        return ORANGE + translate("tooltip.charge") + ": " + LIGHT_GRAY + getScaledNumber(charge) + " / " + getScaledNumber(total) + " RF";
     }
 
     public static String getStateText(boolean state) {
-        String onOrOff = state ? BRIGHT_GREEN + LangUtils.translate("tooltip.state.on") : LIGHT_RED + LangUtils.translate("tooltip.state.off");
-        return ORANGE + LangUtils.translate("tooltip.state") + ": " + onOrOff;
+        String onOrOff = state ? BRIGHT_GREEN + translate("tooltip.state.on") : LIGHT_RED + translate("tooltip.state.off");
+        return ORANGE + translate("tooltip.state") + ": " + onOrOff;
     }
 
     public static String getHoverModeText(boolean state) {
-        String enabledOrDisabled = state ? BRIGHT_GREEN + LangUtils.translate("tooltip.jetpack.hoverMode.enabled") : LIGHT_RED + LangUtils.translate("tooltip.jetpack.hoverMode.disabled");
-        return ORANGE + LangUtils.translate("tooltip.jetpack.hoverMode") + ": " + enabledOrDisabled;
+        String enabledOrDisabled = state ? BRIGHT_GREEN + translate("tooltip.jetpack.hoverMode.enabled") : LIGHT_RED + translate("tooltip.jetpack.hoverMode.disabled");
+        return ORANGE + translate("tooltip.jetpack.hoverMode") + ": " + enabledOrDisabled;
     }
 
     public static String getEnergyUsageText(int usage) {
-        return ORANGE + LangUtils.translate("tooltip.energyUsage") + ": " + LIGHT_GRAY + usage + " RF/t";
+        return ORANGE + translate("tooltip.energyUsage") + ": " + LIGHT_GRAY + usage + " RF/t";
     }
 
     public static String getShiftText() {
-        return LIGHT_GRAY + LangUtils.translate("tooltip.holdShift1") + " " + YELLOW + ITALIC + LangUtils.translate("tooltip.holdShift2") + " " + END + LIGHT_GRAY + LangUtils.translate("tooltip.holdShift3");
+        return LIGHT_GRAY + translate("tooltip.holdShift1") + " " + YELLOW + ITALIC + translate("tooltip.holdShift2") + " " + END + LIGHT_GRAY + translate("tooltip.holdShift3");
+    }
+
+    public static String translate(String unlocalized) {
+        return StatCollector.translateToLocal("simplyjetpacks." + unlocalized);
     }
 
 }

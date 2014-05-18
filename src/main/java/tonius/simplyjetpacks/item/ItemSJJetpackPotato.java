@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.util.DamageSourceJetpackPotato;
 import tonius.simplyjetpacks.util.FireworksGenerator;
-import tonius.simplyjetpacks.util.LangUtils;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -31,9 +30,9 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
         if (StringUtils.isShiftKeyDown()) {
             list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
             list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
-            list.add(StringUtils.BRIGHT_GREEN + LangUtils.translate("tooltip.jetpackPotato.description.1"));
-            list.add(StringUtils.BRIGHT_GREEN + LangUtils.translate("tooltip.jetpackPotato.description.2"));
-            list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + LangUtils.translate("tooltip.jetpackPotato.warning"));
+            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.1"));
+            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.2"));
+            list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
         } else {
             list.add(StringUtils.getShiftText());
         }
