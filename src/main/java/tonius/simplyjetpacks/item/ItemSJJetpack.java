@@ -15,7 +15,7 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.PacketHandler;
-import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.SJItems;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -46,9 +46,9 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     @SideOnly(Side.CLIENT)
     @Override
     public String getItemDisplayName(ItemStack itemStack) {
-        if (itemStack.getItem() == SimplyJetpacks.jetpackTier3) {
+        if (itemStack.getItem() == SJItems.jetpackTier3) {
             return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
-        } else if (itemStack.getItem() == SimplyJetpacks.jetpackTier4) {
+        } else if (itemStack.getItem() == SJItems.jetpackTier4) {
             return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);
