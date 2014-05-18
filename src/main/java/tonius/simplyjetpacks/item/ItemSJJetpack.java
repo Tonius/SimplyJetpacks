@@ -105,6 +105,10 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
                         user.motionY = Math.max(user.motionY, -hoverSpeed);
                     }
 
+                    if ((!(user instanceof EntityPlayer) && hoverMode || KeyboardTracker.isForwardKeyDown((EntityPlayer) user))) {
+                        user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
+                    }
+
                     user.fallDistance = 0.0F;
                     if (user instanceof EntityPlayerMP) {
                         ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
