@@ -13,6 +13,7 @@ import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
+import tonius.simplyjetpacks.ConfigReader;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.PacketHandler;
 import tonius.simplyjetpacks.SJItems;
@@ -84,7 +85,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     public void useJetpack(EntityLivingBase user, ItemStack jetpack, boolean force) {
         if (isOn(jetpack)) {
             boolean hoverMode = this.isHoverModeActive(jetpack);
-            double hoverSpeed = user.isSneaking() ? this.hoverModeActiveSpeed : this.hoverModeIdleSpeed;
+            double hoverSpeed = this.getHoverSpeed(jetpack, user);
             boolean jumpKeyDown = true;
             if (!force && user instanceof EntityPlayer && !KeyboardTracker.isJumpKeyDown((EntityPlayer) user)) {
                 jumpKeyDown = false;
@@ -130,6 +131,14 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         } else {
             player.addChatMessage(StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled"));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", true);
+        }
+    }
+
+    public double getHoverSpeed(ItemStack jetpack, EntityLivingBase user) {
+        if (!ConfigReader.invertHoverSneakingBehavior) {
+            return user.isSneaking() ? this.hoverModeActiveSpeed : this.hoverModeIdleSpeed;
+        } else {
+            return user.isSneaking() ? this.hoverModeIdleSpeed : this.hoverModeActiveSpeed;
         }
     }
 
