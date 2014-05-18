@@ -9,6 +9,10 @@ public class ConfigReader {
     public static int jetpackTier2ID;
     public static int jetpackTier3ID;
     public static int jetpackTier4ID;
+    public static int jetpackArmoredTier1ID;
+    public static int jetpackArmoredTier2ID;
+    public static int jetpackArmoredTier3ID;
+    public static int jetpackArmoredTier4ID;
     public static boolean enableJetpackParticles;
     public static boolean upgradingRecipesOnly;
     public static boolean enableCraftingJetpackTier0;
@@ -64,6 +68,10 @@ public class ConfigReader {
             jetpackTier2ID = cfg.getItem("jetpackTier2", 18002).getInt() - 256;
             jetpackTier3ID = cfg.getItem("jetpackTier3", 18003).getInt() - 256;
             jetpackTier4ID = cfg.getItem("jetpackTier4", 18004).getInt() - 256;
+            jetpackArmoredTier1ID = cfg.getItem("jetpackArmoredTier1", 18007).getInt() - 256;
+            jetpackArmoredTier2ID = cfg.getItem("jetpackArmoredTier2", 18008).getInt() - 256;
+            jetpackArmoredTier3ID = cfg.getItem("jetpackArmoredTier3", 18009).getInt() - 256;
+            jetpackArmoredTier4ID = cfg.getItem("jetpackArmoredTier4", 18010).getInt() - 256;
             enableJetpackParticles = cfg.get("itemconfig", "enableJetpackParticles", true).getBoolean(true);
             upgradingRecipesOnly = cfg.get("itemconfig", "upgradingRecipesOnly", false).getBoolean(false);
             enableCraftingJetpackTier0 = cfg.get("itemconfig", "enableCraftingJetpackTier0", true).getBoolean(true);

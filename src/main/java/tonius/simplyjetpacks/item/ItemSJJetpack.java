@@ -47,9 +47,9 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     @SideOnly(Side.CLIENT)
     @Override
     public String getItemDisplayName(ItemStack itemStack) {
-        if (itemStack.getItem() == SJItems.jetpackTier3) {
+        if (itemStack.getItem() == SJItems.jetpackTier3 || itemStack.getItem() == SJItems.jetpackArmoredTier3) {
             return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
-        } else if (itemStack.getItem() == SJItems.jetpackTier4) {
+        } else if (itemStack.getItem() == SJItems.jetpackTier4 || itemStack.getItem() == SJItems.jetpackArmoredTier4) {
             return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);
