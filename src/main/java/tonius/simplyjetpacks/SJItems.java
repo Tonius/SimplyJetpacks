@@ -3,7 +3,6 @@ package tonius.simplyjetpacks;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemSJJetpack;
@@ -17,7 +16,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SJItems {
 
-    public static EnumArmorMaterial enumArmorJetpack = EnumHelper.addArmorMaterial("enumArmorJetpack", 15, new int[] { 0, 0, 0, 0 }, 0);
+    public static EnumArmorMaterial enumArmorJetpack = EnumArmorMaterial.IRON;
 
     public static ItemSJJetpack jetpackTier0 = null;
     public static ItemSJJetpack jetpackTier1 = null;
@@ -43,13 +42,13 @@ public class SJItems {
         SimplyJetpacks.logger.info("Registering items");
         jetpackTier0 = new ItemSJJetpackPotato(ConfigReader.jetpackTier0ID, enumArmorJetpack);
         jetpackTier1 = new ItemSJJetpack(ConfigReader.jetpackTier1ID, enumArmorJetpack, "jetpackTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed);
-        jetpackArmoredTier1 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier1ID, enumArmorJetpack, "jetpackArmoredTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed);
+        jetpackArmoredTier1 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier1ID, enumArmorJetpack, "jetpackArmoredTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed, 5, 0.2D, 80);
         jetpackTier2 = new ItemSJJetpack(ConfigReader.jetpackTier2ID, enumArmorJetpack, "jetpackTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed);
-        jetpackArmoredTier2 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier2ID, enumArmorJetpack, "jetpackArmoredTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed);
+        jetpackArmoredTier2 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier2ID, enumArmorJetpack, "jetpackArmoredTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed, 6, 0.24D, 1000);
         jetpackTier3 = new ItemSJJetpack(ConfigReader.jetpackTier3ID, enumArmorJetpack, "jetpackTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed);
-        jetpackArmoredTier3 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier3ID, enumArmorJetpack, "jetpackArmoredTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed);
+        jetpackArmoredTier3 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier3ID, enumArmorJetpack, "jetpackArmoredTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed, 7, 0.3D, 4200);
         jetpackTier4 = new ItemSJJetpack(ConfigReader.jetpackTier4ID, enumArmorJetpack, "jetpackTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed);
-        jetpackArmoredTier4 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier4ID, enumArmorJetpack, "jetpackArmoredTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed);
+        jetpackArmoredTier4 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier4ID, enumArmorJetpack, "jetpackArmoredTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed, 8, 0.38D, 16000);
         metaItem1 = new ItemSJMeta1(ConfigReader.metaItem1ID);
     }
 
@@ -100,22 +99,22 @@ public class SJItems {
         ItemStack ingotBronze;
         for (int i = 0; i < OreDictionary.getOres("ingotBronze").size(); i++) {
             ingotBronze = OreDictionary.getOres("ingotBronze").get(i).copy();
-            ingotBronze.stackSize = 8;
-            TE3Utils.addSmelterRecipe(6400, new ItemStack(metaItem1, 1, 5), ingotBronze, new ItemStack(metaItem1, 1, 6), null, 0);
+            ingotBronze.stackSize = 4;
+            TE3Utils.addSmelterRecipe(3200, new ItemStack(metaItem1, 1, 5), ingotBronze, new ItemStack(metaItem1, 1, 6), null, 0);
         }
 
         ItemStack ingotInvar;
         for (int i = 0; i < OreDictionary.getOres("ingotInvar").size(); i++) {
             ingotInvar = OreDictionary.getOres("ingotInvar").get(i).copy();
-            ingotInvar.stackSize = 8;
-            TE3Utils.addSmelterRecipe(9600, new ItemStack(metaItem1, 1, 6), ingotInvar, new ItemStack(metaItem1, 1, 7), null, 0);
+            ingotInvar.stackSize = 4;
+            TE3Utils.addSmelterRecipe(4800, new ItemStack(metaItem1, 1, 6), ingotInvar, new ItemStack(metaItem1, 1, 7), null, 0);
         }
 
         ItemStack ingotEnderium;
         for (int i = 0; i < OreDictionary.getOres("ingotEnderium").size(); i++) {
             ingotEnderium = OreDictionary.getOres("ingotEnderium").get(i).copy();
-            ingotEnderium.stackSize = 8;
-            TE3Utils.addSmelterRecipe(12800, new ItemStack(metaItem1, 1, 7), ingotEnderium, new ItemStack(metaItem1, 1, 8), null, 0);
+            ingotEnderium.stackSize = 4;
+            TE3Utils.addSmelterRecipe(6400, new ItemStack(metaItem1, 1, 7), ingotEnderium, new ItemStack(metaItem1, 1, 8), null, 0);
         }
     }
 

@@ -25,6 +25,11 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
         this.maxOutput = maxOutput;
     }
 
+    @Override
+    public boolean getIsRepairable(ItemStack itemToRepair, ItemStack stack) {
+        return false;
+    }
+
     public void toggle(ItemStack itemStack, EntityPlayer player) {
         if (isOn(itemStack)) {
             player.addChatMessage(this.getDeactivateMsg());
