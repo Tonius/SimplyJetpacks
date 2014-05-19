@@ -1,10 +1,14 @@
 package tonius.simplyjetpacks.util;
 
+import java.text.DecimalFormat;
+
 import net.minecraft.util.StatCollector;
 
 import org.lwjgl.input.Keyboard;
 
 public final class StringUtils {
+
+    private static DecimalFormat formatter = new DecimalFormat("###,###");
 
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";
@@ -61,8 +65,12 @@ public final class StringUtils {
         return numString;
     }
 
+    public static String getFormattedNumber(int number) {
+        return formatter.format(number);
+    }
+
     public static String getChargeText(int charge, int total) {
-        return ORANGE + translate("tooltip.charge") + ": " + LIGHT_GRAY + getScaledNumber(charge) + " / " + getScaledNumber(total) + " RF";
+        return ORANGE + translate("tooltip.charge") + ": " + LIGHT_GRAY + getFormattedNumber(charge) + " / " + getFormattedNumber(total) + " RF";
     }
 
     public static String getStateText(boolean state) {
