@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,6 +13,14 @@ public class ItemSJMeta1 extends ItemSJSimpleMeta {
 
     public ItemSJMeta1(int id) {
         super(id, "metaItem1", 9);
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+        if (itemStack.getItemDamage() >= 0 && itemStack.getItemDamage() <= 3 && entityPlayer.onGround) {
+            entityPlayer.motionY = 0.54D + ((double) itemStack.getItemDamage() / 10);
+        }
+        return itemStack;
     }
 
     @SideOnly(Side.CLIENT)
