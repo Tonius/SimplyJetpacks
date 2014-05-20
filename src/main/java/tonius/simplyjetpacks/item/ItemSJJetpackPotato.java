@@ -54,7 +54,7 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
                     user.worldObj.createExplosion(user, user.posX, user.posY, user.posZ, 4.0F, false);
                     for (int i = 0; i <= rand.nextInt(3) + 4; i++) {
                         ItemStack firework = FireworksGenerator.randomFirework();
-                        user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6 - 3, user.posY, user.posZ + rand.nextDouble() * 6 - 3, firework));
+                        user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
                     }
                     user.attackEntityFrom(DamageSourceJetpackPotato.causeJetpackPotatoDamage(user), 20.0F);
                     user.dropItem(Item.poisonousPotato.itemID, 1);

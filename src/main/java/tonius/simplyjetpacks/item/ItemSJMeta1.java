@@ -1,6 +1,7 @@
 package tonius.simplyjetpacks.item;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,9 +17,15 @@ public class ItemSJMeta1 extends ItemSJSimpleMeta {
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
-        if (itemStack.getItemDamage() >= 0 && itemStack.getItemDamage() <= 3 && entityPlayer.onGround) {
-            entityPlayer.motionY = 0.54D + ((double) itemStack.getItemDamage() / 10);
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        int dmg = itemStack.getItemDamage();
+        Random rand = player.getRNG();
+        if (dmg >= 0 && dmg <= 3 && player.onGround) {
+            for (int i = 0; i <= 25; i++) {
+                world.spawnParticle("smoke", player.posX + rand.nextDouble() * 0.8D - 0.4D, player.posY - 1.2D + rand.nextDouble() * 0.2D - 0.1D, player.posZ + rand.nextDouble() * 0.8D - 0.4D, 0.0D, 0.0D, 0.0D);
+            }
+            world.playSoundAtEntity(player, "mob.chicken.plop", 1.5F, ((dmg + 1.2F) / 3) + rand.nextFloat() * 0.5F);
+            player.motionY = 0.54D + dmg / 10.0D;
         }
         return itemStack;
     }
