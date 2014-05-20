@@ -19,8 +19,8 @@ public class ItemSJMeta1 extends ItemSJSimpleMeta {
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         int dmg = itemStack.getItemDamage();
-        Random rand = player.getRNG();
         if (dmg >= 0 && dmg <= 3 && player.onGround) {
+            Random rand = player.getRNG();
             for (int i = 0; i <= 25; i++) {
                 world.spawnParticle("smoke", player.posX + rand.nextDouble() * 0.8D - 0.4D, player.posY - 1.2D + rand.nextDouble() * 0.2D - 0.1D, player.posZ + rand.nextDouble() * 0.8D - 0.4D, 0.0D, 0.0D, 0.0D);
             }
