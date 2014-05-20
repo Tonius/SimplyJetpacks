@@ -31,6 +31,10 @@ public class ConfigReader {
     public static double jetpackTier1_hoverModeIdleSpeed;
     public static double jetpackTier1_hoverModeSneakingSpeed;
 
+    public static int jetpackArmoredTier1_armorDisplay;
+    public static double jetpackArmoredTier1_armorAbsorption;
+    public static int jetpackArmoredTier1_damageEnergy;
+
     public static int jetpackTier2_maxEnergy;
     public static int jetpackTier2_maxChargingRate;
     public static int jetpackTier2_energyUsage;
@@ -39,6 +43,10 @@ public class ConfigReader {
     public static double jetpackTier2_forwardThrust;
     public static double jetpackTier2_hoverModeIdleSpeed;
     public static double jetpackTier2_hoverModeSneakingSpeed;
+
+    public static int jetpackArmoredTier2_armorDisplay;
+    public static double jetpackArmoredTier2_armorAbsorption;
+    public static int jetpackArmoredTier2_damageEnergy;
 
     public static int jetpackTier3_maxEnergy;
     public static int jetpackTier3_maxChargingRate;
@@ -49,6 +57,10 @@ public class ConfigReader {
     public static double jetpackTier3_hoverModeIdleSpeed;
     public static double jetpackTier3_hoverModeSneakingSpeed;
 
+    public static int jetpackArmoredTier3_armorDisplay;
+    public static double jetpackArmoredTier3_armorAbsorption;
+    public static int jetpackArmoredTier3_damageEnergy;
+
     public static int jetpackTier4_maxEnergy;
     public static int jetpackTier4_maxChargingRate;
     public static int jetpackTier4_energyUsage;
@@ -57,6 +69,10 @@ public class ConfigReader {
     public static double jetpackTier4_forwardThrust;
     public static double jetpackTier4_hoverModeIdleSpeed;
     public static double jetpackTier4_hoverModeSneakingSpeed;
+
+    public static int jetpackArmoredTier4_armorDisplay;
+    public static double jetpackArmoredTier4_armorAbsorption;
+    public static int jetpackArmoredTier4_damageEnergy;
 
     public static void loadConfig(Configuration cfg) {
         try {
@@ -90,6 +106,10 @@ public class ConfigReader {
             jetpackTier1_hoverModeIdleSpeed = cfg.get("tuning_jetpackTier1", "hoverModeIdleSpeed", 0.18D).getDouble(0.18D);
             jetpackTier1_hoverModeSneakingSpeed = cfg.get("tuning_jetpackTier1", "hoverModeSneakingSpeed", 0.2D).getDouble(0.2D);
 
+            jetpackArmoredTier1_armorDisplay = cfg.get("tuning_jetpackArmoredTier1", "armorDisplay", 5).getInt();
+            jetpackArmoredTier1_armorAbsorption = cfg.get("tuning_jetpackArmoredTier1", "armorAbsorption", 0.2D).getDouble(0.2D);
+            jetpackArmoredTier1_damageEnergy = cfg.get("tuning_jetpackArmoredTier1", "damageEnergy", 60).getInt();
+
             jetpackTier2_maxEnergy = cfg.get("tuning_jetpackTier2", "maxEnergy", 400000).getInt();
             jetpackTier2_maxChargingRate = cfg.get("tuning_jetpackTier2", "maxChargingRate", 4000).getInt();
             jetpackTier2_energyUsage = cfg.get("tuning_jetpackTier2", "energyUsage", 75).getInt();
@@ -98,6 +118,10 @@ public class ConfigReader {
             jetpackTier2_forwardThrust = cfg.get("tuning_jetpackTier2", "forwardThrust", 0.04D).getDouble(0.04D);
             jetpackTier2_hoverModeIdleSpeed = cfg.get("tuning_jetpackTier2", "hoverModeIdleSpeed", 0.1D).getDouble(0.1D);
             jetpackTier2_hoverModeSneakingSpeed = cfg.get("tuning_jetpackTier2", "hoverModeSneakingSpeed", 0.2D).getDouble(0.2D);
+
+            jetpackArmoredTier2_armorDisplay = cfg.get("tuning_jetpackArmoredTier2", "armorDisplay", 6).getInt();
+            jetpackArmoredTier2_armorAbsorption = cfg.get("tuning_jetpackArmoredTier2", "armorAbsorption", 0.24D).getDouble(0.24D);
+            jetpackArmoredTier2_damageEnergy = cfg.get("tuning_jetpackArmoredTier2", "damageEnergy", 750).getInt();
 
             jetpackTier3_maxEnergy = cfg.get("tuning_jetpackTier3", "maxEnergy", 2000000).getInt();
             jetpackTier3_maxChargingRate = cfg.get("tuning_jetpackTier3", "maxChargingRate", 20000).getInt();
@@ -108,6 +132,10 @@ public class ConfigReader {
             jetpackTier3_hoverModeIdleSpeed = cfg.get("tuning_jetpackTier3", "hoverModeIdleSpeed", 0.03D).getDouble(0.03D);
             jetpackTier3_hoverModeSneakingSpeed = cfg.get("tuning_jetpackTier3", "hoverModeSneakingSpeed", 0.22D).getDouble(0.22D);
 
+            jetpackArmoredTier3_armorDisplay = cfg.get("tuning_jetpackArmoredTier3", "armorDisplay", 7).getInt();
+            jetpackArmoredTier3_armorAbsorption = cfg.get("tuning_jetpackArmoredTier3", "armorAbsorption", 0.3D).getDouble(0.3D);
+            jetpackArmoredTier3_damageEnergy = cfg.get("tuning_jetpackArmoredTier3", "damageEnergy", 4000).getInt();
+
             jetpackTier4_maxEnergy = cfg.get("tuning_jetpackTier4", "maxEnergy", 10000000).getInt();
             jetpackTier4_maxChargingRate = cfg.get("tuning_jetpackTier4", "maxChargingRate", 100000).getInt();
             jetpackTier4_energyUsage = cfg.get("tuning_jetpackTier4", "energyUsage", 400).getInt();
@@ -116,6 +144,10 @@ public class ConfigReader {
             jetpackTier4_forwardThrust = cfg.get("tuning_jetpackTier4", "forwardThrust", 0.20D).getDouble(0.20D);
             jetpackTier4_hoverModeIdleSpeed = cfg.get("tuning_jetpackTier4", "hoverModeIdleSpeed", 0.005D).getDouble(0.005D);
             jetpackTier4_hoverModeSneakingSpeed = cfg.get("tuning_jetpackTier4", "hoverModeSneakingSpeed", 0.24D).getDouble(0.24D);
+
+            jetpackArmoredTier4_armorDisplay = cfg.get("tuning_jetpackArmoredTier4", "armorDisplay", 8).getInt();
+            jetpackArmoredTier4_armorAbsorption = cfg.get("tuning_jetpackArmoredTier4", "armorAbsorption", 0.38D).getDouble(0.38D);
+            jetpackArmoredTier4_damageEnergy = cfg.get("tuning_jetpackArmoredTier4", "damageEnergy", 12000).getInt();
         } finally {
             if (cfg.hasChanged())
                 cfg.save();
