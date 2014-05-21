@@ -7,8 +7,10 @@ import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -25,6 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSJJetpack extends ItemSJArmorEnergy {
 
+    protected int jetpackTier;
     protected int tickEnergy;
     protected int tickEnergyHover;
     protected double maxSpeed;
@@ -33,8 +36,9 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     protected double hoverModeIdleSpeed;
     protected double hoverModeActiveSpeed;
 
-    public ItemSJJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
+    public ItemSJJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
         super(id, material, 2, 1, name, maxEnergy, maxInput, 0);
+        this.jetpackTier = jetpackTier;
         this.tickEnergy = tickEnergy;
         this.tickEnergyHover = (int) (tickEnergy / 1.5);
         this.maxSpeed = maxSpeed;
@@ -66,6 +70,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
+            list.add(StringUtils.getArmorText(this.isArmored()));
         } else {
             list.add(StringUtils.getShiftText());
         }
@@ -75,6 +80,29 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
         list.add(new ItemStack(id, 1, 31));
         list.add(this.getChargedItem(this));
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        if (this.jetpackTier > 0 && player.isSneaking()) {
+            if (this.isArmored()) {
+                this.removeArmor(itemStack);
+                EntityItem item = player.dropPlayerItem(new ItemStack(SJItems.metaItem1, 1, this.jetpackTier + 4));
+                item.delayBeforeCanPickup = 0;
+            } else {
+                InventoryPlayer inv = player.inventory;
+                for (int i = 0; i < inv.getSizeInventory(); i++) {
+                    ItemStack currentStack = inv.getStackInSlot(i);
+                    if (currentStack != null && currentStack.getItem() == SJItems.metaItem1 && currentStack.getItemDamage() == this.jetpackTier + 4) {
+                        inv.setInventorySlotContents(i, StackUtils.decrementStack(currentStack));
+                        this.applyArmor(itemStack);
+                        break;
+                    }
+                }
+            }
+            return itemStack;
+        }
+        return super.onItemRightClick(itemStack, world, player);
     }
 
     @Override
@@ -91,7 +119,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
                 jumpKeyDown = false;
             }
 
-            if (jumpKeyDown || (hoverMode && !user.onGround)) {
+            if (jumpKeyDown || (hoverMode && !user.onGround && user.motionY < 0)) {
                 int usedPower = hoverMode ? this.tickEnergyHover : this.tickEnergy;
                 this.subtractEnergy(jetpack, usedPower, false);
 
@@ -118,6 +146,14 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
                 }
             }
         }
+    }
+
+    public void applyArmor(ItemStack jetpack) {
+        jetpack.itemID = SJItems.armoredJetpacks[this.jetpackTier].itemID;
+    }
+
+    public void removeArmor(ItemStack jetpack) {
+        jetpack.itemID = SJItems.jetpacks[this.jetpackTier].itemID;
     }
 
     public boolean isHoverModeActive(ItemStack itemStack) {
@@ -157,6 +193,10 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         packet.data = bytes.toByteArray();
         packet.length = bytes.size();
         PacketDispatcher.sendPacketToAllAround(user.posX, user.posY, user.posZ, 128, user.worldObj.provider.dimensionId, packet);
+    }
+
+    public boolean isArmored() {
+        return false;
     }
 
     @Override

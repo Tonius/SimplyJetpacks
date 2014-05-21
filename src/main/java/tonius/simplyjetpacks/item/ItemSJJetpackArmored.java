@@ -12,8 +12,8 @@ public class ItemSJJetpackArmored extends ItemSJJetpack {
     protected double armorAbsorption;
     protected int damageEnergy;
 
-    public ItemSJJetpackArmored(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed, int armorDisplay, double armorAbsorption, int damageEnergy) {
-        super(id, material, name, maxEnergy, maxInput, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
+    public ItemSJJetpackArmored(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed, int armorDisplay, double armorAbsorption, int damageEnergy) {
+        super(id, material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
         this.damageEnergy = damageEnergy;
@@ -26,6 +26,11 @@ public class ItemSJJetpackArmored extends ItemSJJetpack {
     public int getMaxAbsorption(ItemStack armor) {
         int maxAbsorption = (int) Math.floor(29 * this.getEnergyStored(armor) / this.damageEnergy);
         return maxAbsorption;
+    }
+
+    @Override
+    public boolean isArmored() {
+        return true;
     }
 
     @Override

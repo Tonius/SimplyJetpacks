@@ -87,6 +87,14 @@ public final class StringUtils {
         return ORANGE + translate("tooltip.energyUsage") + ": " + LIGHT_GRAY + usage + " RF/t";
     }
 
+    public static String getArmorText(boolean isArmored) {
+        if (isArmored) {
+            return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armorOff");
+        } else {
+            return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armorOn");
+        }
+    }
+
     public static String getShiftText() {
         return LIGHT_GRAY + translate("tooltip.holdShift1") + " " + YELLOW + ITALIC + translate("tooltip.holdShift2") + " " + END + LIGHT_GRAY + translate("tooltip.holdShift3");
     }
