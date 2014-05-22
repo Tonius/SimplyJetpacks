@@ -5,7 +5,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import tonius.simplyjetpacks.item.ItemSJCapacitorPack;
 import tonius.simplyjetpacks.item.ItemSJJetpack;
 import tonius.simplyjetpacks.item.ItemSJJetpackArmored;
 import tonius.simplyjetpacks.item.ItemSJJetpackPotato;
@@ -17,7 +16,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SJItems {
 
-    public static EnumArmorMaterial enumArmorPack = EnumArmorMaterial.IRON;
+    public static EnumArmorMaterial enumArmorJetpack = EnumArmorMaterial.IRON;
 
     public static ItemSJJetpack[] jetpacks = null;
     public static ItemSJJetpack[] armoredJetpacks = null;
@@ -31,13 +30,6 @@ public class SJItems {
     public static ItemSJJetpack jetpackArmoredTier3 = null;
     public static ItemSJJetpack jetpackTier4 = null;
     public static ItemSJJetpack jetpackArmoredTier4 = null;
-
-    public static ItemSJCapacitorPack[] capacitorPacks = null;
-    public static ItemSJCapacitorPack capacitorPackTier1 = null;
-    public static ItemSJCapacitorPack capacitorPackTier2 = null;
-    public static ItemSJCapacitorPack capacitorPackTier3 = null;
-    public static ItemSJCapacitorPack capacitorPackTier4 = null;
-
     public static ItemSJSimpleMeta metaItem1 = null;
 
     public static void preInit() {
@@ -51,25 +43,18 @@ public class SJItems {
 
     private static void registerItems() {
         SimplyJetpacks.logger.info("Registering items");
-        jetpackTier0 = new ItemSJJetpackPotato(ConfigReader.jetpackTier0ID, enumArmorPack);
-        jetpackTier1 = new ItemSJJetpack(ConfigReader.jetpackTier1ID, enumArmorPack, "jetpackTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, 1, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed);
-        jetpackArmoredTier1 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier1ID, enumArmorPack, "jetpackArmoredTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, 1, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier1_armorDisplay, ConfigReader.jetpackArmoredTier1_armorAbsorption, ConfigReader.jetpackArmoredTier1_damageEnergy);
-        jetpackTier2 = new ItemSJJetpack(ConfigReader.jetpackTier2ID, enumArmorPack, "jetpackTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, 2, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed);
-        jetpackArmoredTier2 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier2ID, enumArmorPack, "jetpackArmoredTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, 2, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier2_armorDisplay, ConfigReader.jetpackArmoredTier2_armorAbsorption, ConfigReader.jetpackArmoredTier2_damageEnergy);
-        jetpackTier3 = new ItemSJJetpack(ConfigReader.jetpackTier3ID, enumArmorPack, "jetpackTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, 3, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed);
-        jetpackArmoredTier3 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier3ID, enumArmorPack, "jetpackArmoredTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, 3, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier3_armorDisplay, ConfigReader.jetpackArmoredTier3_armorAbsorption, ConfigReader.jetpackArmoredTier3_damageEnergy);
-        jetpackTier4 = new ItemSJJetpack(ConfigReader.jetpackTier4ID, enumArmorPack, "jetpackTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, 4, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed);
-        jetpackArmoredTier4 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier4ID, enumArmorPack, "jetpackArmoredTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, 4, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier4_armorDisplay, ConfigReader.jetpackArmoredTier4_armorAbsorption, ConfigReader.jetpackArmoredTier4_damageEnergy);
+        jetpackTier0 = new ItemSJJetpackPotato(ConfigReader.jetpackTier0ID, enumArmorJetpack);
+        jetpackTier1 = new ItemSJJetpack(ConfigReader.jetpackTier1ID, enumArmorJetpack, "jetpackTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, 1, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed);
+        jetpackArmoredTier1 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier1ID, enumArmorJetpack, "jetpackArmoredTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, 1, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier1_armorDisplay, ConfigReader.jetpackArmoredTier1_armorAbsorption, ConfigReader.jetpackArmoredTier1_damageEnergy);
+        jetpackTier2 = new ItemSJJetpack(ConfigReader.jetpackTier2ID, enumArmorJetpack, "jetpackTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, 2, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed);
+        jetpackArmoredTier2 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier2ID, enumArmorJetpack, "jetpackArmoredTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, 2, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier2_armorDisplay, ConfigReader.jetpackArmoredTier2_armorAbsorption, ConfigReader.jetpackArmoredTier2_damageEnergy);
+        jetpackTier3 = new ItemSJJetpack(ConfigReader.jetpackTier3ID, enumArmorJetpack, "jetpackTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, 3, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed);
+        jetpackArmoredTier3 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier3ID, enumArmorJetpack, "jetpackArmoredTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, 3, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier3_armorDisplay, ConfigReader.jetpackArmoredTier3_armorAbsorption, ConfigReader.jetpackArmoredTier3_damageEnergy);
+        jetpackTier4 = new ItemSJJetpack(ConfigReader.jetpackTier4ID, enumArmorJetpack, "jetpackTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, 4, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed);
+        jetpackArmoredTier4 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier4ID, enumArmorJetpack, "jetpackArmoredTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, 4, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier4_armorDisplay, ConfigReader.jetpackArmoredTier4_armorAbsorption, ConfigReader.jetpackArmoredTier4_damageEnergy);
 
         jetpacks = new ItemSJJetpack[] { jetpackTier0, jetpackTier1, jetpackTier2, jetpackTier3, jetpackTier4 };
         armoredJetpacks = new ItemSJJetpack[] { null, jetpackArmoredTier1, jetpackArmoredTier2, jetpackArmoredTier3, jetpackArmoredTier4 };
-
-        capacitorPackTier1 = new ItemSJCapacitorPack(ConfigReader.capacitorPackTier1ID, enumArmorPack, "capacitorPackTier1", 160000, 800, 800, 1);
-        capacitorPackTier2 = new ItemSJCapacitorPack(ConfigReader.capacitorPackTier2ID, enumArmorPack, "capacitorPackTier2", 800000, 4000, 4000, 2);
-        capacitorPackTier3 = new ItemSJCapacitorPack(ConfigReader.capacitorPackTier3ID, enumArmorPack, "capacitorPackTier3", 4000000, 20000, 20000, 3);
-        capacitorPackTier4 = new ItemSJCapacitorPack(ConfigReader.capacitorPackTier4ID, enumArmorPack, "capacitorPackTier4", 20000000, 100000, 100000, 4);
-
-        capacitorPacks = new ItemSJCapacitorPack[] { null, capacitorPackTier1, capacitorPackTier2, capacitorPackTier3, capacitorPackTier4 };
 
         metaItem1 = new ItemSJMeta1(ConfigReader.metaItem1ID);
     }

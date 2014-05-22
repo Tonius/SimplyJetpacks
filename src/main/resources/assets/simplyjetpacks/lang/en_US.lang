@@ -10,11 +10,6 @@ item.simplyjetpacks.jetpackArmoredTier2.name=Armored Hardened Jetpack
 item.simplyjetpacks.jetpackArmoredTier3.name=Armored Redstone Jetpack
 item.simplyjetpacks.jetpackArmoredTier4.name=Armored Resonant Jetpack
 
-item.simplyjetpacks.capacitorPackTier1.name=Leadstone Capacitor Pack
-item.simplyjetpacks.capacitorPackTier2.name=Hardened Capacitor Pack
-item.simplyjetpacks.capacitorPackTier3.name=Redstone Capacitor Pack
-item.simplyjetpacks.capacitorPackTier4.name=Resonant Capacitor Pack
-
 item.simplyjetpacks.metaItem1_0.name=Leadstone Thruster
 item.simplyjetpacks.metaItem1_1.name=Hardened Thruster
 item.simplyjetpacks.metaItem1_2.name=Redstone Thruster
@@ -49,9 +44,6 @@ simplyjetpacks.tooltip.jetpack.armorOff=Use while sneaking to remove armor.
 simplyjetpacks.tooltip.jetpackPotato.description.1=It doesn't seem to be able to start.
 simplyjetpacks.tooltip.jetpackPotato.description.2=Maybe if you try long enough...
 simplyjetpacks.tooltip.jetpackPotato.warning=Note: Flying potatoes is a deadly practice.
-simplyjetpacks.tooltip.capacitorPack.chargingRate=Charging rate
-simplyjetpacks.tooltip.capacitorPack.description.1=Charges items in the hotbar when active.
-simplyjetpacks.tooltip.capacitorPack.description.2=Must be worn in the chestplate slot.
 simplyjetpacks.tooltip.thruster.description.1=Used for making jetpacks.
 simplyjetpacks.tooltip.thruster.description.2=Converts RF into upward thrust.
 simplyjetpacks.tooltip.leatherStrap.description.1=Used for making jetpacks.
