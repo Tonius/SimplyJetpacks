@@ -86,7 +86,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         if (this.jetpackTier > 0 && player.isSneaking()) {
             if (this.isArmored()) {
-                this.removeArmor(itemStack);
+                this.removeArmor(itemStack, player);
                 EntityItem item = player.dropPlayerItem(new ItemStack(SJItems.metaItem1, 1, this.jetpackTier + 4));
                 item.delayBeforeCanPickup = 0;
             } else {
@@ -95,7 +95,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
                     ItemStack currentStack = inv.getStackInSlot(i);
                     if (currentStack != null && currentStack.getItem() == SJItems.metaItem1 && currentStack.getItemDamage() == this.jetpackTier + 4) {
                         inv.setInventorySlotContents(i, StackUtils.decrementStack(currentStack));
-                        this.applyArmor(itemStack);
+                        this.applyArmor(itemStack, player);
                         break;
                     }
                 }
@@ -148,12 +148,14 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         }
     }
 
-    public void applyArmor(ItemStack jetpack) {
+    public void applyArmor(ItemStack jetpack, EntityPlayer player) {
         jetpack.itemID = SJItems.armoredJetpacks[this.jetpackTier].itemID;
+        player.worldObj.playSoundAtEntity(player, "random.anvil_use", 0.8F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
 
-    public void removeArmor(ItemStack jetpack) {
+    public void removeArmor(ItemStack jetpack, EntityPlayer player) {
         jetpack.itemID = SJItems.jetpacks[this.jetpackTier].itemID;
+        player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
 
     public boolean isHoverModeActive(ItemStack itemStack) {
