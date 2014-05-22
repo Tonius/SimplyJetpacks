@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,9 +50,10 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     @SideOnly(Side.CLIENT)
     @Override
     public String getItemDisplayName(ItemStack itemStack) {
-        if (itemStack.getItem() == SJItems.jetpackTier3 || itemStack.getItem() == SJItems.jetpackArmoredTier3) {
+        switch (this.jetpackTier) {
+        case 3:
             return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
-        } else if (itemStack.getItem() == SJItems.jetpackTier4 || itemStack.getItem() == SJItems.jetpackArmoredTier4) {
+        case 4:
             return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);
@@ -74,12 +74,6 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         } else {
             list.add(StringUtils.getShiftText());
         }
-    }
-
-    @Override
-    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
-        list.add(new ItemStack(id, 1, 31));
-        list.add(this.getChargedItem(this));
     }
 
     @Override

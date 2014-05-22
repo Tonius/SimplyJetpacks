@@ -19,6 +19,12 @@ public class ConfigReader {
     public static boolean invertHoverSneakingBehavior;
     public static boolean hideJetpackTier0Warning;
 
+    // capacitor packs
+    public static int capacitorPackTier1ID;
+    public static int capacitorPackTier2ID;
+    public static int capacitorPackTier3ID;
+    public static int capacitorPackTier4ID;
+
     // meta-items
     public static int metaItem1ID;
 
@@ -94,6 +100,12 @@ public class ConfigReader {
             enableCraftingJetpackTier0 = cfg.get("itemconfig", "enableCraftingJetpackTier0", true).getBoolean(true);
             invertHoverSneakingBehavior = cfg.get("itemconfig", "invertHoverSneakingBehavior", false).getBoolean(false);
             hideJetpackTier0Warning = cfg.get("itemconfig", "hideJetpackTier0Warning", false).getBoolean(false);
+
+            // capacitor packs
+            capacitorPackTier1ID = cfg.getItem("capacitorPackTier1", 18011).getInt() - 256;
+            capacitorPackTier2ID = cfg.getItem("capacitorPackTier2", 18012).getInt() - 256;
+            capacitorPackTier3ID = cfg.getItem("capacitorPackTier3", 18013).getInt() - 256;
+            capacitorPackTier4ID = cfg.getItem("capacitorPackTier4", 18014).getInt() - 256;
 
             // meta-items
             metaItem1ID = cfg.getItem("metaItem1", 18005).getInt() - 256;

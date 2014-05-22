@@ -1,5 +1,8 @@
 package tonius.simplyjetpacks.item;
 
+import java.util.List;
+
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
@@ -23,6 +26,12 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
         this.maxEnergy = maxEnergy;
         this.maxInput = maxInput;
         this.maxOutput = maxOutput;
+    }
+
+    @Override
+    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
+        list.add(new ItemStack(id, 1, 31));
+        list.add(this.getChargedItem(this));
     }
 
     public void toggle(ItemStack itemStack, EntityPlayer player) {

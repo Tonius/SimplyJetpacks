@@ -87,6 +87,10 @@ public final class StringUtils {
         return ORANGE + translate("tooltip.energyUsage") + ": " + LIGHT_GRAY + usage + " RF/t";
     }
 
+    public static String getChargingRateText(int rate) {
+        return ORANGE + translate("tooltip.capacitorPack.chargingRate") + ": " + LIGHT_GRAY + getFormattedNumber(rate) + " RF/t";
+    }
+
     public static String getArmorText(boolean isArmored) {
         if (isArmored) {
             return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armorOff");
