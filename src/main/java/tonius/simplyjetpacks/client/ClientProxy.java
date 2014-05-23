@@ -29,6 +29,9 @@ public class ClientProxy extends CommonProxy {
         super.registerHandlers();
         MinecraftForge.EVENT_BUS.register(new SoundLoader());
         TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
+        if (ConfigReader.enableEnergyHUD) {
+            TickRegistry.registerTickHandler(new RenderHUDTickHandler(), Side.CLIENT);
+        }
         KeyBindingRegistry.registerKeyBinding(new KeyHandlerSJ());
     }
 

@@ -6,6 +6,8 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.input.Keyboard;
 
+import tonius.simplyjetpacks.ConfigReader;
+
 public final class StringUtils {
 
     private static DecimalFormat formatter = new DecimalFormat("###,###");
@@ -89,10 +91,41 @@ public final class StringUtils {
 
     public static String getArmorText(boolean isArmored) {
         if (isArmored) {
-            return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armorOff");
+            return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.off");
         } else {
-            return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armorOn");
+            return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.on");
         }
+    }
+
+    public static String getRequiredArmorText(int tier) {
+        return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.requires") + ": " + YELLOW + ITALIC + translate("item.simplyjetpacks.metaItem1_" + (tier + 4) + ".name", false);
+    }
+
+    public static String getHUDEnergyText(int percent, int energy) {
+        if (ConfigReader.showExactEnergyInHUD) {
+            return translate("gui.hud.jetpack.energy") + ": " + getColoredPercent(percent) + "% (" + getFormattedNumber(energy) + " RF)";
+        }
+        return translate("gui.hud.jetpack.energy") + ": " + getColoredPercent(percent) + "%";
+    }
+
+    public static String getColoredPercent(int percent) {
+        if (percent > 70) {
+            return BRIGHT_GREEN + percent;
+        } else if (percent > 40 && percent <= 70) {
+            return YELLOW + percent;
+        } else if (percent > 10 && percent <= 40) {
+            return ORANGE + percent;
+        } else {
+            return LIGHT_RED + percent;
+        }
+    }
+
+    public static String getHUDEnergyLowText() {
+        return LIGHT_RED + translate("gui.hud.jetpack.warning.low");
+    }
+
+    public static String getHUDEnergyEmptyText() {
+        return LIGHT_RED + translate("gui.hud.jetpack.warning.empty");
     }
 
     public static String getShiftText() {
@@ -100,7 +133,14 @@ public final class StringUtils {
     }
 
     public static String translate(String unlocalized) {
-        return StatCollector.translateToLocal("simplyjetpacks." + unlocalized);
+        return translate(unlocalized, true);
+    }
+
+    public static String translate(String unlocalized, boolean prefix) {
+        if (prefix) {
+            return StatCollector.translateToLocal("simplyjetpacks." + unlocalized);
+        }
+        return StatCollector.translateToLocal(unlocalized);
     }
 
 }

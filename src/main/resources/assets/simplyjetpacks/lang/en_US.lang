@@ -39,8 +39,9 @@ simplyjetpacks.tooltip.jetpack.hoverMode.enabled=Enabled
 simplyjetpacks.tooltip.jetpack.hoverMode.disabled=Disabled
 simplyjetpacks.tooltip.jetpack.description.1=Allows flight when active.
 simplyjetpacks.tooltip.jetpack.description.2=Must be worn in the chestplate slot.
-simplyjetpacks.tooltip.jetpack.armorOn=Use while sneaking to apply armor plating.
-simplyjetpacks.tooltip.jetpack.armorOff=Use while sneaking to remove armor.
+simplyjetpacks.tooltip.jetpack.armor.on=Use while sneaking to apply armor plating.
+simplyjetpacks.tooltip.jetpack.armor.off=Use while sneaking to remove armor.
+simplyjetpacks.tooltip.jetpack.armor.requires=Requires
 simplyjetpacks.tooltip.jetpackPotato.description.1=It doesn't seem to be able to start.
 simplyjetpacks.tooltip.jetpackPotato.description.2=Maybe if you try long enough...
 simplyjetpacks.tooltip.jetpackPotato.warning=Note: Flying potatoes is a deadly practice.
@@ -50,6 +51,10 @@ simplyjetpacks.tooltip.leatherStrap.description.1=Used for making jetpacks.
 simplyjetpacks.tooltip.leatherStrap.description.2=Keeps a jetpack from falling off.
 simplyjetpacks.tooltip.armorPlating.description.1=Some sturdy metal plates.
 simplyjetpacks.tooltip.armorPlating.description.2=Used to create armored jetpacks.
+
+simplyjetpacks.gui.hud.jetpack.energy=Jetpack energy
+simplyjetpacks.gui.hud.jetpack.warning.low=Energy is low
+simplyjetpacks.gui.hud.jetpack.warning.empty=Energy depleted
 
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato

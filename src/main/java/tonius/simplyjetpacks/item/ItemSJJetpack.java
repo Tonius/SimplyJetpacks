@@ -70,7 +70,12 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-            list.add(StringUtils.getArmorText(this.isArmored()));
+            if (ConfigReader.enableCraftingArmorPlating) {
+                list.add(StringUtils.getArmorText(this.isArmored()));
+                if (!this.isArmored()) {
+                    list.add(StringUtils.getRequiredArmorText(this.jetpackTier));
+                }
+            }
         } else {
             list.add(StringUtils.getShiftText());
         }
