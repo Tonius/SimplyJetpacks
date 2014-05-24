@@ -5,11 +5,20 @@ item.simplyjetpacks.jetpackTier1.name=Свинцовый реактивный р
 item.simplyjetpacks.jetpackTier2.name=Укреплённый реактивный ранец
 item.simplyjetpacks.jetpackTier3.name=Красный реактивный ранец
 item.simplyjetpacks.jetpackTier4.name=Резонирующий реактивный ранец
+item.simplyjetpacks.jetpackArmoredTier1.name=Бронированный свинцовый реактивный ранец
+item.simplyjetpacks.jetpackArmoredTier2.name=Бронированный укреплённый реактивный ранец
+item.simplyjetpacks.jetpackArmoredTier3.name=Бронированный красный реактивный ранец
+item.simplyjetpacks.jetpackArmoredTier4.name=Бронированный резонирующий реактивный ранец
 
 item.simplyjetpacks.metaItem1_0.name=Свинцовый реактивный двигатель
 item.simplyjetpacks.metaItem1_1.name=Укреплённый реактивный двигатель
 item.simplyjetpacks.metaItem1_2.name=Красный реактивный двигатель
 item.simplyjetpacks.metaItem1_3.name=Резонирующий реактивный двигатель
+item.simplyjetpacks.metaItem1_4.name=Кожаный ремень
+item.simplyjetpacks.metaItem1_5.name=Железное броневое покрытие
+item.simplyjetpacks.metaItem1_6.name=Броневое покрытие из сплава инженера
+item.simplyjetpacks.metaItem1_7.name=Инваровое броневое покрытие
+item.simplyjetpacks.metaItem1_8.name=Броневое покрытие из металла Края
 
 simplyjetpacks.chat.enabled=включён
 simplyjetpacks.chat.disabled=выключен
@@ -30,9 +39,22 @@ simplyjetpacks.tooltip.jetpack.hoverMode.enabled=Включён
 simplyjetpacks.tooltip.jetpack.hoverMode.disabled=Выключен
 simplyjetpacks.tooltip.jetpack.description.1=Позволяет летать, когда активен.
 simplyjetpacks.tooltip.jetpack.description.2=Необходимо одеть в слот кирасы.
+simplyjetpacks.tooltip.jetpack.armor.on=Используйте сидя, чтобы установить броневое покрытие.
+simplyjetpacks.tooltip.jetpack.armor.off=Используйте сидя, чтобы снять броню.
+simplyjetpacks.tooltip.jetpack.armor.requires=Требуется
 simplyjetpacks.tooltip.jetpackPotato.description.1=Не похоже, чтобы это работало.
 simplyjetpacks.tooltip.jetpackPotato.description.2=Может быть, если Вы попробуете чуть дольше...
 simplyjetpacks.tooltip.jetpackPotato.warning=Примечание: Летающая картошка - смертельная практика.
+simplyjetpacks.tooltip.thruster.description.1=Используется для создания реактивных ранцев.
+simplyjetpacks.tooltip.thruster.description.2=Конвертирует РФ в верхнюю тягу.
+simplyjetpacks.tooltip.leatherStrap.description.1=Используется для создания реактивных ранцев.
+simplyjetpacks.tooltip.leatherStrap.description.2=Защищает реактивный ранец от падения.
+simplyjetpacks.tooltip.armorPlating.description.1=Несколько крепких металлических пластин.
+simplyjetpacks.tooltip.armorPlating.description.2=Используется для создания бронированных реактивных ранцев.
+
+simplyjetpacks.gui.hud.jetpack.energy=Энергия реактивного ранца
+simplyjetpacks.gui.hud.jetpack.warning.low=Мало энергии
+simplyjetpacks.gui.hud.jetpack.warning.empty=Энергия исчерпана
 
 death.attack.jetpackpotato=%1$s попробовал полететь на картошке
 death.attack.jetpackpotato.player=%1$s попробовал полететь на картошке
