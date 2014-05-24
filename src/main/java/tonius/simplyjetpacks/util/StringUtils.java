@@ -125,7 +125,7 @@ public final class StringUtils {
     }
 
     public static String getHUDEnergyEmptyText() {
-        return LIGHT_RED + translate("gui.hud.jetpack.warning.empty");
+        return RED + translate("gui.hud.jetpack.warning.empty");
     }
 
     public static String getShiftText() {

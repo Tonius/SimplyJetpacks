@@ -53,7 +53,7 @@ simplyjetpacks.tooltip.armorPlating.description.1=Some sturdy metal plates.
 simplyjetpacks.tooltip.armorPlating.description.2=Used to create armored jetpacks.
 
 simplyjetpacks.gui.hud.jetpack.energy=Jetpack energy
-simplyjetpacks.gui.hud.jetpack.warning.low=Energy is low
+simplyjetpacks.gui.hud.jetpack.warning.low=Energy is low!
 simplyjetpacks.gui.hud.jetpack.warning.empty=Energy depleted
 
 death.attack.jetpackpotato=%1$s attempted to fly a potato

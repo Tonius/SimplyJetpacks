@@ -15,9 +15,6 @@ public class RenderHUDTickHandler implements ITickHandler {
 
     private static Minecraft mc = Minecraft.getMinecraft();
 
-    private static int fadeTimer = 70;
-    private static boolean fadeDecrement = false;
-
     @Override
     public void tickStart(EnumSet type, Object... tickData) {
     }
@@ -35,25 +32,11 @@ public class RenderHUDTickHandler implements ITickHandler {
                     mc.entityRenderer.setupOverlayRendering();
                     mc.fontRenderer.drawString(StringUtils.getHUDEnergyText(percent, energy), 5, 5, 255 | 255 << 8 | 255 << 16, true);
                     if (percent > 0 && percent <= 10) {
-                        mc.fontRenderer.drawString(StringUtils.getHUDEnergyLowText(), 5, 15, 255 | 255 << 8 | 255 << 16 | fadeTimer << 24, true);
+                        mc.fontRenderer.drawString(StringUtils.getHUDEnergyLowText(), 5, 15, 255 | 255 << 8 | 255 << 16, true);
                     } else if (percent == 0) {
                         mc.fontRenderer.drawString(StringUtils.getHUDEnergyEmptyText(), 5, 15, 255 | 255 << 8 | 255 << 16, true);
                     }
                 }
-            }
-        }
-    }
-
-    public static void tickFadeTimer() {
-        if (fadeDecrement) {
-            fadeTimer -= 15;
-            if (fadeTimer <= 70) {
-                fadeDecrement = false;
-            }
-        } else {
-            fadeTimer += 40;
-            if (fadeTimer >= 215) {
-                fadeDecrement = true;
             }
         }
     }

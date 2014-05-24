@@ -3,8 +3,6 @@ package tonius.simplyjetpacks.client;
 import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiChat;
-import tonius.simplyjetpacks.ConfigReader;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.PacketHandler;
 import tonius.simplyjetpacks.SimplyJetpacks;
@@ -28,10 +26,6 @@ public class ClientTickHandler implements ITickHandler {
                 lastForwardState = forwardState;
                 SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_STATE, lastJumpState, lastForwardState);
                 KeyboardTracker.processKeyUpdate(mc.thePlayer, lastJumpState, lastForwardState);
-            }
-
-            if (ConfigReader.enableEnergyHUD && (mc.currentScreen == null || mc.currentScreen instanceof GuiChat)) {
-                RenderHUDTickHandler.tickFadeTimer();
             }
         }
     }
