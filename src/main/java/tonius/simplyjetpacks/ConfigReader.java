@@ -29,6 +29,11 @@ public class ConfigReader {
     public static boolean showExactEnergyInHUD;
 
     // jetpack tuning
+    public static int jetpackTier0_maxEnergy;
+    public static int jetpackTier0_energyUsage;
+    public static double jetpackTier0_maxSpeed;
+    public static double jetpackTier0_acceleration;
+
     public static int jetpackTier1_maxEnergy;
     public static int jetpackTier1_maxChargingRate;
     public static int jetpackTier1_energyUsage;
@@ -106,6 +111,11 @@ public class ConfigReader {
             materialsID = cfg.getItem("materials", 18011).getInt() - 256;
 
             // jetpack tuning
+            jetpackTier0_maxEnergy = cfg.get("tuning_jetpackTier0", "maxEnergy", 1200).getInt();
+            jetpackTier0_energyUsage = cfg.get("tuning_jetpackTier0", "energyUsage", 45).getInt();
+            jetpackTier0_maxSpeed = cfg.get("tuning_jetpackTier0", "maxSpeed", 0.9D).getDouble(0.9D);
+            jetpackTier0_acceleration = cfg.get("tuning_jetpackTier0", "acceleration", 0.5D).getDouble(0.5D);
+
             jetpackTier1_maxEnergy = cfg.get("tuning_jetpackTier1", "maxEnergy", 25000).getInt();
             jetpackTier1_maxChargingRate = cfg.get("tuning_jetpackTier1", "maxChargingRate", 800).getInt();
             jetpackTier1_energyUsage = cfg.get("tuning_jetpackTier1", "energyUsage", 20).getInt();

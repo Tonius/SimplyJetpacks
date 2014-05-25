@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemSJJetpackPotato extends ItemSJJetpack {
 
     public ItemSJJetpackPotato(int id, EnumArmorMaterial material) {
-        super(id, material, "jetpackTier0", 1200, 0, 0, 45, 0.9D, 0.5D, 0, 0.25, 0.25);
+        super(id, material, "jetpackTier0", ConfigReader.jetpackTier0_maxEnergy, 0, 0, ConfigReader.jetpackTier0_energyUsage, ConfigReader.jetpackTier0_maxSpeed, ConfigReader.jetpackTier0_acceleration, 0, 0.25, 0.25);
     }
 
     @SideOnly(Side.CLIENT)
