@@ -44,10 +44,14 @@ public class SimplyJetpacks {
         config = new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks.cfg"));
         ConfigReader.loadConfig(config);
 
+        SJBlocks.preInit();
         SJItems.preInit();
 
         logger.info("Registering handlers");
         proxy.registerHandlers();
+
+        logger.info("Registering (tile) entities");
+        proxy.registerEntities();
     }
 
     @EventHandler

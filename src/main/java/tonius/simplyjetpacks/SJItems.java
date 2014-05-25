@@ -148,7 +148,6 @@ public class SJItems {
 
         ItemStack dustPyrotheum = GameRegistry.findItemStack("ThermalExpansion", "dustPyrotheum", 1);
         dustPyrotheum.stackSize = 1;
-
         TE3Utils.addSmelterRecipe(9600, dustPyrotheum.copy(), new ItemStack(materials, 1, 0), new ItemStack(materials, 1, 1), null, 0);
     }
 }
