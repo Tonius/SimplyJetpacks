@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemSJMeta1 extends ItemSJSimpleMeta {
 
     public ItemSJMeta1(int id) {
-        super(id, "metaItem1", 9);
+        super(id, "metaItem1", 10);
     }
 
     @Override
@@ -38,6 +38,7 @@ public class ItemSJMeta1 extends ItemSJSimpleMeta {
             return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
         case 3:
         case 8:
+        case 9:
             return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);

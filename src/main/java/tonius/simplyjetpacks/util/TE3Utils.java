@@ -2,6 +2,7 @@ package tonius.simplyjetpacks.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class TE3Utils {
@@ -24,6 +25,22 @@ public class TE3Utils {
         }
 
         FMLInterModComms.sendMessage("ThermalExpansion", "SmelterRecipe", toSend);
+    }
+
+    public static void addTransposerFill(int energy, ItemStack input, ItemStack output, FluidStack fluid, boolean reversible) {
+        NBTTagCompound toSend = new NBTTagCompound();
+
+        toSend.setInteger("energy", energy);
+        toSend.setCompoundTag("input", new NBTTagCompound());
+        toSend.setCompoundTag("output", new NBTTagCompound());
+        toSend.setCompoundTag("fluid", new NBTTagCompound());
+
+        input.writeToNBT(toSend.getCompoundTag("input"));
+        output.writeToNBT(toSend.getCompoundTag("output"));
+        toSend.setBoolean("reversible", reversible);
+        fluid.writeToNBT(toSend.getCompoundTag("fluid"));
+
+        FMLInterModComms.sendMessage("ThermalExpansion", "TransposerFillRecipe", toSend);
     }
 
 }
