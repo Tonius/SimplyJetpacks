@@ -14,18 +14,27 @@ public class ClientTickHandler implements ITickHandler {
     private static Minecraft mc = Minecraft.getMinecraft();
     private static boolean lastJumpState = false;
     private static boolean lastForwardState = false;
+    private static boolean lastBackwardState = false;
+    private static boolean lastLeftState = false;
+    private static boolean lastRightState = false;
 
     @Override
     public void tickStart(EnumSet type, Object... tickData) {
         if (mc.thePlayer != null) {
             boolean jumpState = mc.gameSettings.keyBindJump.pressed;
             boolean forwardState = mc.gameSettings.keyBindForward.pressed;
+            boolean backwardState = mc.gameSettings.keyBindBack.pressed;
+            boolean leftState = mc.gameSettings.keyBindLeft.pressed;
+            boolean rightState = mc.gameSettings.keyBindRight.pressed;
 
-            if (jumpState != lastJumpState || forwardState != lastForwardState) {
+            if (jumpState != lastJumpState || forwardState != lastForwardState || backwardState != lastBackwardState || leftState != lastLeftState || rightState != lastRightState) {
                 lastJumpState = jumpState;
                 lastForwardState = forwardState;
-                SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_STATE, lastJumpState, lastForwardState);
-                KeyboardTracker.processKeyUpdate(mc.thePlayer, lastJumpState, lastForwardState);
+                lastBackwardState = backwardState;
+                lastLeftState = leftState;
+                lastRightState = rightState;
+                SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_STATE, jumpState, forwardState, backwardState, leftState, rightState);
+                KeyboardTracker.processKeyUpdate(mc.thePlayer, jumpState, forwardState, backwardState, leftState, rightState);
             }
         }
     }

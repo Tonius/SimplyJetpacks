@@ -145,8 +145,19 @@ public class ItemJetpack extends ItemEnergyArmor {
                         user.motionY = Math.max(user.motionY, -hoverSpeed);
                     }
 
-                    if ((!(user instanceof EntityPlayer) && hoverMode || KeyboardTracker.isForwardKeyDown((EntityPlayer) user))) {
-                        user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
+                    if (user instanceof EntityPlayer) {
+                        if (KeyboardTracker.isForwardKeyDown((EntityPlayer) user)) {
+                            user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
+                        }
+                        if (KeyboardTracker.isBackwardKeyDown((EntityPlayer) user)) {
+                            user.moveFlying(0, (float) -this.forwardThrust, (float) this.forwardThrust);
+                        }
+                        if (KeyboardTracker.isLeftKeyDown((EntityPlayer) user)) {
+                            user.moveFlying((float) this.forwardThrust, 0, (float) this.forwardThrust);
+                        }
+                        if (KeyboardTracker.isRightKeyDown((EntityPlayer) user)) {
+                            user.moveFlying((float) -this.forwardThrust, 0, (float) this.forwardThrust);
+                        }
                     }
 
                     user.fallDistance = 0.0F;

@@ -57,14 +57,15 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void sendPacketToServer(int packetType, boolean key1, boolean key2) {
+    public void sendPacketToServer(int packetType, boolean... keys) {
 
         ByteArrayOutputStream bytes = new ByteArrayOutputStream(8);
         DataOutputStream data = new DataOutputStream(bytes);
         try {
             data.writeInt(packetType);
-            data.writeBoolean(key1);
-            data.writeBoolean(key2);
+            for (boolean key : keys) {
+                data.writeBoolean(key);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
