@@ -19,7 +19,6 @@ public class ItemSJ extends Item {
 
     public ItemSJ(int id, String name, int amount) {
         super(id);
-        SimplyJetpacks.logger.info("Constructing item: " + name);
         this.name = name;
         this.amount = amount;
         this.metaIcons = new Icon[amount];

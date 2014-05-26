@@ -11,12 +11,18 @@ public class SJBlocks {
 
     public static void preInit() {
         constructBlocks();
+        registerBlocks();
     }
 
     public static void constructBlocks() {
         SimplyJetpacks.logger.info("Constructing blocks");
 
         ueberCharger = new BlockUeberCharger(MainConfig.ueberChargerID);
+    }
+
+    public static void registerBlocks() {
+        SimplyJetpacks.logger.info("Registering blocks");
+
         GameRegistry.registerBlock(ueberCharger, "ueberCharger");
     }
 

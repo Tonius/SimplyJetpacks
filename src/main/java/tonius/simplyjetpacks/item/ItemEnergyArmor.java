@@ -28,7 +28,6 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
 
     public ItemEnergyArmor(int id, EnumArmorMaterial material, int renderIndex, int armorType, String name, int maxEnergy, int maxInput, int maxOutput) {
         super(id, material, renderIndex, armorType);
-        SimplyJetpacks.logger.info("Constructing armor: " + name);
         this.name = name;
         this.maxEnergy = maxEnergy;
         this.maxInput = maxInput;
