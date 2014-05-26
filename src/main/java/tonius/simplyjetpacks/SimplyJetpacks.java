@@ -41,7 +41,7 @@ public class SimplyJetpacks {
         logger = evt.getModLog();
         logger.info("Starting Simply Jetpacks");
 
-        logger.info("Loading configuration file");
+        logger.info("Loading configuration files");
         MainConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/main.cfg")));
         TuningConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/tuning.cfg")));
 
