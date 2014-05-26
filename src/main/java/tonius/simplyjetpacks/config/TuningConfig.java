@@ -102,7 +102,7 @@ public class TuningConfig {
             jetpackTier3_energyUsage = cfg.get("jetpackTier3", "energyUsage", 150).getInt();
             jetpackTier3_maxSpeed = cfg.get("jetpackTier3", "maxSpeed", 0.5D).getDouble(0.5D);
             jetpackTier3_acceleration = cfg.get("jetpackTier3", "acceleration", 0.2D).getDouble(0.2D);
-            jetpackTier3_forwardThrust = cfg.get("jetpackTier3", "forwardThrust", 0.12D).getDouble(0.12D);
+            jetpackTier3_forwardThrust = cfg.get("jetpackTier3", "forwardThrust", 0.14D).getDouble(0.14D);
             jetpackTier3_hoverModeIdleSpeed = cfg.get("jetpackTier3", "hoverModeIdleSpeed", 0.03D).getDouble(0.03D);
             jetpackTier3_hoverModeSneakingSpeed = cfg.get("jetpackTier3", "hoverModeSneakingSpeed", 0.22D).getDouble(0.22D);
 
@@ -114,7 +114,7 @@ public class TuningConfig {
             jetpackTier4_energyUsage = cfg.get("jetpackTier4", "energyUsage", 400).getInt();
             jetpackTier4_maxSpeed = cfg.get("jetpackTier4", "maxSpeed", 0.75D).getDouble(0.75D);
             jetpackTier4_acceleration = cfg.get("jetpackTier4", "acceleration", 0.32D).getDouble(0.32D);
-            jetpackTier4_forwardThrust = cfg.get("jetpackTier4", "forwardThrust", 0.20D).getDouble(0.20D);
+            jetpackTier4_forwardThrust = cfg.get("jetpackTier4", "forwardThrust", 0.19D).getDouble(0.19D);
             jetpackTier4_hoverModeIdleSpeed = cfg.get("jetpackTier4", "hoverModeIdleSpeed", 0.005D).getDouble(0.005D);
             jetpackTier4_hoverModeSneakingSpeed = cfg.get("jetpackTier4", "hoverModeSneakingSpeed", 0.24D).getDouble(0.24D);
 
@@ -123,7 +123,7 @@ public class TuningConfig {
 
             jetpackCreative_maxSpeed = cfg.get("jetpackCreative", "maxSpeed", 0.75D).getDouble(0.75D);
             jetpackCreative_acceleration = cfg.get("jetpackCreative", "acceleration", 0.32D).getDouble(0.32D);
-            jetpackCreative_forwardThrust = cfg.get("jetpackCreative", "forwardThrust", 0.20D).getDouble(0.20D);
+            jetpackCreative_forwardThrust = cfg.get("jetpackCreative", "forwardThrust", 0.19D).getDouble(0.19D);
             jetpackCreative_hoverModeIdleSpeed = cfg.get("jetpackCreative", "hoverModeIdleSpeed", 0.005D).getDouble(0.005D);
             jetpackCreative_hoverModeSneakingSpeed = cfg.get("jetpackCreative", "hoverModeSneakingSpeed", 0.24D).getDouble(0.24D);
             jetpackCreative_armorDisplay = cfg.get("jetpackCreative", "armorDisplay", 8).getInt();

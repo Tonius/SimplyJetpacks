@@ -150,7 +150,7 @@ public class ItemJetpack extends ItemEnergyArmor {
                             user.moveFlying(0, (float) this.forwardThrust, (float) this.forwardThrust);
                         }
                         if (KeyboardTracker.isBackwardKeyDown((EntityPlayer) user)) {
-                            user.moveFlying(0, (float) -this.forwardThrust, (float) this.forwardThrust);
+                            user.moveFlying(0, (float) -this.forwardThrust, (float) this.forwardThrust * 0.8F);
                         }
                         if (KeyboardTracker.isLeftKeyDown((EntityPlayer) user)) {
                             user.moveFlying((float) this.forwardThrust, 0, (float) this.forwardThrust);
