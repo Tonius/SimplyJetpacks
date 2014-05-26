@@ -25,7 +25,6 @@ public class ConfigReader {
 
     // meta-items
     public static int metaItem1ID;
-    public static int materialsID;
 
     // gui
     public static boolean enableEnergyHUD;
@@ -114,7 +113,6 @@ public class ConfigReader {
 
             // meta-items
             metaItem1ID = cfg.getItem("metaItem1", 18005).getInt() - 256;
-            materialsID = cfg.getItem("materials", 18011).getInt() - 256;
 
             // jetpack tuning
             jetpackTier0_maxEnergy = cfg.get("tuning_jetpackTier0", "maxEnergy", 1200).getInt();

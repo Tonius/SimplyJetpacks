@@ -3,14 +3,11 @@ package tonius.simplyjetpacks;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemSJJetpack;
 import tonius.simplyjetpacks.item.ItemSJJetpackArmored;
 import tonius.simplyjetpacks.item.ItemSJJetpackPotato;
-import tonius.simplyjetpacks.item.ItemSJMaterials;
 import tonius.simplyjetpacks.item.ItemSJMeta1;
 import tonius.simplyjetpacks.item.ItemSJSimpleMeta;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
@@ -34,7 +31,6 @@ public class SJItems {
     public static ItemSJJetpack jetpackTier4 = null;
     public static ItemSJJetpack jetpackArmoredTier4 = null;
     public static ItemSJSimpleMeta metaItem1 = null;
-    public static ItemSJSimpleMeta materials = null;
 
     public static void preInit() {
         registerItems();
@@ -61,7 +57,6 @@ public class SJItems {
         armoredJetpacks = new ItemSJJetpack[] { null, jetpackArmoredTier1, jetpackArmoredTier2, jetpackArmoredTier3, jetpackArmoredTier4 };
 
         metaItem1 = new ItemSJMeta1(ConfigReader.metaItem1ID);
-        materials = new ItemSJMaterials(ConfigReader.materialsID);
     }
 
     private static void registerRecipes() {
@@ -138,16 +133,6 @@ public class SJItems {
                 TE3Utils.addSmelterRecipe(6400, new ItemStack(metaItem1, 1, 7), ingotEnderium.copy(), new ItemStack(metaItem1, 1, 8), null, 0);
             }
         }
-
-        ItemStack dustEnderium;
-        for (int i = 0; i < OreDictionary.getOres("dustEnderium").size(); i++) {
-            dustEnderium = OreDictionary.getOres("dustEnderium").get(i);
-            dustEnderium.stackSize = 4;
-            TE3Utils.addTransposerFill(4800, dustEnderium.copy(), new ItemStack(materials, 1, 0), new FluidStack(FluidRegistry.getFluid("glowstone"), 2000), false);
-        }
-
-        ItemStack dustPyrotheum = GameRegistry.findItemStack("ThermalExpansion", "dustPyrotheum", 1);
-        dustPyrotheum.stackSize = 1;
-        TE3Utils.addSmelterRecipe(9600, dustPyrotheum.copy(), new ItemStack(materials, 1, 0), new ItemStack(materials, 1, 1), null, 0);
     }
+
 }

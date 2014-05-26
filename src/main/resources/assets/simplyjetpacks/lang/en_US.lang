@@ -19,11 +19,6 @@ item.simplyjetpacks.metaItem1_5.name=Iron Armor Plating
 item.simplyjetpacks.metaItem1_6.name=Tinker's Alloy Armor Plating
 item.simplyjetpacks.metaItem1_7.name=Invar Armor Plating
 item.simplyjetpacks.metaItem1_8.name=Enderium Armor Plating
-item.simplyjetpacks.metaItem1_9.name=Energized Jetpack (Inactive)
-
-item.simplyjetpacks.materials_0.name=Illuminant Enderium Blend
-item.simplyjetpacks.materials_1.name=Illuminant Enderium Ingot
-item.simplyjetpacks.materials_2.name=Volatium Ingot
 
 simplyjetpacks.chat.enabled=enabled
 simplyjetpacks.chat.disabled=disabled
