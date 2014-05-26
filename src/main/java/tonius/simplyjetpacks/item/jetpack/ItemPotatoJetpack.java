@@ -3,7 +3,6 @@ package tonius.simplyjetpacks.item.jetpack;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +28,7 @@ public class ItemPotatoJetpack extends ItemJetpack {
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
         if (StringUtils.canShowDetails()) {
-            list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
+            list.add(StringUtils.getChargeText(false, this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
             list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
             if (!MainConfig.hideJetpackTier0Warning) {
                 list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.1"));
@@ -42,11 +41,6 @@ public class ItemPotatoJetpack extends ItemJetpack {
         } else {
             list.add(StringUtils.getShiftText());
         }
-    }
-
-    @Override
-    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
-        list.add(this.getChargedItem(this));
     }
 
     @Override

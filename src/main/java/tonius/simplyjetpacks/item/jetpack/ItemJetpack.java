@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,6 +57,8 @@ public class ItemJetpack extends ItemEnergyArmor {
             return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
         case 4:
             return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+        case 9001:
+            return StringUtils.PINK + super.getItemDisplayName(itemStack);
         }
         return super.getItemDisplayName(itemStack);
     }
@@ -64,14 +67,14 @@ public class ItemJetpack extends ItemEnergyArmor {
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
         if (StringUtils.canShowDetails()) {
-            list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
+            list.add(StringUtils.getChargeText(this.jetpackTier == 9001, this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
             list.add(StringUtils.getStateText(this.isOn(itemStack)));
             list.add(StringUtils.getHoverModeText(this.isHoverModeActive(itemStack)));
             int currentTickEnergy = this.isHoverModeActive(itemStack) ? this.tickEnergyHover : this.tickEnergy;
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-            if (MainConfig.enableCraftingArmorPlating) {
+            if (this.jetpackTier > 0 && this.jetpackTier <= 4 && MainConfig.enableCraftingArmorPlating) {
                 list.add(StringUtils.getArmorText(this.isArmored()));
                 if (!this.isArmored()) {
                     list.add(StringUtils.getRequiredArmorText(this.jetpackTier));
@@ -80,6 +83,14 @@ public class ItemJetpack extends ItemEnergyArmor {
         } else {
             list.add(StringUtils.getShiftText());
         }
+    }
+
+    @Override
+    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
+        if (this.jetpackTier > 0 && this.jetpackTier <= 4) {
+            list.add(new ItemStack(id, 1, 31));
+        }
+        list.add(this.getChargedItem(this));
     }
 
     @Override
@@ -201,6 +212,10 @@ public class ItemJetpack extends ItemEnergyArmor {
         return false;
     }
 
+    public int getTier() {
+        return this.jetpackTier;
+    }
+
     @Override
     public String getActivateMsg() {
         return StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
@@ -209,6 +224,15 @@ public class ItemJetpack extends ItemEnergyArmor {
     @Override
     public String getDeactivateMsg() {
         return StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
+    }
+
+    @Override
+    public void updateEnergyDisplay(ItemStack itemStack) {
+        if (!(this.jetpackTier == 9001)) {
+            super.updateEnergyDisplay(itemStack);
+            return;
+        }
+        itemStack.setItemDamage(0);
     }
 
     @Override

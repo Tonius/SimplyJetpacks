@@ -71,7 +71,10 @@ public final class StringUtils {
         return formatter.format(number);
     }
 
-    public static String getChargeText(int charge, int total) {
+    public static String getChargeText(boolean infinite, int charge, int total) {
+        if (infinite) {
+            return ORANGE + translate("tooltip.charge") + ": " + LIGHT_GRAY + translate("tooltip.charge.infinite");
+        }
         return ORANGE + translate("tooltip.charge") + ": " + LIGHT_GRAY + getFormattedNumber(charge) + " / " + getFormattedNumber(total) + " RF";
     }
 

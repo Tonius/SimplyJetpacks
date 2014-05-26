@@ -9,6 +9,7 @@ item.simplyjetpacks.jetpackArmoredTier1.name=Armored Leadstone Jetpack
 item.simplyjetpacks.jetpackArmoredTier2.name=Armored Hardened Jetpack
 item.simplyjetpacks.jetpackArmoredTier3.name=Armored Redstone Jetpack
 item.simplyjetpacks.jetpackArmoredTier4.name=Armored Resonant Jetpack
+item.simplyjetpacks.jetpackCreative.name=Creative Jetpack
 
 item.simplyjetpacks.components_0.name=Leadstone Thruster
 item.simplyjetpacks.components_1.name=Hardened Thruster
@@ -30,6 +31,7 @@ simplyjetpacks.tooltip.holdShift2=Shift
 simplyjetpacks.tooltip.holdShift3=for details
 
 simplyjetpacks.tooltip.charge=Charge
+simplyjetpacks.tooltip.charge.infinite=Infinite
 simplyjetpacks.tooltip.state=State
 simplyjetpacks.tooltip.state.on=On
 simplyjetpacks.tooltip.state.off=Off

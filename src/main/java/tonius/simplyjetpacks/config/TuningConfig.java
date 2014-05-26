@@ -56,6 +56,14 @@ public class TuningConfig {
     public static int jetpackArmoredTier4_armorDisplay;
     public static double jetpackArmoredTier4_armorAbsorption;
 
+    public static double jetpackCreative_maxSpeed;
+    public static double jetpackCreative_acceleration;
+    public static double jetpackCreative_forwardThrust;
+    public static double jetpackCreative_hoverModeIdleSpeed;
+    public static double jetpackCreative_hoverModeSneakingSpeed;
+    public static int jetpackCreative_armorDisplay;
+    public static double jetpackCreative_armorAbsorption;
+
     public static void loadConfig(Configuration cfg) {
         try {
             cfg.load();
@@ -112,6 +120,14 @@ public class TuningConfig {
 
             jetpackArmoredTier4_armorDisplay = cfg.get("jetpackArmoredTier4", "armorDisplay", 8).getInt();
             jetpackArmoredTier4_armorAbsorption = cfg.get("jetpackArmoredTier4", "armorAbsorption", 0.6D).getDouble(0.6D);
+
+            jetpackCreative_maxSpeed = cfg.get("jetpackCreative", "maxSpeed", 0.75D).getDouble(0.75D);
+            jetpackCreative_acceleration = cfg.get("jetpackCreative", "acceleration", 0.32D).getDouble(0.32D);
+            jetpackCreative_forwardThrust = cfg.get("jetpackCreative", "forwardThrust", 0.20D).getDouble(0.20D);
+            jetpackCreative_hoverModeIdleSpeed = cfg.get("jetpackCreative", "hoverModeIdleSpeed", 0.005D).getDouble(0.005D);
+            jetpackCreative_hoverModeSneakingSpeed = cfg.get("jetpackCreative", "hoverModeSneakingSpeed", 0.24D).getDouble(0.24D);
+            jetpackCreative_armorDisplay = cfg.get("jetpackCreative", "armorDisplay", 8).getInt();
+            jetpackCreative_armorAbsorption = cfg.get("jetpackCreative", "armorAbsorption", 0.6D).getDouble(0.6D);
         } finally {
             if (cfg.hasChanged())
                 cfg.save();

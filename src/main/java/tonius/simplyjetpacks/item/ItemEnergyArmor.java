@@ -91,7 +91,7 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         if (!simulate) {
             energyCurrent += energyAdded;
             container.stackTagCompound.setInteger("Energy", energyCurrent);
-            updateEnergyDisplay(container);
+            this.updateEnergyDisplay(container);
         }
 
         return energyAdded;
@@ -105,7 +105,7 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         if (!simulate) {
             energyCurrent -= energySubtracted;
             container.stackTagCompound.setInteger("Energy", energyCurrent);
-            updateEnergyDisplay(container);
+            this.updateEnergyDisplay(container);
         }
 
         return energySubtracted;

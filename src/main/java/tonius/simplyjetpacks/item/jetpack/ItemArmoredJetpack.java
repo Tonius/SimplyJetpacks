@@ -24,7 +24,7 @@ public class ItemArmoredJetpack extends ItemJetpack {
 
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
-        return new ArmorProperties(0, this.armorAbsorption, 50);
+        return new ArmorProperties(0, this.armorAbsorption, 100);
     }
 
     @Override

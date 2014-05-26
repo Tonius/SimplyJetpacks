@@ -16,6 +16,7 @@ public class MainConfig {
     public static int jetpackArmoredTier2ID;
     public static int jetpackArmoredTier3ID;
     public static int jetpackArmoredTier4ID;
+    public static int jetpackCreativeID;
     public static int componentsID;
 
     // item config
@@ -46,11 +47,12 @@ public class MainConfig {
             jetpackTier2ID = cfg.getItem("jetpackTier2", 18002).getInt() - 256;
             jetpackTier3ID = cfg.getItem("jetpackTier3", 18003).getInt() - 256;
             jetpackTier4ID = cfg.getItem("jetpackTier4", 18004).getInt() - 256;
+            componentsID = cfg.getItem("components", 18005).getInt() - 256;
             jetpackArmoredTier1ID = cfg.getItem("jetpackArmoredTier1", 18007).getInt() - 256;
             jetpackArmoredTier2ID = cfg.getItem("jetpackArmoredTier2", 18008).getInt() - 256;
             jetpackArmoredTier3ID = cfg.getItem("jetpackArmoredTier3", 18009).getInt() - 256;
             jetpackArmoredTier4ID = cfg.getItem("jetpackArmoredTier4", 18010).getInt() - 256;
-            componentsID = cfg.getItem("components", 18005).getInt() - 256;
+            jetpackCreativeID = cfg.getItem("jetpackCreative", 18011).getInt() - 256;
 
             // item config
             enableJetpackParticles = cfg.get("itemconfig", "enableJetpackParticles", true).getBoolean(true);

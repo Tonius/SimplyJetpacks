@@ -33,10 +33,12 @@ public class SJItems {
     public static ItemJetpack jetpackArmoredTier3 = null;
     public static ItemJetpack jetpackTier4 = null;
     public static ItemJetpack jetpackArmoredTier4 = null;
+    public static ItemJetpack jetpackCreative = null;
     public static ItemSJ components = null;
 
     public static void preInit() {
         constructItems();
+        registerItems();
     }
 
     public static void init() {
@@ -57,6 +59,7 @@ public class SJItems {
         jetpackArmoredTier3 = new ItemArmoredJetpack(MainConfig.jetpackArmoredTier3ID, enumArmorJetpack, "jetpackArmoredTier3", TuningConfig.jetpackTier3_maxEnergy, TuningConfig.jetpackTier3_maxChargingRate, 3, TuningConfig.jetpackTier3_energyUsage, TuningConfig.jetpackTier3_maxSpeed, TuningConfig.jetpackTier3_acceleration, TuningConfig.jetpackTier3_forwardThrust, TuningConfig.jetpackTier3_hoverModeIdleSpeed, TuningConfig.jetpackTier3_hoverModeSneakingSpeed, TuningConfig.jetpackArmoredTier3_armorDisplay, TuningConfig.jetpackArmoredTier3_armorAbsorption);
         jetpackTier4 = new ItemJetpack(MainConfig.jetpackTier4ID, enumArmorJetpack, "jetpackTier4", TuningConfig.jetpackTier4_maxEnergy, TuningConfig.jetpackTier4_maxChargingRate, 4, TuningConfig.jetpackTier4_energyUsage, TuningConfig.jetpackTier4_maxSpeed, TuningConfig.jetpackTier4_acceleration, TuningConfig.jetpackTier4_forwardThrust, TuningConfig.jetpackTier4_hoverModeIdleSpeed, TuningConfig.jetpackTier4_hoverModeSneakingSpeed);
         jetpackArmoredTier4 = new ItemArmoredJetpack(MainConfig.jetpackArmoredTier4ID, enumArmorJetpack, "jetpackArmoredTier4", TuningConfig.jetpackTier4_maxEnergy, TuningConfig.jetpackTier4_maxChargingRate, 4, TuningConfig.jetpackTier4_energyUsage, TuningConfig.jetpackTier4_maxSpeed, TuningConfig.jetpackTier4_acceleration, TuningConfig.jetpackTier4_forwardThrust, TuningConfig.jetpackTier4_hoverModeIdleSpeed, TuningConfig.jetpackTier4_hoverModeSneakingSpeed, TuningConfig.jetpackArmoredTier4_armorDisplay, TuningConfig.jetpackArmoredTier4_armorAbsorption);
+        jetpackCreative = new ItemArmoredJetpack(MainConfig.jetpackCreativeID, enumArmorJetpack, "jetpackCreative", 9001, 0, 9001, 0, TuningConfig.jetpackCreative_maxSpeed, TuningConfig.jetpackCreative_acceleration, TuningConfig.jetpackCreative_forwardThrust, TuningConfig.jetpackCreative_hoverModeIdleSpeed, TuningConfig.jetpackCreative_hoverModeSneakingSpeed, TuningConfig.jetpackCreative_armorDisplay, TuningConfig.jetpackCreative_armorAbsorption);
 
         jetpacks = new ItemJetpack[] { jetpackTier0, jetpackTier1, jetpackTier2, jetpackTier3, jetpackTier4 };
         armoredJetpacks = new ItemJetpack[] { null, jetpackArmoredTier1, jetpackArmoredTier2, jetpackArmoredTier3, jetpackArmoredTier4 };
@@ -74,8 +77,9 @@ public class SJItems {
         GameRegistry.registerItem(jetpackArmoredTier2, "jetpackArmoredTier2");
         GameRegistry.registerItem(jetpackTier3, "jetpackTier3");
         GameRegistry.registerItem(jetpackArmoredTier3, "jetpackArmoredTier3");
-        GameRegistry.registerItem(jetpackTier4, "jetpackArmoredTier4");
+        GameRegistry.registerItem(jetpackTier4, "jetpackTier4");
         GameRegistry.registerItem(jetpackArmoredTier4, "jetpackArmoredTier4");
+        GameRegistry.registerItem(jetpackCreative, "jetpackCreative");
 
         GameRegistry.registerItem(components, "components");
     }
