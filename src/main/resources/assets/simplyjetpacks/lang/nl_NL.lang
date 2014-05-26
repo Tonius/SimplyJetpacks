@@ -5,11 +5,21 @@ item.simplyjetpacks.jetpackTier1.name=Leadstone-jetpack
 item.simplyjetpacks.jetpackTier2.name=Geharde jetpack
 item.simplyjetpacks.jetpackTier3.name=Redstone-jetpack
 item.simplyjetpacks.jetpackTier4.name=Resonante jetpack
+item.simplyjetpacks.jetpackArmoredTier1.name=Gepantserde leadstone-jetpack
+item.simplyjetpacks.jetpackArmoredTier2.name=Gepantserde geharde jetpack
+item.simplyjetpacks.jetpackArmoredTier3.name=Gepantserde redstone-jetpack
+item.simplyjetpacks.jetpackArmoredTier4.name=Gepantserde resonante jetpack
+item.simplyjetpacks.jetpackCreative.name=Creative-jetpack
 
 item.simplyjetpacks.components_0.name=Leadstone-thruster
 item.simplyjetpacks.components_1.name=Geharde thruster
 item.simplyjetpacks.components_2.name=Redstone-thruster
 item.simplyjetpacks.components_3.name=Resonante thruster
+item.simplyjetpacks.components_4.name=Leren riem
+item.simplyjetpacks.components_5.name=IJzeren bepantsering
+item.simplyjetpacks.components_6.name=Tinker's Alloy-bepantsering
+item.simplyjetpacks.components_7.name=Invar-bepantsering
+item.simplyjetpacks.components_8.name=Enderium-bepantsering
 
 simplyjetpacks.chat.enabled=aangezet
 simplyjetpacks.chat.disabled=uitgezet
@@ -21,6 +31,7 @@ simplyjetpacks.tooltip.holdShift2=Shift
 simplyjetpacks.tooltip.holdShift3=voor details
 
 simplyjetpacks.tooltip.charge=Lading
+simplyjetpacks.tooltip.charge.infinite=Onbeperkt
 simplyjetpacks.tooltip.state=Staat
 simplyjetpacks.tooltip.state.on=Aan
 simplyjetpacks.tooltip.state.off=Uit
@@ -30,9 +41,22 @@ simplyjetpacks.tooltip.jetpack.hoverMode.enabled=Actief
 simplyjetpacks.tooltip.jetpack.hoverMode.disabled=Inactief
 simplyjetpacks.tooltip.jetpack.description.1=Laat je vliegen wanneer actief.
 simplyjetpacks.tooltip.jetpack.description.2=Moet gedragen worden in de borstplaat-slot.
+simplyjetpacks.tooltip.jetpack.armor.on=Gebruik tijdens sluipen om bepantsering toe te voegen.
+simplyjetpacks.tooltip.jetpack.armor.off=Gebruik tijdens sluipen om pantser te verwijderen.
+simplyjetpacks.tooltip.jetpack.armor.requires=Vereist
 simplyjetpacks.tooltip.jetpackPotato.description.1=Het lijkt erop dat hij niet wil starten.
 simplyjetpacks.tooltip.jetpackPotato.description.2=Misschien als je het lang genoeg probeert...
-simplyjetpacks.tooltip.jetpackPotato.warning=Let op: vliegen met aardappels is erg gevaarlijk.
+simplyjetpacks.tooltip.jetpackPotato.warning=Let op: vliegen met aardappels is dodelijk.
+simplyjetpacks.tooltip.thruster.description.1=Wordt gebruikt om jetpacks te maken.
+simplyjetpacks.tooltip.thruster.description.2=Zet RF om in opwaartse kracht.
+simplyjetpacks.tooltip.leatherStrap.description.1=Wordt gebruikt om jetpacks te maken.
+simplyjetpacks.tooltip.leatherStrap.description.2=Zorgt ervoor dat een jetpack vast blijft zitten.
+simplyjetpacks.tooltip.armorPlating.description.1=Some sturdy metal plates.
+simplyjetpacks.tooltip.armorPlating.description.2=Wordt gebruikt om jetpacks te pantseren.
+
+simplyjetpacks.gui.hud.jetpack.energy=Jetpackenergie
+simplyjetpacks.gui.hud.jetpack.warning.low=Energie is bijna op!
+simplyjetpacks.gui.hud.jetpack.warning.empty=Energie is op
 
 death.attack.jetpackpotato=%1$s probeerde met een aardappel te vliegen
 death.attack.jetpackpotato.player=%1$s probeerde met een aardappel te vliegen
