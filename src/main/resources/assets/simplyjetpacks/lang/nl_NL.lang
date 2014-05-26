@@ -6,10 +6,10 @@ item.simplyjetpacks.jetpackTier2.name=Geharde jetpack
 item.simplyjetpacks.jetpackTier3.name=Redstone-jetpack
 item.simplyjetpacks.jetpackTier4.name=Resonante jetpack
 
-item.simplyjetpacks.metaItem1_0.name=Leadstone-thruster
-item.simplyjetpacks.metaItem1_1.name=Geharde thruster
-item.simplyjetpacks.metaItem1_2.name=Redstone-thruster
-item.simplyjetpacks.metaItem1_3.name=Resonante thruster
+item.simplyjetpacks.components_0.name=Leadstone-thruster
+item.simplyjetpacks.components_1.name=Geharde thruster
+item.simplyjetpacks.components_2.name=Redstone-thruster
+item.simplyjetpacks.components_3.name=Resonante thruster
 
 simplyjetpacks.chat.enabled=aangezet
 simplyjetpacks.chat.disabled=uitgezet

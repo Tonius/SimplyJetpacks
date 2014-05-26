@@ -8,8 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
-import tonius.simplyjetpacks.item.ItemSJArmorEnergy;
-import tonius.simplyjetpacks.item.ItemSJJetpack;
+import tonius.simplyjetpacks.item.ItemEnergyArmor;
+import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -42,15 +42,15 @@ public class PacketHandler implements IPacketHandler {
                 case KEY_MODE:
                     dataStream.readInt();
                     ItemStack jetpack = entityPlayer.inventory.armorItemInSlot(2);
-                    if (jetpack != null && jetpack.getItem() instanceof ItemSJJetpack) {
-                        ((ItemSJJetpack) jetpack.getItem()).toggleHoverMode(jetpack, entityPlayer);
+                    if (jetpack != null && jetpack.getItem() instanceof ItemJetpack) {
+                        ((ItemJetpack) jetpack.getItem()).toggleHoverMode(jetpack, entityPlayer);
                     }
                     break;
                 case KEY_TOGGLE:
                     dataStream.readInt();
                     ItemStack armorEnergy = entityPlayer.inventory.armorItemInSlot(2);
-                    if (armorEnergy != null && armorEnergy.getItem() instanceof ItemSJArmorEnergy) {
-                        ((ItemSJArmorEnergy) armorEnergy.getItem()).toggle(armorEnergy, entityPlayer);
+                    if (armorEnergy != null && armorEnergy.getItem() instanceof ItemEnergyArmor) {
+                        ((ItemEnergyArmor) armorEnergy.getItem()).toggle(armorEnergy, entityPlayer);
                     }
                 }
             } catch (IOException e) {

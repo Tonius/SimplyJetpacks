@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
+import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.config.TuningConfig;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -24,7 +26,6 @@ public class SimplyJetpacks {
     @SidedProxy(clientSide = "tonius.simplyjetpacks.client.ClientProxy", serverSide = "tonius.simplyjetpacks.CommonProxy")
     public static CommonProxy proxy;
 
-    public static Configuration config;
     public static Logger logger;
     public static KeyboardTracker keyboard;
 
@@ -41,8 +42,8 @@ public class SimplyJetpacks {
         logger.info("Starting Simply Jetpacks");
 
         logger.info("Loading configuration file");
-        config = new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks.cfg"));
-        ConfigReader.loadConfig(config);
+        MainConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/main.cfg")));
+        TuningConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/tuning.cfg")));
 
         SJBlocks.preInit();
         SJItems.preInit();

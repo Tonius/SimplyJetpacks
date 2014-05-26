@@ -3,16 +3,16 @@ package tonius.simplyjetpacks.recipes;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import tonius.simplyjetpacks.item.ItemSJJetpack;
+import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class JetpackUpgradingRecipe extends ShapedOreRecipe {
 
-    private ItemSJJetpack resultItem;
+    private ItemJetpack resultItem;
 
     public JetpackUpgradingRecipe(ItemStack result, Object[] recipe) {
         super(result, recipe);
-        this.resultItem = (ItemSJJetpack) result.getItem();
+        this.resultItem = (ItemJetpack) result.getItem();
     }
 
     @Override

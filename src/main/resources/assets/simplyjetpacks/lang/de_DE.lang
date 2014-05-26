@@ -6,10 +6,10 @@ item.simplyjetpacks.jetpackTier2.name=Gehärtetes Jetpack
 item.simplyjetpacks.jetpackTier3.name=Redstone-Jetpack
 item.simplyjetpacks.jetpackTier4.name=Resonantes Jetpack
 
-item.simplyjetpacks.metaItem1_0.name=Leadstone-Schubdüse
-item.simplyjetpacks.metaItem1_1.name=Gehärtete Schubdüse
-item.simplyjetpacks.metaItem1_2.name=Redstone-Schubdüse
-item.simplyjetpacks.metaItem1_3.name=Resonante Schubdüse
+item.simplyjetpacks.components_0.name=Leadstone-Schubdüse
+item.simplyjetpacks.components_1.name=Gehärtete Schubdüse
+item.simplyjetpacks.components_2.name=Redstone-Schubdüse
+item.simplyjetpacks.components_3.name=Resonante Schubdüse
 
 simplyjetpacks.chat.enabled=aktiviert
 simplyjetpacks.chat.disabled=deaktiviert

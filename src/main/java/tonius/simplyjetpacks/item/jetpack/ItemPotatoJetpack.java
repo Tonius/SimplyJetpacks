@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.item;
+package tonius.simplyjetpacks.item.jetpack;
 
 import java.util.List;
 import java.util.Random;
@@ -10,28 +10,28 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import tonius.simplyjetpacks.ConfigReader;
 import tonius.simplyjetpacks.KeyboardTracker;
-import tonius.simplyjetpacks.util.DamageSourceJetpackPotato;
+import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.util.DamageSourcePotatoJetpack;
 import tonius.simplyjetpacks.util.FireworksGenerator;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSJJetpackPotato extends ItemSJJetpack {
+public class ItemPotatoJetpack extends ItemJetpack {
 
-    public ItemSJJetpackPotato(int id, EnumArmorMaterial material) {
-        super(id, material, "jetpackTier0", ConfigReader.jetpackTier0_maxEnergy, 0, 0, ConfigReader.jetpackTier0_energyUsage, ConfigReader.jetpackTier0_maxSpeed, ConfigReader.jetpackTier0_acceleration, 0, 0.25, 0.25);
+    public ItemPotatoJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
+        super(id, material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        if (StringUtils.isShiftKeyDown()) {
+        if (StringUtils.canShowDetails()) {
             list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
             list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
-            if (!ConfigReader.hideJetpackTier0Warning) {
+            if (!MainConfig.hideJetpackTier0Warning) {
                 list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.1"));
                 list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.2"));
                 list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
@@ -62,7 +62,7 @@ public class ItemSJJetpackPotato extends ItemSJJetpack {
                         ItemStack firework = FireworksGenerator.randomFirework();
                         user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
                     }
-                    user.attackEntityFrom(DamageSourceJetpackPotato.causeJetpackPotatoDamage(user), 20.0F);
+                    user.attackEntityFrom(DamageSourcePotatoJetpack.causeJetpackPotatoDamage(user), 20.0F);
                     user.dropItem(Item.poisonousPotato.itemID, 1);
                 }
             }

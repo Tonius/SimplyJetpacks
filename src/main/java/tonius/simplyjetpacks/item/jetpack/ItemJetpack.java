@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.item;
+package tonius.simplyjetpacks.item.jetpack;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -14,17 +14,18 @@ import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
-import tonius.simplyjetpacks.ConfigReader;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.PacketHandler;
 import tonius.simplyjetpacks.SJItems;
+import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.item.ItemEnergyArmor;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSJJetpack extends ItemSJArmorEnergy {
+public class ItemJetpack extends ItemEnergyArmor {
 
     protected int jetpackTier;
     protected int tickEnergy;
@@ -35,7 +36,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     protected double hoverModeIdleSpeed;
     protected double hoverModeActiveSpeed;
 
-    public ItemSJJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
+    public ItemJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
         super(id, material, 2, 1, name, maxEnergy, maxInput, 0);
         this.jetpackTier = jetpackTier;
         this.tickEnergy = tickEnergy;
@@ -62,7 +63,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        if (StringUtils.isShiftKeyDown()) {
+        if (StringUtils.canShowDetails()) {
             list.add(StringUtils.getChargeText(this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
             list.add(StringUtils.getStateText(this.isOn(itemStack)));
             list.add(StringUtils.getHoverModeText(this.isHoverModeActive(itemStack)));
@@ -70,7 +71,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-            if (ConfigReader.enableCraftingArmorPlating) {
+            if (MainConfig.enableCraftingArmorPlating) {
                 list.add(StringUtils.getArmorText(this.isArmored()));
                 if (!this.isArmored()) {
                     list.add(StringUtils.getRequiredArmorText(this.jetpackTier));
@@ -86,13 +87,13 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
         if (this.jetpackTier > 0 && player.isSneaking()) {
             if (this.isArmored()) {
                 this.removeArmor(itemStack, player);
-                EntityItem item = player.dropPlayerItem(new ItemStack(SJItems.metaItem1, 1, this.jetpackTier + 4));
+                EntityItem item = player.dropPlayerItem(new ItemStack(SJItems.components, 1, this.jetpackTier + 4));
                 item.delayBeforeCanPickup = 0;
             } else {
                 InventoryPlayer inv = player.inventory;
                 for (int i = 0; i < inv.getSizeInventory(); i++) {
                     ItemStack currentStack = inv.getStackInSlot(i);
-                    if (currentStack != null && currentStack.getItem() == SJItems.metaItem1 && currentStack.getItemDamage() == this.jetpackTier + 4) {
+                    if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == this.jetpackTier + 4) {
                         inv.setInventorySlotContents(i, StackUtils.decrementStack(currentStack));
                         this.applyArmor(itemStack, player);
                         break;
@@ -172,7 +173,7 @@ public class ItemSJJetpack extends ItemSJArmorEnergy {
     }
 
     public double getHoverSpeed(ItemStack jetpack, EntityLivingBase user) {
-        if (!ConfigReader.invertHoverSneakingBehavior) {
+        if (!MainConfig.invertHoverSneakingBehavior) {
             return user.isSneaking() ? this.hoverModeActiveSpeed : this.hoverModeIdleSpeed;
         } else {
             return user.isSneaking() ? this.hoverModeIdleSpeed : this.hoverModeActiveSpeed;

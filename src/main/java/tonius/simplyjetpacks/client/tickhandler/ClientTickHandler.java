@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.client;
+package tonius.simplyjetpacks.client.tickhandler;
 
 import java.util.EnumSet;
 

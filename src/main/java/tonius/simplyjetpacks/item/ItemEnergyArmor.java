@@ -2,30 +2,53 @@ package tonius.simplyjetpacks.item;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEnergyContainerItem {
+public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergyContainerItem {
 
+    protected String name;
     protected int maxEnergy;
     protected int maxInput;
     protected int maxOutput;
     protected ArmorProperties properties = new ArmorProperties(0, 1, 0);
 
-    public ItemSJArmorEnergy(int id, EnumArmorMaterial material, int renderIndex, int armorType, String name, int maxEnergy, int maxInput, int maxOutput) {
-        super(id, material, renderIndex, armorType, name, name);
-        this.setMaxDamage(30);
-        this.setNoRepair();
+    public ItemEnergyArmor(int id, EnumArmorMaterial material, int renderIndex, int armorType, String name, int maxEnergy, int maxInput, int maxOutput) {
+        super(id, material, renderIndex, armorType);
+        SimplyJetpacks.logger.info("Constructing armor: " + name);
+        this.name = name;
         this.maxEnergy = maxEnergy;
         this.maxInput = maxInput;
         this.maxOutput = maxOutput;
+        this.setUnlocalizedName("simplyjetpacks." + name);
+        this.setMaxDamage(30);
+        this.setNoRepair();
+        this.setCreativeTab(SimplyJetpacks.creativeTab);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister register) {
+        itemIcon = register.registerIcon("simplyjetpacks:" + name);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
+        return "simplyjetpacks:textures/armor/" + name + "_layer_" + (slot == 2 ? "1" : "0") + ".png";
     }
 
     @Override
@@ -89,7 +112,7 @@ public class ItemSJArmorEnergy extends ItemSJArmor implements ISpecialArmor, IEn
         return energySubtracted;
     }
 
-    public ItemStack getChargedItem(ItemSJArmorEnergy item) {
+    public ItemStack getChargedItem(ItemEnergyArmor item) {
         ItemStack full = new ItemStack(item);
         item.addEnergy(full, item.getMaxEnergyStored(full), false);
         return full;

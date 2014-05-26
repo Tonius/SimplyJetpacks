@@ -6,7 +6,7 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.input.Keyboard;
 
-import tonius.simplyjetpacks.ConfigReader;
+import tonius.simplyjetpacks.config.MainConfig;
 
 public final class StringUtils {
 
@@ -98,11 +98,11 @@ public final class StringUtils {
     }
 
     public static String getRequiredArmorText(int tier) {
-        return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.requires") + ": " + YELLOW + ITALIC + translate("item.simplyjetpacks.metaItem1_" + (tier + 4) + ".name", false);
+        return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.requires") + ": " + YELLOW + ITALIC + translate("item.simplyjetpacks.components_" + (tier + 4) + ".name", false);
     }
 
     public static String getHUDEnergyText(int percent, int energy) {
-        if (ConfigReader.showExactEnergyInHUD) {
+        if (MainConfig.showExactEnergyInHUD) {
             return translate("gui.hud.jetpack.energy") + ": " + getColoredPercent(percent) + "% (" + getFormattedNumber(energy) + " RF)";
         }
         return translate("gui.hud.jetpack.energy") + ": " + getColoredPercent(percent) + "%";
@@ -130,6 +130,10 @@ public final class StringUtils {
 
     public static String getShiftText() {
         return LIGHT_GRAY + translate("tooltip.holdShift1") + " " + YELLOW + ITALIC + translate("tooltip.holdShift2") + " " + END + LIGHT_GRAY + translate("tooltip.holdShift3");
+    }
+
+    public static boolean canShowDetails() {
+        return MainConfig.holdShiftForDetails ? isShiftKeyDown() : true;
     }
 
     public static String translate(String unlocalized) {

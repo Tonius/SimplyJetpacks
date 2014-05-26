@@ -10,15 +10,15 @@ item.simplyjetpacks.jetpackArmoredTier2.name=Armored Hardened Jetpack
 item.simplyjetpacks.jetpackArmoredTier3.name=Armored Redstone Jetpack
 item.simplyjetpacks.jetpackArmoredTier4.name=Armored Resonant Jetpack
 
-item.simplyjetpacks.metaItem1_0.name=Leadstone Thruster
-item.simplyjetpacks.metaItem1_1.name=Hardened Thruster
-item.simplyjetpacks.metaItem1_2.name=Redstone Thruster
-item.simplyjetpacks.metaItem1_3.name=Resonant Thruster
-item.simplyjetpacks.metaItem1_4.name=Leather Strap
-item.simplyjetpacks.metaItem1_5.name=Iron Armor Plating
-item.simplyjetpacks.metaItem1_6.name=Tinker's Alloy Armor Plating
-item.simplyjetpacks.metaItem1_7.name=Invar Armor Plating
-item.simplyjetpacks.metaItem1_8.name=Enderium Armor Plating
+item.simplyjetpacks.components_0.name=Leadstone Thruster
+item.simplyjetpacks.components_1.name=Hardened Thruster
+item.simplyjetpacks.components_2.name=Redstone Thruster
+item.simplyjetpacks.components_3.name=Resonant Thruster
+item.simplyjetpacks.components_4.name=Leather Strap
+item.simplyjetpacks.components_5.name=Iron Armor Plating
+item.simplyjetpacks.components_6.name=Tinker's Alloy Armor Plating
+item.simplyjetpacks.components_7.name=Invar Armor Plating
+item.simplyjetpacks.components_8.name=Enderium Armor Plating
 
 simplyjetpacks.chat.enabled=enabled
 simplyjetpacks.chat.disabled=disabled

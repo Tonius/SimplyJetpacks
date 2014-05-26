@@ -8,27 +8,25 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSJSimpleMeta extends Item {
+public class ItemSJ extends Item {
 
     protected String name;
     protected int amount;
     private Icon[] metaIcons;
 
-    public ItemSJSimpleMeta(int id, String name, int amount) {
+    public ItemSJ(int id, String name, int amount) {
         super(id);
-        setUnlocalizedName("simplyjetpacks." + name);
+        SimplyJetpacks.logger.info("Constructing item: " + name);
         this.name = name;
         this.amount = amount;
-        setCreativeTab(SimplyJetpacks.creativeTab);
-        SimplyJetpacks.logger.info("Registering item: " + name);
-        GameRegistry.registerItem(this, name);
+        this.metaIcons = new Icon[amount];
+        this.setUnlocalizedName("simplyjetpacks." + name);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        this.metaIcons = new Icon[amount];
+        this.setCreativeTab(SimplyJetpacks.creativeTab);
     }
 
     @Override

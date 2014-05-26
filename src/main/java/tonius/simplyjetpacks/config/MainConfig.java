@@ -1,0 +1,74 @@
+package tonius.simplyjetpacks.config;
+
+import net.minecraftforge.common.Configuration;
+
+public class MainConfig {
+    // block ids
+    public static int ueberChargerID;
+
+    // item ids
+    public static int jetpackTier0ID;
+    public static int jetpackTier1ID;
+    public static int jetpackTier2ID;
+    public static int jetpackTier3ID;
+    public static int jetpackTier4ID;
+    public static int jetpackArmoredTier1ID;
+    public static int jetpackArmoredTier2ID;
+    public static int jetpackArmoredTier3ID;
+    public static int jetpackArmoredTier4ID;
+    public static int componentsID;
+
+    // item config
+    public static boolean enableJetpackParticles;
+    public static boolean invertHoverSneakingBehavior;
+
+    // crafting
+    public static boolean enableCraftingArmorPlating;
+    public static boolean enableCraftingJetpackTier0;
+    public static boolean upgradingRecipesOnly;
+
+    // gui
+    public static boolean enableEnergyHUD;
+    public static boolean hideJetpackTier0Warning;
+    public static boolean holdShiftForDetails;
+    public static boolean showExactEnergyInHUD;
+
+    public static void loadConfig(Configuration cfg) {
+        try {
+            cfg.load();
+
+            // block ids
+            ueberChargerID = cfg.getBlock("ueberCharger", 850).getInt();
+
+            // item ids
+            jetpackTier0ID = cfg.getItem("jetpackTier0", 18000).getInt() - 256;
+            jetpackTier1ID = cfg.getItem("jetpackTier1", 18001).getInt() - 256;
+            jetpackTier2ID = cfg.getItem("jetpackTier2", 18002).getInt() - 256;
+            jetpackTier3ID = cfg.getItem("jetpackTier3", 18003).getInt() - 256;
+            jetpackTier4ID = cfg.getItem("jetpackTier4", 18004).getInt() - 256;
+            jetpackArmoredTier1ID = cfg.getItem("jetpackArmoredTier1", 18007).getInt() - 256;
+            jetpackArmoredTier2ID = cfg.getItem("jetpackArmoredTier2", 18008).getInt() - 256;
+            jetpackArmoredTier3ID = cfg.getItem("jetpackArmoredTier3", 18009).getInt() - 256;
+            jetpackArmoredTier4ID = cfg.getItem("jetpackArmoredTier4", 18010).getInt() - 256;
+            componentsID = cfg.getItem("components", 18005).getInt() - 256;
+
+            // item config
+            enableJetpackParticles = cfg.get("itemconfig", "enableJetpackParticles", true).getBoolean(true);
+            invertHoverSneakingBehavior = cfg.get("itemconfig", "invertHoverSneakingBehavior", false).getBoolean(false);
+
+            // crafting
+            enableCraftingArmorPlating = cfg.get("crafting", "enableCraftingArmorPlating", true).getBoolean(true);
+            enableCraftingJetpackTier0 = cfg.get("crafting", "enableCraftingJetpackTier0", true).getBoolean(true);
+            upgradingRecipesOnly = cfg.get("crafting", "upgradingRecipesOnly", false).getBoolean(false);
+
+            // gui
+            enableEnergyHUD = cfg.get("gui", "enableEnergyHUD", true).getBoolean(true);
+            hideJetpackTier0Warning = cfg.get("gui", "hideJetpackTier0Warning", false).getBoolean(false);
+            holdShiftForDetails = cfg.get("gui", "holdShiftForDetails", true).getBoolean(true);
+            showExactEnergyInHUD = cfg.get("gui", "showExactEnergyInHUD", false).getBoolean(false);
+        } finally {
+            if (cfg.hasChanged())
+                cfg.save();
+        }
+    }
+}

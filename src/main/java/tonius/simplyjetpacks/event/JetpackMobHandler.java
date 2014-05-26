@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import tonius.simplyjetpacks.item.ItemSJJetpack;
+import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 
-public class JetpackMobHandlers {
+public class JetpackMobHandler {
 
     private static Random rand = new Random();
 
@@ -18,10 +18,10 @@ public class JetpackMobHandlers {
     public void makeMobUseJetpackRandomly(LivingUpdateEvent evt) {
         if (!(evt.entityLiving instanceof EntityPlayer)) {
             ItemStack armor = evt.entityLiving.getCurrentItemOrArmor(3);
-            if (armor != null && armor.getItem() instanceof ItemSJJetpack) {
+            if (armor != null && armor.getItem() instanceof ItemJetpack) {
                 Item jetpack = armor.getItem();
                 if (rand.nextInt(2) == 0) {
-                    ((ItemSJJetpack) jetpack).useJetpack(evt.entityLiving, armor, false);
+                    ((ItemJetpack) jetpack).useJetpack(evt.entityLiving, armor, false);
                 }
                 if (evt.entityLiving.posY > evt.entityLiving.worldObj.getActualHeight() + 10) {
                     evt.entityLiving.attackEntityFrom(DamageSource.generic, 80);

@@ -10,15 +10,15 @@ item.simplyjetpacks.jetpackArmoredTier2.name=Бронированный укре
 item.simplyjetpacks.jetpackArmoredTier3.name=Бронированный красный реактивный ранец
 item.simplyjetpacks.jetpackArmoredTier4.name=Бронированный резонирующий реактивный ранец
 
-item.simplyjetpacks.metaItem1_0.name=Свинцовый реактивный двигатель
-item.simplyjetpacks.metaItem1_1.name=Укреплённый реактивный двигатель
-item.simplyjetpacks.metaItem1_2.name=Красный реактивный двигатель
-item.simplyjetpacks.metaItem1_3.name=Резонирующий реактивный двигатель
-item.simplyjetpacks.metaItem1_4.name=Кожаный ремень
-item.simplyjetpacks.metaItem1_5.name=Железное броневое покрытие
-item.simplyjetpacks.metaItem1_6.name=Броневое покрытие из сплава инженера
-item.simplyjetpacks.metaItem1_7.name=Инваровое броневое покрытие
-item.simplyjetpacks.metaItem1_8.name=Броневое покрытие из металла Края
+item.simplyjetpacks.components_0.name=Свинцовый реактивный двигатель
+item.simplyjetpacks.components_1.name=Укреплённый реактивный двигатель
+item.simplyjetpacks.components_2.name=Красный реактивный двигатель
+item.simplyjetpacks.components_3.name=Резонирующий реактивный двигатель
+item.simplyjetpacks.components_4.name=Кожаный ремень
+item.simplyjetpacks.components_5.name=Железное броневое покрытие
+item.simplyjetpacks.components_6.name=Броневое покрытие из сплава инженера
+item.simplyjetpacks.components_7.name=Инваровое броневое покрытие
+item.simplyjetpacks.components_8.name=Броневое покрытие из металла Края
 
 simplyjetpacks.chat.enabled=включён
 simplyjetpacks.chat.disabled=выключен

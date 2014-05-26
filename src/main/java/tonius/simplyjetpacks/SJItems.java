@@ -5,132 +5,137 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import tonius.simplyjetpacks.item.ItemSJJetpack;
-import tonius.simplyjetpacks.item.ItemSJJetpackArmored;
-import tonius.simplyjetpacks.item.ItemSJJetpackPotato;
-import tonius.simplyjetpacks.item.ItemSJMeta1;
-import tonius.simplyjetpacks.item.ItemSJSimpleMeta;
+import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.config.TuningConfig;
+import tonius.simplyjetpacks.integration.TEItems;
+import tonius.simplyjetpacks.integration.TERecipes;
+import tonius.simplyjetpacks.item.ItemComponents;
+import tonius.simplyjetpacks.item.ItemSJ;
+import tonius.simplyjetpacks.item.jetpack.ItemArmoredJetpack;
+import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
+import tonius.simplyjetpacks.item.jetpack.ItemPotatoJetpack;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
-import tonius.simplyjetpacks.util.TE3Utils;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SJItems {
 
     public static EnumArmorMaterial enumArmorJetpack = EnumArmorMaterial.IRON;
 
-    public static ItemSJJetpack[] jetpacks = null;
-    public static ItemSJJetpack[] armoredJetpacks = null;
+    public static ItemJetpack[] jetpacks = null;
+    public static ItemJetpack[] armoredJetpacks = null;
 
-    public static ItemSJJetpack jetpackTier0 = null;
-    public static ItemSJJetpack jetpackTier1 = null;
-    public static ItemSJJetpack jetpackArmoredTier1 = null;
-    public static ItemSJJetpack jetpackTier2 = null;
-    public static ItemSJJetpack jetpackArmoredTier2 = null;
-    public static ItemSJJetpack jetpackTier3 = null;
-    public static ItemSJJetpack jetpackArmoredTier3 = null;
-    public static ItemSJJetpack jetpackTier4 = null;
-    public static ItemSJJetpack jetpackArmoredTier4 = null;
-    public static ItemSJSimpleMeta metaItem1 = null;
+    public static ItemJetpack jetpackTier0 = null;
+    public static ItemJetpack jetpackTier1 = null;
+    public static ItemJetpack jetpackArmoredTier1 = null;
+    public static ItemJetpack jetpackTier2 = null;
+    public static ItemJetpack jetpackArmoredTier2 = null;
+    public static ItemJetpack jetpackTier3 = null;
+    public static ItemJetpack jetpackArmoredTier3 = null;
+    public static ItemJetpack jetpackTier4 = null;
+    public static ItemJetpack jetpackArmoredTier4 = null;
+    public static ItemSJ components = null;
 
     public static void preInit() {
-        registerItems();
+        constructItems();
     }
 
     public static void init() {
+        TEItems.init();
         registerRecipes();
         doIMC();
     }
 
-    private static void registerItems() {
+    private static void constructItems() {
+        SimplyJetpacks.logger.info("Constructing items");
+
+        jetpackTier0 = new ItemPotatoJetpack(MainConfig.jetpackTier0ID, enumArmorJetpack, "jetpackTier0", TuningConfig.jetpackTier0_maxEnergy, 0, 0, TuningConfig.jetpackTier0_energyUsage, TuningConfig.jetpackTier0_maxSpeed, TuningConfig.jetpackTier0_acceleration, 0, 0.25, 0.25);
+        jetpackTier1 = new ItemJetpack(MainConfig.jetpackTier1ID, enumArmorJetpack, "jetpackTier1", TuningConfig.jetpackTier1_maxEnergy, TuningConfig.jetpackTier1_maxChargingRate, 1, TuningConfig.jetpackTier1_energyUsage, TuningConfig.jetpackTier1_maxSpeed, TuningConfig.jetpackTier1_acceleration, TuningConfig.jetpackTier1_forwardThrust, TuningConfig.jetpackTier1_hoverModeIdleSpeed, TuningConfig.jetpackTier1_hoverModeSneakingSpeed);
+        jetpackArmoredTier1 = new ItemArmoredJetpack(MainConfig.jetpackArmoredTier1ID, enumArmorJetpack, "jetpackArmoredTier1", TuningConfig.jetpackTier1_maxEnergy, TuningConfig.jetpackTier1_maxChargingRate, 1, TuningConfig.jetpackTier1_energyUsage, TuningConfig.jetpackTier1_maxSpeed, TuningConfig.jetpackTier1_acceleration, TuningConfig.jetpackTier1_forwardThrust, TuningConfig.jetpackTier1_hoverModeIdleSpeed, TuningConfig.jetpackTier1_hoverModeSneakingSpeed, TuningConfig.jetpackArmoredTier1_armorDisplay, TuningConfig.jetpackArmoredTier1_armorAbsorption);
+        jetpackTier2 = new ItemJetpack(MainConfig.jetpackTier2ID, enumArmorJetpack, "jetpackTier2", TuningConfig.jetpackTier2_maxEnergy, TuningConfig.jetpackTier2_maxChargingRate, 2, TuningConfig.jetpackTier2_energyUsage, TuningConfig.jetpackTier2_maxSpeed, TuningConfig.jetpackTier2_acceleration, TuningConfig.jetpackTier2_forwardThrust, TuningConfig.jetpackTier2_hoverModeIdleSpeed, TuningConfig.jetpackTier2_hoverModeSneakingSpeed);
+        jetpackArmoredTier2 = new ItemArmoredJetpack(MainConfig.jetpackArmoredTier2ID, enumArmorJetpack, "jetpackArmoredTier2", TuningConfig.jetpackTier2_maxEnergy, TuningConfig.jetpackTier2_maxChargingRate, 2, TuningConfig.jetpackTier2_energyUsage, TuningConfig.jetpackTier2_maxSpeed, TuningConfig.jetpackTier2_acceleration, TuningConfig.jetpackTier2_forwardThrust, TuningConfig.jetpackTier2_hoverModeIdleSpeed, TuningConfig.jetpackTier2_hoverModeSneakingSpeed, TuningConfig.jetpackArmoredTier2_armorDisplay, TuningConfig.jetpackArmoredTier2_armorAbsorption);
+        jetpackTier3 = new ItemJetpack(MainConfig.jetpackTier3ID, enumArmorJetpack, "jetpackTier3", TuningConfig.jetpackTier3_maxEnergy, TuningConfig.jetpackTier3_maxChargingRate, 3, TuningConfig.jetpackTier3_energyUsage, TuningConfig.jetpackTier3_maxSpeed, TuningConfig.jetpackTier3_acceleration, TuningConfig.jetpackTier3_forwardThrust, TuningConfig.jetpackTier3_hoverModeIdleSpeed, TuningConfig.jetpackTier3_hoverModeSneakingSpeed);
+        jetpackArmoredTier3 = new ItemArmoredJetpack(MainConfig.jetpackArmoredTier3ID, enumArmorJetpack, "jetpackArmoredTier3", TuningConfig.jetpackTier3_maxEnergy, TuningConfig.jetpackTier3_maxChargingRate, 3, TuningConfig.jetpackTier3_energyUsage, TuningConfig.jetpackTier3_maxSpeed, TuningConfig.jetpackTier3_acceleration, TuningConfig.jetpackTier3_forwardThrust, TuningConfig.jetpackTier3_hoverModeIdleSpeed, TuningConfig.jetpackTier3_hoverModeSneakingSpeed, TuningConfig.jetpackArmoredTier3_armorDisplay, TuningConfig.jetpackArmoredTier3_armorAbsorption);
+        jetpackTier4 = new ItemJetpack(MainConfig.jetpackTier4ID, enumArmorJetpack, "jetpackTier4", TuningConfig.jetpackTier4_maxEnergy, TuningConfig.jetpackTier4_maxChargingRate, 4, TuningConfig.jetpackTier4_energyUsage, TuningConfig.jetpackTier4_maxSpeed, TuningConfig.jetpackTier4_acceleration, TuningConfig.jetpackTier4_forwardThrust, TuningConfig.jetpackTier4_hoverModeIdleSpeed, TuningConfig.jetpackTier4_hoverModeSneakingSpeed);
+        jetpackArmoredTier4 = new ItemArmoredJetpack(MainConfig.jetpackArmoredTier4ID, enumArmorJetpack, "jetpackArmoredTier4", TuningConfig.jetpackTier4_maxEnergy, TuningConfig.jetpackTier4_maxChargingRate, 4, TuningConfig.jetpackTier4_energyUsage, TuningConfig.jetpackTier4_maxSpeed, TuningConfig.jetpackTier4_acceleration, TuningConfig.jetpackTier4_forwardThrust, TuningConfig.jetpackTier4_hoverModeIdleSpeed, TuningConfig.jetpackTier4_hoverModeSneakingSpeed, TuningConfig.jetpackArmoredTier4_armorDisplay, TuningConfig.jetpackArmoredTier4_armorAbsorption);
+
+        jetpacks = new ItemJetpack[] { jetpackTier0, jetpackTier1, jetpackTier2, jetpackTier3, jetpackTier4 };
+        armoredJetpacks = new ItemJetpack[] { null, jetpackArmoredTier1, jetpackArmoredTier2, jetpackArmoredTier3, jetpackArmoredTier4 };
+
+        components = new ItemComponents(MainConfig.componentsID);
+    }
+
+    public static void registerItems() {
         SimplyJetpacks.logger.info("Registering items");
-        jetpackTier0 = new ItemSJJetpackPotato(ConfigReader.jetpackTier0ID, enumArmorJetpack);
-        jetpackTier1 = new ItemSJJetpack(ConfigReader.jetpackTier1ID, enumArmorJetpack, "jetpackTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, 1, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed);
-        jetpackArmoredTier1 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier1ID, enumArmorJetpack, "jetpackArmoredTier1", ConfigReader.jetpackTier1_maxEnergy, ConfigReader.jetpackTier1_maxChargingRate, 1, ConfigReader.jetpackTier1_energyUsage, ConfigReader.jetpackTier1_maxSpeed, ConfigReader.jetpackTier1_acceleration, ConfigReader.jetpackTier1_forwardThrust, ConfigReader.jetpackTier1_hoverModeIdleSpeed, ConfigReader.jetpackTier1_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier1_armorDisplay, ConfigReader.jetpackArmoredTier1_armorAbsorption);
-        jetpackTier2 = new ItemSJJetpack(ConfigReader.jetpackTier2ID, enumArmorJetpack, "jetpackTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, 2, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed);
-        jetpackArmoredTier2 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier2ID, enumArmorJetpack, "jetpackArmoredTier2", ConfigReader.jetpackTier2_maxEnergy, ConfigReader.jetpackTier2_maxChargingRate, 2, ConfigReader.jetpackTier2_energyUsage, ConfigReader.jetpackTier2_maxSpeed, ConfigReader.jetpackTier2_acceleration, ConfigReader.jetpackTier2_forwardThrust, ConfigReader.jetpackTier2_hoverModeIdleSpeed, ConfigReader.jetpackTier2_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier2_armorDisplay, ConfigReader.jetpackArmoredTier2_armorAbsorption);
-        jetpackTier3 = new ItemSJJetpack(ConfigReader.jetpackTier3ID, enumArmorJetpack, "jetpackTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, 3, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed);
-        jetpackArmoredTier3 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier3ID, enumArmorJetpack, "jetpackArmoredTier3", ConfigReader.jetpackTier3_maxEnergy, ConfigReader.jetpackTier3_maxChargingRate, 3, ConfigReader.jetpackTier3_energyUsage, ConfigReader.jetpackTier3_maxSpeed, ConfigReader.jetpackTier3_acceleration, ConfigReader.jetpackTier3_forwardThrust, ConfigReader.jetpackTier3_hoverModeIdleSpeed, ConfigReader.jetpackTier3_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier3_armorDisplay, ConfigReader.jetpackArmoredTier3_armorAbsorption);
-        jetpackTier4 = new ItemSJJetpack(ConfigReader.jetpackTier4ID, enumArmorJetpack, "jetpackTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, 4, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed);
-        jetpackArmoredTier4 = new ItemSJJetpackArmored(ConfigReader.jetpackArmoredTier4ID, enumArmorJetpack, "jetpackArmoredTier4", ConfigReader.jetpackTier4_maxEnergy, ConfigReader.jetpackTier4_maxChargingRate, 4, ConfigReader.jetpackTier4_energyUsage, ConfigReader.jetpackTier4_maxSpeed, ConfigReader.jetpackTier4_acceleration, ConfigReader.jetpackTier4_forwardThrust, ConfigReader.jetpackTier4_hoverModeIdleSpeed, ConfigReader.jetpackTier4_hoverModeSneakingSpeed, ConfigReader.jetpackArmoredTier4_armorDisplay, ConfigReader.jetpackArmoredTier4_armorAbsorption);
 
-        jetpacks = new ItemSJJetpack[] { jetpackTier0, jetpackTier1, jetpackTier2, jetpackTier3, jetpackTier4 };
-        armoredJetpacks = new ItemSJJetpack[] { null, jetpackArmoredTier1, jetpackArmoredTier2, jetpackArmoredTier3, jetpackArmoredTier4 };
+        GameRegistry.registerItem(jetpackTier0, "jetpackTier0");
+        GameRegistry.registerItem(jetpackTier1, "jetpackTier1");
+        GameRegistry.registerItem(jetpackArmoredTier1, "jetpackArmoredTier1");
+        GameRegistry.registerItem(jetpackTier2, "jetpackTier2");
+        GameRegistry.registerItem(jetpackArmoredTier2, "jetpackArmoredTier2");
+        GameRegistry.registerItem(jetpackTier3, "jetpackTier3");
+        GameRegistry.registerItem(jetpackArmoredTier3, "jetpackArmoredTier3");
+        GameRegistry.registerItem(jetpackTier4, "jetpackArmoredTier4");
+        GameRegistry.registerItem(jetpackArmoredTier4, "jetpackArmoredTier4");
 
-        metaItem1 = new ItemSJMeta1(ConfigReader.metaItem1ID);
+        GameRegistry.registerItem(components, "components");
     }
 
     private static void registerRecipes() {
         SimplyJetpacks.logger.info("Registering recipes");
 
-        ItemStack capacitorBasic = GameRegistry.findItemStack("ThermalExpansion", "capacitorBasic", 1);
-        ItemStack capacitorHardened = GameRegistry.findItemStack("ThermalExpansion", "capacitorHardened", 1);
-        ItemStack capacitorPotato = GameRegistry.findItemStack("ThermalExpansion", "capacitorPotato", 1);
-        ItemStack capacitorReinforced = GameRegistry.findItemStack("ThermalExpansion", "capacitorReinforced", 1);
-        ItemStack capacitorResonant = GameRegistry.findItemStack("ThermalExpansion", "capacitorResonant", 1);
-        ItemStack conduitEnergyReinforced = GameRegistry.findItemStack("ThermalExpansion", "conduitEnergyReinforced", 1);
-        ItemStack conduitEnergyReinforcedEmpty = GameRegistry.findItemStack("ThermalExpansion", "conduitEnergyReinforcedEmpty", 1);
-        ItemStack conduitItemFastOpaque = GameRegistry.findItemStack("ThermalExpansion", "conduitItemFastOpaque", 1);
-        ItemStack conduitItemOpaque = GameRegistry.findItemStack("ThermalExpansion", "conduitItemOpaque", 1);
-        ItemStack dynamoCompression = GameRegistry.findItemStack("ThermalExpansion", "dynamoCompression", 1);
-        ItemStack dynamoMagmatic = GameRegistry.findItemStack("ThermalExpansion", "dynamoMagmatic", 1);
-        ItemStack dynamoReactant = GameRegistry.findItemStack("ThermalExpansion", "dynamoReactant", 1);
-        ItemStack dynamoSteam = GameRegistry.findItemStack("ThermalExpansion", "dynamoSteam", 1);
-        ItemStack pneumaticServo = GameRegistry.findItemStack("ThermalExpansion", "pneumaticServo", 1);
-        ItemStack powerCoilGold = GameRegistry.findItemStack("ThermalExpansion", "powerCoilGold", 1);
-
-        if (ConfigReader.enableCraftingJetpackTier0) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(jetpackTier0.getChargedItem(jetpackTier0).copy(), new Object[] { "S S", "NPN", "R R", 'S', Item.silk, 'N', "nuggetTin", 'P', capacitorPotato, 'R', "dustRedstone" }));
+        if (MainConfig.enableCraftingJetpackTier0) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(jetpackTier0.getChargedItem(jetpackTier0).copy(), new Object[] { "S S", "NPN", "R R", 'S', Item.silk, 'N', "nuggetTin", 'P', TEItems.capacitorPotato, 'R', "dustRedstone" }));
         }
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 0), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotLead", 'P', conduitItemOpaque, 'C', powerCoilGold, 'G', "gearCopper", 'D', dynamoSteam, 'S', pneumaticServo }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 1), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotInvar", 'P', conduitItemFastOpaque, 'C', powerCoilGold, 'G', "gearBronze", 'D', dynamoCompression, 'S', pneumaticServo }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 2), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotElectrum", 'P', conduitEnergyReinforcedEmpty, 'C', powerCoilGold, 'G', "gearInvar", 'D', dynamoReactant, 'S', pneumaticServo }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 3), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotEnderium", 'P', conduitEnergyReinforced, 'C', powerCoilGold, 'G', "gearElectrum", 'D', dynamoMagmatic, 'S', pneumaticServo }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 4), new Object[] { "LIL", "LIL", 'L', Item.leather, 'I', "ingotIron" }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(components, 1, 0), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotLead", 'P', TEItems.conduitItemOpaque, 'C', TEItems.powerCoilGold, 'G', "gearCopper", 'D', TEItems.dynamoSteam, 'S', TEItems.pneumaticServo }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(components, 1, 1), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotInvar", 'P', TEItems.conduitItemFastOpaque, 'C', TEItems.powerCoilGold, 'G', "gearBronze", 'D', TEItems.dynamoCompression, 'S', TEItems.pneumaticServo }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(components, 1, 2), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotElectrum", 'P', TEItems.conduitEnergyReinforcedEmpty, 'C', TEItems.powerCoilGold, 'G', "gearInvar", 'D', TEItems.dynamoReactant, 'S', TEItems.pneumaticServo }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(components, 1, 3), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotEnderium", 'P', TEItems.conduitEnergyReinforced, 'C', TEItems.powerCoilGold, 'G', "gearElectrum", 'D', TEItems.dynamoMagmatic, 'S', TEItems.pneumaticServo }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(components, 1, 4), new Object[] { "LIL", "LIL", 'L', Item.leather, 'I', "ingotIron" }));
 
-        if (ConfigReader.enableCraftingArmorPlating) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(metaItem1, 1, 5), new Object[] { "TIT", "III", "TIT", 'I', "ingotIron", 'T', "ingotTin" }));
+        if (MainConfig.enableCraftingArmorPlating) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(components, 1, 5), new Object[] { "TIT", "III", "TIT", 'I', "ingotIron", 'T', "ingotTin" }));
         }
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier1), new Object[] { "IBI", "IJI", "T T", 'I', "ingotLead", 'B', capacitorBasic, 'T', new ItemStack(metaItem1, 1, 0), 'J', new ItemStack(metaItem1, 1, 4) }));
-        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier2), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
-        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier3), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', new ItemStack(jetpackTier2, 1, OreDictionary.WILDCARD_VALUE) }));
-        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier4), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', new ItemStack(jetpackTier3, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier1), new Object[] { "IBI", "IJI", "T T", 'I', "ingotLead", 'B', TEItems.capacitorBasic, 'T', new ItemStack(components, 1, 0), 'J', new ItemStack(components, 1, 4) }));
+        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier2), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened, 'T', new ItemStack(components, 1, 1), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier3), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced, 'T', new ItemStack(components, 1, 2), 'J', new ItemStack(jetpackTier2, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier4), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant, 'T', new ItemStack(components, 1, 3), 'J', new ItemStack(jetpackTier3, 1, OreDictionary.WILDCARD_VALUE) }));
 
-        if (!ConfigReader.upgradingRecipesOnly) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier2), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', capacitorHardened, 'T', new ItemStack(metaItem1, 1, 1), 'J', new ItemStack(metaItem1, 1, 4) }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier3), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', new ItemStack(metaItem1, 1, 4) }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier4), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', new ItemStack(metaItem1, 1, 4) }));
+        if (!MainConfig.upgradingRecipesOnly) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier2), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened, 'T', new ItemStack(components, 1, 1), 'J', new ItemStack(components, 1, 4) }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier3), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced, 'T', new ItemStack(components, 1, 2), 'J', new ItemStack(components, 1, 4) }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(jetpackTier4), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant, 'T', new ItemStack(components, 1, 3), 'J', new ItemStack(components, 1, 4) }));
 
-            GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier3), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', capacitorReinforced, 'T', new ItemStack(metaItem1, 1, 2), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
-            GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier4), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
-            GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier4), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', capacitorResonant, 'T', new ItemStack(metaItem1, 1, 3), 'J', new ItemStack(jetpackTier2, 1, OreDictionary.WILDCARD_VALUE) }));
+            GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier3), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced, 'T', new ItemStack(components, 1, 2), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
+            GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier4), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant, 'T', new ItemStack(components, 1, 3), 'J', new ItemStack(jetpackTier1, 1, OreDictionary.WILDCARD_VALUE) }));
+            GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackTier4), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant, 'T', new ItemStack(components, 1, 3), 'J', new ItemStack(jetpackTier2, 1, OreDictionary.WILDCARD_VALUE) }));
         }
     }
 
     private static void doIMC() {
         SimplyJetpacks.logger.info("Doing intermod communication");
 
-        if (ConfigReader.enableCraftingArmorPlating) {
+        if (MainConfig.enableCraftingArmorPlating) {
             ItemStack ingotBronze;
             for (int i = 0; i < OreDictionary.getOres("ingotBronze").size(); i++) {
                 ingotBronze = OreDictionary.getOres("ingotBronze").get(i);
                 ingotBronze.stackSize = 10;
-                TE3Utils.addSmelterRecipe(3200, new ItemStack(metaItem1, 1, 5), ingotBronze.copy(), new ItemStack(metaItem1, 1, 6), null, 0);
+                TERecipes.addSmelterRecipe(3200, new ItemStack(components, 1, 5), ingotBronze.copy(), new ItemStack(components, 1, 6), null, 0);
             }
 
             ItemStack ingotInvar;
             for (int i = 0; i < OreDictionary.getOres("ingotInvar").size(); i++) {
                 ingotInvar = OreDictionary.getOres("ingotInvar").get(i);
                 ingotInvar.stackSize = 10;
-                TE3Utils.addSmelterRecipe(4800, new ItemStack(metaItem1, 1, 6), ingotInvar.copy(), new ItemStack(metaItem1, 1, 7), null, 0);
+                TERecipes.addSmelterRecipe(4800, new ItemStack(components, 1, 6), ingotInvar.copy(), new ItemStack(components, 1, 7), null, 0);
             }
 
             ItemStack ingotEnderium;
             for (int i = 0; i < OreDictionary.getOres("ingotEnderium").size(); i++) {
                 ingotEnderium = OreDictionary.getOres("ingotEnderium").get(i);
                 ingotEnderium.stackSize = 10;
-                TE3Utils.addSmelterRecipe(6400, new ItemStack(metaItem1, 1, 7), ingotEnderium.copy(), new ItemStack(metaItem1, 1, 8), null, 0);
+                TERecipes.addSmelterRecipe(6400, new ItemStack(components, 1, 7), ingotEnderium.copy(), new ItemStack(components, 1, 8), null, 0);
             }
         }
     }

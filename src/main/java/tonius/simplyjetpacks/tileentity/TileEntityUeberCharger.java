@@ -6,7 +6,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntitySJUeberCharger extends TileEntity {
+public class TileEntityUeberCharger extends TileEntity {
 
     @Override
     public void updateEntity() {

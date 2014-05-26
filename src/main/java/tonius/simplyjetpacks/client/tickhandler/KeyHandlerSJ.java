@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.client;
+package tonius.simplyjetpacks.client.tickhandler;
 
 import java.util.EnumSet;
 
@@ -7,8 +7,8 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.PacketHandler;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.item.ItemSJArmorEnergy;
-import tonius.simplyjetpacks.item.ItemSJJetpack;
+import tonius.simplyjetpacks.item.ItemEnergyArmor;
+import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.TickType;
 
@@ -27,9 +27,9 @@ public class KeyHandlerSJ extends KeyHandler {
         if (tickEnd && mc.inGameHasFocus) {
             ItemStack itemStack = mc.thePlayer.getCurrentItemOrArmor(3);
             if (itemStack != null) {
-                if (kb == keyMode && itemStack.getItem() instanceof ItemSJJetpack) {
+                if (kb == keyMode && itemStack.getItem() instanceof ItemJetpack) {
                     SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_MODE, 1);
-                } else if (kb == keyToggle && itemStack.getItem() instanceof ItemSJArmorEnergy) {
+                } else if (kb == keyToggle && itemStack.getItem() instanceof ItemEnergyArmor) {
                     SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_TOGGLE, 1);
                 }
             }

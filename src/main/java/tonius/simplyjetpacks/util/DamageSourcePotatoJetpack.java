@@ -7,14 +7,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.StatCollector;
 
-public class DamageSourceJetpackPotato extends DamageSource {
+public class DamageSourcePotatoJetpack extends DamageSource {
 
-    protected DamageSourceJetpackPotato(String damageType) {
+    protected DamageSourcePotatoJetpack(String damageType) {
         super(damageType);
     }
 
     public static DamageSource causeJetpackPotatoDamage(Entity entity) {
-        return (new EntityDamageSource("jetpackpotato", entity));
+        return new EntityDamageSource("jetpackpotato", entity);
     }
 
     @Override

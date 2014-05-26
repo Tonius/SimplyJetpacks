@@ -12,7 +12,11 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import tonius.simplyjetpacks.CommonProxy;
-import tonius.simplyjetpacks.ConfigReader;
+import tonius.simplyjetpacks.client.event.SoundLoader;
+import tonius.simplyjetpacks.client.tickhandler.ClientTickHandler;
+import tonius.simplyjetpacks.client.tickhandler.HUDTickHandler;
+import tonius.simplyjetpacks.client.tickhandler.KeyHandlerSJ;
+import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.util.Vector3;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -29,8 +33,8 @@ public class ClientProxy extends CommonProxy {
         super.registerHandlers();
         MinecraftForge.EVENT_BUS.register(new SoundLoader());
         TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
-        if (ConfigReader.enableEnergyHUD) {
-            TickRegistry.registerTickHandler(new RenderHUDTickHandler(), Side.CLIENT);
+        if (MainConfig.enableEnergyHUD) {
+            TickRegistry.registerTickHandler(new HUDTickHandler(), Side.CLIENT);
         }
         KeyBindingRegistry.registerKeyBinding(new KeyHandlerSJ());
     }
@@ -73,7 +77,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void showJetpackParticles(World world, int entityID, boolean hoverMode) {
-        if (ConfigReader.enableJetpackParticles) {
+        if (MainConfig.enableJetpackParticles) {
             Entity entity = world.getEntityByID(entityID);
             if (entity != null && entity instanceof EntityLivingBase) {
                 EntityLivingBase wearer = (EntityLivingBase) entity;

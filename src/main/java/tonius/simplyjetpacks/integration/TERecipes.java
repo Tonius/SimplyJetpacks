@@ -1,11 +1,11 @@
-package tonius.simplyjetpacks.util;
+package tonius.simplyjetpacks.integration;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class TE3Utils {
+public class TERecipes {
 
     public static void addSmelterRecipe(int energy, ItemStack primaryInput, ItemStack secondaryInput, ItemStack primaryOutput, ItemStack secondaryOutput, int secondaryChance) {
         NBTTagCompound toSend = new NBTTagCompound();

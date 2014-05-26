@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.client;
+package tonius.simplyjetpacks.client.event;
 
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;

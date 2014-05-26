@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.client;
+package tonius.simplyjetpacks.client.tickhandler;
 
 import java.util.EnumSet;
 
@@ -6,12 +6,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import tonius.simplyjetpacks.item.ItemSJJetpack;
+import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
-public class RenderHUDTickHandler implements ITickHandler {
+public class HUDTickHandler implements ITickHandler {
 
     private static Minecraft mc = Minecraft.getMinecraft();
 
@@ -25,9 +25,9 @@ public class RenderHUDTickHandler implements ITickHandler {
         if (player != null) {
             if ((mc.currentScreen == null || mc.currentScreen instanceof GuiChat) && !mc.gameSettings.hideGUI) {
                 ItemStack chestplate = player.getCurrentArmor(2);
-                if (chestplate != null && chestplate.getItem() instanceof ItemSJJetpack) {
-                    int energy = ((ItemSJJetpack) chestplate.getItem()).getEnergyStored(chestplate);
-                    int maxEnergy = ((ItemSJJetpack) chestplate.getItem()).getMaxEnergyStored(chestplate);
+                if (chestplate != null && chestplate.getItem() instanceof ItemJetpack) {
+                    int energy = ((ItemJetpack) chestplate.getItem()).getEnergyStored(chestplate);
+                    int maxEnergy = ((ItemJetpack) chestplate.getItem()).getMaxEnergyStored(chestplate);
                     int percent = (int) Math.round(((double) energy / (double) maxEnergy) * 100D);
                     mc.entityRenderer.setupOverlayRendering();
                     mc.fontRenderer.drawString(StringUtils.getHUDEnergyText(percent, energy), 5, 5, 255 | 255 << 8 | 255 << 16, true);

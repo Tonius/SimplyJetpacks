@@ -10,10 +10,10 @@ import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSJMeta1 extends ItemSJSimpleMeta {
+public class ItemComponents extends ItemSJ {
 
-    public ItemSJMeta1(int id) {
-        super(id, "metaItem1", 9);
+    public ItemComponents(int id) {
+        super(id, "components", 9);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ItemSJMeta1 extends ItemSJSimpleMeta {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
-        if (StringUtils.isShiftKeyDown()) {
+        if (StringUtils.canShowDetails()) {
             switch (itemStack.getItemDamage()) {
             case 0:
             case 1:
