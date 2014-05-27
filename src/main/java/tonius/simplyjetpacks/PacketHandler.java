@@ -33,8 +33,8 @@ public class PacketHandler implements IPacketHandler {
                 switch (dataStream.readInt()) {
                 case JETPACK_TICK:
                     int entityID = dataStream.readInt();
-                    boolean hoverMode = dataStream.readBoolean();
-                    SimplyJetpacks.proxy.showJetpackParticles(entityPlayer.worldObj, entityID, hoverMode);
+                    int particle = dataStream.readInt();
+                    SimplyJetpacks.proxy.showJetpackParticles(entityPlayer.worldObj, entityID, particle);
                     break;
                 case KEY_STATE:
                     KeyboardTracker.processKeyUpdate(entityPlayer, dataStream.readBoolean(), dataStream.readBoolean(), dataStream.readBoolean(), dataStream.readBoolean(), dataStream.readBoolean());

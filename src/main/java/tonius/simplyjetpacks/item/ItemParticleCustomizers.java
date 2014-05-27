@@ -11,7 +11,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemParticleCustomizers extends ItemSJ {
 
     public ItemParticleCustomizers(int id) {
-        super(id, "particleCustomizers", 8);
+        super(id, "particleCustomizers", 4);
     }
 
     @SideOnly(Side.CLIENT)

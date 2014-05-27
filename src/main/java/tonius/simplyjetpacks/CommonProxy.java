@@ -19,7 +19,7 @@ public class CommonProxy {
     public void sendPacketToServer(int packetType, boolean... booleans) {
     }
 
-    public void showJetpackParticles(World world, int entityID, boolean hoverMode) {
+    public void showJetpackParticles(World world, int entityID, int particle) {
     }
 
 }

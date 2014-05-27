@@ -16,6 +16,7 @@ import tonius.simplyjetpacks.client.event.SoundLoader;
 import tonius.simplyjetpacks.client.tickhandler.ClientTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.HUDTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.KeyHandlerSJ;
+import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.util.Vector3;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
@@ -77,7 +78,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void showJetpackParticles(World world, int entityID, boolean hoverMode) {
+    public void showJetpackParticles(World world, int entityID, int particle) {
         if (MainConfig.enableJetpackParticles) {
             Entity entity = world.getEntityByID(entityID);
             if (entity != null && entity instanceof EntityLivingBase) {
@@ -111,22 +112,13 @@ public class ClientProxy extends CommonProxy {
                 vCenter = Vector3.translate(vCenter.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
 
                 Vector3 v = new Vector3(playerPos).translate(vLeft);
-                if (!(hoverMode)) {
-                    world.spawnParticle("flame", v.x, v.y, v.z, 0, -0.2, 0);
-                }
-                world.spawnParticle("smoke", v.x, v.y, v.z, 0, -0.3, 0);
+                ParticleUtils.spawnParticle(particle, world, v.x, v.y, v.z, 0, -0.2, 0);
 
                 v = new Vector3(playerPos).translate(vRight);
-                if (!(hoverMode)) {
-                    world.spawnParticle("flame", v.x, v.y, v.z, 0, -0.2, 0);
-                }
-                world.spawnParticle("smoke", v.x, v.y, v.z, 0, -0.3, 0);
+                ParticleUtils.spawnParticle(particle, world, v.x, v.y, v.z, 0, -0.2, 0);
 
                 v = new Vector3(playerPos).translate(vCenter);
-                if (!(hoverMode)) {
-                    world.spawnParticle("flame", v.x, v.y, v.z, 0, -0.2, 0);
-                }
-                world.spawnParticle("smoke", v.x, v.y, v.z, 0, -0.3, 0);
+                ParticleUtils.spawnParticle(particle, world, v.x, v.y, v.z, 0, -0.2, 0);
             }
         }
     }

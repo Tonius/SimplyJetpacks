@@ -132,7 +132,9 @@ public class ItemJetpack extends ItemEnergyArmor {
 
             if (jumpKeyDown || (hoverMode && !user.onGround && user.motionY < 0)) {
                 int usedPower = hoverMode ? this.tickEnergyHover : this.tickEnergy;
-                this.subtractEnergy(jetpack, usedPower, false);
+                if (!user.worldObj.isRemote) {
+                    this.subtractEnergy(jetpack, usedPower, false);
+                }
 
                 if (this.getEnergyStored(jetpack) > 0) {
                     if (jumpKeyDown) {
@@ -160,11 +162,14 @@ public class ItemJetpack extends ItemEnergyArmor {
                         }
                     }
 
-                    user.fallDistance = 0.0F;
-                    if (user instanceof EntityPlayerMP) {
-                        ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
+                    if (!user.worldObj.isRemote) {
+                        user.fallDistance = 0.0F;
+                        if (user instanceof EntityPlayerMP) {
+                            ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
+                        }
+                    } else {
+                        this.sendParticlePacket(user, 0);
                     }
-                    this.sendJetpackPacket(user, hoverMode);
                 }
             }
         }
@@ -202,13 +207,13 @@ public class ItemJetpack extends ItemEnergyArmor {
         }
     }
 
-    public void sendJetpackPacket(EntityLivingBase user, boolean hoverMode) {
+    public void sendParticlePacket(EntityLivingBase user, int particle) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         DataOutputStream data = new DataOutputStream(bytes);
         try {
             data.writeInt(PacketHandler.JETPACK_TICK);
             data.writeInt(user.entityId);
-            data.writeBoolean(hoverMode);
+            data.writeInt(particle);
         } catch (IOException e) {
             e.printStackTrace();
         }

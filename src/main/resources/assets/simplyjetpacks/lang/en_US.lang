@@ -25,10 +25,6 @@ item.simplyjetpacks.particleCustomizers_0.name=Particle Customizer (Default)
 item.simplyjetpacks.particleCustomizers_1.name=Particle Customizer (None)
 item.simplyjetpacks.particleCustomizers_2.name=Particle Customizer (Smoke Only)
 item.simplyjetpacks.particleCustomizers_3.name=Particle Customizer (Rainbow Smoke)
-item.simplyjetpacks.particleCustomizers_4.name=Particle Customizer (Hearts)
-item.simplyjetpacks.particleCustomizers_5.name=Particle Customizer (Redstone)
-item.simplyjetpacks.particleCustomizers_6.name=Particle Customizer (Ender)
-item.simplyjetpacks.particleCustomizers_7.name=Particle Customizer (Rainbow Glyphs)
 
 simplyjetpacks.chat.enabled=enabled
 simplyjetpacks.chat.disabled=disabled

@@ -111,7 +111,7 @@ public class FireworksGenerator {
         firework.setType(type);
 
         for (int i = 0; i <= rand.nextInt(6); i++) {
-            Color randomColor = new Color(Color.HSBtoRGB(rand.nextFloat() * 360, rand.nextFloat() * 0.15F + 0.85F, 1.0F));
+            Color randomColor = ColorUtils.getRandomColor();
             firework.addColor(randomColor.getRed(), randomColor.getGreen(), randomColor.getBlue());
         }
 
