@@ -21,6 +21,15 @@ item.simplyjetpacks.components_6.name=Tinker's Alloy Armor Plating
 item.simplyjetpacks.components_7.name=Invar Armor Plating
 item.simplyjetpacks.components_8.name=Enderium Armor Plating
 
+item.simplyjetpacks.particleCustomizers_0.name=Particle Customizer (Default)
+item.simplyjetpacks.particleCustomizers_1.name=Particle Customizer (None)
+item.simplyjetpacks.particleCustomizers_2.name=Particle Customizer (Smoke Only)
+item.simplyjetpacks.particleCustomizers_3.name=Particle Customizer (Rainbow Smoke)
+item.simplyjetpacks.particleCustomizers_4.name=Particle Customizer (Hearts)
+item.simplyjetpacks.particleCustomizers_5.name=Particle Customizer (Redstone)
+item.simplyjetpacks.particleCustomizers_6.name=Particle Customizer (Ender)
+item.simplyjetpacks.particleCustomizers_7.name=Particle Customizer (Rainbow Glyphs)
+
 simplyjetpacks.chat.enabled=enabled
 simplyjetpacks.chat.disabled=disabled
 simplyjetpacks.chat.jetpack.engine=Jetpack engine
@@ -53,6 +62,8 @@ simplyjetpacks.tooltip.leatherStrap.description.1=Used for making jetpacks.
 simplyjetpacks.tooltip.leatherStrap.description.2=Keeps a jetpack from falling off.
 simplyjetpacks.tooltip.armorPlating.description.1=Some sturdy metal plates.
 simplyjetpacks.tooltip.armorPlating.description.2=Used to create armored jetpacks.
+simplyjetpacks.tooltip.particleCustomizers.description.1=To customize a jetpack's particles.
+simplyjetpacks.tooltip.particleCustomizers.description.2=Can be crafted with a jetpack to apply.
 
 simplyjetpacks.gui.hud.jetpack.energy=Jetpack energy
 simplyjetpacks.gui.hud.jetpack.warning.low=Energy is low!

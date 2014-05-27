@@ -10,6 +10,7 @@ import tonius.simplyjetpacks.config.TuningConfig;
 import tonius.simplyjetpacks.integration.TEItems;
 import tonius.simplyjetpacks.integration.TERecipes;
 import tonius.simplyjetpacks.item.ItemComponents;
+import tonius.simplyjetpacks.item.ItemParticleCustomizers;
 import tonius.simplyjetpacks.item.ItemSJ;
 import tonius.simplyjetpacks.item.jetpack.ItemArmoredJetpack;
 import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
@@ -35,6 +36,7 @@ public class SJItems {
     public static ItemJetpack jetpackArmoredTier4 = null;
     public static ItemJetpack jetpackCreative = null;
     public static ItemSJ components = null;
+    public static ItemSJ particleCustomizers = null;
 
     public static void preInit() {
         constructItems();
@@ -65,9 +67,10 @@ public class SJItems {
         armoredJetpacks = new ItemJetpack[] { null, jetpackArmoredTier1, jetpackArmoredTier2, jetpackArmoredTier3, jetpackArmoredTier4 };
 
         components = new ItemComponents(MainConfig.componentsID);
+        particleCustomizers = new ItemParticleCustomizers(MainConfig.particleCustomizersID);
     }
 
-    public static void registerItems() {
+    private static void registerItems() {
         SimplyJetpacks.logger.info("Registering items");
 
         GameRegistry.registerItem(jetpackTier0, "jetpackTier0");
