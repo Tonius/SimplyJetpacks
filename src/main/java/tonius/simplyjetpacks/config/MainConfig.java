@@ -3,9 +3,6 @@ package tonius.simplyjetpacks.config;
 import net.minecraftforge.common.Configuration;
 
 public class MainConfig {
-    // block ids
-    public static int ueberChargerID;
-
     // item ids
     public static int jetpackTier0ID;
     public static int jetpackTier1ID;
@@ -37,9 +34,6 @@ public class MainConfig {
     public static void loadConfig(Configuration cfg) {
         try {
             cfg.load();
-
-            // block ids
-            ueberChargerID = cfg.getBlock("ueberCharger", 850).getInt();
 
             // item ids
             jetpackTier0ID = cfg.getItem("jetpackTier0", 18000).getInt() - 256;

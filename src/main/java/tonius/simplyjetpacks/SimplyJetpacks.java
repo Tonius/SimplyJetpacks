@@ -45,7 +45,6 @@ public class SimplyJetpacks {
         MainConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/main.cfg")));
         TuningConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/tuning.cfg")));
 
-        SJBlocks.preInit();
         SJItems.preInit();
 
         logger.info("Registering handlers");
