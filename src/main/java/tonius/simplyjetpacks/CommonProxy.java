@@ -2,12 +2,15 @@ package tonius.simplyjetpacks;
 
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.event.JetpackMobHandler;
 
 public class CommonProxy {
 
     public void registerHandlers() {
-        MinecraftForge.EVENT_BUS.register(new JetpackMobHandler());
+        if (MainConfig.mobsUseJetpacks) {
+            MinecraftForge.EVENT_BUS.register(new JetpackMobHandler());
+        }
     }
 
     public void registerEntities() {

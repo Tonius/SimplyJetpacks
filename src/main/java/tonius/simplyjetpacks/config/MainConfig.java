@@ -1,6 +1,7 @@
 package tonius.simplyjetpacks.config;
 
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.Property;
 
 public class MainConfig {
     // item ids
@@ -19,6 +20,7 @@ public class MainConfig {
 
     // item config
     public static boolean enableJetpackParticles;
+    public static boolean mobsUseJetpacks;
     public static boolean invertHoverSneakingBehavior;
 
     // crafting
@@ -52,6 +54,9 @@ public class MainConfig {
 
             // item config
             enableJetpackParticles = cfg.get("itemconfig", "enableJetpackParticles", true).getBoolean(true);
+            Property mobsUseJetpacksProp = cfg.get("itemconfig", "mobsUseJetpacks", false);
+            mobsUseJetpacksProp.comment = "Disabled by default because some mods like Morph cause problems with it, only enable if you know what you're doing";
+            mobsUseJetpacks = mobsUseJetpacksProp.getBoolean(false);
             invertHoverSneakingBehavior = cfg.get("itemconfig", "invertHoverSneakingBehavior", false).getBoolean(false);
 
             // crafting
