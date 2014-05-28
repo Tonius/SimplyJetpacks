@@ -124,8 +124,8 @@ public class TuningConfig {
             jetpackCreative_maxSpeed = cfg.get("jetpackCreative", "maxSpeed", 0.75D).getDouble(0.75D);
             jetpackCreative_acceleration = cfg.get("jetpackCreative", "acceleration", 0.32D).getDouble(0.32D);
             jetpackCreative_forwardThrust = cfg.get("jetpackCreative", "forwardThrust", 0.19D).getDouble(0.19D);
-            jetpackCreative_hoverModeIdleSpeed = cfg.get("jetpackCreative", "hoverModeIdleSpeed", 0.005D).getDouble(0.005D);
-            jetpackCreative_hoverModeSneakingSpeed = cfg.get("jetpackCreative", "hoverModeSneakingSpeed", 0.24D).getDouble(0.24D);
+            jetpackCreative_hoverModeIdleSpeed = cfg.get("jetpackCreative", "hoverModeIdleSpeed", 0.0D).getDouble(0.0D);
+            jetpackCreative_hoverModeSneakingSpeed = cfg.get("jetpackCreative", "hoverModeSneakingSpeed", 0.25D).getDouble(0.25D);
             jetpackCreative_armorDisplay = cfg.get("jetpackCreative", "armorDisplay", 8).getInt();
             jetpackCreative_armorAbsorption = cfg.get("jetpackCreative", "armorAbsorption", 0.6D).getDouble(0.6D);
         } finally {

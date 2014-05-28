@@ -168,7 +168,7 @@ public class ItemJetpack extends ItemEnergyArmor {
                             ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
                         }
                     } else {
-                        this.sendParticlePacket(user, 0);
+                        this.sendParticlePacket(user, this.getParticleType(jetpack));
                     }
                 }
             }
@@ -230,6 +230,14 @@ public class ItemJetpack extends ItemEnergyArmor {
 
     public int getTier() {
         return this.jetpackTier;
+    }
+
+    public int getParticleType(ItemStack jetpack) {
+        return StackUtils.getNBT(jetpack).getInteger("JetParticleType");
+    }
+
+    public void setParticleType(ItemStack jetpack, int particle) {
+        StackUtils.getNBT(jetpack).setInteger("JetParticleType", particle);
     }
 
     @Override

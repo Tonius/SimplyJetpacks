@@ -13,9 +13,6 @@ public class CommonProxy {
         }
     }
 
-    public void registerEntities() {
-    }
-
     public void sendPacketToServer(int packetType, int int1) {
     }
 

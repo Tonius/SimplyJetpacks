@@ -49,9 +49,6 @@ public class SimplyJetpacks {
 
         logger.info("Registering handlers");
         proxy.registerHandlers();
-
-        logger.info("Registering (tile) entities");
-        proxy.registerEntities();
     }
 
     @EventHandler
