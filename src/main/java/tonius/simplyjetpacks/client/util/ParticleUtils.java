@@ -1,6 +1,7 @@
 package tonius.simplyjetpacks.client.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.client.particle.EntityColoredSmokeFX;
 import tonius.simplyjetpacks.client.particle.EntityCustomFlameFX;
@@ -20,7 +21,7 @@ public class ParticleUtils {
         case DEFAULT:
             mc.effectRenderer.addEffect(new EntityCustomFlameFX(world, posX, posY, posZ, velX, velY, velZ));
         case SMOKE:
-            world.spawnParticle("smoke", posX, posY, posZ, velX, velY - 0.1D, velZ);
+            mc.effectRenderer.addEffect(new EntitySmokeFX(world, posX, posY, posZ, velX, velY - 0.1D, velZ));
             return;
         case RAINBOW_SMOKE:
             mc.effectRenderer.addEffect(EntityColoredSmokeFX.getRainbowSmoke(world, posX, posY, posZ, velX, velY - 0.1D, velZ));

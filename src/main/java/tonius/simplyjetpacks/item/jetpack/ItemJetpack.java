@@ -167,7 +167,6 @@ public class ItemJetpack extends ItemEnergyArmor {
                         if (user instanceof EntityPlayerMP) {
                             ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
                         }
-                    } else {
                         this.sendParticlePacket(user, this.getParticleType(jetpack));
                     }
                 }
@@ -221,7 +220,7 @@ public class ItemJetpack extends ItemEnergyArmor {
         packet.channel = "SmpJet";
         packet.data = bytes.toByteArray();
         packet.length = bytes.size();
-        PacketDispatcher.sendPacketToAllAround(user.posX, user.posY, user.posZ, 128, user.worldObj.provider.dimensionId, packet);
+        PacketDispatcher.sendPacketToAllAround(user.posX, user.posY, user.posZ, 96, user.worldObj.provider.dimensionId, packet);
     }
 
     public boolean isArmored() {
