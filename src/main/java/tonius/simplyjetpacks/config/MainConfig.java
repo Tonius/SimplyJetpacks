@@ -53,22 +53,25 @@ public class MainConfig {
             particleCustomizersID = cfg.getItem("particleCustomizers", 18012).getInt() - 256;
 
             // item config
-            enableJetpackParticles = cfg.get("itemconfig", "enableJetpackParticles", true).getBoolean(true);
-            Property mobsUseJetpacksProp = cfg.get("itemconfig", "mobsUseJetpacks", false);
+            enableJetpackParticles = cfg.get("itemconfig", "Enable jetpack particles", true).getBoolean(true);
+            Property mobsUseJetpacksProp = cfg.get("itemconfig", "Mobs can use jetpacks when equipped", false);
             mobsUseJetpacksProp.comment = "Disabled by default because some mods like Morph cause problems with it, only enable if you know what you're doing";
             mobsUseJetpacks = mobsUseJetpacksProp.getBoolean(false);
-            invertHoverSneakingBehavior = cfg.get("itemconfig", "invertHoverSneakingBehavior", false).getBoolean(false);
+            invertHoverSneakingBehavior = cfg.get("itemconfig", "Invert Hover Mode sneaking behavior", false).getBoolean(false);
 
             // crafting
-            enableCraftingArmorPlating = cfg.get("crafting", "enableCraftingArmorPlating", true).getBoolean(true);
-            enableCraftingJetpackTier0 = cfg.get("crafting", "enableCraftingJetpackTier0", true).getBoolean(true);
-            upgradingRecipesOnly = cfg.get("crafting", "upgradingRecipesOnly", false).getBoolean(false);
+            enableCraftingArmorPlating = cfg.get("crafting", "Armor Plating", true).getBoolean(true);
+            enableCraftingJetpackTier0 = cfg.get("crafting", "Potato Jetpack", true).getBoolean(true);
+
+            Property upgradingRecipesOnlyProp = cfg.get("crafting", "Upgrading Recipes Only", false);
+            upgradingRecipesOnlyProp.comment = "When enabled, most jetpacks are not directly craftable, but only by upgrading previous tiers.";
+            upgradingRecipesOnly = upgradingRecipesOnlyProp.getBoolean(false);
 
             // gui
-            enableEnergyHUD = cfg.get("gui", "enableEnergyHUD", true).getBoolean(true);
-            hideJetpackTier0Warning = cfg.get("gui", "hideJetpackTier0Warning", false).getBoolean(false);
-            holdShiftForDetails = cfg.get("gui", "holdShiftForDetails", true).getBoolean(true);
-            showExactEnergyInHUD = cfg.get("gui", "showExactEnergyInHUD", false).getBoolean(false);
+            enableEnergyHUD = cfg.get("gui", "Enable energy HUD", true).getBoolean(true);
+            hideJetpackTier0Warning = cfg.get("gui", "Hide Tuberous Jetpack warning", false).getBoolean(false);
+            holdShiftForDetails = cfg.get("gui", "Hold Shift for details", true).getBoolean(true);
+            showExactEnergyInHUD = cfg.get("gui", "Show exact amount of RF in energy HUD", false).getBoolean(false);
         } finally {
             if (cfg.hasChanged())
                 cfg.save();

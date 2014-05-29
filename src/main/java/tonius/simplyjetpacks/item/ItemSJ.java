@@ -51,7 +51,10 @@ public class ItemSJ extends Item {
     @SideOnly(Side.CLIENT)
     @Override
     public Icon getIconFromDamage(int meta) {
-        return metaIcons[meta];
+        if (meta < amount) {
+            return metaIcons[meta];
+        }
+        return null;
     }
 
 }
