@@ -144,23 +144,23 @@ public class SJItems {
         if (MainConfig.enableCraftingArmorPlating) {
             ItemStack ingotBronze;
             for (int i = 0; i < OreDictionary.getOres("ingotBronze").size(); i++) {
-                ingotBronze = OreDictionary.getOres("ingotBronze").get(i);
+                ingotBronze = OreDictionary.getOres("ingotBronze").get(i).copy();
                 ingotBronze.stackSize = 10;
-                TERecipes.addSmelterRecipe(3200, new ItemStack(components, 1, 5), ingotBronze.copy(), new ItemStack(components, 1, 6), null, 0);
+                TERecipes.addSmelterRecipe(3200, new ItemStack(components, 1, 5), ingotBronze, new ItemStack(components, 1, 6), null, 0);
             }
 
             ItemStack ingotInvar;
             for (int i = 0; i < OreDictionary.getOres("ingotInvar").size(); i++) {
-                ingotInvar = OreDictionary.getOres("ingotInvar").get(i);
+                ingotInvar = OreDictionary.getOres("ingotInvar").get(i).copy();
                 ingotInvar.stackSize = 10;
-                TERecipes.addSmelterRecipe(4800, new ItemStack(components, 1, 6), ingotInvar.copy(), new ItemStack(components, 1, 7), null, 0);
+                TERecipes.addSmelterRecipe(4800, new ItemStack(components, 1, 6), ingotInvar, new ItemStack(components, 1, 7), null, 0);
             }
 
             ItemStack ingotEnderium;
             for (int i = 0; i < OreDictionary.getOres("ingotEnderium").size(); i++) {
-                ingotEnderium = OreDictionary.getOres("ingotEnderium").get(i);
+                ingotEnderium = OreDictionary.getOres("ingotEnderium").get(i).copy();
                 ingotEnderium.stackSize = 10;
-                TERecipes.addSmelterRecipe(6400, new ItemStack(components, 1, 7), ingotEnderium.copy(), new ItemStack(components, 1, 8), null, 0);
+                TERecipes.addSmelterRecipe(6400, new ItemStack(components, 1, 7), ingotEnderium, new ItemStack(components, 1, 8), null, 0);
             }
         }
     }
