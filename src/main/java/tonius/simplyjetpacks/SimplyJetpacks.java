@@ -32,7 +32,7 @@ public class SimplyJetpacks {
     public static CreativeTabs creativeTab = new CreativeTabs("tabSimplyJetpacks") {
         @Override
         public ItemStack getIconItemStack() {
-            return new ItemStack(SJItems.jetpackTier4, 1, 0);
+            return new ItemStack(SJItems.jetpackCreative);
         }
     };
 
