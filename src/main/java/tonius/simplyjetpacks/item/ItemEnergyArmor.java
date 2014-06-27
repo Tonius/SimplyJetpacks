@@ -33,7 +33,6 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         this.maxInput = maxInput;
         this.maxOutput = maxOutput;
         this.setUnlocalizedName("simplyjetpacks." + name);
-        this.setMaxDamage(30);
         this.setNoRepair();
         this.setCreativeTab(SimplyJetpacks.creativeTab);
     }
@@ -52,7 +51,7 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
 
     @Override
     public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
-        list.add(new ItemStack(id, 1, 31));
+        list.add(new ItemStack(this));
         list.add(this.getChargedItem(this));
     }
 
@@ -78,9 +77,19 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         return StackUtils.getNBT(itemStack).getBoolean("On");
     }
 
-    public void updateEnergyDisplay(ItemStack itemStack) {
-        double displayedDamage = 31 - (((double) getEnergyStored(itemStack) / (double) getMaxEnergyStored(itemStack)) * 30);
-        itemStack.setItemDamage((int) Math.floor(displayedDamage));
+    @Override
+    public boolean isDamaged(ItemStack itemStack) {
+        return itemStack.getItemDamage() < Short.MAX_VALUE;
+    }
+
+    @Override
+    public int getMaxDamage(ItemStack itemStack) {
+        return this.getMaxEnergyStored(itemStack) + 1;
+    }
+
+    @Override
+    public int getDisplayDamage(ItemStack itemStack) {
+        return this.getMaxEnergyStored(itemStack) - this.getEnergyStored(itemStack) + 1;
     }
 
     public int addEnergy(ItemStack container, int energyToAdd, boolean simulate) {
@@ -91,7 +100,6 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         if (!simulate) {
             energyCurrent += energyAdded;
             container.stackTagCompound.setInteger("Energy", energyCurrent);
-            this.updateEnergyDisplay(container);
         }
 
         return energyAdded;
@@ -105,7 +113,6 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         if (!simulate) {
             energyCurrent -= energySubtracted;
             container.stackTagCompound.setInteger("Energy", energyCurrent);
-            this.updateEnergyDisplay(container);
         }
 
         return energySubtracted;
@@ -139,7 +146,6 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         if (!simulate) {
             energy += energyReceived;
             StackUtils.getNBT(container).setInteger("Energy", energy);
-            updateEnergyDisplay(container);
         }
         return energyReceived;
     }
@@ -152,7 +158,6 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         if (!simulate) {
             energy -= energyExtracted;
             StackUtils.getNBT(container).setInteger("Energy", energy);
-            updateEnergyDisplay(container);
         }
         return energyExtracted;
     }

@@ -19,6 +19,7 @@ public class TuningConfig {
 
     public static int jetpackArmoredTier1_armorDisplay;
     public static double jetpackArmoredTier1_armorAbsorption;
+    public static int jetpackArmoredTier1_energyPerDamage;
 
     public static int jetpackTier2_maxEnergy;
     public static int jetpackTier2_maxChargingRate;
@@ -31,6 +32,7 @@ public class TuningConfig {
 
     public static int jetpackArmoredTier2_armorDisplay;
     public static double jetpackArmoredTier2_armorAbsorption;
+    public static int jetpackArmoredTier2_energyPerDamage;
 
     public static int jetpackTier3_maxEnergy;
     public static int jetpackTier3_maxChargingRate;
@@ -43,6 +45,7 @@ public class TuningConfig {
 
     public static int jetpackArmoredTier3_armorDisplay;
     public static double jetpackArmoredTier3_armorAbsorption;
+    public static int jetpackArmoredTier3_energyPerDamage;
 
     public static int jetpackTier4_maxEnergy;
     public static int jetpackTier4_maxChargingRate;
@@ -55,6 +58,7 @@ public class TuningConfig {
 
     public static int jetpackArmoredTier4_armorDisplay;
     public static double jetpackArmoredTier4_armorAbsorption;
+    public static int jetpackArmoredTier4_energyPerDamage;
 
     public static double jetpackCreative_maxSpeed;
     public static double jetpackCreative_acceleration;
@@ -63,6 +67,7 @@ public class TuningConfig {
     public static double jetpackCreative_hoverModeSneakingSpeed;
     public static int jetpackCreative_armorDisplay;
     public static double jetpackCreative_armorAbsorption;
+    public static int jetpackCreative_energyPerDamage;
 
     public static void loadConfig(Configuration cfg) {
         try {
@@ -84,6 +89,7 @@ public class TuningConfig {
 
             jetpackArmoredTier1_armorDisplay = cfg.get("jetpackArmoredTier1", "armorDisplay", 5).getInt();
             jetpackArmoredTier1_armorAbsorption = cfg.get("jetpackArmoredTier1", "armorAbsorption", 0.2D).getDouble(0.2D);
+            jetpackArmoredTier1_energyPerDamage = cfg.get("jetpackArmoredTier1", "energyPerDamage", 80).getInt();
 
             jetpackTier2_maxEnergy = cfg.get("jetpackTier2", "maxEnergy", 400000).getInt();
             jetpackTier2_maxChargingRate = cfg.get("jetpackTier2", "maxChargingRate", 4000).getInt();
@@ -96,6 +102,7 @@ public class TuningConfig {
 
             jetpackArmoredTier2_armorDisplay = cfg.get("jetpackArmoredTier2", "armorDisplay", 6).getInt();
             jetpackArmoredTier2_armorAbsorption = cfg.get("jetpackArmoredTier2", "armorAbsorption", 0.3D).getDouble(0.3D);
+            jetpackArmoredTier2_energyPerDamage = cfg.get("jetpackArmoredTier2", "energyPerDamage", 80).getInt();
 
             jetpackTier3_maxEnergy = cfg.get("jetpackTier3", "maxEnergy", 2000000).getInt();
             jetpackTier3_maxChargingRate = cfg.get("jetpackTier3", "maxChargingRate", 20000).getInt();
@@ -108,6 +115,7 @@ public class TuningConfig {
 
             jetpackArmoredTier3_armorDisplay = cfg.get("jetpackArmoredTier3", "armorDisplay", 7).getInt();
             jetpackArmoredTier3_armorAbsorption = cfg.get("jetpackArmoredTier3", "armorAbsorption", 0.4D).getDouble(0.4D);
+            jetpackArmoredTier3_energyPerDamage = cfg.get("jetpackArmoredTier3", "energyPerDamage", 80).getInt();
 
             jetpackTier4_maxEnergy = cfg.get("jetpackTier4", "maxEnergy", 10000000).getInt();
             jetpackTier4_maxChargingRate = cfg.get("jetpackTier4", "maxChargingRate", 100000).getInt();
@@ -120,6 +128,7 @@ public class TuningConfig {
 
             jetpackArmoredTier4_armorDisplay = cfg.get("jetpackArmoredTier4", "armorDisplay", 8).getInt();
             jetpackArmoredTier4_armorAbsorption = cfg.get("jetpackArmoredTier4", "armorAbsorption", 0.6D).getDouble(0.6D);
+            jetpackArmoredTier4_energyPerDamage = cfg.get("jetpackArmoredTier4", "energyPerDamage", 80).getInt();
 
             jetpackCreative_maxSpeed = cfg.get("jetpackCreative", "maxSpeed", 0.75D).getDouble(0.75D);
             jetpackCreative_acceleration = cfg.get("jetpackCreative", "acceleration", 0.32D).getDouble(0.32D);
@@ -128,6 +137,7 @@ public class TuningConfig {
             jetpackCreative_hoverModeSneakingSpeed = cfg.get("jetpackCreative", "hoverModeSneakingSpeed", 0.25D).getDouble(0.25D);
             jetpackCreative_armorDisplay = cfg.get("jetpackCreative", "armorDisplay", 8).getInt();
             jetpackCreative_armorAbsorption = cfg.get("jetpackCreative", "armorAbsorption", 0.6D).getDouble(0.6D);
+            jetpackCreative_energyPerDamage = cfg.get("jetpackCreative", "energyPerDamage", 0).getInt();
         } finally {
             if (cfg.hasChanged())
                 cfg.save();

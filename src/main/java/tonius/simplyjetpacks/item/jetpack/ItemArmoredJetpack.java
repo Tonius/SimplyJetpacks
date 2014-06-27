@@ -10,11 +10,13 @@ public class ItemArmoredJetpack extends ItemJetpack {
 
     protected int armorDisplay;
     protected double armorAbsorption;
+    protected int energyPerDamage;
 
-    public ItemArmoredJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed, int armorDisplay, double armorAbsorption) {
+    public ItemArmoredJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed, int armorDisplay, double armorAbsorption, int energyPerDamage) {
         super(id, material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
+        this.energyPerDamage = energyPerDamage;
     }
 
     @Override
@@ -24,12 +26,21 @@ public class ItemArmoredJetpack extends ItemJetpack {
 
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
-        return new ArmorProperties(0, this.armorAbsorption, 100);
+        int maxAbsorbed = this.getEnergyStored(armor) / this.energyPerDamage * 100;
+        return new ArmorProperties(0, this.armorAbsorption, maxAbsorbed);
     }
 
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
-        return this.armorDisplay;
+        if (this.getEnergyStored(armor) >= this.energyPerDamage) {
+            return this.armorDisplay;
+        }
+        return 0;
+    }
+
+    @Override
+    public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
+        this.subtractEnergy(stack, damage * this.energyPerDamage, false);
     }
 
 }

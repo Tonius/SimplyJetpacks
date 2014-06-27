@@ -88,14 +88,14 @@ public class ItemJetpack extends ItemEnergyArmor {
     @Override
     public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
         if (this.jetpackTier > 0 && this.jetpackTier <= 4) {
-            list.add(new ItemStack(id, 1, 31));
+            list.add(new ItemStack(this));
         }
         list.add(this.getChargedItem(this));
     }
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (this.jetpackTier > 0 && player.isSneaking()) {
+        if (this.jetpackTier > 0 && this.jetpackTier <= 4 && player.isSneaking()) {
             if (this.isArmored()) {
                 this.removeArmor(itemStack, player);
                 EntityItem item = player.dropPlayerItem(new ItemStack(SJItems.components, 1, this.jetpackTier + 4));
@@ -119,6 +119,11 @@ public class ItemJetpack extends ItemEnergyArmor {
     @Override
     public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack) {
         this.useJetpack(player, itemStack, false);
+    }
+
+    @Override
+    public boolean isDamaged(ItemStack itemStack) {
+        return this.jetpackTier == 9001 ? false : super.isDamaged(itemStack);
     }
 
     public void useJetpack(EntityLivingBase user, ItemStack jetpack, boolean force) {
@@ -247,15 +252,6 @@ public class ItemJetpack extends ItemEnergyArmor {
     @Override
     public String getDeactivateMsg() {
         return StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
-    }
-
-    @Override
-    public void updateEnergyDisplay(ItemStack itemStack) {
-        if (!(this.jetpackTier == 9001)) {
-            super.updateEnergyDisplay(itemStack);
-            return;
-        }
-        itemStack.setItemDamage(0);
     }
 
     @Override
