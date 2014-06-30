@@ -26,8 +26,13 @@ public class ItemArmoredJetpack extends ItemJetpack {
 
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
-        int maxAbsorbed = this.getEnergyStored(armor) / this.energyPerDamage * 100;
-        return new ArmorProperties(0, this.armorAbsorption, maxAbsorbed);
+        if (this.energyPerDamage != 0) {
+            int maxAbsorbed = this.getEnergyStored(armor) / this.energyPerDamage * 100;
+            return new ArmorProperties(0, this.armorAbsorption, maxAbsorbed);
+        } else {
+            int maxAbsorbed = 12500000;
+            return new ArmorProperties(0, this.armorAbsorption, maxAbsorbed);
+        }
     }
 
     @Override
