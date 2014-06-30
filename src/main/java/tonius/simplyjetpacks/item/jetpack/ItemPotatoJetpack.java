@@ -57,7 +57,7 @@ public class ItemPotatoJetpack extends ItemJetpack {
                         user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
                     }
                     user.attackEntityFrom(DamageSourcePotatoJetpack.causeJetpackPotatoDamage(user), 20.0F);
-                    user.dropItem(Item.poisonousPotato.itemID, 1);
+                    user.dropItem(Item.bakedPotato.itemID, 1);
                 }
             }
         } else {
