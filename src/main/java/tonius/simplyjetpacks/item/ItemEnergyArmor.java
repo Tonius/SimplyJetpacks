@@ -12,7 +12,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
-import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.SJCreativeTab;
 import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;
@@ -34,7 +34,7 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
         this.maxOutput = maxOutput;
         this.setUnlocalizedName("simplyjetpacks." + name);
         this.setNoRepair();
-        this.setCreativeTab(SimplyJetpacks.creativeTab);
+        this.setCreativeTab(SJCreativeTab.tab());
     }
 
     @SideOnly(Side.CLIENT)

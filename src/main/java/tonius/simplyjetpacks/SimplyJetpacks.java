@@ -3,8 +3,6 @@ package tonius.simplyjetpacks;
 import java.io.File;
 import java.util.logging.Logger;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.config.TuningConfig;
@@ -28,13 +26,6 @@ public class SimplyJetpacks {
 
     public static Logger logger;
     public static KeyboardTracker keyboard;
-
-    public static CreativeTabs creativeTab = new CreativeTabs("tabSimplyJetpacks") {
-        @Override
-        public ItemStack getIconItemStack() {
-            return new ItemStack(SJItems.jetpackCreative);
-        }
-    };
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent evt) {
