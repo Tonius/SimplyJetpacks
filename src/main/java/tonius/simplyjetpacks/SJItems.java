@@ -128,18 +128,18 @@ public class SJItems {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(particleCustomizers, 1, 1), new Object[] { " D ", "DCD", " D ", 'C', "dustCoal", 'D', Blocks.glass }));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(particleCustomizers, 1, 2), new Object[] { " C ", "CCC", " C ", 'C', "dustCoal" }));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(particleCustomizers, 1, 3), new Object[] { " R ", " C ", "G B", 'C', "dustCoal", 'R', "dyeRed", 'G', "dyeLime", 'B', "dyeBlue" }));
-            for (ItemJetpack jetpack : jetpacks) {
-                if (jetpack != null) {
-                    GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpack), new Object[] { "J", "P", 'J', new ItemStack(jetpack, 1, OreDictionary.WILDCARD_VALUE), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
-                }
-            }
-            for (ItemJetpack jetpack : armoredJetpacks) {
-                if (jetpack != null) {
-                    GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpack), new Object[] { "J", "P", 'J', new ItemStack(jetpack, 1, OreDictionary.WILDCARD_VALUE), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
-                }
-            }
-            GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackCreative), new Object[] { "J", "P", 'J', new ItemStack(jetpackCreative, 1, OreDictionary.WILDCARD_VALUE), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
         }
+        for (ItemJetpack jetpack : jetpacks) {
+            if (jetpack != null) {
+                GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpack), new Object[] { "J", "P", 'J', new ItemStack(jetpack, 1, OreDictionary.WILDCARD_VALUE), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
+            }
+        }
+        for (ItemJetpack jetpack : armoredJetpacks) {
+            if (jetpack != null) {
+                GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpack), new Object[] { "J", "P", 'J', new ItemStack(jetpack, 1, OreDictionary.WILDCARD_VALUE), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
+            }
+        }
+        GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpackCreative), new Object[] { "J", "P", 'J', new ItemStack(jetpackCreative, 1, OreDictionary.WILDCARD_VALUE), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
     }
 
     private static void doIMC() {

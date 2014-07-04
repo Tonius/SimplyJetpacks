@@ -2,7 +2,10 @@ package tonius.simplyjetpacks.client.particle;
 
 import net.minecraft.client.particle.EntityFlameFX;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class EntityCustomFlameFX extends EntityFlameFX {
 
     public EntityCustomFlameFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {

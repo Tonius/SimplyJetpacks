@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.config.TuningConfig;
+import tonius.simplyjetpacks.network.PacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -37,6 +38,8 @@ public class SimplyJetpacks {
         TuningConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/tuning.cfg")));
 
         SJItems.preInit();
+
+        PacketHandler.preInit();
 
         logger.info("Registering handlers");
         proxy.registerHandlers();

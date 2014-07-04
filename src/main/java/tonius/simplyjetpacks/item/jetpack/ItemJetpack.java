@@ -15,8 +15,11 @@ import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.SJItems;
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.item.ItemEnergyArmor;
+import tonius.simplyjetpacks.network.PacketHandler;
+import tonius.simplyjetpacks.network.message.MessageJetpackParticles;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -163,7 +166,7 @@ public class ItemJetpack extends ItemEnergyArmor {
 
                     if (!user.worldObj.isRemote) {
                         user.fallDistance = 0.0F;
-                        // TODO particle packet
+                        this.sendParticlePacket(user, this.getParticleType(jetpack));
                     }
                 }
             }
@@ -206,6 +209,10 @@ public class ItemJetpack extends ItemEnergyArmor {
         }
     }
 
+    public void sendParticlePacket(EntityLivingBase user, JetpackParticleType particle) {
+        PacketHandler.instance.sendToAllAround(new MessageJetpackParticles(user.getEntityId(), particle), new TargetPoint(user.worldObj.provider.dimensionId, user.posX, user.posY, user.posZ, 96));
+    }
+
     public boolean isArmored() {
         return false;
     }
@@ -214,12 +221,17 @@ public class ItemJetpack extends ItemEnergyArmor {
         return this.jetpackTier;
     }
 
-    public int getParticleType(ItemStack jetpack) {
-        return StackUtils.getNBT(jetpack).getInteger("JetParticleType");
+    public JetpackParticleType getParticleType(ItemStack jetpack) {
+        int particle = StackUtils.getNBT(jetpack).getInteger("JetParticleType");
+        JetpackParticleType particleType = JetpackParticleType.values()[particle];
+        if (particleType != null) {
+            return particleType;
+        }
+        return JetpackParticleType.DEFAULT;
     }
 
-    public void setParticleType(ItemStack jetpack, int particle) {
-        StackUtils.getNBT(jetpack).setInteger("JetParticleType", particle);
+    public void setParticleType(ItemStack jetpack, JetpackParticleType particle) {
+        StackUtils.getNBT(jetpack).setInteger("JetParticleType", particle.ordinal());
     }
 
     @Override

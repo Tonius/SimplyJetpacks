@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemParticleCustomizers;
 import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
+import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class JetpackUpgradingRecipe extends ShapedOreRecipe {
@@ -19,7 +20,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
     @Override
     public ItemStack getCraftingResult(InventoryCrafting inventoryCrafting) {
         int resultEnergy = 0;
-        int particleType = -1;
+        JetpackParticleType particleType = null;
 
         ItemStack slotStack;
         for (int i = 0; i < inventoryCrafting.getSizeInventory(); i++) {
@@ -31,7 +32,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
                 if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     resultEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
                 } else if (slotStack.getItem() instanceof ItemParticleCustomizers) {
-                    particleType = slotStack.getItemDamage();
+                    particleType = particleType.values()[slotStack.getItemDamage()];
                 }
             }
         }
@@ -39,7 +40,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
         ItemStack result = new ItemStack(resultItem);
         resultItem.addEnergy(result, resultEnergy, false);
 
-        if (particleType >= 0) {
+        if (particleType != null) {
             resultItem.setParticleType(result, particleType);
         }
 

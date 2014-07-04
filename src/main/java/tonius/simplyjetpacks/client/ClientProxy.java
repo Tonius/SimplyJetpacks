@@ -7,10 +7,18 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.CommonProxy;
+import tonius.simplyjetpacks.client.tickhandler.ClientTickHandler;
+import tonius.simplyjetpacks.client.tickhandler.HUDTickHandler;
+import tonius.simplyjetpacks.client.tickhandler.KeyHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.util.Vector3;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
 
     private static Minecraft mc = Minecraft.getMinecraft();
@@ -20,19 +28,15 @@ public class ClientProxy extends CommonProxy {
     public void registerHandlers() {
         super.registerHandlers();
 
-        // TODO tick events
-        // TickRegistry.registerTickHandler(new ClientTickHandler(),
-        // Side.CLIENT);
+        FMLCommonHandler.instance().bus().register(new ClientTickHandler());
+        FMLCommonHandler.instance().bus().register(new KeyHandler());
         if (MainConfig.enableEnergyHUD) {
-            // TickRegistry.registerTickHandler(new HUDTickHandler(),
-            // Side.CLIENT);
+            FMLCommonHandler.instance().bus().register(new HUDTickHandler());
         }
-        // TODO key events?
-        // ClientRegistry.registerKeyBinding(new KeyHandlerSJ());
     }
 
     @Override
-    public void showJetpackParticles(World world, int entityID, int particle) {
+    public void showJetpackParticles(World world, int entityID, JetpackParticleType particle) {
         if (MainConfig.enableJetpackParticles) {
             Entity entity = world.getEntityByID(entityID);
             if (entity != null && entity instanceof EntityLivingBase) {

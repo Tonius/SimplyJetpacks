@@ -67,7 +67,7 @@ public class ItemPotatoJetpack extends ItemJetpack {
             if (jumpKeyDown) {
                 if (this.isTimerSet(jetpack)) {
                     if (user.getRNG().nextInt(5) == 0) {
-                        // TODO particle packet
+                        this.sendParticlePacket(user, JetpackParticleType.SMOKE);
                     }
                     this.decrementTimer(jetpack, user);
                 } else {

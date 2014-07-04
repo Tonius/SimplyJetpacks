@@ -5,16 +5,16 @@ import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.client.particle.EntityColoredSmokeFX;
 import tonius.simplyjetpacks.client.particle.EntityCustomFlameFX;
+import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ParticleUtils {
 
     private static Minecraft mc = Minecraft.getMinecraft();
-    public static final int DEFAULT = 0;
-    public static final int NONE = 1;
-    public static final int SMOKE = 2;
-    public static final int RAINBOW_SMOKE = 3;
 
-    public static void spawnParticle(int particle, World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
+    public static void spawnParticle(JetpackParticleType particle, World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
         switch (particle) {
         case NONE:
             return;
