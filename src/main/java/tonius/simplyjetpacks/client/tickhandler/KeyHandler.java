@@ -6,11 +6,11 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.input.Keyboard;
 
-import tonius.simplyjetpacks.SJKey;
 import tonius.simplyjetpacks.item.ItemEnergyArmor;
 import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageModKey;
+import tonius.simplyjetpacks.setup.SJKey;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;

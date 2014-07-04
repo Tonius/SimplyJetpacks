@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
-import tonius.simplyjetpacks.SJCreativeTab;
+import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.config.TuningConfig;
 import tonius.simplyjetpacks.network.PacketHandler;
+import tonius.simplyjetpacks.setup.SJItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;

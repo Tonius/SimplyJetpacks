@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks;
+package tonius.simplyjetpacks.setup;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks;
+package tonius.simplyjetpacks.setup;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -6,6 +6,7 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.config.TuningConfig;
 import tonius.simplyjetpacks.integration.TEItems;
