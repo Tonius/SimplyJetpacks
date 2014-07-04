@@ -1,6 +1,6 @@
 package tonius.simplyjetpacks.config;
 
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 
 public class TuningConfig {
     public static int jetpackTier0_maxEnergy;

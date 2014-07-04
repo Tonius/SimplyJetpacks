@@ -11,10 +11,10 @@ public class TERecipes {
         NBTTagCompound toSend = new NBTTagCompound();
 
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("primaryInput", new NBTTagCompound());
-        toSend.setCompoundTag("secondaryInput", new NBTTagCompound());
-        toSend.setCompoundTag("primaryOutput", new NBTTagCompound());
-        toSend.setCompoundTag("secondaryOutput", new NBTTagCompound());
+        toSend.setTag("primaryInput", new NBTTagCompound());
+        toSend.setTag("secondaryInput", new NBTTagCompound());
+        toSend.setTag("primaryOutput", new NBTTagCompound());
+        toSend.setTag("secondaryOutput", new NBTTagCompound());
 
         primaryInput.writeToNBT(toSend.getCompoundTag("primaryInput"));
         secondaryInput.writeToNBT(toSend.getCompoundTag("secondaryInput"));
@@ -31,9 +31,9 @@ public class TERecipes {
         NBTTagCompound toSend = new NBTTagCompound();
 
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("input", new NBTTagCompound());
-        toSend.setCompoundTag("output", new NBTTagCompound());
-        toSend.setCompoundTag("fluid", new NBTTagCompound());
+        toSend.setTag("input", new NBTTagCompound());
+        toSend.setTag("output", new NBTTagCompound());
+        toSend.setTag("fluid", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         output.writeToNBT(toSend.getCompoundTag("output"));

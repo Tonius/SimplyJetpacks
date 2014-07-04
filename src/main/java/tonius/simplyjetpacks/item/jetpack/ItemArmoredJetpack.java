@@ -2,7 +2,6 @@ package tonius.simplyjetpacks.item.jetpack;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 
@@ -12,8 +11,8 @@ public class ItemArmoredJetpack extends ItemJetpack {
     protected double armorAbsorption;
     protected int energyPerDamage;
 
-    public ItemArmoredJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed, int armorDisplay, double armorAbsorption, int energyPerDamage) {
-        super(id, material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
+    public ItemArmoredJetpack(ArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed, int armorDisplay, double armorAbsorption, int energyPerDamage) {
+        super(material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
         this.energyPerDamage = energyPerDamage;

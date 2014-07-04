@@ -1,28 +1,22 @@
 package tonius.simplyjetpacks.item.jetpack;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.Packet250CustomPayload;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.KeyboardTracker;
-import tonius.simplyjetpacks.PacketHandler;
 import tonius.simplyjetpacks.SJItems;
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.item.ItemEnergyArmor;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,8 +31,8 @@ public class ItemJetpack extends ItemEnergyArmor {
     protected double hoverModeIdleSpeed;
     protected double hoverModeActiveSpeed;
 
-    public ItemJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
-        super(id, material, 2, 1, name, maxEnergy, maxInput, 0);
+    public ItemJetpack(ArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
+        super(material, 2, 1, name, maxEnergy, maxInput, 0);
         this.jetpackTier = jetpackTier;
         this.tickEnergy = tickEnergy;
         this.tickEnergyHover = (int) (tickEnergy / 1.5);
@@ -51,16 +45,16 @@ public class ItemJetpack extends ItemEnergyArmor {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getItemDisplayName(ItemStack itemStack) {
+    public String getItemStackDisplayName(ItemStack itemStack) {
         switch (this.jetpackTier) {
         case 3:
-            return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
+            return StringUtils.YELLOW + super.getItemStackDisplayName(itemStack);
         case 4:
-            return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+            return StringUtils.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
         case 9001:
-            return StringUtils.PINK + super.getItemDisplayName(itemStack);
+            return StringUtils.PINK + super.getItemStackDisplayName(itemStack);
         }
-        return super.getItemDisplayName(itemStack);
+        return super.getItemStackDisplayName(itemStack);
     }
 
     @SideOnly(Side.CLIENT)
@@ -86,7 +80,7 @@ public class ItemJetpack extends ItemEnergyArmor {
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
+    public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
         if (this.jetpackTier > 0 && this.jetpackTier <= 4) {
             list.add(new ItemStack(this));
         }
@@ -98,7 +92,7 @@ public class ItemJetpack extends ItemEnergyArmor {
         if (this.jetpackTier > 0 && this.jetpackTier <= 4 && player.isSneaking()) {
             if (this.isArmored()) {
                 this.removeArmor(itemStack, player);
-                EntityItem item = player.dropPlayerItem(new ItemStack(SJItems.components, 1, this.jetpackTier + 4));
+                EntityItem item = player.entityDropItem(new ItemStack(SJItems.components, 1, this.jetpackTier + 4), 0.0F);
                 item.delayBeforeCanPickup = 0;
             } else {
                 InventoryPlayer inv = player.inventory;
@@ -117,7 +111,7 @@ public class ItemJetpack extends ItemEnergyArmor {
     }
 
     @Override
-    public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack) {
+    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
         this.useJetpack(player, itemStack, false);
     }
 
@@ -169,10 +163,7 @@ public class ItemJetpack extends ItemEnergyArmor {
 
                     if (!user.worldObj.isRemote) {
                         user.fallDistance = 0.0F;
-                        if (user instanceof EntityPlayerMP) {
-                            ((EntityPlayerMP) user).playerNetServerHandler.ticksForFloatKick = 0;
-                        }
-                        this.sendParticlePacket(user, this.getParticleType(jetpack));
+                        // TODO particle packet
                     }
                 }
             }
@@ -180,12 +171,16 @@ public class ItemJetpack extends ItemEnergyArmor {
     }
 
     public void applyArmor(ItemStack jetpack, EntityPlayer player) {
-        jetpack.itemID = SJItems.armoredJetpacks[this.jetpackTier].itemID;
+        ItemStack newJetpack = new ItemStack(SJItems.armoredJetpacks[this.jetpackTier], 1, jetpack.getItemDamage());
+        newJetpack.stackTagCompound = StackUtils.getNBT(jetpack);
+        jetpack = newJetpack;
         player.worldObj.playSoundAtEntity(player, "random.anvil_use", 0.8F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
 
     public void removeArmor(ItemStack jetpack, EntityPlayer player) {
-        jetpack.itemID = SJItems.jetpacks[this.jetpackTier].itemID;
+        ItemStack newJetpack = new ItemStack(SJItems.jetpacks[this.jetpackTier], 1, jetpack.getItemDamage());
+        newJetpack.stackTagCompound = StackUtils.getNBT(jetpack);
+        jetpack = newJetpack;
         player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
 
@@ -195,10 +190,10 @@ public class ItemJetpack extends ItemEnergyArmor {
 
     public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
         if (this.isHoverModeActive(itemStack)) {
-            player.addChatMessage(StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled"));
+            player.addChatMessage(new ChatComponentText(StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled")));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", false);
         } else {
-            player.addChatMessage(StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled"));
+            player.addChatMessage(new ChatComponentText(StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled")));
             itemStack.stackTagCompound.setBoolean("HoverModeActive", true);
         }
     }
@@ -209,23 +204,6 @@ public class ItemJetpack extends ItemEnergyArmor {
         } else {
             return user.isSneaking() ? this.hoverModeIdleSpeed : this.hoverModeActiveSpeed;
         }
-    }
-
-    public void sendParticlePacket(EntityLivingBase user, int particle) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        DataOutputStream data = new DataOutputStream(bytes);
-        try {
-            data.writeInt(PacketHandler.JETPACK_TICK);
-            data.writeInt(user.entityId);
-            data.writeInt(particle);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = "SmpJet";
-        packet.data = bytes.toByteArray();
-        packet.length = bytes.size();
-        PacketDispatcher.sendPacketToAllAround(user.posX, user.posY, user.posZ, 96, user.worldObj.provider.dimensionId, packet);
     }
 
     public boolean isArmored() {

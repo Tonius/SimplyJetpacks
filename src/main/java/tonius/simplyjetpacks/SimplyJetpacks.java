@@ -1,9 +1,11 @@
 package tonius.simplyjetpacks;
 
 import java.io.File;
-import java.util.logging.Logger;
 
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
+
+import org.apache.logging.log4j.Logger;
+
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.config.TuningConfig;
 import cpw.mods.fml.common.Mod;
@@ -12,10 +14,8 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "required-after:CoFHCore;required-after:ThermalExpansion")
-@NetworkMod(channels = { "SmpJet" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
+@Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "after:CoFHCore;after:ThermalExpansion")
 public class SimplyJetpacks {
 
     @Instance("simplyjetpacks")

@@ -2,14 +2,15 @@ package tonius.simplyjetpacks.item;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 import tonius.simplyjetpacks.SJCreativeTab;
@@ -26,20 +27,20 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
     protected int maxOutput;
     protected ArmorProperties properties = new ArmorProperties(0, 1, 0);
 
-    public ItemEnergyArmor(int id, EnumArmorMaterial material, int renderIndex, int armorType, String name, int maxEnergy, int maxInput, int maxOutput) {
-        super(id, material, renderIndex, armorType);
+    public ItemEnergyArmor(ArmorMaterial material, int renderIndex, int armorType, String name, int maxEnergy, int maxInput, int maxOutput) {
+        super(material, renderIndex, armorType);
         this.name = name;
         this.maxEnergy = maxEnergy;
         this.maxInput = maxInput;
         this.maxOutput = maxOutput;
         this.setUnlocalizedName("simplyjetpacks." + name);
         this.setNoRepair();
-        this.setCreativeTab(SJCreativeTab.tab());
+        this.setCreativeTab(SJCreativeTab.tab);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister register) {
+    public void registerIcons(IIconRegister register) {
         itemIcon = register.registerIcon("simplyjetpacks:" + name);
     }
 
@@ -50,17 +51,17 @@ public class ItemEnergyArmor extends ItemArmor implements ISpecialArmor, IEnergy
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs creativeTabs, List list) {
+    public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
         list.add(new ItemStack(this));
         list.add(this.getChargedItem(this));
     }
 
     public void toggle(ItemStack itemStack, EntityPlayer player) {
         if (isOn(itemStack)) {
-            player.addChatMessage(this.getDeactivateMsg());
+            player.addChatMessage(new ChatComponentText(this.getDeactivateMsg()));
             itemStack.stackTagCompound.setBoolean("On", false);
         } else {
-            player.addChatMessage(this.getActivateMsg());
+            player.addChatMessage(new ChatComponentText(this.getActivateMsg()));
             itemStack.stackTagCompound.setBoolean("On", true);
         }
     }

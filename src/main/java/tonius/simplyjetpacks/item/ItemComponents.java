@@ -12,8 +12,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemComponents extends ItemSJ {
 
-    public ItemComponents(int id) {
-        super(id, "components", 9);
+    public ItemComponents() {
+        super("components", 9);
     }
 
     @Override
@@ -32,15 +32,15 @@ public class ItemComponents extends ItemSJ {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getItemDisplayName(ItemStack itemStack) {
+    public String getItemStackDisplayName(ItemStack itemStack) {
         switch (itemStack.getItemDamage()) {
         case 2:
-            return StringUtils.YELLOW + super.getItemDisplayName(itemStack);
+            return StringUtils.YELLOW + super.getItemStackDisplayName(itemStack);
         case 3:
         case 8:
-            return StringUtils.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+            return StringUtils.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
         }
-        return super.getItemDisplayName(itemStack);
+        return super.getItemStackDisplayName(itemStack);
     }
 
     @SideOnly(Side.CLIENT)

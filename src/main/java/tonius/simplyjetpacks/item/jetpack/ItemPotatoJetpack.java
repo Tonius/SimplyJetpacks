@@ -6,8 +6,7 @@ import java.util.Random;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.config.MainConfig;
@@ -20,8 +19,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemPotatoJetpack extends ItemJetpack {
 
-    public ItemPotatoJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
-        super(id, material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
+    public ItemPotatoJetpack(ArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
+        super(material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
     }
 
     @SideOnly(Side.CLIENT)
@@ -57,7 +56,7 @@ public class ItemPotatoJetpack extends ItemJetpack {
                         user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
                     }
                     user.attackEntityFrom(DamageSourcePotatoJetpack.causeJetpackPotatoDamage(user), 20.0F);
-                    user.dropItem(Item.bakedPotato.itemID, 1);
+                    user.dropItem(Items.baked_potato, 1);
                 }
             }
         } else {
@@ -68,7 +67,7 @@ public class ItemPotatoJetpack extends ItemJetpack {
             if (jumpKeyDown) {
                 if (this.isTimerSet(jetpack)) {
                     if (user.getRNG().nextInt(5) == 0) {
-                        this.sendParticlePacket(user, 2);
+                        // TODO particle packet
                     }
                     this.decrementTimer(jetpack, user);
                 } else {

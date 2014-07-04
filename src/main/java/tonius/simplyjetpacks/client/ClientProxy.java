@@ -1,28 +1,15 @@
 package tonius.simplyjetpacks.client;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import tonius.simplyjetpacks.CommonProxy;
-import tonius.simplyjetpacks.client.event.SoundLoader;
-import tonius.simplyjetpacks.client.tickhandler.ClientTickHandler;
-import tonius.simplyjetpacks.client.tickhandler.HUDTickHandler;
-import tonius.simplyjetpacks.client.tickhandler.KeyHandlerSJ;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.util.Vector3;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 public class ClientProxy extends CommonProxy {
 
@@ -32,49 +19,16 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerHandlers() {
         super.registerHandlers();
-        MinecraftForge.EVENT_BUS.register(new SoundLoader());
-        TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
+
+        // TODO tick events
+        // TickRegistry.registerTickHandler(new ClientTickHandler(),
+        // Side.CLIENT);
         if (MainConfig.enableEnergyHUD) {
-            TickRegistry.registerTickHandler(new HUDTickHandler(), Side.CLIENT);
+            // TickRegistry.registerTickHandler(new HUDTickHandler(),
+            // Side.CLIENT);
         }
-        KeyBindingRegistry.registerKeyBinding(new KeyHandlerSJ());
-    }
-
-    @Override
-    public void sendPacketToServer(int packetType, int int1) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream(8);
-        DataOutputStream data = new DataOutputStream(bytes);
-        try {
-            data.writeInt(packetType);
-            data.writeInt(int1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = "SmpJet";
-        packet.data = bytes.toByteArray();
-        packet.length = bytes.size();
-        PacketDispatcher.sendPacketToServer(packet);
-    }
-
-    @Override
-    public void sendPacketToServer(int packetType, boolean... keys) {
-
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream(8);
-        DataOutputStream data = new DataOutputStream(bytes);
-        try {
-            data.writeInt(packetType);
-            for (boolean key : keys) {
-                data.writeBoolean(key);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = "SmpJet";
-        packet.data = bytes.toByteArray();
-        packet.length = bytes.size();
-        PacketDispatcher.sendPacketToServer(packet);
+        // TODO key events?
+        // ClientRegistry.registerKeyBinding(new KeyHandlerSJ());
     }
 
     @Override
