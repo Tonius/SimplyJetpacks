@@ -21,4 +21,14 @@ public class SJCreativeTab extends CreativeTabs {
         return SJItems.jetpackTier4;
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ItemStack getIconItemStack() {
+        if (display == null) {
+            display = new ItemStack(SJItems.jetpackTier4);
+            display.setItemDamage(Short.MAX_VALUE);
+        }
+        return display;
+    }
+
 }
