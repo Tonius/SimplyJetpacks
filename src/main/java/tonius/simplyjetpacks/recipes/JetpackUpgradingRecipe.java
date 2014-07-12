@@ -32,7 +32,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
                 if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     resultEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
                 } else if (slotStack.getItem() instanceof ItemParticleCustomizers) {
-                    particleType = particleType.values()[slotStack.getItemDamage()];
+                    particleType = JetpackParticleType.values()[slotStack.getItemDamage()];
                 }
             }
         }

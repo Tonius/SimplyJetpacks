@@ -1,7 +1,11 @@
 package tonius.simplyjetpacks.setup;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -16,7 +20,9 @@ import tonius.simplyjetpacks.item.ItemParticleCustomizers;
 import tonius.simplyjetpacks.item.ItemSJ;
 import tonius.simplyjetpacks.item.jetpack.ItemArmoredJetpack;
 import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
+import tonius.simplyjetpacks.item.jetpack.ItemJetpackNew;
 import tonius.simplyjetpacks.item.jetpack.ItemPotatoJetpack;
+import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -39,6 +45,8 @@ public class SJItems {
     public static ItemJetpack jetpackCreative = null;
     public static ItemSJ components = null;
     public static ItemSJ particleCustomizers = null;
+
+    public static Item newJetpacks = null;
 
     private static boolean teAvailable = false;
 
@@ -72,6 +80,18 @@ public class SJItems {
 
         components = new ItemComponents();
         particleCustomizers = new ItemParticleCustomizers();
+
+        Map<Integer, Jetpack> newJetpacksItems = new HashMap<Integer, Jetpack>();
+        newJetpacksItems.put(0, new Jetpack(0, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacksItems.put(1, new Jetpack(1, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacksItems.put(2, new Jetpack(2, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacksItems.put(3, new Jetpack(3, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacksItems.put(4, new Jetpack(4, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacksItems.put(101, new Jetpack(1, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacksItems.put(102, new Jetpack(2, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacksItems.put(103, new Jetpack(3, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacksItems.put(104, new Jetpack(4, 0, 0, 0, 0, 0, 0, 0, 0));
+        newJetpacks = new ItemJetpackNew(newJetpacksItems);
     }
 
     private static void registerItems() {
@@ -90,6 +110,8 @@ public class SJItems {
 
         GameRegistry.registerItem(components, "components");
         GameRegistry.registerItem(particleCustomizers, "particleCustomizers");
+
+        GameRegistry.registerItem(newJetpacks, "newJetpacks");
     }
 
     private static void registerRecipes() {
