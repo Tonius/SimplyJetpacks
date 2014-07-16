@@ -73,9 +73,9 @@ public final class StringUtils {
 
     public static String getChargeText(boolean infinite, int charge, int total) {
         if (infinite) {
-            return ORANGE + translate("tooltip.charge") + ": " + LIGHT_GRAY + translate("tooltip.charge.infinite");
+            return LIGHT_GRAY + translate("tooltip.charge.infinite");
         }
-        return ORANGE + translate("tooltip.charge") + ": " + LIGHT_GRAY + getFormattedNumber(charge) + " / " + getFormattedNumber(total) + " RF";
+        return LIGHT_GRAY + getFormattedNumber(charge) + " / " + getFormattedNumber(total) + " RF";
     }
 
     public static String getStateText(boolean state) {

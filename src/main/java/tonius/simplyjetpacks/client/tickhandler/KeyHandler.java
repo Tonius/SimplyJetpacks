@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.input.Keyboard;
 
-import tonius.simplyjetpacks.item.ItemEnergyArmor;
 import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageModKey;
@@ -36,10 +35,10 @@ public class KeyHandler {
         if (toggle || mode) {
             if (mc.inGameHasFocus) {
                 ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
-                if (itemStack != null) {
-                    if (toggle && itemStack.getItem() instanceof ItemEnergyArmor) {
+                if (itemStack != null && itemStack.getItem() instanceof ItemJetpack) {
+                    if (toggle) {
                         PacketHandler.instance.sendToServer(new MessageModKey(SJKey.TOGGLE));
-                    } else if (mode && itemStack.getItem() instanceof ItemJetpack) {
+                    } else if (mode) {
                         PacketHandler.instance.sendToServer(new MessageModKey(SJKey.MODE));
                     }
                 }

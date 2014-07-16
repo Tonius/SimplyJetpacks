@@ -30,12 +30,13 @@ public class HUDTickHandler {
             if ((mc.currentScreen == null || mc.currentScreen instanceof GuiChat) && !mc.gameSettings.hideGUI) {
                 ItemStack chestplate = player.getCurrentArmor(2);
                 if (chestplate != null && chestplate.getItem() instanceof ItemJetpack) {
-                    int tier = ((ItemJetpack) chestplate.getItem()).getTier();
-                    if (tier < 1 || tier > 4) {
+                    ItemJetpack item = (ItemJetpack) chestplate.getItem();
+                    int tier = item.getJetpack(chestplate).tier;
+                    if (!item.getJetpack(chestplate).hasDamageBar()) {
                         return;
                     }
-                    int energy = ((ItemJetpack) chestplate.getItem()).getEnergyStored(chestplate);
-                    int maxEnergy = ((ItemJetpack) chestplate.getItem()).getMaxEnergyStored(chestplate);
+                    int energy = item.getEnergyStored(chestplate);
+                    int maxEnergy = item.getMaxEnergyStored(chestplate);
                     int percent = (int) Math.round(((double) energy / (double) maxEnergy) * 100D);
                     mc.entityRenderer.setupOverlayRendering();
                     mc.fontRenderer.drawString(StringUtils.getHUDEnergyText(percent, energy), 2, 2, 255 | 255 << 8 | 255 << 16, true);

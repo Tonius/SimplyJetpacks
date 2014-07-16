@@ -3,7 +3,6 @@ package tonius.simplyjetpacks.network.message;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import tonius.simplyjetpacks.item.ItemEnergyArmor;
 import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 import tonius.simplyjetpacks.setup.SJKey;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -36,14 +35,11 @@ public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, I
         EntityPlayer entityPlayer = ctx.getServerHandler().playerEntity;
 
         if (entityPlayer != null) {
-            if (msg.keyId == SJKey.TOGGLE.ordinal()) {
-                ItemStack armorEnergy = entityPlayer.inventory.armorItemInSlot(2);
-                if (armorEnergy != null && armorEnergy.getItem() instanceof ItemEnergyArmor) {
-                    ((ItemEnergyArmor) armorEnergy.getItem()).toggle(armorEnergy, entityPlayer);
-                }
-            } else if (msg.keyId == SJKey.MODE.ordinal()) {
-                ItemStack jetpack = entityPlayer.inventory.armorItemInSlot(2);
-                if (jetpack != null && jetpack.getItem() instanceof ItemJetpack) {
+            ItemStack jetpack = entityPlayer.inventory.armorItemInSlot(2);
+            if (jetpack != null && jetpack.getItem() instanceof ItemJetpack) {
+                if (msg.keyId == SJKey.TOGGLE.ordinal()) {
+                    ((ItemJetpack) jetpack.getItem()).toggle(jetpack, entityPlayer);
+                } else if (msg.keyId == SJKey.MODE.ordinal()) {
                     ((ItemJetpack) jetpack.getItem()).toggleHoverMode(jetpack, entityPlayer);
                 }
             }

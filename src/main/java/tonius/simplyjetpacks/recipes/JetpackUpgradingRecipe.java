@@ -11,10 +11,12 @@ import cofh.api.energy.IEnergyContainerItem;
 public class JetpackUpgradingRecipe extends ShapedOreRecipe {
 
     private ItemJetpack resultItem;
+    private int resultMeta;
 
     public JetpackUpgradingRecipe(ItemStack result, Object[] recipe) {
         super(result, recipe);
         this.resultItem = (ItemJetpack) result.getItem();
+        this.resultMeta = result.getItemDamage();
     }
 
     @Override
@@ -27,7 +29,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
             slotStack = inventoryCrafting.getStackInSlot(i);
             if (slotStack != null) {
                 if (slotStack.getItem() instanceof ItemJetpack) {
-                    particleType = resultItem.getParticleType(slotStack);
+                    particleType = resultItem.getJetpack(slotStack).getParticleType(slotStack);
                 }
                 if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     resultEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
@@ -37,11 +39,11 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
             }
         }
 
-        ItemStack result = new ItemStack(resultItem);
-        resultItem.addEnergy(result, resultEnergy, false);
+        ItemStack result = new ItemStack(resultItem, 1, this.resultMeta);
+        resultItem.receiveEnergy(result, resultEnergy, false);
 
         if (particleType != null) {
-            resultItem.setParticleType(result, particleType);
+            resultItem.getJetpack(result).setParticleType(result, particleType);
         }
 
         return result.copy();

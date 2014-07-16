@@ -18,15 +18,14 @@ public class SJCreativeTab extends CreativeTabs {
     @Override
     @SideOnly(Side.CLIENT)
     public Item getTabIconItem() {
-        return SJItems.jetpackTier4;
+        return SJItems.jetpacks;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getIconItemStack() {
         if (display == null) {
-            display = new ItemStack(SJItems.jetpackTier4);
-            display.setItemDamage(Short.MAX_VALUE);
+            display = new ItemStack(this.getTabIconItem(), 1, 9002);
         }
         return display;
     }

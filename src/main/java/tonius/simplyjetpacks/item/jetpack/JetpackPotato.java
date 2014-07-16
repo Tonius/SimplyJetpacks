@@ -14,21 +14,28 @@ import tonius.simplyjetpacks.util.DamageSourcePotatoJetpack;
 import tonius.simplyjetpacks.util.FireworksGenerator;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemPotatoJetpack extends ItemJetpack {
+public class JetpackPotato extends Jetpack {
 
-    public ItemPotatoJetpack(ArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
-        super(material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
+    public JetpackPotato(int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical) {
+        super(tier, energyCapacity, energyPerTick, speedVertical, accelVertical, 0, 0, 0);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
+    public boolean hasEmptyItem() {
+        return false;
+    }
+
+    @Override
+    public boolean hasArmoredVersion() {
+        return false;
+    }
+
+    @Override
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, int energyStored) {
+        list.add(StringUtils.getChargeText(false, energyStored, this.energyCapacity));
         if (StringUtils.canShowDetails()) {
-            list.add(StringUtils.getChargeText(false, this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
-            list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
+            list.add(StringUtils.getEnergyUsageText(this.energyCapacity));
             if (!MainConfig.hideJetpackTier0Warning) {
                 list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.1"));
                 list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.2"));
@@ -43,10 +50,10 @@ public class ItemPotatoJetpack extends ItemJetpack {
     }
 
     @Override
-    public void useJetpack(EntityLivingBase user, ItemStack jetpack, boolean force) {
+    public void useJetpack(EntityLivingBase user, ItemStack jetpack, ItemJetpack item, boolean force) {
         if (this.isFired(jetpack)) {
-            super.useJetpack(user, jetpack, true);
-            if (this.getEnergyStored(jetpack) == 0) {
+            super.useJetpack(user, jetpack, item, true);
+            if (item.getEnergyStored(jetpack) == 0) {
                 user.setCurrentItemOrArmor(3, null);
                 if (!user.worldObj.isRemote) {
                     Random rand = new Random();
@@ -91,7 +98,7 @@ public class ItemPotatoJetpack extends ItemJetpack {
     }
 
     @Override
-    public boolean isHoverModeActive(ItemStack itemStack) {
+    public boolean isHoverModeOn(ItemStack itemStack) {
         return false;
     }
 
