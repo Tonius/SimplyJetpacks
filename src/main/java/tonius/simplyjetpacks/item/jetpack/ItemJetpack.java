@@ -173,7 +173,6 @@ public class ItemJetpack extends ItemEnergyArmor {
                             ((EntityPlayerMP) user).playerNetServerHandler.floatingTickCount = 0;
                         }
                         this.sendParticlePacket(user, this.getParticleType(jetpack));
-                        this.sendParticlePacket(user, this.getParticleType(jetpack));
                     }
                 }
             }
