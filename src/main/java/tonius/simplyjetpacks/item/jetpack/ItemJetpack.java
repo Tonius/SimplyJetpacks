@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -168,6 +169,10 @@ public class ItemJetpack extends ItemEnergyArmor {
 
                     if (!user.worldObj.isRemote) {
                         user.fallDistance = 0.0F;
+                        if (user instanceof EntityPlayerMP) {
+                            ((EntityPlayerMP) user).playerNetServerHandler.floatingTickCount = 0;
+                        }
+                        this.sendParticlePacket(user, this.getParticleType(jetpack));
                         this.sendParticlePacket(user, this.getParticleType(jetpack));
                     }
                 }
