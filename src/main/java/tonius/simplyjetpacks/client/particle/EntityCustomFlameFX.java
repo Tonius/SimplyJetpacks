@@ -13,4 +13,9 @@ public class EntityCustomFlameFX extends EntityFlameFX {
         this.noClip = false;
     }
 
+    @Override
+    public int getBrightnessForRender(float p_70013_1_) {
+        return 180;
+    }
+
 }

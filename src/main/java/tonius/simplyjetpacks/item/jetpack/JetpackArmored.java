@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
+import tonius.simplyjetpacks.item.ItemJetpack;
 
 public class JetpackArmored extends Jetpack {
 

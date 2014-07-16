@@ -25,4 +25,10 @@ public class EntityColoredSmokeFX extends EntitySmokeFX {
         float blue = color.getBlue() / 255.0F;
         return new EntityColoredSmokeFX(world, posX, posY, posZ, velX, velY, velZ, red, green, blue);
     }
+
+    @Override
+    public int getBrightnessForRender(float p_70013_1_) {
+        return 200;
+    }
+
 }

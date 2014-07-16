@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.DamageSourcePotatoJetpack;
 import tonius.simplyjetpacks.util.FireworksGenerator;
 import tonius.simplyjetpacks.util.StackUtils;

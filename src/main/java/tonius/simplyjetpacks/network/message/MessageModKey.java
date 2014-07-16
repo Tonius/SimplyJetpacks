@@ -3,7 +3,7 @@ package tonius.simplyjetpacks.network.message;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
+import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.setup.SJKey;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

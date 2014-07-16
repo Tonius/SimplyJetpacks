@@ -65,9 +65,9 @@ public class ClientProxy extends CommonProxy {
                 vCenter.rotate(wearer.renderYawOffset);
                 vCenter.y -= 1.05;
 
-                vLeft = Vector3.translate(vLeft.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
-                vRight = Vector3.translate(vRight.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
-                vCenter = Vector3.translate(vCenter.clone(), new Vector3(-wearer.motionX, -wearer.motionY, -wearer.motionZ));
+                vLeft = Vector3.translate(vLeft.clone(), new Vector3(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D));
+                vRight = Vector3.translate(vRight.clone(), new Vector3(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D));
+                vCenter = Vector3.translate(vCenter.clone(), new Vector3(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D));
 
                 Vector3 v = new Vector3(playerPos).translate(vLeft);
                 ParticleUtils.spawnParticle(particle, world, v.x, v.y, v.z, 0, -0.2, 0);

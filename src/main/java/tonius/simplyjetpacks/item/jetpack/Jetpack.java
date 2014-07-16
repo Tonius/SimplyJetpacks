@@ -13,6 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tonius.simplyjetpacks.KeyboardTracker;
 import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageJetpackParticles;
 import tonius.simplyjetpacks.util.StackUtils;

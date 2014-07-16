@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.input.Keyboard;
 
-import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
+import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageModKey;
 import tonius.simplyjetpacks.setup.SJKey;

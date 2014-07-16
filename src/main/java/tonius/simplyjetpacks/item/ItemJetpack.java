@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.item.jetpack;
+package tonius.simplyjetpacks.item;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
+import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.util.StackUtils;

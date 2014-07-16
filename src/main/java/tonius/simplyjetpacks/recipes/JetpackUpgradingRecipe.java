@@ -3,8 +3,8 @@ package tonius.simplyjetpacks.recipes;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.item.ItemParticleCustomizers;
-import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import cofh.api.energy.IEnergyContainerItem;
 

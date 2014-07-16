@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import tonius.simplyjetpacks.item.jetpack.ItemJetpack;
+import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
