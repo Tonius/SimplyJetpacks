@@ -1,19 +1,19 @@
 itemGroup.tabSimplyJetpacks=Simply Jetpacks
 
 item.simplyjetpacks.jetpack.0.name=Tuberous Jetpack
-item.simplyjetpacks.jetpack.1.name=Leadstone Jetpack
+item.simplyjetpacks.jetpack.1.name=Basic Jetpack
 item.simplyjetpacks.jetpack.2.name=Hardened Jetpack
-item.simplyjetpacks.jetpack.3.name=Redstone Jetpack
+item.simplyjetpacks.jetpack.3.name=Reinforced Jetpack
 item.simplyjetpacks.jetpack.4.name=Resonant Jetpack
-item.simplyjetpacks.jetpack.1.armored.name=Armored Leadstone Jetpack
+item.simplyjetpacks.jetpack.1.armored.name=Armored Basic Jetpack
 item.simplyjetpacks.jetpack.2.armored.name=Armored Hardened Jetpack
-item.simplyjetpacks.jetpack.3.armored.name=Armored Redstone Jetpack
+item.simplyjetpacks.jetpack.3.armored.name=Armored Reinforced Jetpack
 item.simplyjetpacks.jetpack.4.armored.name=Armored Resonant Jetpack
 item.simplyjetpacks.jetpack.creative.name=Creative Jetpack
 
-item.simplyjetpacks.components_0.name=Leadstone Thruster
+item.simplyjetpacks.components_0.name=Basic Thruster
 item.simplyjetpacks.components_1.name=Hardened Thruster
-item.simplyjetpacks.components_2.name=Redstone Thruster
+item.simplyjetpacks.components_2.name=Reinforced Thruster
 item.simplyjetpacks.components_3.name=Resonant Thruster
 item.simplyjetpacks.components_4.name=Leather Strap
 item.simplyjetpacks.components_5.name=Iron Armor Plating
