@@ -60,8 +60,6 @@ simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jet
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
 
 simplyjetpacks.gui.hud.jetpack.energy=Jetpack energy
-simplyjetpacks.gui.hud.jetpack.warning.low=Energy is low!
-simplyjetpacks.gui.hud.jetpack.warning.empty=Energy depleted
 
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato

@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import tonius.simplyjetpacks.client.util.RenderUtils;
+import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
 import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.StringUtils;
@@ -28,7 +30,7 @@ public class HUDTickHandler {
     public void tickEnd() {
         EntityPlayer player = mc.thePlayer;
         if (player != null) {
-            if ((mc.currentScreen == null || mc.currentScreen instanceof GuiChat) && !mc.gameSettings.hideGUI) {
+            if ((mc.currentScreen == null || (SJConfig.showEnergyHUDWhileChatting && mc.currentScreen instanceof GuiChat)) && !mc.gameSettings.hideGUI) {
                 ItemStack chestplate = player.getCurrentArmor(2);
                 if (chestplate != null && chestplate.getItem() instanceof ItemJetpack) {
                     ItemJetpack item = (ItemJetpack) chestplate.getItem();
@@ -40,12 +42,7 @@ public class HUDTickHandler {
                     int maxEnergy = item.getMaxEnergyStored(chestplate);
                     int percent = (int) Math.round(((double) energy / (double) maxEnergy) * 100D);
                     mc.entityRenderer.setupOverlayRendering();
-                    mc.fontRenderer.drawString(StringUtils.getHUDEnergyText(percent, energy), 2, 2, 255 | 255 << 8 | 255 << 16, true);
-                    if (percent > 0 && percent <= 10) {
-                        mc.fontRenderer.drawString(StringUtils.getHUDEnergyLowText(), 2, 13, 255 | 255 << 8 | 255 << 16, true);
-                    } else if (percent == 0) {
-                        mc.fontRenderer.drawString(StringUtils.getHUDEnergyEmptyText(), 2, 13, 255 | 255 << 8 | 255 << 16, true);
-                    }
+                    RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDEnergyText(percent, energy), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 255 | 255 << 8 | 255 << 16, true);
                 }
             }
         }

@@ -105,10 +105,15 @@ public final class StringUtils {
     }
 
     public static String getHUDEnergyText(int percent, int energy) {
-        if (SJConfig.showExactEnergyInHUD) {
-            return translate("gui.hud.jetpack.energy") + ": " + getColoredPercent(percent) + "% (" + getFormattedNumber(energy) + " RF)";
+        String text = "";
+        if (!SJConfig.minimalEnergyHUD) {
+            text += translate("gui.hud.jetpack.energy") + ": ";
         }
-        return translate("gui.hud.jetpack.energy") + ": " + getColoredPercent(percent) + "%";
+        text += getColoredPercent(percent) + "%";
+        if (SJConfig.showExactEnergyInHUD) {
+            text += " (" + getFormattedNumber(energy) + " RF)";
+        }
+        return text;
     }
 
     public static String getColoredPercent(int percent) {
@@ -121,14 +126,6 @@ public final class StringUtils {
         } else {
             return LIGHT_RED + percent;
         }
-    }
-
-    public static String getHUDEnergyLowText() {
-        return LIGHT_RED + translate("gui.hud.jetpack.warning.low");
-    }
-
-    public static String getHUDEnergyEmptyText() {
-        return RED + translate("gui.hud.jetpack.warning.empty");
     }
 
     public static String getShiftText() {
