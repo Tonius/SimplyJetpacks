@@ -16,7 +16,6 @@ public class MainConfig {
 
     // gui
     public static boolean enableEnergyHUD;
-    public static boolean hideJetpackTier0Warning;
     public static boolean holdShiftForDetails;
     public static boolean showExactEnergyInHUD;
 
@@ -38,7 +37,6 @@ public class MainConfig {
 
             // gui
             enableEnergyHUD = cfg.get("gui", "Enable energy HUD", true).getBoolean(true);
-            hideJetpackTier0Warning = cfg.get("gui", "Hide Tuberous Jetpack warning", false).getBoolean(false);
             holdShiftForDetails = cfg.get("gui", "Hold Shift for details", true).getBoolean(true);
             showExactEnergyInHUD = cfg.get("gui", "Show exact amount of RF in energy HUD", false).getBoolean(false);
         } finally {
