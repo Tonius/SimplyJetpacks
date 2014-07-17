@@ -101,7 +101,7 @@ public final class StringUtils {
     }
 
     public static String getRequiredArmorText(int tier) {
-        return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.requires") + ": " + YELLOW + ITALIC + translate("item.simplyjetpacks.components_" + (tier + 4) + ".name", false);
+        return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.requires") + ": " + YELLOW + ITALIC + translate("item.simplyjetpacks.armorPlating." + tier + ".name", false);
     }
 
     public static String getHUDEnergyText(int percent, int energy) {

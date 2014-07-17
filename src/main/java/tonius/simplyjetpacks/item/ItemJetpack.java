@@ -119,14 +119,14 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
                 if (jetpack.isArmored()) {
                     this.removeArmor(itemStack, player);
                     if (!world.isRemote) {
-                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.components, 1, jetpack.tier + 4), 0.0F);
+                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.components, 1, jetpack.tier + 20), 0.0F);
                         item.delayBeforeCanPickup = 0;
                     }
                 } else {
                     InventoryPlayer inv = player.inventory;
                     for (int i = 0; i < inv.getSizeInventory(); i++) {
                         ItemStack currentStack = inv.getStackInSlot(i);
-                        if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == jetpack.tier + 4) {
+                        if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == jetpack.tier + 20) {
                             inv.setInventorySlotContents(i, StackUtils.decrementStack(currentStack));
                             this.applyArmor(itemStack, player);
                             break;

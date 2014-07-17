@@ -4,8 +4,8 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.item.ItemParticleCustomizers;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.setup.SJItems;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class JetpackUpgradingRecipe extends ShapedOreRecipe {
@@ -33,7 +33,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
                 }
                 if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     resultEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
-                } else if (slotStack.getItem() instanceof ItemParticleCustomizers) {
+                } else if (slotStack.getItem() == SJItems.particleCustomizers) {
                     particleType = JetpackParticleType.values()[slotStack.getItemDamage()];
                 }
             }

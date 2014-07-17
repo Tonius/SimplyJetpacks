@@ -1,28 +1,29 @@
 package tonius.simplyjetpacks.setup;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.config.MainConfig;
 import tonius.simplyjetpacks.integration.TEItems;
-import tonius.simplyjetpacks.integration.TERecipes;
-import tonius.simplyjetpacks.item.ItemComponents;
 import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.item.ItemParticleCustomizers;
-import tonius.simplyjetpacks.item.ItemSJ;
+import tonius.simplyjetpacks.item.ItemMeta;
+import tonius.simplyjetpacks.item.MetaItem;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackArmored;
 import tonius.simplyjetpacks.item.jetpack.JetpackCreative;
 import tonius.simplyjetpacks.item.jetpack.JetpackPotato;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
+import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SJItems {
 
     public static Item jetpacks = null;
-    public static ItemSJ components = null;
-    public static ItemSJ particleCustomizers = null;
+    public static Item components = null;
+    public static Item particleCustomizers = null;
 
     private static boolean teAvailable = false;
 
@@ -51,10 +52,38 @@ public class SJItems {
         Jetpack.addJetpack(104, new JetpackArmored(4, 10000000, 400, 0.75D, 0.32D, 0.19F, 0.24D, 0.005D, 8, 0.6D, 80));
         Jetpack.addJetpack(9001, new JetpackCreative(0.75D, 0.32D, 0.19F, 0.25D, 0.0D, 8, 0.6D, 0));
         Jetpack.addJetpack(9002, new JetpackIcon());
-
         jetpacks = new ItemJetpack();
-        components = new ItemComponents();
-        particleCustomizers = new ItemParticleCustomizers();
+
+        Map<Integer, MetaItem> componentsMap = new HashMap<Integer, MetaItem>();
+        String[] leatherStrapTooltips = new String[2];
+        leatherStrapTooltips[0] = "tooltip.leatherStrap.description.1";
+        leatherStrapTooltips[1] = "tooltip.leatherStrap.description.2";
+        componentsMap.put(0, new MetaItem("leatherStrap", null, leatherStrapTooltips));
+        String[] thrusterTooltips = new String[2];
+        thrusterTooltips[0] = "tooltip.thruster.description.1";
+        thrusterTooltips[1] = "tooltip.thruster.description.2";
+        componentsMap.put(11, new MetaItem("thruster.1", null, thrusterTooltips));
+        componentsMap.put(12, new MetaItem("thruster.2", null, thrusterTooltips));
+        componentsMap.put(13, new MetaItem("thruster.3", StringUtils.YELLOW, thrusterTooltips));
+        componentsMap.put(14, new MetaItem("thruster.4", StringUtils.BRIGHT_BLUE, thrusterTooltips));
+        String[] armorPlatingTooltips = new String[2];
+        armorPlatingTooltips[0] = "tooltip.armorPlating.description.1";
+        armorPlatingTooltips[1] = "tooltip.armorPlating.description.2";
+        componentsMap.put(21, new MetaItem("armorPlating.1", null, armorPlatingTooltips));
+        componentsMap.put(22, new MetaItem("armorPlating.2", null, armorPlatingTooltips));
+        componentsMap.put(23, new MetaItem("armorPlating.3", null, armorPlatingTooltips));
+        componentsMap.put(24, new MetaItem("armorPlating.4", StringUtils.BRIGHT_BLUE, armorPlatingTooltips));
+        components = new ItemMeta(componentsMap, "components");
+
+        Map<Integer, MetaItem> particlesMap = new HashMap<Integer, MetaItem>();
+        String[] particlesTooltips = new String[2];
+        particlesTooltips[0] = "tooltip.particleCustomizers.description.1";
+        particlesTooltips[1] = "tooltip.particleCustomizers.description.2";
+        particlesMap.put(0, new MetaItem("particle.0", null, particlesTooltips));
+        particlesMap.put(1, new MetaItem("particle.1", null, particlesTooltips));
+        particlesMap.put(2, new MetaItem("particle.2", null, particlesTooltips));
+        particlesMap.put(3, new MetaItem("particle.3", null, particlesTooltips));
+        particleCustomizers = new ItemMeta(particlesMap, "particleCustomizers");
     }
 
     private static void registerItems() {
@@ -187,28 +216,35 @@ public class SJItems {
     private static void doIMC() {
         SimplyJetpacks.logger.info("Doing intermod communication");
 
-        if (MainConfig.enableCraftingArmorPlating) {
-            ItemStack ingotBronze;
-            for (int i = 0; i < OreDictionary.getOres("ingotBronze").size(); i++) {
-                ingotBronze = OreDictionary.getOres("ingotBronze").get(i).copy();
-                ingotBronze.stackSize = 10;
-                TERecipes.addSmelterRecipe(3200, new ItemStack(components, 1, 5), ingotBronze, new ItemStack(components, 1, 6), null, 0);
-            }
-
-            ItemStack ingotInvar;
-            for (int i = 0; i < OreDictionary.getOres("ingotInvar").size(); i++) {
-                ingotInvar = OreDictionary.getOres("ingotInvar").get(i).copy();
-                ingotInvar.stackSize = 10;
-                TERecipes.addSmelterRecipe(4800, new ItemStack(components, 1, 6), ingotInvar, new ItemStack(components, 1, 7), null, 0);
-            }
-
-            ItemStack ingotEnderium;
-            for (int i = 0; i < OreDictionary.getOres("ingotEnderium").size(); i++) {
-                ingotEnderium = OreDictionary.getOres("ingotEnderium").get(i).copy();
-                ingotEnderium.stackSize = 10;
-                TERecipes.addSmelterRecipe(6400, new ItemStack(components, 1, 7), ingotEnderium, new ItemStack(components, 1, 8), null, 0);
-            }
-        }
+        // wait for TE
+        // if (MainConfig.enableCraftingArmorPlating) {
+        // ItemStack ingotBronze;
+        // for (int i = 0; i < OreDictionary.getOres("ingotBronze").size(); i++)
+        // {
+        // ingotBronze = OreDictionary.getOres("ingotBronze").get(i).copy();
+        // ingotBronze.stackSize = 10;
+        // TERecipes.addSmelterRecipe(3200, new ItemStack(components, 1, 5),
+        // ingotBronze, new ItemStack(components, 1, 6), null, 0);
+        // }
+        //
+        // ItemStack ingotInvar;
+        // for (int i = 0; i < OreDictionary.getOres("ingotInvar").size(); i++)
+        // {
+        // ingotInvar = OreDictionary.getOres("ingotInvar").get(i).copy();
+        // ingotInvar.stackSize = 10;
+        // TERecipes.addSmelterRecipe(4800, new ItemStack(components, 1, 6),
+        // ingotInvar, new ItemStack(components, 1, 7), null, 0);
+        // }
+        //
+        // ItemStack ingotEnderium;
+        // for (int i = 0; i < OreDictionary.getOres("ingotEnderium").size();
+        // i++) {
+        // ingotEnderium = OreDictionary.getOres("ingotEnderium").get(i).copy();
+        // ingotEnderium.stackSize = 10;
+        // TERecipes.addSmelterRecipe(6400, new ItemStack(components, 1, 7),
+        // ingotEnderium, new ItemStack(components, 1, 8), null, 0);
+        // }
+        // }
     }
 
 }
