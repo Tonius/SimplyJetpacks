@@ -6,7 +6,7 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.input.Keyboard;
 
-import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.config.SJConfig;
 
 public final class StringUtils {
 
@@ -105,7 +105,7 @@ public final class StringUtils {
     }
 
     public static String getHUDEnergyText(int percent, int energy) {
-        if (MainConfig.showExactEnergyInHUD) {
+        if (SJConfig.showExactEnergyInHUD) {
             return translate("gui.hud.jetpack.energy") + ": " + getColoredPercent(percent) + "% (" + getFormattedNumber(energy) + " RF)";
         }
         return translate("gui.hud.jetpack.energy") + ": " + getColoredPercent(percent) + "%";
@@ -136,7 +136,7 @@ public final class StringUtils {
     }
 
     public static boolean canShowDetails() {
-        return MainConfig.holdShiftForDetails ? isShiftKeyDown() : true;
+        return SJConfig.holdShiftForDetails ? isShiftKeyDown() : true;
     }
 
     public static String translate(String unlocalized) {

@@ -1,13 +1,8 @@
 package tonius.simplyjetpacks;
 
-import java.io.File;
-
-import net.minecraftforge.common.config.Configuration;
-
 import org.apache.logging.log4j.Logger;
 
-import tonius.simplyjetpacks.config.MainConfig;
-import tonius.simplyjetpacks.config.TuningConfig;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.setup.SJItems;
 import cpw.mods.fml.common.Mod;
@@ -17,7 +12,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "after:CoFHCore;after:ThermalExpansion")
+@Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "after:CoFHCore;after:ThermalExpansion", guiFactory = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ")
 public class SimplyJetpacks {
 
     @Instance("simplyjetpacks")
@@ -34,12 +29,8 @@ public class SimplyJetpacks {
         logger = evt.getModLog();
         logger.info("Starting Simply Jetpacks");
 
-        logger.info("Loading configuration files");
-        MainConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/main.cfg")));
-        TuningConfig.loadConfig(new Configuration(new File(evt.getModConfigurationDirectory(), "simplyjetpacks/tuning.cfg")));
-
+        SJConfig.preInit(evt);
         SJItems.preInit();
-
         PacketHandler.preInit();
 
         logger.info("Registering handlers");

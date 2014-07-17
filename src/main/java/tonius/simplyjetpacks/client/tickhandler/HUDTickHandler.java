@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -19,7 +20,7 @@ public class HUDTickHandler {
 
     @SubscribeEvent
     public void onRenderTick(RenderTickEvent evt) {
-        if (evt.phase == Phase.END) {
+        if (SJConfig.enableEnergyHUD && evt.phase == Phase.END) {
             this.tickEnd();
         }
     }

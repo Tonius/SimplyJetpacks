@@ -12,7 +12,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tonius.simplyjetpacks.KeyboardTracker;
-import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageJetpackParticles;
@@ -176,7 +176,7 @@ public class Jetpack {
     }
 
     public double getHoverSpeed(ItemStack jetpack, EntityLivingBase user) {
-        if (MainConfig.invertHoverSneakingBehavior) {
+        if (SJConfig.invertHoverSneakingBehavior) {
             return user.isSneaking() ? this.speedVerticalHoverSlow : this.speedVerticalHover;
         } else {
             return user.isSneaking() ? this.speedVerticalHover : this.speedVerticalHoverSlow;
@@ -192,7 +192,7 @@ public class Jetpack {
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-            if (this.hasArmoredVersion() && MainConfig.enableCraftingArmorPlating) {
+            if (this.hasArmoredVersion() && SJConfig.enableCraftingArmorPlating) {
                 list.add(StringUtils.getArmorText(this.isArmored()));
                 if (!this.isArmored()) {
                     list.add(StringUtils.getRequiredArmorText(this.tier));
