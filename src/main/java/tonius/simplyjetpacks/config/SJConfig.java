@@ -95,7 +95,7 @@ public class SJConfig {
     // tuningResonant default
     public static final int resonantEnergyCapacity_default = 10000000;
     public static final int resonantEnergyPerTick_default = 400;
-    public static final double resonantSpeedVertical_default = 0.7D;
+    public static final double resonantSpeedVertical_default = 0.8D;
     public static final double resonantAccelVertical_default = 0.15D;
     public static final double resonantSpeedSideways_default = 0.19D;
     public static final double resonantSpeedVerticalHover_default = 0.4D;
@@ -106,7 +106,7 @@ public class SJConfig {
     public static final int resonantArmorEnergyPerHit_default = 80;
 
     // tuningCreative default
-    public static final double creativeSpeedVertical_default = 0.7D;
+    public static final double creativeSpeedVertical_default = 0.8D;
     public static final double creativeAccelVertical_default = 0.15D;
     public static final double creativeSpeedSideways_default = 0.19D;
     public static final double creativeSpeedVerticalHover_default = 0.4D;
