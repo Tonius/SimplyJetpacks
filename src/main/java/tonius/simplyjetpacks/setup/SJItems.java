@@ -12,9 +12,6 @@ import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.item.ItemMeta;
 import tonius.simplyjetpacks.item.MetaItem;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
-import tonius.simplyjetpacks.item.jetpack.JetpackArmored;
-import tonius.simplyjetpacks.item.jetpack.JetpackCreative;
-import tonius.simplyjetpacks.item.jetpack.JetpackPotato;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -41,17 +38,7 @@ public class SJItems {
     private static void constructItems() {
         SimplyJetpacks.logger.info("Constructing items");
 
-        Jetpack.addJetpack(0, new JetpackPotato("te", 0, 1200, 45, 0.9D, 0.5D));
-        Jetpack.addJetpack(1, new Jetpack("te", 1, 25000, 20, 0.22D, 0.16D, 0, 0.2D, 0.18D));
-        Jetpack.addJetpack(2, new Jetpack("te", 2, 400000, 75, 0.3D, 0.18D, 0.04F, 0.2D, 0.1D));
-        Jetpack.addJetpack(3, new Jetpack("te", 3, 2000000, 150, 0.5D, 0.2D, 0.14F, 0.22D, 0.03D));
-        Jetpack.addJetpack(4, new Jetpack("te", 4, 10000000, 400, 0.75D, 0.32D, 0.19F, 0.24D, 0.005D));
-        Jetpack.addJetpack(101, new JetpackArmored("te", 1, 25000, 20, 0.22D, 0.16D, 0, 0.18D, 0.2D, 5, 0.2D, 80));
-        Jetpack.addJetpack(102, new JetpackArmored("te", 2, 400000, 75, 0.3D, 0.18D, 0.04F, 0.2D, 0.1D, 6, 0.3D, 80));
-        Jetpack.addJetpack(103, new JetpackArmored("te", 3, 2000000, 150, 0.5D, 0.2D, 0.14F, 0.22D, 0.03D, 7, 0.4D, 80));
-        Jetpack.addJetpack(104, new JetpackArmored("te", 4, 10000000, 400, 0.75D, 0.32D, 0.19F, 0.24D, 0.005D, 8, 0.6D, 80));
-        Jetpack.addJetpack(9001, new JetpackCreative(0.75D, 0.32D, 0.19F, 0.25D, 0.0D, 8, 0.6D, 0));
-        Jetpack.addJetpack(9002, new JetpackIcon());
+        Jetpack.reconstructJetpacks();
         jetpacks = new ItemJetpack();
 
         Map<Integer, MetaItem> componentsMap = new HashMap<Integer, MetaItem>();
@@ -62,10 +49,10 @@ public class SJItems {
         String[] thrusterTooltips = new String[2];
         thrusterTooltips[0] = "tooltip.thruster.description.1";
         thrusterTooltips[1] = "tooltip.thruster.description.2";
-        componentsMap.put(11, new MetaItem("thruster.1", null, thrusterTooltips));
-        componentsMap.put(12, new MetaItem("thruster.2", null, thrusterTooltips));
-        componentsMap.put(13, new MetaItem("thruster.3", StringUtils.YELLOW, thrusterTooltips));
-        componentsMap.put(14, new MetaItem("thruster.4", StringUtils.BRIGHT_BLUE, thrusterTooltips));
+        componentsMap.put(11, new MetaItem("thruster.te.1", null, thrusterTooltips));
+        componentsMap.put(12, new MetaItem("thruster.te.2", null, thrusterTooltips));
+        componentsMap.put(13, new MetaItem("thruster.te.3", StringUtils.YELLOW, thrusterTooltips));
+        componentsMap.put(14, new MetaItem("thruster.te.4", StringUtils.BRIGHT_BLUE, thrusterTooltips));
         String[] armorPlatingTooltips = new String[2];
         armorPlatingTooltips[0] = "tooltip.armorPlating.description.1";
         armorPlatingTooltips[1] = "tooltip.armorPlating.description.2";

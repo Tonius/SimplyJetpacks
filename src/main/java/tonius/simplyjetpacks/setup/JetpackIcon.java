@@ -4,8 +4,8 @@ import tonius.simplyjetpacks.item.jetpack.Jetpack;
 
 public class JetpackIcon extends Jetpack {
 
-    public JetpackIcon() {
-        super(null, 0, 0, 0, 0, 0, 0, 0, 0);
+    public JetpackIcon(int meta) {
+        super(meta, null, 0, 0, 0, 0, 0, 0, 0, 0, false);
     }
 
     @Override

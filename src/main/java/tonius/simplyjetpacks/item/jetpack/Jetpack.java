@@ -16,6 +16,7 @@ import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageJetpackParticles;
+import tonius.simplyjetpacks.setup.JetpackIcon;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
@@ -35,8 +36,9 @@ public class Jetpack {
     public int energyPerTickHover;
     public double speedVerticalHover;
     public double speedVerticalHoverSlow;
+    public boolean emergencyHoverMode;
 
-    public Jetpack(String mod, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow) {
+    public Jetpack(int meta, String mod, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode) {
         this.mod = mod;
         this.tier = tier;
         this.energyCapacity = energyCapacity;
@@ -47,6 +49,9 @@ public class Jetpack {
         this.energyPerTickHover = (int) (energyPerTick / 1.5);
         this.speedVerticalHover = speedVerticalHover;
         this.speedVerticalHoverSlow = speedVerticalHoverSlow;
+        this.emergencyHoverMode = emergencyHoverMode;
+
+        addJetpack(meta, this);
     }
 
     public static Jetpack getJetpack(int meta) {
@@ -62,6 +67,20 @@ public class Jetpack {
         if (highestMeta < meta) {
             highestMeta = meta;
         }
+    }
+
+    public static void reconstructJetpacks() {
+        new JetpackPotato(0, "te", 0, SJConfig.tuberousEnergyCapacity, SJConfig.tuberousEnergyPerTick, SJConfig.tuberousSpeedVertical, SJConfig.tuberousAccelVertical);
+        new Jetpack(1, "te", 1, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode);
+        new Jetpack(2, "te", 2, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode);
+        new Jetpack(3, "te", 3, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode);
+        new Jetpack(4, "te", 4, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode);
+        new JetpackArmored(101, "te", 1, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode, SJConfig.leadstoneArmorDisplay, SJConfig.leadstoneArmorAbsorption, SJConfig.leadstoneArmorEnergyPerHit);
+        new JetpackArmored(102, "te", 2, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode, SJConfig.hardenedArmorDisplay, SJConfig.hardenedArmorAbsorption, SJConfig.hardenedArmorEnergyPerHit);
+        new JetpackArmored(103, "te", 3, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode, SJConfig.reinforcedArmorDisplay, SJConfig.reinforcedArmorAbsorption, SJConfig.reinforcedArmorEnergyPerHit);
+        new JetpackArmored(104, "te", 4, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode, SJConfig.resonantArmorDisplay, SJConfig.resonantArmorAbsorption, SJConfig.resonantArmorEnergyPerHit);
+        new JetpackCreative(9001, SJConfig.creativeSpeedVertical, SJConfig.creativeAccelVertical, (float) SJConfig.creativeSpeedSideways, SJConfig.creativeSpeedVerticalHover, SJConfig.creativeSpeedVerticalHoverSlow, SJConfig.creativeEmergencyHoverMode, SJConfig.creativeArmorDisplay, SJConfig.creativeArmorAbsorption, 0);
+        new JetpackIcon(9002);
     }
 
     public String getBaseName() {
@@ -88,11 +107,20 @@ public class Jetpack {
         return true;
     }
 
+    public int getPlatingMeta() {
+        if (this.mod.equals("te")) {
+            return this.tier + 20;
+        }
+        return 20;
+    }
+
     public void useJetpack(EntityLivingBase user, ItemStack armor, ItemJetpack item, boolean force) {
         if (this.isOn(armor)) {
             boolean hoverMode = this.isHoverModeOn(armor);
             double hoverSpeed = this.getHoverSpeed(armor, user);
             boolean jumpKeyDown = true;
+            double currentAccel = user.motionY < 0.3D ? this.accelVertical * 2.5 : this.accelVertical;
+            boolean showParticles = false;
             if (!force && user instanceof EntityPlayer && !KeyboardTracker.isJumpKeyDown((EntityPlayer) user)) {
                 jumpKeyDown = false;
             }
@@ -106,12 +134,14 @@ public class Jetpack {
                 if (item.getEnergyStored(armor) > 0) {
                     if (jumpKeyDown) {
                         if (!hoverMode) {
-                            user.motionY = Math.min(user.motionY + this.accelVertical, this.speedVertical);
+                            user.motionY = Math.min(user.motionY + currentAccel, this.speedVertical);
                         } else {
-                            user.motionY = Math.min(user.motionY + this.accelVertical, this.speedVerticalHover);
+                            user.motionY = Math.min(user.motionY + currentAccel, this.speedVerticalHover);
                         }
+                        showParticles = true;
                     } else {
-                        user.motionY = Math.max(user.motionY, -hoverSpeed);
+                        user.motionY = Math.min(user.motionY + currentAccel, -hoverSpeed);
+                        showParticles = !user.worldObj.isRemote ? user.worldObj.getTotalWorldTime() % 2L == 0 : showParticles;
                     }
 
                     if (user instanceof EntityPlayer) {
@@ -134,7 +164,19 @@ public class Jetpack {
                         if (user instanceof EntityPlayerMP) {
                             ((EntityPlayerMP) user).playerNetServerHandler.floatingTickCount = 0;
                         }
-                        this.sendParticlePacket(user, this.getParticleType(armor));
+                        if (showParticles) {
+                            this.sendParticlePacket(user, this.getParticleType(armor));
+                        }
+                    }
+                }
+            }
+
+            if (this.emergencyHoverMode && !user.worldObj.isRemote) {
+                if (item.getEnergyStored(armor) > 0 && user.fallDistance - 1.2F >= user.getHealth()) {
+                    StackUtils.getNBT(armor).setBoolean("JetpackOn", true);
+                    StackUtils.getNBT(armor).setBoolean("JetpackHoverModeOn", true);
+                    if (user instanceof EntityPlayer) {
+                        ((EntityPlayer) user).addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("chat.jetpack.emergencyHoverMode")));
                     }
                 }
             }
@@ -216,6 +258,16 @@ public class Jetpack {
 
     public void setParticleType(ItemStack jetpack, JetpackParticleType particle) {
         StackUtils.getNBT(jetpack).setInteger("JetpackParticleType", particle.ordinal());
+    }
+
+    public void applyArmor(ItemStack itemStack, EntityPlayer player) {
+        itemStack.setItemDamage(itemStack.getItemDamage() + 100);
+        player.worldObj.playSoundAtEntity(player, "random.anvil_use", 0.8F, 0.9F + player.getRNG().nextFloat() * 0.2F);
+    }
+
+    public void removeArmor(ItemStack itemStack, EntityPlayer player) {
+        itemStack.setItemDamage(itemStack.getItemDamage() - 100);
+        player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
 
     public ArmorProperties getProperties(EntityLivingBase player, ItemJetpack item, ItemStack armor, DamageSource source, double damage, int slot) {

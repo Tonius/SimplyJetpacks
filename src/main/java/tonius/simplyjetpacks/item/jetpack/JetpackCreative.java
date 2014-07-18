@@ -2,8 +2,8 @@ package tonius.simplyjetpacks.item.jetpack;
 
 public class JetpackCreative extends JetpackArmored {
 
-    public JetpackCreative(double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, int armorDisplay, double armorAbsorption, int energyPerHit) {
-        super(null, 9001, 9001, 0, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, armorDisplay, armorAbsorption, energyPerHit);
+    public JetpackCreative(int meta, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit) {
+        super(meta, null, 9001, 9001, 0, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode, armorDisplay, armorAbsorption, energyPerHit);
     }
 
     @Override

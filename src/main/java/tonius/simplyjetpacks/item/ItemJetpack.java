@@ -66,16 +66,6 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
         }
     }
 
-    public void applyArmor(ItemStack itemStack, EntityPlayer player) {
-        itemStack.setItemDamage(itemStack.getItemDamage() + 100);
-        player.worldObj.playSoundAtEntity(player, "random.anvil_use", 0.8F, 0.9F + player.getRNG().nextFloat() * 0.2F);
-    }
-
-    public void removeArmor(ItemStack itemStack, EntityPlayer player) {
-        itemStack.setItemDamage(itemStack.getItemDamage() - 100);
-        player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 0.9F + player.getRNG().nextFloat() * 0.2F);
-    }
-
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
         Jetpack jetpack = this.getJetpack(itemStack);
@@ -117,18 +107,18 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
         if (jetpack != null) {
             if (jetpack.hasArmoredVersion() && player.isSneaking()) {
                 if (jetpack.isArmored()) {
-                    this.removeArmor(itemStack, player);
+                    jetpack.removeArmor(itemStack, player);
                     if (!world.isRemote) {
-                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.components, 1, jetpack.tier + 20), 0.0F);
+                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.components, 1, jetpack.getPlatingMeta()), 0.0F);
                         item.delayBeforeCanPickup = 0;
                     }
                 } else {
                     InventoryPlayer inv = player.inventory;
                     for (int i = 0; i < inv.getSizeInventory(); i++) {
                         ItemStack currentStack = inv.getStackInSlot(i);
-                        if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == jetpack.tier + 20) {
+                        if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == jetpack.getPlatingMeta()) {
                             inv.setInventorySlotContents(i, StackUtils.decrementStack(currentStack));
-                            this.applyArmor(itemStack, player);
+                            jetpack.applyArmor(itemStack, player);
                             break;
                         }
                     }

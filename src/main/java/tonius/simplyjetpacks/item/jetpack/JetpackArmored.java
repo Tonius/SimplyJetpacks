@@ -13,8 +13,8 @@ public class JetpackArmored extends Jetpack {
     public double armorAbsorption;
     public int energyPerHit;
 
-    public JetpackArmored(String mod, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, int armorDisplay, double armorAbsorption, int energyPerHit) {
-        super(mod, tier, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow);
+    public JetpackArmored(int meta, String mod, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit) {
+        super(meta, mod, tier, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
         this.energyPerHit = energyPerHit;
@@ -32,6 +32,9 @@ public class JetpackArmored extends Jetpack {
 
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemJetpack item, ItemStack armor, DamageSource source, double damage, int slot) {
+        if (source.isUnblockable()) {
+            return super.getProperties(player, item, armor, source, damage, slot);
+        }
         int maxAbsorbed = 100;
         if (this.tier != 9001) {
             maxAbsorbed = this.energyPerHit > 0 ? item.getEnergyStored(armor) / this.energyPerHit * 100 : 0;
