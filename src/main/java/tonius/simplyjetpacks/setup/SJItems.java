@@ -49,17 +49,17 @@ public class SJItems {
         String[] thrusterTooltips = new String[2];
         thrusterTooltips[0] = "tooltip.thruster.description.1";
         thrusterTooltips[1] = "tooltip.thruster.description.2";
-        componentsMap.put(11, new MetaItem("thruster.te.1", null, thrusterTooltips));
-        componentsMap.put(12, new MetaItem("thruster.te.2", null, thrusterTooltips));
-        componentsMap.put(13, new MetaItem("thruster.te.3", StringUtils.YELLOW, thrusterTooltips));
-        componentsMap.put(14, new MetaItem("thruster.te.4", StringUtils.BRIGHT_BLUE, thrusterTooltips));
+        componentsMap.put(11, new MetaItem("thruster.1", null, thrusterTooltips));
+        componentsMap.put(12, new MetaItem("thruster.2", null, thrusterTooltips));
+        componentsMap.put(13, new MetaItem("thruster.3", StringUtils.YELLOW, thrusterTooltips));
+        componentsMap.put(14, new MetaItem("thruster.4", StringUtils.BRIGHT_BLUE, thrusterTooltips));
         String[] armorPlatingTooltips = new String[2];
         armorPlatingTooltips[0] = "tooltip.armorPlating.description.1";
         armorPlatingTooltips[1] = "tooltip.armorPlating.description.2";
-        componentsMap.put(21, new MetaItem("armorPlating.1", null, armorPlatingTooltips));
-        componentsMap.put(22, new MetaItem("armorPlating.2", null, armorPlatingTooltips));
-        componentsMap.put(23, new MetaItem("armorPlating.3", null, armorPlatingTooltips));
-        componentsMap.put(24, new MetaItem("armorPlating.4", StringUtils.BRIGHT_BLUE, armorPlatingTooltips));
+        componentsMap.put(121, new MetaItem("armorPlating.1", null, armorPlatingTooltips));
+        componentsMap.put(122, new MetaItem("armorPlating.2", null, armorPlatingTooltips));
+        componentsMap.put(123, new MetaItem("armorPlating.3", null, armorPlatingTooltips));
+        componentsMap.put(124, new MetaItem("armorPlating.4", StringUtils.BRIGHT_BLUE, armorPlatingTooltips));
         components = new ItemMeta(componentsMap, "components");
 
         Map<Integer, MetaItem> particlesMap = new HashMap<Integer, MetaItem>();

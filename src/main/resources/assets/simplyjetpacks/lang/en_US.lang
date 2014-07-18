@@ -1,21 +1,21 @@
 itemGroup.tabSimplyJetpacks=Simply Jetpacks
 
-item.simplyjetpacks.jetpack.te.0.name=Tuberous Jetpack
-item.simplyjetpacks.jetpack.te.1.name=Leadstone Jetpack
-item.simplyjetpacks.jetpack.te.2.name=Hardened Jetpack
-item.simplyjetpacks.jetpack.te.3.name=Reinforced Jetpack
-item.simplyjetpacks.jetpack.te.4.name=Resonant Jetpack
-item.simplyjetpacks.jetpack.te.1.armored.name=Armored Leadstone Jetpack
-item.simplyjetpacks.jetpack.te.2.armored.name=Armored Hardened Jetpack
-item.simplyjetpacks.jetpack.te.3.armored.name=Armored Reinforced Jetpack
-item.simplyjetpacks.jetpack.te.4.armored.name=Armored Resonant Jetpack
+item.simplyjetpacks.jetpack.0.name=Tuberous Jetpack
+item.simplyjetpacks.jetpack.1.name=Leadstone Jetpack
+item.simplyjetpacks.jetpack.2.name=Hardened Jetpack
+item.simplyjetpacks.jetpack.3.name=Reinforced Jetpack
+item.simplyjetpacks.jetpack.4.name=Resonant Jetpack
+item.simplyjetpacks.jetpack.1.armored.name=Armored Leadstone Jetpack
+item.simplyjetpacks.jetpack.2.armored.name=Armored Hardened Jetpack
+item.simplyjetpacks.jetpack.3.armored.name=Armored Reinforced Jetpack
+item.simplyjetpacks.jetpack.4.armored.name=Armored Resonant Jetpack
 item.simplyjetpacks.jetpack.creative.name=Creative Jetpack
 
 item.simplyjetpacks.leatherStrap.name=Leather Strap
-item.simplyjetpacks.thruster.te.1.name=Leadstone Thruster
-item.simplyjetpacks.thruster.te.2.name=Hardened Thruster
-item.simplyjetpacks.thruster.te.3.name=Reinforced Thruster
-item.simplyjetpacks.thruster.te.4.name=Resonant Thruster
+item.simplyjetpacks.thruster.1.name=Leadstone Thruster
+item.simplyjetpacks.thruster.2.name=Hardened Thruster
+item.simplyjetpacks.thruster.3.name=Reinforced Thruster
+item.simplyjetpacks.thruster.4.name=Resonant Thruster
 item.simplyjetpacks.armorPlating.1.name=Iron Armor Plating
 item.simplyjetpacks.armorPlating.2.name=Tinker's Alloy Armor Plating
 item.simplyjetpacks.armorPlating.3.name=Invar Armor Plating
