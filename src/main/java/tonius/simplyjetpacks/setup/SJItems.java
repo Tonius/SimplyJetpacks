@@ -41,15 +41,15 @@ public class SJItems {
     private static void constructItems() {
         SimplyJetpacks.logger.info("Constructing items");
 
-        Jetpack.addJetpack(0, new JetpackPotato(0, 1200, 45, 0.9D, 0.5D));
-        Jetpack.addJetpack(1, new Jetpack(1, 25000, 20, 0.22D, 0.16D, 0, 0.2D, 0.18D));
-        Jetpack.addJetpack(2, new Jetpack(2, 400000, 75, 0.3D, 0.18D, 0.04F, 0.2D, 0.1D));
-        Jetpack.addJetpack(3, new Jetpack(3, 2000000, 150, 0.5D, 0.2D, 0.14F, 0.22D, 0.03D));
-        Jetpack.addJetpack(4, new Jetpack(4, 10000000, 400, 0.75D, 0.32D, 0.19F, 0.24D, 0.005D));
-        Jetpack.addJetpack(101, new JetpackArmored(1, 25000, 20, 0.22D, 0.16D, 0, 0.18D, 0.2D, 5, 0.2D, 80));
-        Jetpack.addJetpack(102, new JetpackArmored(2, 400000, 75, 0.3D, 0.18D, 0.04F, 0.2D, 0.1D, 6, 0.3D, 80));
-        Jetpack.addJetpack(103, new JetpackArmored(3, 2000000, 150, 0.5D, 0.2D, 0.14F, 0.22D, 0.03D, 7, 0.4D, 80));
-        Jetpack.addJetpack(104, new JetpackArmored(4, 10000000, 400, 0.75D, 0.32D, 0.19F, 0.24D, 0.005D, 8, 0.6D, 80));
+        Jetpack.addJetpack(0, new JetpackPotato("te", 0, 1200, 45, 0.9D, 0.5D));
+        Jetpack.addJetpack(1, new Jetpack("te", 1, 25000, 20, 0.22D, 0.16D, 0, 0.2D, 0.18D));
+        Jetpack.addJetpack(2, new Jetpack("te", 2, 400000, 75, 0.3D, 0.18D, 0.04F, 0.2D, 0.1D));
+        Jetpack.addJetpack(3, new Jetpack("te", 3, 2000000, 150, 0.5D, 0.2D, 0.14F, 0.22D, 0.03D));
+        Jetpack.addJetpack(4, new Jetpack("te", 4, 10000000, 400, 0.75D, 0.32D, 0.19F, 0.24D, 0.005D));
+        Jetpack.addJetpack(101, new JetpackArmored("te", 1, 25000, 20, 0.22D, 0.16D, 0, 0.18D, 0.2D, 5, 0.2D, 80));
+        Jetpack.addJetpack(102, new JetpackArmored("te", 2, 400000, 75, 0.3D, 0.18D, 0.04F, 0.2D, 0.1D, 6, 0.3D, 80));
+        Jetpack.addJetpack(103, new JetpackArmored("te", 3, 2000000, 150, 0.5D, 0.2D, 0.14F, 0.22D, 0.03D, 7, 0.4D, 80));
+        Jetpack.addJetpack(104, new JetpackArmored("te", 4, 10000000, 400, 0.75D, 0.32D, 0.19F, 0.24D, 0.005D, 8, 0.6D, 80));
         Jetpack.addJetpack(9001, new JetpackCreative(0.75D, 0.32D, 0.19F, 0.25D, 0.0D, 8, 0.6D, 0));
         Jetpack.addJetpack(9002, new JetpackIcon());
         jetpacks = new ItemJetpack();

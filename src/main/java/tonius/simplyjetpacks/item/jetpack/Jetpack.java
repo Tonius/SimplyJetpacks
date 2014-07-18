@@ -25,6 +25,7 @@ public class Jetpack {
     private static Map<Integer, Jetpack> jetpacks = new HashMap<Integer, Jetpack>();
     private static int highestMeta;
 
+    public String mod;
     public int tier;
     public int energyCapacity;
     public int energyPerTick;
@@ -35,7 +36,8 @@ public class Jetpack {
     public double speedVerticalHover;
     public double speedVerticalHoverSlow;
 
-    public Jetpack(int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow) {
+    public Jetpack(String mod, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow) {
+        this.mod = mod;
         this.tier = tier;
         this.energyCapacity = energyCapacity;
         this.energyPerTick = energyPerTick;
@@ -63,7 +65,7 @@ public class Jetpack {
     }
 
     public String getBaseName() {
-        return "jetpack." + this.tier;
+        return "jetpack." + this.mod + "." + this.tier;
     }
 
     public boolean isArmored() {

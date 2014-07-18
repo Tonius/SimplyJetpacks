@@ -13,8 +13,8 @@ public class JetpackArmored extends Jetpack {
     public double armorAbsorption;
     public int energyPerHit;
 
-    public JetpackArmored(int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, int armorDisplay, double armorAbsorption, int energyPerHit) {
-        super(tier, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow);
+    public JetpackArmored(String mod, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, int armorDisplay, double armorAbsorption, int energyPerHit) {
+        super(mod, tier, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
         this.energyPerHit = energyPerHit;
@@ -22,7 +22,7 @@ public class JetpackArmored extends Jetpack {
 
     @Override
     public String getBaseName() {
-        return "jetpack." + this.tier + ".armored";
+        return "jetpack." + this.mod + "." + this.tier + ".armored";
     }
 
     @Override

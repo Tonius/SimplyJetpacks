@@ -5,7 +5,7 @@ import tonius.simplyjetpacks.item.jetpack.Jetpack;
 public class JetpackIcon extends Jetpack {
 
     public JetpackIcon() {
-        super(0, 0, 0, 0, 0, 0, 0, 0);
+        super(null, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 
     @Override
