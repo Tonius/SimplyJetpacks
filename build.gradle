@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.4"
+version = "1.0.0"
 group= "tonius.simplyjetpacks"
 archivesBaseName = "SimplyJetpacks"
 
 minecraft {
-    version = "1.7.10-10.13.0.1180"
+    version = "1.7.10-10.13.0.1186"
     runDir = "eclipse"
 }
 
