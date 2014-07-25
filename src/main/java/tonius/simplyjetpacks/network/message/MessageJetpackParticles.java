@@ -8,10 +8,7 @@ import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public class MessageJetpackParticles implements IMessage, IMessageHandler<MessageJetpackParticles, IMessage> {
 
     private static Minecraft mc = Minecraft.getMinecraft();
