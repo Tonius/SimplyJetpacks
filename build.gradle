@@ -19,7 +19,7 @@ apply plugin: 'forge'
 
 version = "1.0.0"
 group= "tonius.simplyjetpacks"
-archivesBaseName = "SimplyJetpacks"
+archivesBaseName = "SimplyJetpacks-MC1.7.10"
 
 minecraft {
     version = "1.7.10-10.13.0.1186"
