@@ -11,7 +11,6 @@ import tonius.simplyjetpacks.client.tickhandler.ClientTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.HUDTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.KeyHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.util.Vector3;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -34,9 +33,11 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void showJetpackParticles(World world, int entityID, JetpackParticleType particle) {
-        if (SJConfig.enableJetpackParticles) {
-            Entity entity = world.getEntityByID(entityID);
+    public void showJetpackParticles(int entityId, int particleId) {
+        World world = mc.theWorld;
+        JetpackParticleType particle = JetpackParticleType.values()[particleId];
+        if (world != null && particle != null) {
+            Entity entity = world.getEntityByID(entityId);
             if (entity != null && entity instanceof EntityLivingBase) {
                 EntityLivingBase wearer = (EntityLivingBase) entity;
                 Vector3 playerPos = new Vector3(wearer);

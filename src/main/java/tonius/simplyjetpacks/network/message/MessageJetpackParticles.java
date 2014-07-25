@@ -1,9 +1,8 @@
 package tonius.simplyjetpacks.network.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -11,7 +10,6 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageJetpackParticles implements IMessage, IMessageHandler<MessageJetpackParticles, IMessage> {
 
-    private static Minecraft mc = Minecraft.getMinecraft();
     public int entityId;
     public int particleId;
 
@@ -37,10 +35,8 @@ public class MessageJetpackParticles implements IMessage, IMessageHandler<Messag
 
     @Override
     public IMessage onMessage(MessageJetpackParticles msg, MessageContext ctx) {
-        EntityPlayer entityPlayer = mc.thePlayer;
-        JetpackParticleType particle = JetpackParticleType.values()[msg.particleId];
-        if (entityPlayer != null && particle != null) {
-            SimplyJetpacks.proxy.showJetpackParticles(entityPlayer.worldObj, msg.entityId, particle);
+        if (SJConfig.enableJetpackParticles) {
+            SimplyJetpacks.proxy.showJetpackParticles(msg.entityId, msg.particleId);
         }
         return null;
     }
