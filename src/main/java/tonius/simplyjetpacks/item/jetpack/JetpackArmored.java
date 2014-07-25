@@ -13,8 +13,8 @@ public class JetpackArmored extends Jetpack {
     public double armorAbsorption;
     public int energyPerHit;
 
-    public JetpackArmored(int meta, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit) {
-        super(meta, tier, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode);
+    public JetpackArmored(int meta, int tier, boolean enchantable, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit) {
+        super(meta, tier, enchantable, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
         this.energyPerHit = energyPerHit;
@@ -35,8 +35,8 @@ public class JetpackArmored extends Jetpack {
         if (source.isUnblockable()) {
             return super.getProperties(player, item, armor, source, damage, slot);
         }
-        int maxAbsorbed = 100;
-        if (this.tier != 9001) {
+        int maxAbsorbed = Integer.MAX_VALUE;
+        if (!(this instanceof JetpackCreative)) {
             maxAbsorbed = this.energyPerHit > 0 ? item.getEnergyStored(armor) / this.energyPerHit * 100 : 0;
         }
         return new ArmorProperties(0, this.armorAbsorption, maxAbsorbed);

@@ -31,6 +31,7 @@ public class SJConfig {
     // item default
     public static final boolean enableJetpackParticles_default = true;
     public static final boolean invertHoverSneakingBehavior_default = false;
+    public static final int jetpackEnchantability_default = 20;
 
     // crafting default
     public static final boolean enableCraftingArmorPlating_default = true;
@@ -65,6 +66,7 @@ public class SJConfig {
     public static final int leadstoneArmorDisplay_default = 5;
     public static final double leadstoneArmorAbsorption_default = 0.2D;
     public static final int leadstoneArmorEnergyPerHit_default = 80;
+    public static final boolean leadstoneEnchantable_default = false;
 
     // tuningHardened default
     public static final int hardenedEnergyCapacity_default = 400000;
@@ -78,6 +80,7 @@ public class SJConfig {
     public static final int hardenedArmorDisplay_default = 6;
     public static final double hardenedArmorAbsorption_default = 0.3D;
     public static final int hardenedArmorEnergyPerHit_default = 80;
+    public static final boolean hardenedEnchantable_default = false;
 
     // tuningReinforced default
     public static final int reinforcedEnergyCapacity_default = 2000000;
@@ -91,6 +94,7 @@ public class SJConfig {
     public static final int reinforcedArmorDisplay_default = 7;
     public static final double reinforcedArmorAbsorption_default = 0.4D;
     public static final int reinforcedArmorEnergyPerHit_default = 80;
+    public static final boolean reinforcedEnchantable_default = true;
 
     // tuningResonant default
     public static final int resonantEnergyCapacity_default = 10000000;
@@ -104,6 +108,7 @@ public class SJConfig {
     public static final int resonantArmorDisplay_default = 8;
     public static final double resonantArmorAbsorption_default = 0.6D;
     public static final int resonantArmorEnergyPerHit_default = 80;
+    public static final boolean resonantEnchantable_default = true;
 
     // tuningCreative default
     public static final double creativeSpeedVertical_default = 0.8D;
@@ -114,10 +119,12 @@ public class SJConfig {
     public static final boolean creativeEmergencyHoverMode_default = true;
     public static final int creativeArmorDisplay_default = 8;
     public static final double creativeArmorAbsorption_default = 0.6D;
+    public static final boolean creativeEnchantable_default = true;
 
     // item
     public static boolean enableJetpackParticles = enableJetpackParticles_default;
     public static boolean invertHoverSneakingBehavior = invertHoverSneakingBehavior_default;
+    public static int jetpackEnchantability = jetpackEnchantability_default;
 
     // crafting
     public static boolean enableCraftingArmorPlating = enableCraftingArmorPlating_default;
@@ -152,6 +159,7 @@ public class SJConfig {
     public static int leadstoneArmorDisplay = leadstoneArmorDisplay_default;
     public static double leadstoneArmorAbsorption = leadstoneArmorAbsorption_default;
     public static int leadstoneArmorEnergyPerHit = leadstoneArmorEnergyPerHit_default;
+    public static boolean leadstoneEnchantable = leadstoneEnchantable_default;
 
     // tuningHardened
     public static int hardenedEnergyCapacity = hardenedEnergyCapacity_default;
@@ -165,6 +173,7 @@ public class SJConfig {
     public static int hardenedArmorDisplay = hardenedArmorDisplay_default;
     public static double hardenedArmorAbsorption = hardenedArmorAbsorption_default;
     public static int hardenedArmorEnergyPerHit = hardenedArmorEnergyPerHit_default;
+    public static boolean hardenedEnchantable = hardenedEnchantable_default;
 
     // tuningReinforced
     public static int reinforcedEnergyCapacity = reinforcedEnergyCapacity_default;
@@ -178,6 +187,7 @@ public class SJConfig {
     public static int reinforcedArmorDisplay = reinforcedArmorDisplay_default;
     public static double reinforcedArmorAbsorption = reinforcedArmorAbsorption_default;
     public static int reinforcedArmorEnergyPerHit = reinforcedArmorEnergyPerHit_default;
+    public static boolean reinforcedEnchantable = reinforcedEnchantable_default;
 
     // tuningResonant
     public static int resonantEnergyCapacity = resonantEnergyCapacity_default;
@@ -191,6 +201,7 @@ public class SJConfig {
     public static int resonantArmorDisplay = resonantArmorDisplay_default;
     public static double resonantArmorAbsorption = resonantArmorAbsorption_default;
     public static int resonantArmorEnergyPerHit = resonantArmorEnergyPerHit_default;
+    public static boolean resonantEnchantable = resonantEnchantable_default;
 
     // tuningCreative
     public static double creativeSpeedVertical = creativeSpeedVertical_default;
@@ -201,6 +212,7 @@ public class SJConfig {
     public static boolean creativeEmergencyHoverMode = creativeEmergencyHoverMode_default;
     public static int creativeArmorDisplay = creativeArmorDisplay_default;
     public static double creativeArmorAbsorption = creativeArmorAbsorption_default;
+    public static boolean creativeEnchantable = creativeEnchantable_default;
 
     public static void preInit(FMLPreInitializationEvent evt) {
         FMLCommonHandler.instance().bus().register(new SJConfig());
@@ -231,6 +243,7 @@ public class SJConfig {
     public static void processConfig() {
         enableJetpackParticles = config.get(sectionItem.name, "Enable jetpack particles", enableJetpackParticles_default, "When enabled, jetpacks will emit particles when active.").getBoolean(enableJetpackParticles_default);
         invertHoverSneakingBehavior = config.get(sectionItem.name, "Invert Hover Mode sneaking behavior", invertHoverSneakingBehavior_default, "Invert Hover Mode sneaking behavior").getBoolean(invertHoverSneakingBehavior_default);
+        jetpackEnchantability = config.get(sectionItem.name, "Jetpack Enchantability", jetpackEnchantability_default, "The enchantability of the jetpacks. Note that specific jetpacks may be set not to be enchantable.").getInt(jetpackEnchantability_default);
 
         enableCraftingArmorPlating = config.get(sectionCrafting.name, "Armor Plating craftable", enableCraftingArmorPlating_default, "When enabled, Armor Plating items will be craftable, and thus armored jetpacks are available. (Requires restart)").getBoolean(enableCraftingArmorPlating_default);
         enableCraftingPotatoJetpack = config.get(sectionCrafting.name, "Potato Jetpack craftable", enableCraftingPotatoJetpack_default, "When enabled, the Potato Jetpack will be craftable. (Requires restart)").getBoolean(enableCraftingPotatoJetpack_default);
@@ -263,6 +276,7 @@ public class SJConfig {
         leadstoneArmorAbsorption = config.get(sectionTuningLeadstone.name, "Armor Absorption", leadstoneArmorAbsorption_default, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(leadstoneArmorAbsorption_default);
         int leadstoneArmorEnergyPerHit_temp = config.get(sectionTuningLeadstone.name, "Armor Energy Per Hit", leadstoneArmorEnergyPerHit_default, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(leadstoneArmorEnergyPerHit_default);
         leadstoneArmorEnergyPerHit = leadstoneArmorEnergyPerHit_temp > 0 ? leadstoneArmorEnergyPerHit_temp : 1;
+        leadstoneEnchantable = config.get(sectionTuningLeadstone.name, "Enchantable", leadstoneEnchantable_default, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(leadstoneEnchantable_default);
 
         hardenedEnergyCapacity = config.get(sectionTuningHardened.name, "Energy Capacity", hardenedEnergyCapacity_default, "The maximum amount of energy that the jetpack can hold.").getInt(hardenedEnergyCapacity_default);
         hardenedEnergyPerTick = config.get(sectionTuningHardened.name, "Energy Usage per Tick", hardenedEnergyPerTick_default, "The amount of energy that the jetpack uses every tick when flying. In hover mode, this amount will be 1.5 times less.").getInt(hardenedEnergyPerTick_default);
@@ -276,6 +290,7 @@ public class SJConfig {
         hardenedArmorAbsorption = config.get(sectionTuningHardened.name, "Armor Absorption", hardenedArmorAbsorption_default, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(hardenedArmorAbsorption_default);
         int hardenedArmorEnergyPerHit_temp = config.get(sectionTuningHardened.name, "Armor Energy Per Hit", hardenedArmorEnergyPerHit_default, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(hardenedArmorEnergyPerHit_default);
         hardenedArmorEnergyPerHit = hardenedArmorEnergyPerHit_temp > 0 ? hardenedArmorEnergyPerHit_temp : 1;
+        hardenedEnchantable = config.get(sectionTuningHardened.name, "Enchantable", hardenedEnchantable_default, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(hardenedEnchantable_default);
 
         reinforcedEnergyCapacity = config.get(sectionTuningReinforced.name, "Energy Capacity", reinforcedEnergyCapacity_default, "The maximum amount of energy that the jetpack can hold.").getInt(reinforcedEnergyCapacity_default);
         reinforcedEnergyPerTick = config.get(sectionTuningReinforced.name, "Energy Usage per Tick", reinforcedEnergyPerTick_default, "The amount of energy that the jetpack uses every tick when flying. In hover mode, this amount will be 1.5 times less.").getInt(reinforcedEnergyPerTick_default);
@@ -289,6 +304,7 @@ public class SJConfig {
         reinforcedArmorAbsorption = config.get(sectionTuningReinforced.name, "Armor Absorption", reinforcedArmorAbsorption_default, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(reinforcedArmorAbsorption_default);
         int reinforcedArmorEnergyPerHit_temp = config.get(sectionTuningReinforced.name, "Armor Energy Per Hit", reinforcedArmorEnergyPerHit_default, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(reinforcedArmorEnergyPerHit_default);
         reinforcedArmorEnergyPerHit = reinforcedArmorEnergyPerHit_temp > 0 ? reinforcedArmorEnergyPerHit_temp : 1;
+        reinforcedEnchantable = config.get(sectionTuningReinforced.name, "Enchantable", reinforcedEnchantable_default, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(reinforcedEnchantable_default);
 
         resonantEnergyCapacity = config.get(sectionTuningResonant.name, "Energy Capacity", resonantEnergyCapacity_default, "The maximum amount of energy that the jetpack can hold.").getInt(resonantEnergyCapacity_default);
         resonantEnergyPerTick = config.get(sectionTuningResonant.name, "Energy Usage per Tick", resonantEnergyPerTick_default, "The amount of energy that the jetpack uses every tick when flying. In hover mode, this amount will be 1.5 times less.").getInt(resonantEnergyPerTick_default);
@@ -302,6 +318,7 @@ public class SJConfig {
         resonantArmorAbsorption = config.get(sectionTuningResonant.name, "Armor Absorption", resonantArmorAbsorption_default, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(resonantArmorAbsorption_default);
         int resonantArmorEnergyPerHit_temp = config.get(sectionTuningResonant.name, "Armor Energy Per Hit", resonantArmorEnergyPerHit_default, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(resonantArmorEnergyPerHit_default);
         resonantArmorEnergyPerHit = resonantArmorEnergyPerHit_temp > 0 ? resonantArmorEnergyPerHit_temp : 1;
+        resonantEnchantable = config.get(sectionTuningResonant.name, "Enchantable", resonantEnchantable_default, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(resonantEnchantable_default);
 
         creativeSpeedVertical = config.get(sectionTuningCreative.name, "Vertical Speed", creativeSpeedVertical_default, "The maximum vertical speed of the jetpack when flying.").getDouble(creativeSpeedVertical_default);
         creativeAccelVertical = config.get(sectionTuningCreative.name, "Vertical Acceleration", creativeAccelVertical_default, "The vertical acceleration of the jetpack when flying; every tick, this amount of vertical speed will be added until the jetpack reaches the maximum speed.").getDouble(creativeAccelVertical_default);
@@ -311,6 +328,7 @@ public class SJConfig {
         creativeEmergencyHoverMode = config.get(sectionTuningCreative.name, "Emergency Hover Mode", creativeEmergencyHoverMode_default, "When enabled, this jetpack will activate hover mode automatically when the wearer is about to die from a fall.").getBoolean(creativeEmergencyHoverMode_default);
         creativeArmorDisplay = config.get(sectionTuningCreative.name, "Armor Display", creativeArmorDisplay_default, "How powerful the ARMORED version of the jetpack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(creativeArmorDisplay_default);
         creativeArmorAbsorption = config.get(sectionTuningCreative.name, "Armor Absorption", creativeArmorAbsorption_default, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(creativeArmorAbsorption_default);
+        creativeEnchantable = config.get(sectionTuningCreative.name, "Enchantable", creativeEnchantable_default, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(creativeEnchantable_default);
     }
 
 }

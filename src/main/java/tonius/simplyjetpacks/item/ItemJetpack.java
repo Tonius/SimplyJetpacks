@@ -16,6 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
@@ -192,6 +193,22 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
         double stored = this.getMaxEnergyStored(itemStack) - this.getEnergyStored(itemStack) + 1;
         double max = this.getMaxEnergyStored(itemStack) + 1;
         return stored / max;
+    }
+
+    @Override
+    public boolean isItemTool(ItemStack itemStack) {
+        Jetpack jetpack = this.getJetpack(itemStack);
+        return this.getItemEnchantability() > 0 ? jetpack != null ? jetpack.enchantable : false : false;
+    }
+
+    @Override
+    public int getItemEnchantability() {
+        return SJConfig.jetpackEnchantability;
+    }
+
+    @Override
+    public boolean isBookEnchantable(ItemStack itemStack, ItemStack book) {
+        return this.isItemTool(itemStack);
     }
 
     @Override
