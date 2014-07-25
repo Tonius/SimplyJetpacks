@@ -117,7 +117,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
                     for (int i = 0; i < inv.getSizeInventory(); i++) {
                         ItemStack currentStack = inv.getStackInSlot(i);
                         if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == jetpack.getPlatingMeta()) {
-                            inv.setInventorySlotContents(i, StackUtils.decrementStack(currentStack));
+                            inv.decrStackSize(i, 1);
                             jetpack.applyArmor(itemStack, player);
                             break;
                         }
