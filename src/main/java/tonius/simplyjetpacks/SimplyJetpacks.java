@@ -22,7 +22,7 @@ public class SimplyJetpacks {
     public static CommonProxy proxy;
 
     public static Logger logger;
-    public static KeyboardTracker keyboard;
+    public static SyncTracker keyboard;
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent evt) {

@@ -2,12 +2,12 @@ package tonius.simplyjetpacks.network.message;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import tonius.simplyjetpacks.KeyboardTracker;
+import tonius.simplyjetpacks.SyncTracker;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageVanillaKeys implements IMessage, IMessageHandler<MessageVanillaKeys, IMessage> {
+public class MessageKeyboardSync implements IMessage, IMessageHandler<MessageKeyboardSync, IMessage> {
 
     public boolean jumpState;
     public boolean forwardState;
@@ -15,10 +15,10 @@ public class MessageVanillaKeys implements IMessage, IMessageHandler<MessageVani
     public boolean leftState;
     public boolean rightState;
 
-    public MessageVanillaKeys() {
+    public MessageKeyboardSync() {
     }
 
-    public MessageVanillaKeys(boolean jumpState, boolean forwardState, boolean backwardState, boolean leftState, boolean rightState) {
+    public MessageKeyboardSync(boolean jumpState, boolean forwardState, boolean backwardState, boolean leftState, boolean rightState) {
         this.jumpState = jumpState;
         this.forwardState = forwardState;
         this.backwardState = backwardState;
@@ -45,10 +45,10 @@ public class MessageVanillaKeys implements IMessage, IMessageHandler<MessageVani
     }
 
     @Override
-    public IMessage onMessage(MessageVanillaKeys msg, MessageContext ctx) {
+    public IMessage onMessage(MessageKeyboardSync msg, MessageContext ctx) {
         EntityPlayer entityPlayer = ctx.getServerHandler().playerEntity;
         if (entityPlayer != null) {
-            KeyboardTracker.processKeyUpdate(entityPlayer, msg.jumpState, msg.forwardState, msg.backwardState, msg.leftState, msg.rightState);
+            SyncTracker.processKeyUpdate(entityPlayer, msg.jumpState, msg.forwardState, msg.backwardState, msg.leftState, msg.rightState);
         }
         return null;
     }

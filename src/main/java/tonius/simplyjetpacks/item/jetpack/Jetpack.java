@@ -11,15 +11,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
-import tonius.simplyjetpacks.KeyboardTracker;
+import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.network.PacketHandler;
-import tonius.simplyjetpacks.network.message.MessageJetpackParticles;
 import tonius.simplyjetpacks.setup.JetpackIcon;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class Jetpack {
 
@@ -118,7 +115,7 @@ public class Jetpack {
             boolean jumpKeyDown = true;
             double currentAccel = user.motionY < 0.3D ? this.accelVertical * 2.5 : this.accelVertical;
             boolean showParticles = false;
-            if (!force && user instanceof EntityPlayer && !KeyboardTracker.isJumpKeyDown((EntityPlayer) user)) {
+            if (!force && user instanceof EntityPlayer && !SyncTracker.isJumpKeyDown((EntityPlayer) user)) {
                 jumpKeyDown = false;
             }
 
@@ -142,16 +139,16 @@ public class Jetpack {
                     }
 
                     if (user instanceof EntityPlayer) {
-                        if (KeyboardTracker.isForwardKeyDown((EntityPlayer) user)) {
+                        if (SyncTracker.isForwardKeyDown((EntityPlayer) user)) {
                             user.moveFlying(0, this.speedSideways, this.speedSideways);
                         }
-                        if (KeyboardTracker.isBackwardKeyDown((EntityPlayer) user)) {
+                        if (SyncTracker.isBackwardKeyDown((EntityPlayer) user)) {
                             user.moveFlying(0, -this.speedSideways, this.speedSideways * 0.8F);
                         }
-                        if (KeyboardTracker.isLeftKeyDown((EntityPlayer) user)) {
+                        if (SyncTracker.isLeftKeyDown((EntityPlayer) user)) {
                             user.moveFlying(this.speedSideways, 0, this.speedSideways);
                         }
-                        if (KeyboardTracker.isRightKeyDown((EntityPlayer) user)) {
+                        if (SyncTracker.isRightKeyDown((EntityPlayer) user)) {
                             user.moveFlying(-this.speedSideways, 0, this.speedSideways);
                         }
                     }
@@ -194,11 +191,20 @@ public class Jetpack {
     }
 
     public void sendParticlePacket(EntityLivingBase user, JetpackParticleType particle) {
-        PacketHandler.instance.sendToAllAround(new MessageJetpackParticles(user.getEntityId(), particle), new TargetPoint(user.worldObj.provider.dimensionId, user.posX, user.posY, user.posZ, 96));
+        // PacketHandler.instance.sendToAllAround(new
+        // MessageJetpackParticles(user.getEntityId(), particle), new
+        // TargetPoint(user.dimension, user.posX, user.posY, user.posZ, 96));
     }
 
     public boolean isOn(ItemStack itemStack) {
         return StackUtils.getNBT(itemStack).getBoolean("JetpackOn");
+    }
+
+    public JetpackParticleType particleToShow(ItemStack itemStack, EntityPlayer player) {
+        if (this.isOn(itemStack) && (SyncTracker.isJumpKeyDown(player) || this.isHoverModeOn(itemStack))) {
+            return this.getParticleType(itemStack);
+        }
+        return null;
     }
 
     public void toggle(ItemStack itemStack, EntityPlayer player) {

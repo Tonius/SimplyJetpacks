@@ -8,7 +8,7 @@ import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import tonius.simplyjetpacks.KeyboardTracker;
+import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.DamageSourcePotatoJetpack;
 import tonius.simplyjetpacks.util.FireworksGenerator;
@@ -63,7 +63,7 @@ public class JetpackPotato extends Jetpack {
             }
         } else {
             boolean jumpKeyDown = true;
-            if (!force && user instanceof EntityPlayer && !KeyboardTracker.isJumpKeyDown((EntityPlayer) user)) {
+            if (!force && user instanceof EntityPlayer && !SyncTracker.isJumpKeyDown((EntityPlayer) user)) {
                 jumpKeyDown = false;
             }
             if (jumpKeyDown) {
