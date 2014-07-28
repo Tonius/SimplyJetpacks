@@ -245,8 +245,8 @@ public class SJConfig {
         invertHoverSneakingBehavior = config.get(sectionItem.name, "Invert Hover Mode sneaking behavior", invertHoverSneakingBehavior_default, "Invert Hover Mode sneaking behavior").getBoolean(invertHoverSneakingBehavior_default);
         jetpackEnchantability = config.get(sectionItem.name, "Jetpack Enchantability", jetpackEnchantability_default, "The enchantability of the jetpacks. Note that specific jetpacks may be set not to be enchantable.").getInt(jetpackEnchantability_default);
 
-        enableCraftingArmorPlating = config.get(sectionCrafting.name, "Armor Plating craftable", enableCraftingArmorPlating_default, "When enabled, Armor Plating items will be craftable, and thus armored jetpacks are available. (Requires restart)").getBoolean(enableCraftingArmorPlating_default);
-        enableCraftingPotatoJetpack = config.get(sectionCrafting.name, "Potato Jetpack craftable", enableCraftingPotatoJetpack_default, "When enabled, the Potato Jetpack will be craftable. (Requires restart)").getBoolean(enableCraftingPotatoJetpack_default);
+        enableCraftingArmorPlating = config.get(sectionCrafting.name, "Armor Plating craftable", enableCraftingArmorPlating_default, "When enabled, Armor Plating items will be craftable, and thus armored jetpacks are available.").setRequiresMcRestart(true).getBoolean(enableCraftingArmorPlating_default);
+        enableCraftingPotatoJetpack = config.get(sectionCrafting.name, "Potato Jetpack craftable", enableCraftingPotatoJetpack_default, "When enabled, the Potato Jetpack will be craftable.").setRequiresMcRestart(true).getBoolean(enableCraftingPotatoJetpack_default);
 
         enableEnergyHUD = config.get(sectionGui.name, "Enable Energy HUD", enableEnergyHUD_default, "When enabled, a HUD that displays your current jetpack's energy level will show.").getBoolean(enableEnergyHUD_default);
         energyHUDOffsetX = config.get(sectionGui.name, "Energy HUD Offset - X", energyHUDOffsetX_default, "The energy HUD display will be shifted horizontally by this value. This value may be negative.").getInt(energyHUDOffsetX_default);
