@@ -24,11 +24,11 @@ public class HUDTickHandler {
     @SubscribeEvent
     public void onRenderTick(RenderTickEvent evt) {
         if (SJConfig.enableEnergyHUD && evt.phase == Phase.END) {
-            this.tickEnd();
+            tickEnd();
         }
     }
 
-    public void tickEnd() {
+    private static void tickEnd() {
         EntityPlayer player = mc.thePlayer;
         if (player != null) {
             if ((mc.currentScreen == null || (SJConfig.showEnergyHUDWhileChatting && mc.currentScreen instanceof GuiChat)) && !mc.gameSettings.hideGUI) {

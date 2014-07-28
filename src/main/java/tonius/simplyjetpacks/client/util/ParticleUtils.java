@@ -25,7 +25,7 @@ public class ParticleUtils {
             return;
         case RAINBOW_SMOKE:
             mc.effectRenderer.addEffect(EntityColoredSmokeFX.getRainbowSmoke(world, posX, posY, posZ, velX, velY - 0.1D, velZ));
-            mc.effectRenderer.addEffect(EntityColoredSmokeFX.getRainbowSmoke(world, posX, posY - 0.3D, posZ, velX, velY - 0.2D, velZ));
+            mc.effectRenderer.addEffect(EntityColoredSmokeFX.getRainbowSmoke(world, posX, posY - 0.2D, posZ, velX, velY - 0.1D, velZ));
             return;
         }
     }
