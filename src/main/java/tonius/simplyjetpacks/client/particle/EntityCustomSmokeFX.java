@@ -1,14 +1,16 @@
 package tonius.simplyjetpacks.client.particle;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class EntityCustomSmokeFX extends EntitySmokeFX {
+
+    private static Minecraft mc = Minecraft.getMinecraft();
 
     public EntityCustomSmokeFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
         super(world, posX, posY, posZ, velX, velY, velZ);
@@ -16,7 +18,7 @@ public class EntityCustomSmokeFX extends EntitySmokeFX {
 
     @Override
     public int getBrightnessForRender(float p_70013_1_) {
-        return 190 + (int) (20F * (1.0F - FMLClientHandler.instance().getClient().gameSettings.gammaSetting));
+        return 190 + (int) (20F * (1.0F - mc.gameSettings.gammaSetting));
     }
 
     @Override
