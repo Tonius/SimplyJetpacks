@@ -38,7 +38,7 @@ public class ClientProxy extends CommonProxy {
             Vec3 userPos = Vec3.createVectorHelper(wearer.posX, wearer.posY, wearer.posZ);
 
             if (!(wearer.equals(mc.thePlayer))) {
-                userPos.addVector(0, -1.50D, 0);
+                userPos = userPos.addVector(0, 1.6D, 0);
             }
 
             Vec3 vLeft = Vec3.createVectorHelper(-0.28D, -1.0D, -0.38D);
