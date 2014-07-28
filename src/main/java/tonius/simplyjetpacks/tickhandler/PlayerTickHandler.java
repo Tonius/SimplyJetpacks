@@ -31,15 +31,19 @@ public class PlayerTickHandler {
     private static void tickEnd(EntityPlayer player) {
         JetpackParticleType jetpackState = null;
         ItemStack armor = player.getCurrentArmor(2);
+        boolean foundJetpack = false;
         if (armor != null && armor.getItem() instanceof ItemJetpack) {
             Jetpack jetpack = ((ItemJetpack) armor.getItem()).getJetpack(armor);
             if (jetpack != null) {
                 jetpackState = jetpack.particleToShow(armor, (ItemJetpack) armor.getItem(), player);
+                foundJetpack = true;
             }
         }
 
         if (jetpackState != lastJetpackState.get(player.getEntityId())) {
             lastJetpackState.put(player.getEntityId(), jetpackState);
+            PacketHandler.instance.sendToAllAround(new MessageJetpackSync(player.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(player.dimension, player.posX, player.posY, player.posZ, 256));
+        } else if (foundJetpack && player.worldObj.getTotalWorldTime() % 160L == 0) {
             PacketHandler.instance.sendToAllAround(new MessageJetpackSync(player.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(player.dimension, player.posX, player.posY, player.posZ, 256));
         }
 
