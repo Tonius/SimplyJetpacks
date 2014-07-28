@@ -40,7 +40,7 @@ public class PlayerTickHandler {
 
         if (jetpackState != lastJetpackState.get(player.getEntityId())) {
             lastJetpackState.put(player.getEntityId(), jetpackState);
-            PacketHandler.instance.sendToAllAround(new MessageJetpackSync(player.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(player.dimension, player.posX, player.posY, player.posZ, 96));
+            PacketHandler.instance.sendToAllAround(new MessageJetpackSync(player.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(player.dimension, player.posX, player.posY, player.posZ, 256));
         }
 
         if (player.worldObj.getTotalWorldTime() % 200L == 0) {
