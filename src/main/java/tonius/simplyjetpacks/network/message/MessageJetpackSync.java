@@ -41,9 +41,9 @@ public class MessageJetpackSync implements IMessage, IMessageHandler<MessageJetp
         if (entity != null && entity instanceof EntityLivingBase) {
             if (msg.particleId >= 0) {
                 JetpackParticleType particle = JetpackParticleType.values()[msg.particleId];
-                SyncTracker.processJetpackUpdate((EntityLivingBase) entity, particle);
+                SyncTracker.processJetpackUpdate(msg.entityId, particle);
             } else {
-                SyncTracker.processJetpackUpdate((EntityLivingBase) entity, null);
+                SyncTracker.processJetpackUpdate(msg.entityId, null);
             }
         }
         return null;

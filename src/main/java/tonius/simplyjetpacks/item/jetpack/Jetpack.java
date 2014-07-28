@@ -114,7 +114,6 @@ public class Jetpack {
             double hoverSpeed = this.getHoverSpeed(armor, user);
             boolean jumpKeyDown = true;
             double currentAccel = user.motionY < 0.3D ? this.accelVertical * 2.5 : this.accelVertical;
-            boolean showParticles = false;
             if (!force && user instanceof EntityPlayer && !SyncTracker.isJumpKeyDown((EntityPlayer) user)) {
                 jumpKeyDown = false;
             }
@@ -132,10 +131,8 @@ public class Jetpack {
                         } else {
                             user.motionY = Math.min(user.motionY + currentAccel, this.speedVerticalHover);
                         }
-                        showParticles = true;
                     } else {
                         user.motionY = Math.min(user.motionY + currentAccel, -hoverSpeed);
-                        showParticles = !user.worldObj.isRemote ? user.worldObj.getTotalWorldTime() % 2L == 0 : showParticles;
                     }
 
                     if (user instanceof EntityPlayer) {
@@ -157,9 +154,6 @@ public class Jetpack {
                         user.fallDistance = 0.0F;
                         if (user instanceof EntityPlayerMP) {
                             ((EntityPlayerMP) user).playerNetServerHandler.floatingTickCount = 0;
-                        }
-                        if (showParticles) {
-                            this.sendParticlePacket(user, this.getParticleType(armor));
                         }
                     }
                 }
@@ -190,18 +184,16 @@ public class Jetpack {
         }
     }
 
-    public void sendParticlePacket(EntityLivingBase user, JetpackParticleType particle) {
-        // PacketHandler.instance.sendToAllAround(new
-        // MessageJetpackParticles(user.getEntityId(), particle), new
-        // TargetPoint(user.dimension, user.posX, user.posY, user.posZ, 96));
-    }
-
     public boolean isOn(ItemStack itemStack) {
         return StackUtils.getNBT(itemStack).getBoolean("JetpackOn");
     }
 
-    public JetpackParticleType particleToShow(ItemStack itemStack, EntityPlayer player) {
-        if (this.isOn(itemStack) && (SyncTracker.isJumpKeyDown(player) || this.isHoverModeOn(itemStack))) {
+    public JetpackParticleType particleToShow(ItemStack itemStack, ItemJetpack item, EntityLivingBase user) {
+        boolean jumpKeyDown = true;
+        if (user instanceof EntityPlayer && !SyncTracker.isJumpKeyDown((EntityPlayer) user)) {
+            jumpKeyDown = false;
+        }
+        if (this.isOn(itemStack) && item.getEnergyStored(itemStack) > 0 && (jumpKeyDown || (this.isHoverModeOn(itemStack) && !user.onGround && user.motionY < 0))) {
             return this.getParticleType(itemStack);
         }
         return null;

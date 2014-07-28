@@ -68,9 +68,6 @@ public class JetpackPotato extends Jetpack {
             }
             if (jumpKeyDown) {
                 if (this.isTimerSet(jetpack)) {
-                    if (user.getRNG().nextInt(5) == 0) {
-                        this.sendParticlePacket(user, JetpackParticleType.SMOKE);
-                    }
                     this.decrementTimer(jetpack, user);
                 } else {
                     this.setTimer(jetpack, 50);
@@ -85,6 +82,16 @@ public class JetpackPotato extends Jetpack {
 
     @Override
     public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
+    }
+
+    @Override
+    public JetpackParticleType particleToShow(ItemStack itemStack, ItemJetpack item, EntityLivingBase user) {
+        if (!this.isFired(itemStack) && (!(user instanceof EntityPlayer) || SyncTracker.isJumpKeyDown((EntityPlayer) user))) {
+            return user.getRNG().nextInt(5) == 0 ? JetpackParticleType.SMOKE : null;
+        } else if (this.isFired(itemStack)) {
+            return this.getParticleType(itemStack);
+        }
+        return null;
     }
 
     @Override

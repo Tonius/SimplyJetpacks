@@ -3,7 +3,6 @@ package tonius.simplyjetpacks;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 
@@ -16,7 +15,7 @@ public class SyncTracker {
     private static Map<EntityPlayer, Boolean> leftKeyState = new HashMap<EntityPlayer, Boolean>();
     private static Map<EntityPlayer, Boolean> rightKeyState = new HashMap<EntityPlayer, Boolean>();
 
-    private static Map<EntityLivingBase, JetpackParticleType> jetpackState = new HashMap<EntityLivingBase, JetpackParticleType>();
+    private static Map<Integer, JetpackParticleType> jetpackState = new HashMap<Integer, JetpackParticleType>();
 
     public static boolean isJumpKeyDown(EntityPlayer player) {
         return jumpKeyState.containsKey(player) && jumpKeyState.get(player);
@@ -46,12 +45,16 @@ public class SyncTracker {
         rightKeyState.put(player, keyRight);
     }
 
-    public static void processJetpackUpdate(EntityLivingBase entityLiving, JetpackParticleType particleType) {
-        jetpackState.put(entityLiving, particleType);
+    public static void processJetpackUpdate(int entityId, JetpackParticleType particleType) {
+        if (particleType != null) {
+            jetpackState.put(entityId, particleType);
+        } else {
+            jetpackState.remove(entityId);
+        }
     }
 
-    public static JetpackParticleType isJetpackOn(EntityLivingBase entityLiving) {
-        return jetpackState.get(entityLiving);
+    public static Map<Integer, JetpackParticleType> getJetpackStates() {
+        return jetpackState;
     }
 
 }

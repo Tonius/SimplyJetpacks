@@ -3,16 +3,16 @@ package tonius.simplyjetpacks.client;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.tickhandler.ClientTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.HUDTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.KeyHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
-import tonius.simplyjetpacks.util.Vector3;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,50 +33,35 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void showJetpackParticles(int entityId, int particleId) {
-        World world = mc.theWorld;
-        JetpackParticleType particle = JetpackParticleType.values()[particleId];
-        if (world != null && particle != null) {
-            Entity entity = world.getEntityByID(entityId);
-            if (entity != null && entity instanceof EntityLivingBase) {
-                EntityLivingBase wearer = (EntityLivingBase) entity;
-                Vector3 playerPos = new Vector3(wearer);
+    public void showJetpackParticles(World world, EntityLivingBase wearer, JetpackParticleType particle) {
+        if (SJConfig.enableJetpackParticles) {
+            Vec3 userPos = Vec3.createVectorHelper(wearer.posX, wearer.posY, wearer.posZ);
 
-                if (!(wearer.equals(mc.thePlayer))) {
-                    playerPos.translate(new Vector3(0, 1.50, 0));
-                }
-
-                Vector3 vLeft = new Vector3();
-                vLeft.z -= 0.38;
-                vLeft.x -= 0.28;
-                vLeft.rotate(wearer.renderYawOffset);
-                vLeft.y -= 1.0;
-
-                Vector3 vRight = new Vector3();
-                vRight.z -= 0.38;
-                vRight.x += 0.28;
-                vRight.rotate(wearer.renderYawOffset);
-                vRight.y -= 1.0;
-
-                Vector3 vCenter = new Vector3();
-                vCenter.z -= 0.30;
-                vCenter.x = (rand.nextFloat() - 0.5F) * 0.25F;
-                vCenter.rotate(wearer.renderYawOffset);
-                vCenter.y -= 1.05;
-
-                vLeft = Vector3.translate(vLeft.clone(), new Vector3(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D));
-                vRight = Vector3.translate(vRight.clone(), new Vector3(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D));
-                vCenter = Vector3.translate(vCenter.clone(), new Vector3(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D));
-
-                Vector3 v = new Vector3(playerPos).translate(vLeft);
-                ParticleUtils.spawnParticle(particle, world, v.x, v.y, v.z, 0, -0.2, 0);
-
-                v = new Vector3(playerPos).translate(vRight);
-                ParticleUtils.spawnParticle(particle, world, v.x, v.y, v.z, 0, -0.2, 0);
-
-                v = new Vector3(playerPos).translate(vCenter);
-                ParticleUtils.spawnParticle(particle, world, v.x, v.y, v.z, 0, -0.2, 0);
+            if (!(wearer.equals(mc.thePlayer))) {
+                userPos.addVector(0, 1.50D, 0);
             }
+
+            Vec3 vLeft = Vec3.createVectorHelper(-0.28D, -1.0D, -0.38D);
+            vLeft.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
+
+            Vec3 vRight = Vec3.createVectorHelper(0.28D, -1.0D, -0.38D);
+            vRight.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
+
+            Vec3 vCenter = Vec3.createVectorHelper((rand.nextFloat() - 0.5F) * 0.25F, -1.0D, -0.38D);
+            vCenter.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
+
+            vLeft = vLeft.addVector(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D);
+            vRight = vRight.addVector(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D);
+            vCenter = vCenter.addVector(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D);
+
+            Vec3 v = userPos.addVector(vLeft.xCoord, vLeft.yCoord, vLeft.zCoord);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
+
+            v = userPos.addVector(vRight.xCoord, vRight.yCoord, vRight.zCoord);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
+
+            v = userPos.addVector(vCenter.xCoord, vCenter.yCoord, vCenter.zCoord);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
         }
     }
 
