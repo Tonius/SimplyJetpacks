@@ -7,6 +7,7 @@ import java.util.Map;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -25,6 +26,7 @@ public class Jetpack {
 
     public int tier;
     public boolean enchantable;
+    public EnumRarity rarity;
     public int energyCapacity;
     public int energyPerTick;
     public double speedVertical;
@@ -35,9 +37,10 @@ public class Jetpack {
     public double speedVerticalHoverSlow;
     public boolean emergencyHoverMode;
 
-    public Jetpack(int meta, int tier, boolean enchantable, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode) {
+    public Jetpack(int meta, int tier, boolean enchantable, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode) {
         this.tier = tier;
         this.enchantable = enchantable;
+        this.rarity = rarity;
         this.energyCapacity = energyCapacity;
         this.energyPerTick = energyPerTick;
         this.speedVertical = speedVertical;
@@ -68,14 +71,14 @@ public class Jetpack {
 
     public static void reconstructJetpacks() {
         new JetpackPotato(0, 0, SJConfig.tuberousEnergyCapacity, SJConfig.tuberousEnergyPerTick, SJConfig.tuberousSpeedVertical, SJConfig.tuberousAccelVertical);
-        new Jetpack(1, 1, SJConfig.leadstoneEnchantable, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode);
-        new Jetpack(2, 2, SJConfig.hardenedEnchantable, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode);
-        new Jetpack(3, 3, SJConfig.reinforcedEnchantable, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode);
-        new Jetpack(4, 4, SJConfig.resonantEnchantable, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode);
-        new JetpackArmored(101, 1, SJConfig.leadstoneEnchantable, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode, SJConfig.leadstoneArmorDisplay, SJConfig.leadstoneArmorAbsorption, SJConfig.leadstoneArmorEnergyPerHit);
-        new JetpackArmored(102, 2, SJConfig.hardenedEnchantable, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode, SJConfig.hardenedArmorDisplay, SJConfig.hardenedArmorAbsorption, SJConfig.hardenedArmorEnergyPerHit);
-        new JetpackArmored(103, 3, SJConfig.reinforcedEnchantable, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode, SJConfig.reinforcedArmorDisplay, SJConfig.reinforcedArmorAbsorption, SJConfig.reinforcedArmorEnergyPerHit);
-        new JetpackArmored(104, 4, SJConfig.resonantEnchantable, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode, SJConfig.resonantArmorDisplay, SJConfig.resonantArmorAbsorption, SJConfig.resonantArmorEnergyPerHit);
+        new Jetpack(1, 1, SJConfig.leadstoneEnchantable, EnumRarity.common, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode);
+        new Jetpack(2, 2, SJConfig.hardenedEnchantable, EnumRarity.common, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode);
+        new Jetpack(3, 3, SJConfig.reinforcedEnchantable, EnumRarity.uncommon, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode);
+        new Jetpack(4, 4, SJConfig.resonantEnchantable, EnumRarity.rare, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode);
+        new JetpackArmored(101, 1, SJConfig.leadstoneEnchantable, EnumRarity.common, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode, SJConfig.leadstoneArmorDisplay, SJConfig.leadstoneArmorAbsorption, SJConfig.leadstoneArmorEnergyPerHit);
+        new JetpackArmored(102, 2, SJConfig.hardenedEnchantable, EnumRarity.common, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode, SJConfig.hardenedArmorDisplay, SJConfig.hardenedArmorAbsorption, SJConfig.hardenedArmorEnergyPerHit);
+        new JetpackArmored(103, 3, SJConfig.reinforcedEnchantable, EnumRarity.uncommon, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode, SJConfig.reinforcedArmorDisplay, SJConfig.reinforcedArmorAbsorption, SJConfig.reinforcedArmorEnergyPerHit);
+        new JetpackArmored(104, 4, SJConfig.resonantEnchantable, EnumRarity.rare, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode, SJConfig.resonantArmorDisplay, SJConfig.resonantArmorAbsorption, SJConfig.resonantArmorEnergyPerHit);
         new JetpackCreative(9001, SJConfig.creativeEnchantable, SJConfig.creativeSpeedVertical, SJConfig.creativeAccelVertical, (float) SJConfig.creativeSpeedSideways, SJConfig.creativeSpeedVerticalHover, SJConfig.creativeSpeedVerticalHoverSlow, SJConfig.creativeEmergencyHoverMode, SJConfig.creativeArmorDisplay, SJConfig.creativeArmorAbsorption, 0);
         new JetpackIcon(9002);
     }
@@ -242,6 +245,8 @@ public class Jetpack {
             list.add(StringUtils.getHoverModeText(this.isHoverModeOn(itemStack)));
             int currentTickEnergy = this.isHoverModeOn(itemStack) ? this.energyPerTickHover : this.energyPerTick;
             list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
+            list.add(StringUtils.getArmoredText(this.isArmored()));
+            list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
             if (this.hasArmoredVersion() && SJConfig.enableCraftingArmorPlating) {

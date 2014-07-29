@@ -6,6 +6,7 @@ import java.util.Map;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -52,14 +53,13 @@ public class ItemMeta extends Item {
         return super.getUnlocalizedName();
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
+    public EnumRarity getRarity(ItemStack itemStack) {
         MetaItem metaItem = this.getMetaItem(itemStack);
         if (metaItem != null) {
-            return metaItem.colorPrefix + super.getItemStackDisplayName(itemStack);
+            return metaItem.rarity;
         }
-        return super.getItemStackDisplayName(itemStack);
+        return super.getRarity(itemStack);
     }
 
     @SideOnly(Side.CLIENT)

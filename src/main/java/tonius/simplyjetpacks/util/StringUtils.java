@@ -7,6 +7,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.input.Keyboard;
 
 import tonius.simplyjetpacks.config.SJConfig;
+import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 
 public final class StringUtils {
 
@@ -73,23 +74,33 @@ public final class StringUtils {
 
     public static String getChargeText(boolean infinite, int charge, int total) {
         if (infinite) {
-            return LIGHT_GRAY + translate("tooltip.charge.infinite");
+            return LIGHT_GRAY + translate("tooltip.jetpack.charge.infinite");
         }
         return LIGHT_GRAY + getFormattedNumber(charge) + " / " + getFormattedNumber(total) + " RF";
     }
 
     public static String getStateText(boolean state) {
-        String onOrOff = state ? BRIGHT_GREEN + translate("tooltip.state.on") : LIGHT_RED + translate("tooltip.state.off");
-        return ORANGE + translate("tooltip.state") + ": " + onOrOff;
+        String onOrOff = state ? BRIGHT_GREEN + translate("tooltip.on") : LIGHT_RED + translate("tooltip.off");
+        return ORANGE + translate("tooltip.jetpack.state") + ": " + onOrOff;
     }
 
     public static String getHoverModeText(boolean state) {
-        String enabledOrDisabled = state ? BRIGHT_GREEN + translate("tooltip.jetpack.hoverMode.enabled") : LIGHT_RED + translate("tooltip.jetpack.hoverMode.disabled");
+        String enabledOrDisabled = state ? BRIGHT_GREEN + translate("tooltip.enabled") : LIGHT_RED + translate("tooltip.disabled");
         return ORANGE + translate("tooltip.jetpack.hoverMode") + ": " + enabledOrDisabled;
     }
 
     public static String getEnergyUsageText(int usage) {
-        return ORANGE + translate("tooltip.energyUsage") + ": " + LIGHT_GRAY + usage + " RF/t";
+        String usageText = usage > 0 ? usage + " RF/t" : translate("tooltip.jetpack.energyUsage.none");
+        return ORANGE + translate("tooltip.jetpack.energyUsage") + ": " + LIGHT_GRAY + usageText;
+    }
+
+    public static String getArmoredText(boolean armored) {
+        String yesOrNo = armored ? BRIGHT_GREEN + translate("tooltip.yes") : LIGHT_RED + translate("tooltip.no");
+        return ORANGE + translate("tooltip.jetpack.armored") + ": " + yesOrNo;
+    }
+
+    public static String getParticlesText(JetpackParticleType particle) {
+        return ORANGE + translate("tooltip.jetpack.particles") + ": " + LIGHT_GRAY + translate("tooltip.jetpack.particles." + particle.ordinal());
     }
 
     public static String getArmorText(boolean isArmored) {

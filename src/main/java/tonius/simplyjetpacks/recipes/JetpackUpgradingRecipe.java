@@ -2,7 +2,7 @@ package tonius.simplyjetpacks.recipes;
 
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
@@ -24,20 +24,18 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
 
     @Override
     public ItemStack getCraftingResult(InventoryCrafting inventoryCrafting) {
-        int resultEnergy = 0;
+        int addedEnergy = 0;
         JetpackParticleType particleType = null;
-        NBTTagList enchants = null;
+        NBTTagCompound tags = null;
 
         ItemStack slotStack;
         for (int i = 0; i < inventoryCrafting.getSizeInventory(); i++) {
             slotStack = inventoryCrafting.getStackInSlot(i);
             if (slotStack != null) {
                 if (slotStack.getItem() instanceof ItemJetpack) {
-                    particleType = resultItem.getJetpack(slotStack).getParticleType(slotStack);
-                    enchants = slotStack.getEnchantmentTagList();
-                }
-                if (slotStack.getItem() instanceof IEnergyContainerItem) {
-                    resultEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
+                    tags = StackUtils.getNBT(slotStack);
+                } else if (slotStack.getItem() instanceof IEnergyContainerItem) {
+                    addedEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
                 } else if (slotStack.getItem() == SJItems.particleCustomizers) {
                     particleType = JetpackParticleType.values()[slotStack.getItemDamage()];
                 }
@@ -45,17 +43,18 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
         }
 
         ItemStack result = new ItemStack(resultItem, 1, this.resultMeta);
-        resultItem.receiveEnergy(result, resultEnergy, false);
+
+        if (tags != null) {
+            result.setTagCompound(tags);
+        }
+
+        resultItem.receiveEnergy(result, addedEnergy, false);
 
         if (particleType != null) {
             resultItem.getJetpack(result).setParticleType(result, particleType);
         }
 
-        if (enchants != null) {
-            StackUtils.getNBT(result).setTag("ench", enchants);
-        }
-
-        return result.copy();
+        return result;
     }
 
 }

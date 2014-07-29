@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -17,7 +18,6 @@ import tonius.simplyjetpacks.item.ItemMeta;
 import tonius.simplyjetpacks.item.MetaItem;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
-import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SJItems {
@@ -50,23 +50,23 @@ public class SJItems {
         String[] leatherStrapTooltips = new String[2];
         leatherStrapTooltips[0] = "tooltip.leatherStrap.description.1";
         leatherStrapTooltips[1] = "tooltip.leatherStrap.description.2";
-        componentsMap.put(0, new MetaItem("leatherStrap", null, leatherStrapTooltips));
+        componentsMap.put(0, new MetaItem("leatherStrap", leatherStrapTooltips, EnumRarity.common));
 
         String[] thrusterTooltips = new String[2];
         thrusterTooltips[0] = "tooltip.thruster.description.1";
         thrusterTooltips[1] = "tooltip.thruster.description.2";
-        componentsMap.put(11, new MetaItem("thruster.1", null, thrusterTooltips));
-        componentsMap.put(12, new MetaItem("thruster.2", null, thrusterTooltips));
-        componentsMap.put(13, new MetaItem("thruster.3", StringUtils.YELLOW, thrusterTooltips));
-        componentsMap.put(14, new MetaItem("thruster.4", StringUtils.BRIGHT_BLUE, thrusterTooltips));
+        componentsMap.put(11, new MetaItem("thruster.1", thrusterTooltips, EnumRarity.common));
+        componentsMap.put(12, new MetaItem("thruster.2", thrusterTooltips, EnumRarity.common));
+        componentsMap.put(13, new MetaItem("thruster.3", thrusterTooltips, EnumRarity.uncommon));
+        componentsMap.put(14, new MetaItem("thruster.4", thrusterTooltips, EnumRarity.rare));
 
         String[] armorPlatingTooltips = new String[2];
         armorPlatingTooltips[0] = "tooltip.armorPlating.description.1";
         armorPlatingTooltips[1] = "tooltip.armorPlating.description.2";
-        componentsMap.put(121, new MetaItem("armorPlating.1", null, armorPlatingTooltips));
-        componentsMap.put(122, new MetaItem("armorPlating.2", null, armorPlatingTooltips));
-        componentsMap.put(123, new MetaItem("armorPlating.3", null, armorPlatingTooltips));
-        componentsMap.put(124, new MetaItem("armorPlating.4", StringUtils.BRIGHT_BLUE, armorPlatingTooltips));
+        componentsMap.put(121, new MetaItem("armorPlating.1", armorPlatingTooltips, EnumRarity.common));
+        componentsMap.put(122, new MetaItem("armorPlating.2", armorPlatingTooltips, EnumRarity.common));
+        componentsMap.put(123, new MetaItem("armorPlating.3", armorPlatingTooltips, EnumRarity.common));
+        componentsMap.put(124, new MetaItem("armorPlating.4", armorPlatingTooltips, EnumRarity.rare));
 
         components = new ItemMeta(componentsMap, "components");
 
@@ -74,10 +74,10 @@ public class SJItems {
         String[] particlesTooltips = new String[2];
         particlesTooltips[0] = "tooltip.particleCustomizers.description.1";
         particlesTooltips[1] = "tooltip.particleCustomizers.description.2";
-        particlesMap.put(0, new MetaItem("particle.0", null, particlesTooltips));
-        particlesMap.put(1, new MetaItem("particle.1", null, particlesTooltips));
-        particlesMap.put(2, new MetaItem("particle.2", null, particlesTooltips));
-        particlesMap.put(3, new MetaItem("particle.3", null, particlesTooltips));
+        particlesMap.put(0, new MetaItem("particle.0", particlesTooltips, EnumRarity.common));
+        particlesMap.put(1, new MetaItem("particle.1", particlesTooltips, EnumRarity.common));
+        particlesMap.put(2, new MetaItem("particle.2", particlesTooltips, EnumRarity.common));
+        particlesMap.put(3, new MetaItem("particle.3", particlesTooltips, EnumRarity.common));
         particleCustomizers = new ItemMeta(particlesMap, "particleCustomizers");
     }
 

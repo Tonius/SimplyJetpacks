@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -21,7 +22,6 @@ import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.util.StackUtils;
-import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -78,28 +78,20 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
-        Jetpack jetpack = this.getJetpack(itemStack);
-        if (jetpack != null) {
-            switch (jetpack.tier) {
-            case 3:
-                return StringUtils.YELLOW + super.getItemStackDisplayName(itemStack);
-            case 4:
-                return StringUtils.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
-            case 9001:
-                return StringUtils.PINK + super.getItemStackDisplayName(itemStack);
-            }
-        }
-        return super.getItemStackDisplayName(itemStack);
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
             jetpack.addInformation(itemStack, player, list, this.getEnergyStored(itemStack));
         }
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack itemStack) {
+        Jetpack jetpack = this.getJetpack(itemStack);
+        if (jetpack != null) {
+            return jetpack.rarity;
+        }
+        return super.getRarity(itemStack);
     }
 
     @Override

@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.item.ItemJetpack;
@@ -18,7 +19,7 @@ import tonius.simplyjetpacks.util.StringUtils;
 public class JetpackPotato extends Jetpack {
 
     public JetpackPotato(int meta, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical) {
-        super(meta, tier, false, energyCapacity, energyPerTick, speedVertical, accelVertical, 0, 0, 0, false);
+        super(meta, tier, false, EnumRarity.common, energyCapacity, energyPerTick, speedVertical, accelVertical, 0, 0, 0, false);
     }
 
     @Override
@@ -35,7 +36,8 @@ public class JetpackPotato extends Jetpack {
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, int energyStored) {
         list.add(StringUtils.getChargeText(false, energyStored, this.energyCapacity));
         if (StringUtils.canShowDetails()) {
-            list.add(StringUtils.getEnergyUsageText(this.energyCapacity));
+            list.add(StringUtils.getEnergyUsageText(this.energyPerTick));
+            list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
             list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
