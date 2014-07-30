@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -85,9 +85,9 @@ public class FireworksGenerator {
 
             fireworksTag.setByte("Flight", (byte) this.flight);
             fireworksTag.setTag("Explosions", explosionsList);
-            tags.setCompoundTag("Fireworks", fireworksTag);
+            tags.setTag("Fireworks", fireworksTag);
 
-            ItemStack stack = new ItemStack(Item.firework);
+            ItemStack stack = new ItemStack(Items.fireworks);
             stack.setTagCompound(tags);
             return stack;
         }

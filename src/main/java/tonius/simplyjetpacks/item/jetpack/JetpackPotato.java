@@ -6,48 +6,51 @@ import java.util.Random;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import tonius.simplyjetpacks.KeyboardTracker;
-import tonius.simplyjetpacks.config.MainConfig;
+import tonius.simplyjetpacks.SyncTracker;
+import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.DamageSourcePotatoJetpack;
 import tonius.simplyjetpacks.util.FireworksGenerator;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemPotatoJetpack extends ItemJetpack {
+public class JetpackPotato extends Jetpack {
 
-    public ItemPotatoJetpack(int id, EnumArmorMaterial material, String name, int maxEnergy, int maxInput, int jetpackTier, int tickEnergy, double maxSpeed, double acceleration, double forwardThrust, double hoverModeIdleSpeed, double hoverModeActiveSpeed) {
-        super(id, material, name, maxEnergy, maxInput, jetpackTier, tickEnergy, maxSpeed, acceleration, forwardThrust, hoverModeIdleSpeed, hoverModeActiveSpeed);
+    public JetpackPotato(int meta, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical) {
+        super(meta, tier, false, EnumRarity.common, energyCapacity, energyPerTick, speedVertical, accelVertical, 0, 0, 0, false);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
+    public boolean hasEmptyItem() {
+        return false;
+    }
+
+    @Override
+    public boolean hasArmoredVersion() {
+        return false;
+    }
+
+    @Override
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, int energyStored) {
+        list.add(StringUtils.getChargeText(false, energyStored, this.energyCapacity));
         if (StringUtils.canShowDetails()) {
-            list.add(StringUtils.getChargeText(false, this.getEnergyStored(itemStack), this.getMaxEnergyStored(itemStack)));
-            list.add(StringUtils.getEnergyUsageText(this.tickEnergy));
-            if (!MainConfig.hideJetpackTier0Warning) {
-                list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.1"));
-                list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpackPotato.description.2"));
-                list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
-            } else {
-                list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
-                list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-            }
+            list.add(StringUtils.getEnergyUsageText(this.energyPerTick));
+            list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
+            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
+            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
+            list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
         } else {
             list.add(StringUtils.getShiftText());
         }
     }
 
     @Override
-    public void useJetpack(EntityLivingBase user, ItemStack jetpack, boolean force) {
+    public void useJetpack(EntityLivingBase user, ItemStack jetpack, ItemJetpack item, boolean force) {
         if (this.isFired(jetpack)) {
-            super.useJetpack(user, jetpack, true);
-            if (this.getEnergyStored(jetpack) == 0) {
+            super.useJetpack(user, jetpack, item, true);
+            if (item.getEnergyStored(jetpack) == 0) {
                 user.setCurrentItemOrArmor(3, null);
                 if (!user.worldObj.isRemote) {
                     Random rand = new Random();
@@ -57,19 +60,16 @@ public class ItemPotatoJetpack extends ItemJetpack {
                         user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
                     }
                     user.attackEntityFrom(DamageSourcePotatoJetpack.causeJetpackPotatoDamage(user), 20.0F);
-                    user.dropItem(Item.bakedPotato.itemID, 1);
+                    user.dropItem(Items.baked_potato, 1);
                 }
             }
         } else {
             boolean jumpKeyDown = true;
-            if (!force && user instanceof EntityPlayer && !KeyboardTracker.isJumpKeyDown((EntityPlayer) user)) {
+            if (!force && user instanceof EntityPlayer && !SyncTracker.isJumpKeyDown((EntityPlayer) user)) {
                 jumpKeyDown = false;
             }
             if (jumpKeyDown) {
                 if (this.isTimerSet(jetpack)) {
-                    if (user.getRNG().nextInt(5) == 0) {
-                        this.sendParticlePacket(user, 2);
-                    }
                     this.decrementTimer(jetpack, user);
                 } else {
                     this.setTimer(jetpack, 50);
@@ -87,12 +87,22 @@ public class ItemPotatoJetpack extends ItemJetpack {
     }
 
     @Override
+    public JetpackParticleType particleToShow(ItemStack itemStack, ItemJetpack item, EntityLivingBase user) {
+        if (!this.isFired(itemStack) && (!(user instanceof EntityPlayer) || SyncTracker.isJumpKeyDown((EntityPlayer) user))) {
+            return user.getRNG().nextInt(5) == 0 ? JetpackParticleType.SMOKE : null;
+        } else if (this.isFired(itemStack)) {
+            return this.getParticleType(itemStack);
+        }
+        return null;
+    }
+
+    @Override
     public boolean isOn(ItemStack itemStack) {
         return true;
     }
 
     @Override
-    public boolean isHoverModeActive(ItemStack itemStack) {
+    public boolean isHoverModeOn(ItemStack itemStack) {
         return false;
     }
 

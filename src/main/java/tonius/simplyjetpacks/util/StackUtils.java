@@ -12,11 +12,4 @@ public class StackUtils {
         return itemStack.stackTagCompound;
     }
 
-    public static ItemStack decrementStack(ItemStack itemStack) {
-        if (--itemStack.stackSize <= 0) {
-            itemStack = null;
-        }
-        return itemStack;
-    }
-
 }

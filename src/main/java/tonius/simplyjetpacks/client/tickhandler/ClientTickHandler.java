@@ -1,56 +1,77 @@
 package tonius.simplyjetpacks.client.tickhandler;
 
-import java.util.EnumSet;
+import java.util.Iterator;
 
 import net.minecraft.client.Minecraft;
-import tonius.simplyjetpacks.KeyboardTracker;
-import tonius.simplyjetpacks.PacketHandler;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.TickType;
+import tonius.simplyjetpacks.SyncTracker;
+import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.network.PacketHandler;
+import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ClientTickHandler implements ITickHandler {
+@SideOnly(Side.CLIENT)
+public class ClientTickHandler {
 
     private static Minecraft mc = Minecraft.getMinecraft();
+
     private static boolean lastJumpState = false;
     private static boolean lastForwardState = false;
     private static boolean lastBackwardState = false;
     private static boolean lastLeftState = false;
     private static boolean lastRightState = false;
 
-    @Override
-    public void tickStart(EnumSet type, Object... tickData) {
-        if (mc.thePlayer != null) {
-            boolean jumpState = mc.gameSettings.keyBindJump.pressed;
-            boolean forwardState = mc.gameSettings.keyBindForward.pressed;
-            boolean backwardState = mc.gameSettings.keyBindBack.pressed;
-            boolean leftState = mc.gameSettings.keyBindLeft.pressed;
-            boolean rightState = mc.gameSettings.keyBindRight.pressed;
-
-            if (jumpState != lastJumpState || forwardState != lastForwardState || backwardState != lastBackwardState || leftState != lastLeftState || rightState != lastRightState) {
-                lastJumpState = jumpState;
-                lastForwardState = forwardState;
-                lastBackwardState = backwardState;
-                lastLeftState = leftState;
-                lastRightState = rightState;
-                SimplyJetpacks.proxy.sendPacketToServer(PacketHandler.KEY_STATE, jumpState, forwardState, backwardState, leftState, rightState);
-                KeyboardTracker.processKeyUpdate(mc.thePlayer, jumpState, forwardState, backwardState, leftState, rightState);
+    @SubscribeEvent
+    public void onClientTick(ClientTickEvent evt) {
+        if (mc.thePlayer != null && !mc.isGamePaused()) {
+            if (evt.phase == Phase.START) {
+                tickStart();
+            } else {
+                tickEnd();
             }
         }
     }
 
-    @Override
-    public void tickEnd(EnumSet type, Object... tickData) {
+    private static void tickStart() {
+        boolean jumpState = mc.gameSettings.keyBindJump.getIsKeyPressed();
+        boolean forwardState = mc.gameSettings.keyBindForward.getIsKeyPressed();
+        boolean backwardState = mc.gameSettings.keyBindBack.getIsKeyPressed();
+        boolean leftState = mc.gameSettings.keyBindLeft.getIsKeyPressed();
+        boolean rightState = mc.gameSettings.keyBindRight.getIsKeyPressed();
+
+        if (jumpState != lastJumpState || forwardState != lastForwardState || backwardState != lastBackwardState || leftState != lastLeftState || rightState != lastRightState) {
+            lastJumpState = jumpState;
+            lastForwardState = forwardState;
+            lastBackwardState = backwardState;
+            lastLeftState = leftState;
+            lastRightState = rightState;
+            PacketHandler.instance.sendToServer(new MessageKeyboardSync(jumpState, forwardState, backwardState, leftState, rightState));
+            SyncTracker.processKeyUpdate(mc.thePlayer, jumpState, forwardState, backwardState, leftState, rightState);
+        }
     }
 
-    @Override
-    public EnumSet ticks() {
-        return EnumSet.of(TickType.CLIENT);
+    private static void tickEnd() {
+        Iterator<Integer> itr = SyncTracker.getJetpackStates().keySet().iterator();
+        int currentEntity;
+        while (itr.hasNext()) {
+            currentEntity = itr.next();
+            Entity entity = mc.theWorld.getEntityByID(currentEntity);
+            if (entity == null || !(entity instanceof EntityLivingBase)) {
+                itr.remove();
+            } else {
+                JetpackParticleType particle = SyncTracker.getJetpackStates().get(currentEntity);
+                if (particle != null) {
+                    SimplyJetpacks.proxy.showJetpackParticles(mc.theWorld, (EntityLivingBase) entity, particle);
+                } else {
+                    itr.remove();
+                }
+            }
+        }
     }
-
-    @Override
-    public String getLabel() {
-        return "SJClient";
-    }
-
 }
