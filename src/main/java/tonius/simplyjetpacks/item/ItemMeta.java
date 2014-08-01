@@ -1,5 +1,6 @@
 package tonius.simplyjetpacks.item;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,29 +11,22 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.util.StringUtils;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMeta extends Item {
 
-    protected final Map<Integer, MetaItem> metaItems;
-    protected final int highestMeta;
+    protected Map<Integer, MetaItem> metaItems = new HashMap<Integer, MetaItem>();
+    protected int highestMeta = 0;
     protected final String fallbackName;
-    protected IIcon[] icons = null;
+    protected Map<Integer, IIcon> icons = new HashMap<Integer, IIcon>();
 
-    public ItemMeta(Map<Integer, MetaItem> names, String fallbackName) {
-        this.metaItems = names;
-        int highestMeta = 0;
-        for (int i : names.keySet()) {
-            if (i > highestMeta) {
-                highestMeta = i;
-            }
-        }
-        this.highestMeta = highestMeta;
+    public ItemMeta(String fallbackName) {
         this.fallbackName = fallbackName;
-        this.icons = new IIcon[highestMeta + 1];
 
         this.setUnlocalizedName("simplyjetpacks." + fallbackName);
         this.setHasSubtypes(true);
@@ -42,6 +36,24 @@ public class ItemMeta extends Item {
 
     public MetaItem getMetaItem(ItemStack itemStack) {
         return this.metaItems.get(itemStack.getItemDamage());
+    }
+
+    public ItemStack addMetaItem(int index, MetaItem item, boolean registerCustomItemStack, boolean registerOreDict) {
+        if (item == null)
+            return null;
+
+        this.metaItems.put(index, item);
+        ItemStack itemStack = new ItemStack(this, 1, index);
+
+        if (index > this.highestMeta)
+            this.highestMeta = index;
+
+        if (registerCustomItemStack)
+            GameRegistry.registerCustomItemStack(item.name, itemStack);
+        if (registerOreDict)
+            OreDictionary.registerOre(item.name, itemStack);
+
+        return itemStack;
     }
 
     @Override
@@ -93,7 +105,7 @@ public class ItemMeta extends Item {
         for (int i = 0; i <= this.highestMeta; i++) {
             MetaItem metaItem = this.metaItems.get(i);
             if (metaItem != null) {
-                this.icons[i] = register.registerIcon("simplyjetpacks:" + metaItem.name);
+                this.icons.put(i, register.registerIcon("simplyjetpacks:" + metaItem.name));
             }
         }
     }
@@ -101,7 +113,21 @@ public class ItemMeta extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int damage) {
-        return damage < this.icons.length ? this.icons[damage] : null;
+        return this.icons.get(damage);
+    }
+
+    public static class MetaItem {
+
+        public String name;
+        public String[] tooltipLines;
+        public EnumRarity rarity;
+
+        public MetaItem(String name, String[] tooltipLines, EnumRarity rarity) {
+            this.name = name;
+            this.tooltipLines = tooltipLines != null ? tooltipLines : new String[0];
+            this.rarity = rarity;
+        }
+
     }
 
 }

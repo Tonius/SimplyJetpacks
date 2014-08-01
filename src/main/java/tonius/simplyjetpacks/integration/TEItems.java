@@ -34,6 +34,7 @@ public class TEItems {
             dynamoSteam = GameRegistry.findItemStack("ThermalExpansion", "dynamoSteam", 1);
             pneumaticServo = GameRegistry.findItemStack("ThermalExpansion", "pneumaticServo", 1);
             powerCoilGold = GameRegistry.findItemStack("ThermalExpansion", "powerCoilGold", 1);
+
             return true;
         }
         return false;

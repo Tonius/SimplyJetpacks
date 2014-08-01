@@ -12,7 +12,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "after:ThermalExpansion", guiFactory = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ")
+@Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "after:ThermalExpansion;after:RedstoneArsenal", guiFactory = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ")
 public class SimplyJetpacks {
 
     @Instance("simplyjetpacks")
