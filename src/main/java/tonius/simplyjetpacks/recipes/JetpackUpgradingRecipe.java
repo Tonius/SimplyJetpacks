@@ -45,7 +45,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
         ItemStack result = new ItemStack(resultItem, 1, this.resultMeta);
 
         if (tags != null) {
-            result.setTagCompound(tags);
+            result.setTagCompound((NBTTagCompound) tags.copy());
         }
 
         resultItem.receiveEnergy(result, addedEnergy, false);

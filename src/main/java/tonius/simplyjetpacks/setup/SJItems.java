@@ -33,6 +33,7 @@ public class SJItems {
     public static ItemStack jetpackReinforcedArmored = null;
     public static ItemStack jetpackResonant = null;
     public static ItemStack jetpackResonantArmored = null;
+    public static ItemStack jetpackFluxPlate = null;
     public static ItemStack jetpackCreative = null;
 
     public static ItemStack leatherStrap = null;
@@ -40,6 +41,7 @@ public class SJItems {
     public static ItemStack thrusterHardened = null;
     public static ItemStack thrusterReinforced = null;
     public static ItemStack thrusterResonant = null;
+    public static ItemStack thrusterEnergetic = null;
     public static ItemStack armorPlatingIron = null;
     public static ItemStack armorPlatingTinkersAlloy = null;
     public static ItemStack armorPlatingInvar = null;
@@ -82,6 +84,7 @@ public class SJItems {
         jetpackReinforcedArmored = new ItemStack(jetpacks, 1, 103);
         jetpackResonant = new ItemStack(jetpacks, 1, 4);
         jetpackResonantArmored = new ItemStack(jetpacks, 1, 104);
+        jetpackFluxPlate = new ItemStack(jetpacks, 1, 5);
         jetpackCreative = new ItemStack(jetpacks, 1, 9001);
 
         String[] leatherStrapTooltips = new String[2];
@@ -96,6 +99,7 @@ public class SJItems {
         thrusterHardened = components.addMetaItem(12, new MetaItem("thruster.2", thrusterTooltips, EnumRarity.common), true, false);
         thrusterReinforced = components.addMetaItem(13, new MetaItem("thruster.3", thrusterTooltips, EnumRarity.uncommon), true, false);
         thrusterResonant = components.addMetaItem(14, new MetaItem("thruster.4", thrusterTooltips, EnumRarity.rare), true, false);
+        thrusterEnergetic = components.addMetaItem(15, new MetaItem("thruster.5", thrusterTooltips, EnumRarity.epic), true, false);
 
         String[] armorPlatingTooltips = new String[2];
         armorPlatingTooltips[0] = "tooltip.armorPlating.description.1";
@@ -130,6 +134,7 @@ public class SJItems {
         GameRegistry.registerCustomItemStack("jetpack.3.armored", jetpackReinforcedArmored);
         GameRegistry.registerCustomItemStack("jetpack.4", jetpackResonant);
         GameRegistry.registerCustomItemStack("jetpack.4.armored", jetpackResonantArmored);
+        GameRegistry.registerCustomItemStack("jetpack.5", jetpackFluxPlate);
     }
 
     private static void registerRecipes() {
@@ -155,6 +160,8 @@ public class SJItems {
             GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackHardened.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened.copy(), 'T', thrusterHardened.copy(), 'J', jetpackLeadstone.copy() }));
             GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackReinforced.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced.copy(), 'T', thrusterReinforced.copy(), 'J', jetpackHardened.copy() }));
             GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackResonant.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant.copy(), 'T', thrusterResonant.copy(), 'J', jetpackReinforced.copy() }));
+            if (raAvailable)
+                GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "PJP", "TCT", 'A', RAItems.armorFluxPlate.copy(), 'J', jetpackResonantArmored.copy(), 'C', TEItems.cellResonant.copy(), 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
 
             GameRegistry.addRecipe(new ShapedOreRecipe(particleDefault.copy(), new Object[] { " D ", "DCD", " D ", 'C', "dustCoal", 'D', Blocks.torch }));
             GameRegistry.addRecipe(new ShapedOreRecipe(particleNone.copy(), new Object[] { " D ", "DCD", " D ", 'C', "dustCoal", 'D', Blocks.glass }));

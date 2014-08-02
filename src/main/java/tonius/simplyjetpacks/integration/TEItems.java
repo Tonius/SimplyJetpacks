@@ -12,6 +12,7 @@ public class TEItems {
     public static ItemStack capacitorPotato = null;
     public static ItemStack capacitorReinforced = null;
     public static ItemStack capacitorResonant = null;
+    public static ItemStack cellResonant = null;
     public static ItemStack dynamoReactant = null;
     public static ItemStack dynamoMagmatic = null;
     public static ItemStack dynamoEnervation = null;
@@ -28,6 +29,7 @@ public class TEItems {
             capacitorPotato = GameRegistry.findItemStack("ThermalExpansion", "capacitorPotato", 1);
             capacitorReinforced = GameRegistry.findItemStack("ThermalExpansion", "capacitorReinforced", 1);
             capacitorResonant = GameRegistry.findItemStack("ThermalExpansion", "capacitorResonant", 1);
+            cellResonant = GameRegistry.findItemStack("ThermalExpansion", "cellResonant", 1);
             dynamoReactant = GameRegistry.findItemStack("ThermalExpansion", "dynamoReactant", 1);
             dynamoMagmatic = GameRegistry.findItemStack("ThermalExpansion", "dynamoMagmatic", 1);
             dynamoEnervation = GameRegistry.findItemStack("ThermalExpansion", "dynamoEnervation", 1);

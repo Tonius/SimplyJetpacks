@@ -26,7 +26,7 @@ public class SJConfig {
     public static final ConfigSection sectionTuningHardened = new ConfigSection("Tuning - Hardened Jetpack", "tuningHardened");
     public static final ConfigSection sectionTuningReinforced = new ConfigSection("Tuning - Reinforced Jetpack", "tuningReinforced");
     public static final ConfigSection sectionTuningResonant = new ConfigSection("Tuning - Resonant Jetpack", "tuningResonant");
-    public static final ConfigSection sectionTuningEnergetic = new ConfigSection("Tuning - Energetic Jetpack", "tuningEnergetic");
+    public static final ConfigSection sectionTuningFluxPlate = new ConfigSection("Tuning - Flux-Infused JetPlate", "tuningFluxPlate");
     public static final ConfigSection sectionTuningCreative = new ConfigSection("Tuning - Creative Jetpack", "tuningCreative");
 
     // item default
@@ -111,19 +111,19 @@ public class SJConfig {
     public static final int resonantArmorEnergyPerHit_default = 85;
     public static final boolean resonantEnchantable_default = true;
 
-    // tuningEnergetic default
-    public static final int energeticEnergyCapacity_default = 50000000;
-    public static final int energeticEnergyPerTick_default = 525;
-    public static final double energeticSpeedVertical_default = 0.8D;
-    public static final double energeticAccelVertical_default = 0.15D;
-    public static final double energeticSpeedSideways_default = 0.19D;
-    public static final double energeticSpeedVerticalHover_default = 0.4D;
-    public static final double energeticSpeedVerticalHoverSlow_default = 0.0D;
-    public static final boolean energeticEmergencyHoverMode_default = true;
-    public static final int energeticArmorDisplay_default = 8;
-    public static final double energeticArmorAbsorption_default = 0.8D;
-    public static final int energeticArmorEnergyPerHit_default = 80;
-    public static final boolean energeticEnchantable_default = true;
+    // tuningFluxPlate default
+    public static final int fluxPlateEnergyCapacity_default = 50000000;
+    public static final int fluxPlateEnergyPerTick_default = 525;
+    public static final double fluxPlateSpeedVertical_default = 0.8D;
+    public static final double fluxPlateAccelVertical_default = 0.15D;
+    public static final double fluxPlateSpeedSideways_default = 0.19D;
+    public static final double fluxPlateSpeedVerticalHover_default = 0.4D;
+    public static final double fluxPlateSpeedVerticalHoverSlow_default = 0.0D;
+    public static final boolean fluxPlateEmergencyHoverMode_default = true;
+    public static final int fluxPlateArmorDisplay_default = 8;
+    public static final double fluxPlateArmorAbsorption_default = 0.8D;
+    public static final int fluxPlateArmorEnergyPerHit_default = 80;
+    public static final boolean fluxPlateEnchantable_default = true;
 
     // tuningCreative default
     public static final double creativeSpeedVertical_default = 0.8D;
@@ -218,19 +218,19 @@ public class SJConfig {
     public static int resonantArmorEnergyPerHit = resonantArmorEnergyPerHit_default;
     public static boolean resonantEnchantable = resonantEnchantable_default;
 
-    // tuningEnergetic
-    public static int energeticEnergyCapacity = energeticEnergyCapacity_default;
-    public static int energeticEnergyPerTick = energeticEnergyPerTick_default;
-    public static double energeticSpeedVertical = energeticSpeedVertical_default;
-    public static double energeticAccelVertical = energeticAccelVertical_default;
-    public static double energeticSpeedSideways = energeticSpeedSideways_default;
-    public static double energeticSpeedVerticalHover = energeticSpeedVerticalHover_default;
-    public static double energeticSpeedVerticalHoverSlow = energeticSpeedVerticalHoverSlow_default;
-    public static boolean energeticEmergencyHoverMode = energeticEmergencyHoverMode_default;
-    public static int energeticArmorDisplay = energeticArmorDisplay_default;
-    public static double energeticArmorAbsorption = energeticArmorAbsorption_default;
-    public static int energeticArmorEnergyPerHit = energeticArmorEnergyPerHit_default;
-    public static boolean energeticEnchantable = energeticEnchantable_default;
+    // tuningFluxPlate
+    public static int fluxPlateEnergyCapacity = fluxPlateEnergyCapacity_default;
+    public static int fluxPlateEnergyPerTick = fluxPlateEnergyPerTick_default;
+    public static double fluxPlateSpeedVertical = fluxPlateSpeedVertical_default;
+    public static double fluxPlateAccelVertical = fluxPlateAccelVertical_default;
+    public static double fluxPlateSpeedSideways = fluxPlateSpeedSideways_default;
+    public static double fluxPlateSpeedVerticalHover = fluxPlateSpeedVerticalHover_default;
+    public static double fluxPlateSpeedVerticalHoverSlow = fluxPlateSpeedVerticalHoverSlow_default;
+    public static boolean fluxPlateEmergencyHoverMode = fluxPlateEmergencyHoverMode_default;
+    public static int fluxPlateArmorDisplay = fluxPlateArmorDisplay_default;
+    public static double fluxPlateArmorAbsorption = fluxPlateArmorAbsorption_default;
+    public static int fluxPlateArmorEnergyPerHit = fluxPlateArmorEnergyPerHit_default;
+    public static boolean fluxPlateEnchantable = fluxPlateEnchantable_default;
 
     // tuningCreative
     public static double creativeSpeedVertical = creativeSpeedVertical_default;
@@ -349,19 +349,19 @@ public class SJConfig {
         resonantArmorEnergyPerHit = resonantArmorEnergyPerHit_temp > 0 ? resonantArmorEnergyPerHit_temp : 1;
         resonantEnchantable = config.get(sectionTuningResonant.name, "Enchantable", resonantEnchantable_default, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(resonantEnchantable_default);
 
-        energeticEnergyCapacity = config.get(sectionTuningEnergetic.name, "Energy Capacity", energeticEnergyCapacity_default, "The maximum amount of energy that the jetpack can hold.").getInt(energeticEnergyCapacity_default);
-        energeticEnergyPerTick = config.get(sectionTuningEnergetic.name, "Energy Usage per Tick", energeticEnergyPerTick_default, "The amount of energy that the jetpack uses every tick when flying. In hover mode, this amount will be 1.5 times less.").getInt(energeticEnergyPerTick_default);
-        energeticSpeedVertical = config.get(sectionTuningEnergetic.name, "Vertical Speed", energeticSpeedVertical_default, "The maximum vertical speed of the jetpack when flying.").getDouble(energeticSpeedVertical_default);
-        energeticAccelVertical = config.get(sectionTuningEnergetic.name, "Vertical Acceleration", energeticAccelVertical_default, "The vertical acceleration of the jetpack when flying; every tick, this amount of vertical speed will be added until the jetpack reaches the maximum speed.").getDouble(energeticAccelVertical_default);
-        energeticSpeedSideways = config.get(sectionTuningEnergetic.name, "Sideways Speed", energeticSpeedSideways_default, "The speed of the jetpack when flying sideways. This is mostly noticeable in hover mode.").getDouble(energeticSpeedSideways_default);
-        energeticSpeedVerticalHover = config.get(sectionTuningEnergetic.name, "Vertical Speed (Hover Mode)", energeticSpeedVerticalHover_default, "The maximum vertical speed of the jetpack when flying in hover mode.").getDouble(energeticSpeedVerticalHover_default);
-        energeticSpeedVerticalHoverSlow = config.get(sectionTuningEnergetic.name, "Vertical Speed (Hover Mode Slow Fall)", energeticSpeedVerticalHoverSlow_default, "The maximum vertical speed of the jetpack when slowly descending in hover mode.").getDouble(energeticSpeedVerticalHoverSlow_default);
-        energeticEmergencyHoverMode = config.get(sectionTuningEnergetic.name, "Emergency Hover Mode", energeticEmergencyHoverMode_default, "When enabled, this jetpack will activate hover mode automatically when the wearer is about to die from a fall.").getBoolean(energeticEmergencyHoverMode_default);
-        energeticArmorDisplay = config.get(sectionTuningEnergetic.name, "Armor Display", energeticArmorDisplay_default, "How powerful the ARMORED version of the jetpack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(energeticArmorDisplay_default);
-        energeticArmorAbsorption = config.get(sectionTuningEnergetic.name, "Armor Absorption", energeticArmorAbsorption_default, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(energeticArmorAbsorption_default);
-        int energeticArmorEnergyPerHit_temp = config.get(sectionTuningEnergetic.name, "Armor Energy Per Hit", energeticArmorEnergyPerHit_default, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(energeticArmorEnergyPerHit_default);
-        energeticArmorEnergyPerHit = energeticArmorEnergyPerHit_temp > 0 ? energeticArmorEnergyPerHit_temp : 1;
-        energeticEnchantable = config.get(sectionTuningEnergetic.name, "Enchantable", energeticEnchantable_default, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(energeticEnchantable_default);
+        fluxPlateEnergyCapacity = config.get(sectionTuningFluxPlate.name, "Energy Capacity", fluxPlateEnergyCapacity_default, "The maximum amount of energy that the jetpack can hold.").getInt(fluxPlateEnergyCapacity_default);
+        fluxPlateEnergyPerTick = config.get(sectionTuningFluxPlate.name, "Energy Usage per Tick", fluxPlateEnergyPerTick_default, "The amount of energy that the jetpack uses every tick when flying. In hover mode, this amount will be 1.5 times less.").getInt(fluxPlateEnergyPerTick_default);
+        fluxPlateSpeedVertical = config.get(sectionTuningFluxPlate.name, "Vertical Speed", fluxPlateSpeedVertical_default, "The maximum vertical speed of the jetpack when flying.").getDouble(fluxPlateSpeedVertical_default);
+        fluxPlateAccelVertical = config.get(sectionTuningFluxPlate.name, "Vertical Acceleration", fluxPlateAccelVertical_default, "The vertical acceleration of the jetpack when flying; every tick, this amount of vertical speed will be added until the jetpack reaches the maximum speed.").getDouble(fluxPlateAccelVertical_default);
+        fluxPlateSpeedSideways = config.get(sectionTuningFluxPlate.name, "Sideways Speed", fluxPlateSpeedSideways_default, "The speed of the jetpack when flying sideways. This is mostly noticeable in hover mode.").getDouble(fluxPlateSpeedSideways_default);
+        fluxPlateSpeedVerticalHover = config.get(sectionTuningFluxPlate.name, "Vertical Speed (Hover Mode)", fluxPlateSpeedVerticalHover_default, "The maximum vertical speed of the jetpack when flying in hover mode.").getDouble(fluxPlateSpeedVerticalHover_default);
+        fluxPlateSpeedVerticalHoverSlow = config.get(sectionTuningFluxPlate.name, "Vertical Speed (Hover Mode Slow Fall)", fluxPlateSpeedVerticalHoverSlow_default, "The maximum vertical speed of the jetpack when slowly descending in hover mode.").getDouble(fluxPlateSpeedVerticalHoverSlow_default);
+        fluxPlateEmergencyHoverMode = config.get(sectionTuningFluxPlate.name, "Emergency Hover Mode", fluxPlateEmergencyHoverMode_default, "When enabled, this jetpack will activate hover mode automatically when the wearer is about to die from a fall.").getBoolean(fluxPlateEmergencyHoverMode_default);
+        fluxPlateArmorDisplay = config.get(sectionTuningFluxPlate.name, "Armor Display", fluxPlateArmorDisplay_default, "How powerful the ARMORED version of the jetpack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(fluxPlateArmorDisplay_default);
+        fluxPlateArmorAbsorption = config.get(sectionTuningFluxPlate.name, "Armor Absorption", fluxPlateArmorAbsorption_default, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(fluxPlateArmorAbsorption_default);
+        int fluxPlateArmorEnergyPerHit_temp = config.get(sectionTuningFluxPlate.name, "Armor Energy Per Hit", fluxPlateArmorEnergyPerHit_default, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(fluxPlateArmorEnergyPerHit_default);
+        fluxPlateArmorEnergyPerHit = fluxPlateArmorEnergyPerHit_temp > 0 ? fluxPlateArmorEnergyPerHit_temp : 1;
+        fluxPlateEnchantable = config.get(sectionTuningFluxPlate.name, "Enchantable", fluxPlateEnchantable_default, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(fluxPlateEnchantable_default);
 
         creativeSpeedVertical = config.get(sectionTuningCreative.name, "Vertical Speed", creativeSpeedVertical_default, "The maximum vertical speed of the jetpack when flying.").getDouble(creativeSpeedVertical_default);
         creativeAccelVertical = config.get(sectionTuningCreative.name, "Vertical Acceleration", creativeAccelVertical_default, "The vertical acceleration of the jetpack when flying; every tick, this amount of vertical speed will be added until the jetpack reaches the maximum speed.").getDouble(creativeAccelVertical_default);

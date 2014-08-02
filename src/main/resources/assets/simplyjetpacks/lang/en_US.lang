@@ -5,7 +5,7 @@ item.simplyjetpacks.jetpack.1.name=Leadstone Jetpack
 item.simplyjetpacks.jetpack.2.name=Hardened Jetpack
 item.simplyjetpacks.jetpack.3.name=Reinforced Jetpack
 item.simplyjetpacks.jetpack.4.name=Resonant Jetpack
-item.simplyjetpacks.jetpack.5.name=Energetic Jetpack
+item.simplyjetpacks.jetpack.5.name=Flux-Infused JetPlate
 item.simplyjetpacks.jetpack.1.armored.name=Leadstone Jetpack
 item.simplyjetpacks.jetpack.2.armored.name=Hardened Jetpack
 item.simplyjetpacks.jetpack.3.armored.name=Reinforced Jetpack
@@ -22,6 +22,7 @@ item.simplyjetpacks.armorPlating.1.name=Iron Armor Plating
 item.simplyjetpacks.armorPlating.2.name=Tinker's Alloy Armor Plating
 item.simplyjetpacks.armorPlating.3.name=Invar Armor Plating
 item.simplyjetpacks.armorPlating.4.name=Enderium Armor Plating
+item.simplyjetpacks.cryoCoolant.name=Cryothem Coolant Unit
 
 item.simplyjetpacks.particle.0.name=Particle Customizer (Default)
 item.simplyjetpacks.particle.1.name=Particle Customizer (None)
