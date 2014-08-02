@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.CommonProxy;
+import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.client.tickhandler.ClientTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.HUDTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.KeyHandler;
@@ -30,6 +31,7 @@ public class ClientProxy extends CommonProxy {
         FMLCommonHandler.instance().bus().register(new ClientTickHandler());
         FMLCommonHandler.instance().bus().register(new KeyHandler());
         FMLCommonHandler.instance().bus().register(new HUDTickHandler());
+        FMLCommonHandler.instance().bus().register(new SyncTracker());
     }
 
     @Override

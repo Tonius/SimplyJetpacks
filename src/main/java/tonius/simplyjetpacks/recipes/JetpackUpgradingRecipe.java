@@ -33,7 +33,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
             slotStack = inventoryCrafting.getStackInSlot(i);
             if (slotStack != null) {
                 if (slotStack.getItem() instanceof ItemJetpack) {
-                    tags = StackUtils.getNBT(slotStack);
+                    tags = (NBTTagCompound) StackUtils.getNBT(slotStack).copy();
                 } else if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     addedEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
                 } else if (slotStack.getItem() == SJItems.particleCustomizers) {
@@ -45,7 +45,7 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
         ItemStack result = new ItemStack(resultItem, 1, this.resultMeta);
 
         if (tags != null) {
-            result.setTagCompound((NBTTagCompound) tags.copy());
+            result.setTagCompound(tags);
         }
 
         resultItem.receiveEnergy(result, addedEnergy, false);

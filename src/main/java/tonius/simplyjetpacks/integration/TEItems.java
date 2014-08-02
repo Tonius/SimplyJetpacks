@@ -7,6 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TEItems {
 
+    public static ItemStack blockGlassHardened = null;
     public static ItemStack capacitorBasic = null;
     public static ItemStack capacitorHardened = null;
     public static ItemStack capacitorPotato = null;
@@ -17,6 +18,7 @@ public class TEItems {
     public static ItemStack dynamoMagmatic = null;
     public static ItemStack dynamoEnervation = null;
     public static ItemStack dynamoSteam = null;
+    public static ItemStack frameIlluminator = null;
     public static ItemStack pneumaticServo = null;
     public static ItemStack powerCoilGold = null;
 
@@ -24,6 +26,7 @@ public class TEItems {
         if (Loader.isModLoaded("ThermalExpansion")) {
             SimplyJetpacks.logger.info("Stealing Thermal Expansion's items");
 
+            blockGlassHardened = GameRegistry.findItemStack("ThermalExpansion", "blockGlassHardened", 1);
             capacitorBasic = GameRegistry.findItemStack("ThermalExpansion", "capacitorBasic", 1);
             capacitorHardened = GameRegistry.findItemStack("ThermalExpansion", "capacitorHardened", 1);
             capacitorPotato = GameRegistry.findItemStack("ThermalExpansion", "capacitorPotato", 1);
@@ -34,6 +37,7 @@ public class TEItems {
             dynamoMagmatic = GameRegistry.findItemStack("ThermalExpansion", "dynamoMagmatic", 1);
             dynamoEnervation = GameRegistry.findItemStack("ThermalExpansion", "dynamoEnervation", 1);
             dynamoSteam = GameRegistry.findItemStack("ThermalExpansion", "dynamoSteam", 1);
+            frameIlluminator = GameRegistry.findItemStack("ThermalExpansion", "frameIlluminator", 1);
             pneumaticServo = GameRegistry.findItemStack("ThermalExpansion", "pneumaticServo", 1);
             powerCoilGold = GameRegistry.findItemStack("ThermalExpansion", "powerCoilGold", 1);
 

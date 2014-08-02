@@ -4,6 +4,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.SimplyJetpacks;
@@ -46,6 +48,10 @@ public class SJItems {
     public static ItemStack armorPlatingTinkersAlloy = null;
     public static ItemStack armorPlatingInvar = null;
     public static ItemStack armorPlatingEnderium = null;
+    public static ItemStack unitGlowstoneEmpty = null;
+    public static ItemStack unitGlowstone = null;
+    public static ItemStack unitCryotheumEmpty = null;
+    public static ItemStack unitCryotheum = null;
 
     public static ItemStack particleDefault = null;
     public static ItemStack particleNone = null;
@@ -109,6 +115,11 @@ public class SJItems {
         armorPlatingInvar = components.addMetaItem(123, new MetaItem("armorPlating.3", armorPlatingTooltips, EnumRarity.common), true, false);
         armorPlatingEnderium = components.addMetaItem(124, new MetaItem("armorPlating.4", armorPlatingTooltips, EnumRarity.rare), true, false);
 
+        unitGlowstoneEmpty = components.addMetaItem(60, new MetaItem("unitGlowstone.empty", null, EnumRarity.common), true, false);
+        unitGlowstone = components.addMetaItem(61, new MetaItem("unitGlowstone", null, EnumRarity.uncommon), true, false);
+        unitCryotheumEmpty = components.addMetaItem(62, new MetaItem("unitCryotheum.empty", null, EnumRarity.common), true, false);
+        unitCryotheum = components.addMetaItem(63, new MetaItem("unitCryotheum", null, EnumRarity.rare), true, false);
+
         String[] particlesTooltips = new String[2];
         particlesTooltips[0] = "tooltip.particleCustomizers.description.1";
         particlesTooltips[1] = "tooltip.particleCustomizers.description.2";
@@ -160,8 +171,13 @@ public class SJItems {
             GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackHardened.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened.copy(), 'T', thrusterHardened.copy(), 'J', jetpackLeadstone.copy() }));
             GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackReinforced.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced.copy(), 'T', thrusterReinforced.copy(), 'J', jetpackHardened.copy() }));
             GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackResonant.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant.copy(), 'T', thrusterResonant.copy(), 'J', jetpackReinforced.copy() }));
-            if (raAvailable)
-                GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "PJP", "TCT", 'A', RAItems.armorFluxPlate.copy(), 'J', jetpackResonantArmored.copy(), 'C', TEItems.cellResonant.copy(), 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
+
+            if (raAvailable) {
+                GameRegistry.addRecipe(new ShapedOreRecipe(unitGlowstoneEmpty.copy(), new Object[] { "FLF", "LHL", "FLF", 'L', "ingotLumium", 'F', "ingotElectrumFlux", 'H', TEItems.frameIlluminator.copy() }));
+                GameRegistry.addRecipe(new ShapedOreRecipe(unitCryotheumEmpty.copy(), new Object[] { "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', TEItems.blockGlassHardened.copy() }));
+                GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEnergetic.copy(), new Object[] { "GPG", "TRT", 'G', unitGlowstone.copy(), 'P', RAItems.plateFlux.copy(), 'T', thrusterReinforced.copy(), 'R', thrusterResonant.copy() }));
+                GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate.copy(), 'J', jetpackResonantArmored.copy(), 'O', unitCryotheum.copy(), 'C', TEItems.cellResonant.copy(), 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
+            }
 
             GameRegistry.addRecipe(new ShapedOreRecipe(particleDefault.copy(), new Object[] { " D ", "DCD", " D ", 'C', "dustCoal", 'D', Blocks.torch }));
             GameRegistry.addRecipe(new ShapedOreRecipe(particleNone.copy(), new Object[] { " D ", "DCD", " D ", 'C', "dustCoal", 'D', Blocks.glass }));
@@ -170,7 +186,7 @@ public class SJItems {
         }
         for (int i = 0; i <= Jetpack.getHighestMeta(); i++) {
             Jetpack jetpack = Jetpack.getJetpack(i);
-            if (jetpack != null) {
+            if (jetpack != null && !(jetpack instanceof JetpackIcon)) {
                 GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpacks, 1, i), new Object[] { "J", "P", 'J', new ItemStack(jetpacks, 1, i), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
             }
         }
@@ -201,6 +217,11 @@ public class SJItems {
                     ingotEnderium.stackSize = 10;
                     TERecipes.addSmelterRecipe(6400, armorPlatingInvar.copy(), ingotEnderium, armorPlatingEnderium.copy(), null, 0);
                 }
+            }
+
+            if (raAvailable) {
+                TERecipes.addTransposerFill(6400, unitGlowstoneEmpty.copy(), unitGlowstone.copy(), new FluidStack(FluidRegistry.getFluid("glowstone"), 4000), false);
+                TERecipes.addTransposerFill(6400, unitCryotheumEmpty.copy(), unitCryotheum.copy(), new FluidStack(FluidRegistry.getFluid("cryotheum"), 4000), false);
             }
         }
     }

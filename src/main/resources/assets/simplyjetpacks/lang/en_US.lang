@@ -22,7 +22,10 @@ item.simplyjetpacks.armorPlating.1.name=Iron Armor Plating
 item.simplyjetpacks.armorPlating.2.name=Tinker's Alloy Armor Plating
 item.simplyjetpacks.armorPlating.3.name=Invar Armor Plating
 item.simplyjetpacks.armorPlating.4.name=Enderium Armor Plating
-item.simplyjetpacks.cryoCoolant.name=Cryothem Coolant Unit
+item.simplyjetpacks.unitCryotheum.empty.name=Cryotheum Coolant Unit (Empty)
+item.simplyjetpacks.unitCryotheum.name=Cryotheum Coolant Unit
+item.simplyjetpacks.unitGlowstone.empty.name=Glowstone Elevation Unit (Empty)
+item.simplyjetpacks.unitGlowstone.name=Glowstone Elevation Unit
 
 item.simplyjetpacks.particle.0.name=Particle Customizer (Default)
 item.simplyjetpacks.particle.1.name=Particle Customizer (None)

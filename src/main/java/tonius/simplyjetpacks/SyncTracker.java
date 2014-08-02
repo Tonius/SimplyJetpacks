@@ -5,6 +5,11 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
 public class SyncTracker {
 
@@ -55,6 +60,26 @@ public class SyncTracker {
 
     public static Map<Integer, JetpackParticleType> getJetpackStates() {
         return jetpackState;
+    }
+
+    @SubscribeEvent
+    public void onPlayerLoggedIn(PlayerLoggedInEvent evt) {
+        jetpackState.remove(evt.player.getEntityId());
+    }
+
+    @SubscribeEvent
+    public void onPlayerLoggedOut(PlayerLoggedOutEvent evt) {
+        jetpackState.remove(evt.player.getEntityId());
+    }
+
+    @SubscribeEvent
+    public void onPlayerRespawn(PlayerRespawnEvent evt) {
+        jetpackState.remove(evt.player.getEntityId());
+    }
+
+    @SubscribeEvent
+    public void onPlayerChangeDim(PlayerChangedDimensionEvent evt) {
+        jetpackState.remove(evt.player.getEntityId());
     }
 
 }
