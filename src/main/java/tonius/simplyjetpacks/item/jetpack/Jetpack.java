@@ -122,7 +122,7 @@ public class Jetpack {
                 jumpKeyDown = false;
             }
 
-            if (jumpKeyDown || (hoverMode && user.isAirBorne && !user.onGround)) {
+            if (jumpKeyDown || (hoverMode && !user.onGround)) {
                 int usedPower = hoverMode ? this.energyPerTickHover : this.energyPerTick;
                 if (!user.worldObj.isRemote) {
                     item.extractEnergy(armor, usedPower, false);
