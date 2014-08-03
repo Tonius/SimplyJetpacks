@@ -250,12 +250,6 @@ public class Jetpack {
             list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
             list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-            if (this.hasArmoredVersion() && SJConfig.enableCraftingArmorPlating) {
-                list.add(StringUtils.getArmorText(this.isArmored()));
-                if (!this.isArmored()) {
-                    list.add(StringUtils.getRequiredArmorText(this.getPlatingMeta() - 120));
-                }
-            }
         } else {
             list.add(StringUtils.getShiftText());
         }

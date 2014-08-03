@@ -103,18 +103,6 @@ public final class StringUtils {
         return ORANGE + translate("tooltip.jetpack.particles") + ": " + LIGHT_GRAY + translate("tooltip.jetpack.particles." + particle.ordinal());
     }
 
-    public static String getArmorText(boolean isArmored) {
-        if (isArmored) {
-            return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.off");
-        } else {
-            return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.on");
-        }
-    }
-
-    public static String getRequiredArmorText(int armorMeta) {
-        return BRIGHT_BLUE + ITALIC + translate("tooltip.jetpack.armor.requires") + ": " + YELLOW + ITALIC + translate("item.simplyjetpacks.armorPlating." + armorMeta + ".name", false);
-    }
-
     public static String getHUDEnergyText(int percent, int energy) {
         String text = "";
         if (!SJConfig.minimalEnergyHUD) {
