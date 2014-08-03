@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraftforge.common.config.Configuration;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
+import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -33,6 +34,7 @@ public class SJConfig {
     public static final boolean enableJetpackParticles_default = true;
     public static final boolean invertHoverSneakingBehavior_default = false;
     public static final int jetpackEnchantability_default = 20;
+    public static final int fluxpackEnchantability_default = 10;
 
     // crafting default
     public static final boolean enableCraftingArmorPlating_default = true;
@@ -140,6 +142,7 @@ public class SJConfig {
     public static boolean enableJetpackParticles = enableJetpackParticles_default;
     public static boolean invertHoverSneakingBehavior = invertHoverSneakingBehavior_default;
     public static int jetpackEnchantability = jetpackEnchantability_default;
+    public static int fluxpackEnchantability = fluxpackEnchantability_default;
 
     // crafting
     public static boolean enableCraftingArmorPlating = enableCraftingArmorPlating_default;
@@ -266,6 +269,7 @@ public class SJConfig {
             SimplyJetpacks.logger.info("Updating configuration file");
             syncConfig();
             Jetpack.reconstructJetpacks();
+            FluxPack.reconstructFluxPacks();
         }
     }
 
@@ -273,6 +277,7 @@ public class SJConfig {
         enableJetpackParticles = config.get(sectionItem.name, "Enable jetpack particles", enableJetpackParticles_default, "When enabled, jetpacks will emit particles when active.").getBoolean(enableJetpackParticles_default);
         invertHoverSneakingBehavior = config.get(sectionItem.name, "Invert Hover Mode sneaking behavior", invertHoverSneakingBehavior_default, "Invert Hover Mode sneaking behavior").getBoolean(invertHoverSneakingBehavior_default);
         jetpackEnchantability = config.get(sectionItem.name, "Jetpack Enchantability", jetpackEnchantability_default, "The enchantability of the jetpacks. Note that specific jetpacks may be set not to be enchantable.").getInt(jetpackEnchantability_default);
+        fluxpackEnchantability = config.get(sectionItem.name, "Flux Pack Enchantability", fluxpackEnchantability_default, "The enchantability of the flux packs. Note that specific flux packs may be set not to be enchantable.").getInt(fluxpackEnchantability_default);
 
         enableCraftingArmorPlating = config.get(sectionCrafting.name, "Armor Plating craftable", enableCraftingArmorPlating_default, "When enabled, Armor Plating items will be craftable, and thus armored jetpacks are available.").setRequiresMcRestart(true).getBoolean(enableCraftingArmorPlating_default);
         enableCraftingPotatoJetpack = config.get(sectionCrafting.name, "Potato Jetpack craftable", enableCraftingPotatoJetpack_default, "When enabled, the Potato Jetpack will be craftable.").setRequiresMcRestart(true).getBoolean(enableCraftingPotatoJetpack_default);

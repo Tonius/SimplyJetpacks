@@ -26,7 +26,7 @@ import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem {
+public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem, IToggleable, IModeSwitchable {
 
     protected IIcon[] icons = null;
 
@@ -53,6 +53,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
         return full;
     }
 
+    @Override
     public void toggle(ItemStack itemStack, EntityPlayer player) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
@@ -60,10 +61,11 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
         }
     }
 
-    public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
+    @Override
+    public void switchMode(ItemStack itemStack, EntityPlayer player) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            jetpack.toggleHoverMode(itemStack, player);
+            jetpack.switchMode(itemStack, player);
         }
     }
 

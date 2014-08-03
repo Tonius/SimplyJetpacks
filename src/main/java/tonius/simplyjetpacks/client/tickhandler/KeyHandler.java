@@ -6,7 +6,8 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.input.Keyboard;
 
-import tonius.simplyjetpacks.item.ItemJetpack;
+import tonius.simplyjetpacks.item.IModeSwitchable;
+import tonius.simplyjetpacks.item.IToggleable;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageModKey;
 import tonius.simplyjetpacks.setup.SJKey;
@@ -35,10 +36,10 @@ public class KeyHandler {
         if (toggle || mode) {
             if (mc.inGameHasFocus) {
                 ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
-                if (itemStack != null && itemStack.getItem() instanceof ItemJetpack) {
-                    if (toggle) {
+                if (itemStack != null) {
+                    if (toggle && itemStack.getItem() instanceof IToggleable) {
                         PacketHandler.instance.sendToServer(new MessageModKey(SJKey.TOGGLE));
-                    } else if (mode) {
+                    } else if (mode && itemStack.getItem() instanceof IModeSwitchable) {
                         PacketHandler.instance.sendToServer(new MessageModKey(SJKey.MODE));
                     }
                 }

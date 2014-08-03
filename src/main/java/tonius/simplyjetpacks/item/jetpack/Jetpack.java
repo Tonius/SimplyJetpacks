@@ -219,7 +219,7 @@ public class Jetpack {
         return StackUtils.getNBT(itemStack).getBoolean("JetpackHoverModeOn");
     }
 
-    public void toggleHoverMode(ItemStack itemStack, EntityPlayer player) {
+    public void switchMode(ItemStack itemStack, EntityPlayer player) {
         String msg = "";
         if (this.isHoverModeOn(itemStack)) {
             msg = StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");

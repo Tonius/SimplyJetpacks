@@ -13,9 +13,11 @@ import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.integration.RAItems;
 import tonius.simplyjetpacks.integration.TEItems;
 import tonius.simplyjetpacks.integration.TERecipes;
+import tonius.simplyjetpacks.item.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.item.ItemMeta;
 import tonius.simplyjetpacks.item.ItemMeta.MetaItem;
+import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -23,6 +25,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class SJItems {
 
     public static ItemJetpack jetpacks = null;
+    public static ItemFluxPack fluxpacks = null;
     public static ItemMeta components = null;
     public static ItemMeta particleCustomizers = null;
 
@@ -37,6 +40,11 @@ public class SJItems {
     public static ItemStack jetpackResonantArmored = null;
     public static ItemStack jetpackFluxPlate = null;
     public static ItemStack jetpackCreative = null;
+
+    public static ItemStack fluxpackLeadstone = null;
+    public static ItemStack fluxpackHardened = null;
+    public static ItemStack fluxpackReinforced = null;
+    public static ItemStack fluxpackResonant = null;
 
     public static ItemStack leatherStrap = null;
     public static ItemStack thrusterLeadstone = null;
@@ -78,6 +86,9 @@ public class SJItems {
 
         Jetpack.reconstructJetpacks();
         jetpacks = new ItemJetpack();
+        FluxPack.reconstructFluxPacks();
+        fluxpacks = new ItemFluxPack();
+
         components = new ItemMeta("components");
         particleCustomizers = new ItemMeta("particleCustomizers");
 
@@ -92,6 +103,11 @@ public class SJItems {
         jetpackResonantArmored = new ItemStack(jetpacks, 1, 104);
         jetpackFluxPlate = new ItemStack(jetpacks, 1, 5);
         jetpackCreative = new ItemStack(jetpacks, 1, 9001);
+
+        fluxpackLeadstone = new ItemStack(fluxpacks, 1, 1);
+        fluxpackHardened = new ItemStack(fluxpacks, 1, 2);
+        fluxpackReinforced = new ItemStack(fluxpacks, 1, 3);
+        fluxpackResonant = new ItemStack(fluxpacks, 1, 4);
 
         String[] leatherStrapTooltips = new String[2];
         leatherStrapTooltips[0] = "tooltip.leatherStrap.description.1";
@@ -133,6 +149,7 @@ public class SJItems {
         SimplyJetpacks.logger.info("Registering items");
 
         GameRegistry.registerItem(jetpacks, "jetpacks");
+        GameRegistry.registerItem(fluxpacks, "fluxpacks");
         GameRegistry.registerItem(components, "components");
         GameRegistry.registerItem(particleCustomizers, "particleCustomizers");
 
@@ -146,6 +163,11 @@ public class SJItems {
         GameRegistry.registerCustomItemStack("jetpack.4", jetpackResonant);
         GameRegistry.registerCustomItemStack("jetpack.4.armored", jetpackResonantArmored);
         GameRegistry.registerCustomItemStack("jetpack.5", jetpackFluxPlate);
+
+        GameRegistry.registerCustomItemStack("fluxpack.1", fluxpackLeadstone);
+        GameRegistry.registerCustomItemStack("fluxpack.2", fluxpackHardened);
+        GameRegistry.registerCustomItemStack("fluxpack.3", fluxpackReinforced);
+        GameRegistry.registerCustomItemStack("fluxpack.4", fluxpackResonant);
     }
 
     private static void registerRecipes() {
@@ -176,7 +198,7 @@ public class SJItems {
                 GameRegistry.addRecipe(new ShapedOreRecipe(unitGlowstoneEmpty.copy(), new Object[] { "FLF", "LHL", "FLF", 'L', "ingotLumium", 'F', "ingotElectrumFlux", 'H', TEItems.frameIlluminator.copy() }));
                 GameRegistry.addRecipe(new ShapedOreRecipe(unitCryotheumEmpty.copy(), new Object[] { "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', TEItems.blockGlassHardened.copy() }));
                 GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEnergetic.copy(), new Object[] { "GPG", "TRT", 'G', unitGlowstone.copy(), 'P', RAItems.plateFlux.copy(), 'T', thrusterReinforced.copy(), 'R', thrusterResonant.copy() }));
-                GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate.copy(), 'J', jetpackResonantArmored.copy(), 'O', unitCryotheum.copy(), 'C', TEItems.cellResonant.copy(), 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
+                GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate.copy(), 'J', jetpackResonantArmored.copy(), 'O', unitCryotheum.copy(), 'C', fluxpackResonant.copy(), 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
             }
 
             GameRegistry.addRecipe(new ShapedOreRecipe(particleDefault.copy(), new Object[] { " D ", "DCD", " D ", 'C', "dustCoal", 'D', Blocks.torch }));

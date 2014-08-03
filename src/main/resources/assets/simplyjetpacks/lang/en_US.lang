@@ -12,6 +12,12 @@ item.simplyjetpacks.jetpack.3.armored.name=Reinforced Jetpack
 item.simplyjetpacks.jetpack.4.armored.name=Resonant Jetpack
 item.simplyjetpacks.jetpack.creative.name=Creative Jetpack
 
+item.simplyjetpacks.fluxpack.1.name=Leadstone Flux Pack
+item.simplyjetpacks.fluxpack.2.name=Hardened Flux Pack
+item.simplyjetpacks.fluxpack.3.name=Redstone Flux Pack
+item.simplyjetpacks.fluxpack.4.name=Resonant Flux Pack
+item.simplyjetpacks.fluxpack.creative.name=Creative Flux Pack
+
 item.simplyjetpacks.leatherStrap.name=Leather Strap
 item.simplyjetpacks.thruster.1.name=Leadstone Thruster
 item.simplyjetpacks.thruster.2.name=Hardened Thruster
@@ -37,6 +43,7 @@ simplyjetpacks.chat.disabled=disabled
 simplyjetpacks.chat.jetpack.engine=Jetpack engine
 simplyjetpacks.chat.jetpack.hoverMode=Hover Mode
 simplyjetpacks.chat.jetpack.emergencyHoverMode=User is about to die! Activating hover mode
+simplyjetpacks.chat.fluxpack.charger=Flux Pack charger
 
 simplyjetpacks.tooltip.holdShift1=Hold
 simplyjetpacks.tooltip.holdShift2=Shift
@@ -62,6 +69,8 @@ simplyjetpacks.tooltip.jetpack.particles.3=Rainbow Smoke
 simplyjetpacks.tooltip.jetpack.description.1=Allows flight when active.
 simplyjetpacks.tooltip.jetpack.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.jetpackPotato.warning=Clever! But not survivable.
+simplyjetpacks.tooltip.fluxpack.description.1=Charges armor and held items when active.
+simplyjetpacks.tooltip.fluxpack.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.leatherStrap.description.1=Used for making jetpacks.
 simplyjetpacks.tooltip.leatherStrap.description.2=Keeps a jetpack from falling off.
 simplyjetpacks.tooltip.thruster.description.1=Used for making jetpacks.
@@ -72,7 +81,7 @@ simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jet
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
 
 simplyjetpacks.gui.hud.jetpack.energy=Jetpack energy
-simplyjetpacks.gui.nei.recipe.armoring=Jetpack Armoring
+simplyjetpacks.gui.nei.recipe.armoring=Armoring
 simplyjetpacks.gui.nei.recipe.armoring.input=in your hand
 simplyjetpacks.gui.nei.recipe.armoring.plating=in your inventory
 simplyjetpacks.gui.nei.recipe.armoring.output=after using while sneaking
