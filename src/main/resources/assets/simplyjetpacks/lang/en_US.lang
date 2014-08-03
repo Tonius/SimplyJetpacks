@@ -75,6 +75,13 @@ simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jet
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
 
 simplyjetpacks.gui.hud.jetpack.energy=Jetpack energy
+simplyjetpacks.gui.nei.recipe.armoring=Jetpack Armoring
+simplyjetpacks.gui.nei.recipe.armoring.input=in your hand
+simplyjetpacks.gui.nei.recipe.armoring.plating=in your inventory
+simplyjetpacks.gui.nei.recipe.armoring.output=after using while sneaking
+simplyjetpacks.gui.nei.recipe.dearmoring.input=in your hand
+simplyjetpacks.gui.nei.recipe.dearmoring.output=after using while sneaking
+simplyjetpacks.gui.nei.recipe.dearmoring.plating=will be returned
 
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato
@@ -97,7 +104,7 @@ simplyjetpacks.config.tuningReinforced=Tuning - Reinforced Jetpack
 simplyjetpacks.config.tuningReinforced.tooltip=Edit values like the speed, flight and energy usage of the Reinforced Jetpack.
 simplyjetpacks.config.tuningResonant=Tuning - Resonant Jetpack
 simplyjetpacks.config.tuningResonant.tooltip=Edit values like the speed, flight and energy usage of the Resonant Jetpack.
-simplyjetpacks.config.tuningEnergetic=Tuning - Energetic Jetpack
-simplyjetpacks.config.tuningEnergetic.tooltip=Edit values like the speed, flight and energy usage of the Energetic Jetpack.
+simplyjetpacks.config.tuningFluxPlate=Tuning - Flux-Infused JetPlate
+simplyjetpacks.config.tuningFluxPlate.tooltip=Edit values like the speed, flight and energy usage of the Flux-Infused JetPlate.
 simplyjetpacks.config.tuningCreative=Tuning - Creative Jetpack
 simplyjetpacks.config.tuningCreative.tooltip=Edit values like the speed, flight and energy usage of the Creative Jetpack. Cheater!
