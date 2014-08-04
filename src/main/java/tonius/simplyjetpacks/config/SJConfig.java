@@ -101,7 +101,7 @@ public class SJConfig {
 
     // tuningResonant default
     public static final int resonantEnergyCapacity_default = 10000000;
-    public static final int resonantEnergyPerTick_default = 400;
+    public static final int resonantEnergyPerTick_default = 375;
     public static final double resonantSpeedVertical_default = 0.8D;
     public static final double resonantAccelVertical_default = 0.15D;
     public static final double resonantSpeedSideways_default = 0.19D;
