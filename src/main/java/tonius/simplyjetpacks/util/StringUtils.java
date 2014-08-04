@@ -74,43 +74,80 @@ public final class StringUtils {
 
     public static String getChargeText(boolean infinite, int charge, int total) {
         if (infinite) {
-            return LIGHT_GRAY + translate("tooltip.jetpack.charge.infinite");
+            return LIGHT_GRAY + translate("tooltip.charge.infinite");
         }
         return LIGHT_GRAY + getFormattedNumber(charge) + " / " + getFormattedNumber(total) + " RF";
     }
 
     public static String getStateText(boolean state) {
         String onOrOff = state ? BRIGHT_GREEN + translate("tooltip.on") : LIGHT_RED + translate("tooltip.off");
-        return ORANGE + translate("tooltip.jetpack.state") + ": " + onOrOff;
+        return ORANGE + translate("tooltip.state") + ": " + onOrOff;
     }
 
     public static String getHoverModeText(boolean state) {
         String enabledOrDisabled = state ? BRIGHT_GREEN + translate("tooltip.enabled") : LIGHT_RED + translate("tooltip.disabled");
-        return ORANGE + translate("tooltip.jetpack.hoverMode") + ": " + enabledOrDisabled;
+        return ORANGE + translate("tooltip.hoverMode") + ": " + enabledOrDisabled;
+    }
+
+    public static String getChargerStateText(boolean state) {
+        String onOrOff = state ? BRIGHT_GREEN + translate("tooltip.on") : LIGHT_RED + translate("tooltip.off");
+        return ORANGE + translate("tooltip.chargerState") + ": " + onOrOff;
     }
 
     public static String getEnergyUsageText(int usage) {
-        String usageText = usage > 0 ? usage + " RF/t" : translate("tooltip.jetpack.energyUsage.none");
-        return ORANGE + translate("tooltip.jetpack.energyUsage") + ": " + LIGHT_GRAY + usageText;
+        String usageText = usage > 0 ? getFormattedNumber(usage) + " RF/t" : translate("tooltip.energy.none");
+        return ORANGE + translate("tooltip.energyUsage") + ": " + LIGHT_GRAY + usageText;
+    }
+
+    public static String getChargerRateText(int rate) {
+        String rateText = rate > 0 ? getFormattedNumber(rate) + " RF/t" : translate("tooltip.energy.none");
+        return ORANGE + translate("tooltip.chargerRate") + ": " + LIGHT_GRAY + rateText;
+    }
+
+    public static String getEnergySendText(int send) {
+        return ORANGE + translate("tooltip.energySend") + ": " + LIGHT_GRAY + getFormattedNumber(send) + " RF/t";
+    }
+
+    public static String getEnergyReceiveText(int receive) {
+        String usageText = receive < Integer.MAX_VALUE ? getFormattedNumber(receive) + " RF/t" : translate("tooltip.energy.none");
+        return ORANGE + translate("tooltip.energyReceive") + ": " + LIGHT_GRAY + usageText;
     }
 
     public static String getArmoredText(boolean armored) {
         String yesOrNo = armored ? BRIGHT_GREEN + translate("tooltip.yes") : LIGHT_RED + translate("tooltip.no");
-        return ORANGE + translate("tooltip.jetpack.armored") + ": " + yesOrNo;
+        return ORANGE + translate("tooltip.armored") + ": " + yesOrNo;
     }
 
     public static String getParticlesText(JetpackParticleType particle) {
-        return ORANGE + translate("tooltip.jetpack.particles") + ": " + LIGHT_GRAY + translate("tooltip.jetpack.particles." + particle.ordinal());
+        return ORANGE + translate("tooltip.particles") + ": " + LIGHT_GRAY + translate("tooltip.particles." + particle.ordinal());
     }
 
-    public static String getHUDEnergyText(int percent, int energy) {
+    public static String getHUDEnergyText(String prefix, int percent, int energy) {
         String text = "";
         if (!SJConfig.minimalEnergyHUD) {
-            text += translate("gui.hud.jetpack.energy") + ": ";
+            text += translate("gui.hud." + prefix + ".energy") + ": ";
         }
         text += getColoredPercent(percent) + "%";
         if (SJConfig.showExactEnergyInHUD) {
             text += " (" + getFormattedNumber(energy) + " RF)";
+        }
+        return text;
+    }
+
+    public static String getHUDStateText(Boolean engine, Boolean hover, Boolean charger) {
+        String text = "";
+        if (engine != null) {
+            text += (engine ? BRIGHT_GREEN : RED) + translate("gui.hud.state.engine") + END;
+        }
+        if (hover != null) {
+            if (engine != null)
+                text += LIGHT_GRAY + " - ";
+            text += (hover ? BRIGHT_GREEN : RED) + translate("gui.hud.state.hover") + END;
+        }
+        if (charger != null) {
+            if (hover != null || engine != null)
+                text += LIGHT_GRAY + " - ";
+            text += (charger ? BRIGHT_GREEN : RED) + translate("gui.hud.state.charger");
         }
         return text;
     }

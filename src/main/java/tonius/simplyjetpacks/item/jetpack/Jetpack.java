@@ -75,12 +75,12 @@ public class Jetpack {
         new Jetpack(2, 2, SJConfig.hardenedEnchantable, EnumRarity.common, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode);
         new Jetpack(3, 3, SJConfig.reinforcedEnchantable, EnumRarity.uncommon, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode);
         new Jetpack(4, 4, SJConfig.resonantEnchantable, EnumRarity.rare, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode);
-        new JetpackFluxPlate(5, 5, SJConfig.fluxPlateEnchantable, EnumRarity.epic, SJConfig.fluxPlateEnergyCapacity, SJConfig.fluxPlateEnergyPerTick, SJConfig.fluxPlateSpeedVertical, SJConfig.fluxPlateAccelVertical, (float) SJConfig.fluxPlateSpeedSideways, SJConfig.fluxPlateSpeedVerticalHover, SJConfig.fluxPlateSpeedVerticalHoverSlow, SJConfig.fluxPlateEmergencyHoverMode, SJConfig.fluxPlateArmorDisplay, SJConfig.fluxPlateArmorAbsorption, SJConfig.fluxPlateArmorEnergyPerHit);
+        new JetpackFluxPlate(5, 5, SJConfig.fluxPlateEnchantable, EnumRarity.epic, SJConfig.fluxPlateEnergyCapacity, SJConfig.fluxPlateEnergyPerTick, SJConfig.fluxPlateSpeedVertical, SJConfig.fluxPlateAccelVertical, (float) SJConfig.fluxPlateSpeedSideways, SJConfig.fluxPlateSpeedVerticalHover, SJConfig.fluxPlateSpeedVerticalHoverSlow, SJConfig.fluxPlateEmergencyHoverMode, SJConfig.fluxPlateArmorDisplay, SJConfig.fluxPlateArmorAbsorption, SJConfig.fluxPlateArmorEnergyPerHit, 20000);
         new JetpackArmored(101, 1, SJConfig.leadstoneEnchantable, EnumRarity.common, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode, SJConfig.leadstoneArmorDisplay, SJConfig.leadstoneArmorAbsorption, SJConfig.leadstoneArmorEnergyPerHit);
         new JetpackArmored(102, 2, SJConfig.hardenedEnchantable, EnumRarity.common, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode, SJConfig.hardenedArmorDisplay, SJConfig.hardenedArmorAbsorption, SJConfig.hardenedArmorEnergyPerHit);
         new JetpackArmored(103, 3, SJConfig.reinforcedEnchantable, EnumRarity.uncommon, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode, SJConfig.reinforcedArmorDisplay, SJConfig.reinforcedArmorAbsorption, SJConfig.reinforcedArmorEnergyPerHit);
         new JetpackArmored(104, 4, SJConfig.resonantEnchantable, EnumRarity.rare, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode, SJConfig.resonantArmorDisplay, SJConfig.resonantArmorAbsorption, SJConfig.resonantArmorEnergyPerHit);
-        new JetpackCreative(9001, SJConfig.creativeEnchantable, SJConfig.creativeSpeedVertical, SJConfig.creativeAccelVertical, (float) SJConfig.creativeSpeedSideways, SJConfig.creativeSpeedVerticalHover, SJConfig.creativeSpeedVerticalHoverSlow, SJConfig.creativeEmergencyHoverMode, SJConfig.creativeArmorDisplay, SJConfig.creativeArmorAbsorption, 0);
+        new JetpackCreative(9001, SJConfig.creativeEnchantable, SJConfig.creativeSpeedVertical, SJConfig.creativeAccelVertical, (float) SJConfig.creativeSpeedSideways, SJConfig.creativeSpeedVerticalHover, SJConfig.creativeSpeedVerticalHoverSlow, SJConfig.creativeEmergencyHoverMode, SJConfig.creativeArmorDisplay, SJConfig.creativeArmorAbsorption);
         new JetpackIcon(9002);
     }
 
@@ -133,7 +133,11 @@ public class Jetpack {
                         if (!hoverMode) {
                             user.motionY = Math.min(user.motionY + currentAccel, this.speedVertical);
                         } else {
-                            user.motionY = Math.min(user.motionY + currentAccel, this.speedVerticalHover);
+                            if (user.isSneaking()) {
+                                user.motionY = Math.min(user.motionY + currentAccel, -this.speedVerticalHoverSlow);
+                            } else {
+                                user.motionY = Math.min(user.motionY + currentAccel, this.speedVerticalHover);
+                            }
                         }
                     } else {
                         user.motionY = Math.min(user.motionY + currentAccel, -hoverSpeed);
@@ -241,18 +245,17 @@ public class Jetpack {
 
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, int energyStored) {
         list.add(StringUtils.getChargeText(this.tier == 9001, energyStored, this.energyCapacity));
-        if (StringUtils.canShowDetails()) {
-            list.add(StringUtils.getStateText(this.isOn(itemStack)));
-            list.add(StringUtils.getHoverModeText(this.isHoverModeOn(itemStack)));
-            int currentTickEnergy = this.isHoverModeOn(itemStack) ? this.energyPerTickHover : this.energyPerTick;
-            list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
-            list.add(StringUtils.getArmoredText(this.isArmored()));
-            list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
-            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
-            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-        } else {
-            list.add(StringUtils.getShiftText());
-        }
+    }
+
+    public void addShiftInformation(ItemStack itemStack, EntityPlayer player, List list) {
+        list.add(StringUtils.getStateText(this.isOn(itemStack)));
+        list.add(StringUtils.getHoverModeText(this.isHoverModeOn(itemStack)));
+        int currentTickEnergy = this.isHoverModeOn(itemStack) ? this.energyPerTickHover : this.energyPerTick;
+        list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
+        list.add(StringUtils.getArmoredText(this.isArmored()));
+        list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
+        list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
+        list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
     }
 
     public JetpackParticleType getParticleType(ItemStack jetpack) {

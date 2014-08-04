@@ -2,10 +2,10 @@ package tonius.simplyjetpacks.item.fluxpack;
 
 import net.minecraft.item.EnumRarity;
 
-public class FluxPackCreative extends FluxPack {
+public class FluxPackCreative extends FluxPackArmored {
 
-    public FluxPackCreative(int meta, boolean enchantable, int energyPerTick) {
-        super(meta, 9001, enchantable, EnumRarity.epic, 9001, energyPerTick, false);
+    public FluxPackCreative(int meta, boolean enchantable, int energyPerTickOut, int armorDisplay, double armorAbsorption) {
+        super(meta, 9001, enchantable, EnumRarity.epic, 9001, Integer.MAX_VALUE, energyPerTickOut, false, armorDisplay, armorAbsorption, 0);
     }
 
     @Override
@@ -20,6 +20,11 @@ public class FluxPackCreative extends FluxPack {
 
     @Override
     public boolean hasDamageBar() {
+        return false;
+    }
+
+    @Override
+    public boolean hasArmoredVersion() {
         return false;
     }
 

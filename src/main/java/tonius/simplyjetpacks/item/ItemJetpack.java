@@ -22,6 +22,7 @@ import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.util.StackUtils;
+import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -84,6 +85,11 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
             jetpack.addInformation(itemStack, player, list, this.getEnergyStored(itemStack));
+            if (StringUtils.canShowDetails()) {
+                jetpack.addShiftInformation(itemStack, player, list);
+            } else {
+                list.add(StringUtils.getShiftText());
+            }
         }
     }
 

@@ -19,7 +19,7 @@ import tonius.simplyjetpacks.item.ItemMeta;
 import tonius.simplyjetpacks.item.ItemMeta.MetaItem;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
-import tonius.simplyjetpacks.recipes.JetpackUpgradingRecipe;
+import tonius.simplyjetpacks.recipes.SJUpgradingRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SJItems {
@@ -43,8 +43,11 @@ public class SJItems {
 
     public static ItemStack fluxpackLeadstone = null;
     public static ItemStack fluxpackHardened = null;
+    public static ItemStack fluxpackHardenedArmored = null;
     public static ItemStack fluxpackReinforced = null;
+    public static ItemStack fluxpackReinforcedArmored = null;
     public static ItemStack fluxpackResonant = null;
+    public static ItemStack fluxpackResonantArmored = null;
 
     public static ItemStack leatherStrap = null;
     public static ItemStack thrusterLeadstone = null;
@@ -106,30 +109,24 @@ public class SJItems {
 
         fluxpackLeadstone = new ItemStack(fluxpacks, 1, 1);
         fluxpackHardened = new ItemStack(fluxpacks, 1, 2);
+        fluxpackHardenedArmored = new ItemStack(fluxpacks, 1, 102);
         fluxpackReinforced = new ItemStack(fluxpacks, 1, 3);
+        fluxpackReinforcedArmored = new ItemStack(fluxpacks, 1, 103);
         fluxpackResonant = new ItemStack(fluxpacks, 1, 4);
+        fluxpackResonantArmored = new ItemStack(fluxpacks, 1, 104);
 
-        String[] leatherStrapTooltips = new String[2];
-        leatherStrapTooltips[0] = "tooltip.leatherStrap.description.1";
-        leatherStrapTooltips[1] = "tooltip.leatherStrap.description.2";
-        leatherStrap = components.addMetaItem(0, new MetaItem("leatherStrap", leatherStrapTooltips, EnumRarity.common), true, false);
+        leatherStrap = components.addMetaItem(0, new MetaItem("leatherStrap", null, EnumRarity.common), true, false);
 
-        String[] thrusterTooltips = new String[2];
-        thrusterTooltips[0] = "tooltip.thruster.description.1";
-        thrusterTooltips[1] = "tooltip.thruster.description.2";
-        thrusterLeadstone = components.addMetaItem(11, new MetaItem("thruster.1", thrusterTooltips, EnumRarity.common), true, false);
-        thrusterHardened = components.addMetaItem(12, new MetaItem("thruster.2", thrusterTooltips, EnumRarity.common), true, false);
-        thrusterReinforced = components.addMetaItem(13, new MetaItem("thruster.3", thrusterTooltips, EnumRarity.uncommon), true, false);
-        thrusterResonant = components.addMetaItem(14, new MetaItem("thruster.4", thrusterTooltips, EnumRarity.rare), true, false);
-        thrusterEnergetic = components.addMetaItem(15, new MetaItem("thruster.5", thrusterTooltips, EnumRarity.epic), true, false);
+        thrusterLeadstone = components.addMetaItem(11, new MetaItem("thruster.1", null, EnumRarity.common), true, false);
+        thrusterHardened = components.addMetaItem(12, new MetaItem("thruster.2", null, EnumRarity.common), true, false);
+        thrusterReinforced = components.addMetaItem(13, new MetaItem("thruster.3", null, EnumRarity.uncommon), true, false);
+        thrusterResonant = components.addMetaItem(14, new MetaItem("thruster.4", null, EnumRarity.rare), true, false);
+        thrusterEnergetic = components.addMetaItem(15, new MetaItem("thruster.5", null, EnumRarity.epic), true, false);
 
-        String[] armorPlatingTooltips = new String[2];
-        armorPlatingTooltips[0] = "tooltip.armorPlating.description.1";
-        armorPlatingTooltips[1] = "tooltip.armorPlating.description.2";
-        armorPlatingIron = components.addMetaItem(121, new MetaItem("armorPlating.1", armorPlatingTooltips, EnumRarity.common), true, false);
-        armorPlatingTinkersAlloy = components.addMetaItem(122, new MetaItem("armorPlating.2", armorPlatingTooltips, EnumRarity.common), true, false);
-        armorPlatingInvar = components.addMetaItem(123, new MetaItem("armorPlating.3", armorPlatingTooltips, EnumRarity.common), true, false);
-        armorPlatingEnderium = components.addMetaItem(124, new MetaItem("armorPlating.4", armorPlatingTooltips, EnumRarity.rare), true, false);
+        armorPlatingIron = components.addMetaItem(121, new MetaItem("armorPlating.1", null, EnumRarity.common), true, false);
+        armorPlatingTinkersAlloy = components.addMetaItem(122, new MetaItem("armorPlating.2", null, EnumRarity.common), true, false);
+        armorPlatingInvar = components.addMetaItem(123, new MetaItem("armorPlating.3", null, EnumRarity.common), true, false);
+        armorPlatingEnderium = components.addMetaItem(124, new MetaItem("armorPlating.4", null, EnumRarity.rare), true, false);
 
         unitGlowstoneEmpty = components.addMetaItem(60, new MetaItem("unitGlowstone.empty", null, EnumRarity.common), true, false);
         unitGlowstone = components.addMetaItem(61, new MetaItem("unitGlowstone", null, EnumRarity.uncommon), true, false);
@@ -166,8 +163,11 @@ public class SJItems {
 
         GameRegistry.registerCustomItemStack("fluxpack.1", fluxpackLeadstone);
         GameRegistry.registerCustomItemStack("fluxpack.2", fluxpackHardened);
+        GameRegistry.registerCustomItemStack("fluxpack.2.armored", fluxpackHardenedArmored);
         GameRegistry.registerCustomItemStack("fluxpack.3", fluxpackReinforced);
+        GameRegistry.registerCustomItemStack("fluxpack.3.armored", fluxpackReinforcedArmored);
         GameRegistry.registerCustomItemStack("fluxpack.4", fluxpackResonant);
+        GameRegistry.registerCustomItemStack("fluxpack.4.armored", fluxpackResonantArmored);
     }
 
     private static void registerRecipes() {
@@ -189,16 +189,21 @@ public class SJItems {
                 GameRegistry.addRecipe(new ShapedOreRecipe(armorPlatingIron.copy(), new Object[] { "TIT", "III", "TIT", 'I', "ingotIron", 'T', "ingotTin" }));
             }
 
+            GameRegistry.addRecipe(new SJUpgradingRecipe(fluxpackLeadstone.copy(), new Object[] { "ICI", "ISI", 'I', "ingotLead", 'C', TEItems.cellBasic.copy(), 'S', leatherStrap.copy() }));
+            GameRegistry.addRecipe(new SJUpgradingRecipe(fluxpackHardened.copy(), new Object[] { " I ", "ISI", " I ", 'I', "ingotInvar", 'S', fluxpackLeadstone.copy() }));
+            GameRegistry.addRecipe(new SJUpgradingRecipe(fluxpackReinforced.copy(), new Object[] { " C ", "ISI", "LOL", 'I', "ingotElectrum", 'L', "ingotLead", 'C', TEItems.frameCellReinforcedFull.copy(), 'S', fluxpackHardened.copy(), 'O', TEItems.powerCoilElectrum }));
+            GameRegistry.addRecipe(new SJUpgradingRecipe(fluxpackResonant.copy(), new Object[] { " I ", "ISI", " I ", 'I', "ingotEnderium", 'S', fluxpackReinforced.copy() }));
+
             GameRegistry.addRecipe(new ShapedOreRecipe(jetpackLeadstone.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotLead", 'B', TEItems.capacitorBasic.copy(), 'T', thrusterLeadstone.copy(), 'J', leatherStrap.copy() }));
-            GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackHardened.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened.copy(), 'T', thrusterHardened.copy(), 'J', jetpackLeadstone.copy() }));
-            GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackReinforced.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced.copy(), 'T', thrusterReinforced.copy(), 'J', jetpackHardened.copy() }));
-            GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackResonant.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant.copy(), 'T', thrusterResonant.copy(), 'J', jetpackReinforced.copy() }));
+            GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackHardened.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened.copy(), 'T', thrusterHardened.copy(), 'J', jetpackLeadstone.copy() }));
+            GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackReinforced.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced.copy(), 'T', thrusterReinforced.copy(), 'J', jetpackHardened.copy() }));
+            GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackResonant.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant.copy(), 'T', thrusterResonant.copy(), 'J', jetpackReinforced.copy() }));
 
             if (raAvailable) {
                 GameRegistry.addRecipe(new ShapedOreRecipe(unitGlowstoneEmpty.copy(), new Object[] { "FLF", "LHL", "FLF", 'L', "ingotLumium", 'F', "ingotElectrumFlux", 'H', TEItems.frameIlluminator.copy() }));
                 GameRegistry.addRecipe(new ShapedOreRecipe(unitCryotheumEmpty.copy(), new Object[] { "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', TEItems.blockGlassHardened.copy() }));
-                GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEnergetic.copy(), new Object[] { "GPG", "TRT", 'G', unitGlowstone.copy(), 'P', RAItems.plateFlux.copy(), 'T', thrusterReinforced.copy(), 'R', thrusterResonant.copy() }));
-                GameRegistry.addRecipe(new JetpackUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate.copy(), 'J', jetpackResonantArmored.copy(), 'O', unitCryotheum.copy(), 'C', fluxpackResonant.copy(), 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
+                GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEnergetic.copy(), new Object[] { " P ", "GRG", 'G', unitGlowstone.copy(), 'P', RAItems.plateFlux.copy(), 'R', thrusterResonant.copy() }));
+                GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate.copy(), 'J', jetpackResonantArmored.copy(), 'O', unitCryotheum.copy(), 'C', fluxpackResonantArmored.copy(), 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
             }
 
             GameRegistry.addRecipe(new ShapedOreRecipe(particleDefault.copy(), new Object[] { " D ", "DCD", " D ", 'C', "dustCoal", 'D', Blocks.torch }));
@@ -209,7 +214,7 @@ public class SJItems {
         for (int i = 0; i <= Jetpack.getHighestMeta(); i++) {
             Jetpack jetpack = Jetpack.getJetpack(i);
             if (jetpack != null && !(jetpack instanceof JetpackIcon)) {
-                GameRegistry.addRecipe(new JetpackUpgradingRecipe(new ItemStack(jetpacks, 1, i), new Object[] { "J", "P", 'J', new ItemStack(jetpacks, 1, i), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
+                GameRegistry.addRecipe(new SJUpgradingRecipe(new ItemStack(jetpacks, 1, i), new Object[] { "J", "P", 'J', new ItemStack(jetpacks, 1, i), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
             }
         }
     }

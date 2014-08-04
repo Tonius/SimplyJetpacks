@@ -7,7 +7,9 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -20,6 +22,7 @@ import tonius.simplyjetpacks.client.model.ModelFluxPack;
 import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
+import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;
@@ -109,6 +112,34 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     }
 
     @Override
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        FluxPack fluxpack = this.getFluxPack(itemStack);
+        if (fluxpack != null) {
+            if (fluxpack.hasArmoredVersion() && player.isSneaking()) {
+                if (fluxpack.isArmored()) {
+                    fluxpack.removeArmor(itemStack, player);
+                    if (!world.isRemote) {
+                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.components, 1, fluxpack.getPlatingMeta()), 0.0F);
+                        item.delayBeforeCanPickup = 0;
+                    }
+                } else {
+                    InventoryPlayer inv = player.inventory;
+                    for (int i = 0; i < inv.getSizeInventory(); i++) {
+                        ItemStack currentStack = inv.getStackInSlot(i);
+                        if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == fluxpack.getPlatingMeta()) {
+                            inv.decrStackSize(i, 1);
+                            fluxpack.applyArmor(itemStack, player);
+                            break;
+                        }
+                    }
+                }
+                return itemStack;
+            }
+        }
+        return super.onItemRightClick(itemStack, world, player);
+    }
+
+    @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
         if (fluxpack != null) {
@@ -191,23 +222,35 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
 
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
-        return new ArmorProperties(0, 1, 0);
+        FluxPack fluxpack = this.getFluxPack(armor);
+        if (fluxpack != null) {
+            return fluxpack.getProperties(player, this, armor, source, damage, slot);
+        }
+        return null;
     }
 
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
+        FluxPack fluxpack = this.getFluxPack(armor);
+        if (fluxpack != null) {
+            return fluxpack.getArmorDisplay(player, this, armor, slot);
+        }
         return 0;
     }
 
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack armor, DamageSource source, int damage, int slot) {
+        FluxPack fluxpack = this.getFluxPack(armor);
+        if (fluxpack != null) {
+            fluxpack.damageArmor(entity, this, armor, source, damage, slot);
+        }
     }
 
     @Override
     public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
         int energy = getEnergyStored(container);
         FluxPack fluxpack = this.getFluxPack(container);
-        int maxInput = fluxpack != null ? fluxpack.energyCapacity : 0;
+        int maxInput = fluxpack != null ? fluxpack.energyPerTickIn : 0;
         int energyReceived = Math.min(getMaxEnergyStored(container) - energy, Math.min(maxReceive, maxInput));
 
         if (!simulate) {
@@ -221,7 +264,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
         int energy = getEnergyStored(container);
         FluxPack fluxpack = this.getFluxPack(container);
-        int maxOutput = fluxpack != null ? fluxpack.energyCapacity : 0;
+        int maxOutput = fluxpack != null ? fluxpack.energyPerTickOut : 0;
         int energyExtracted = Math.min(energy, Math.min(maxExtract, maxOutput));
 
         if (!simulate) {

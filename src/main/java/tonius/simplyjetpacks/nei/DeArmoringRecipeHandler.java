@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
+import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.util.StringUtils;
@@ -52,11 +53,22 @@ public class DeArmoringRecipeHandler extends TemplateRecipeHandler {
             if (jetpack != null && !jetpack.isArmored() && jetpack.hasArmoredVersion()) {
                 this.arecipes.add(new CachedDeArmoringRecipe(new ItemStack(SJItems.jetpacks, 1, dmg + 100), new ItemStack(SJItems.jetpacks, 1, dmg), new ItemStack(SJItems.components, 1, jetpack.getPlatingMeta())));
             }
+        } else if (result.getItem() == SJItems.fluxpacks) {
+            FluxPack fluxpack = FluxPack.getFluxPack(dmg);
+            if (fluxpack != null && !fluxpack.isArmored() && fluxpack.hasArmoredVersion()) {
+                this.arecipes.add(new CachedDeArmoringRecipe(new ItemStack(SJItems.fluxpacks, 1, dmg + 100), new ItemStack(SJItems.fluxpacks, 1, dmg), new ItemStack(SJItems.components, 1, fluxpack.getPlatingMeta())));
+            }
         } else if (result.getItem() == SJItems.components) {
             for (int i = 0; i <= Jetpack.getHighestMeta(); i++) {
                 Jetpack jetpack = Jetpack.getJetpack(i);
                 if (jetpack != null && jetpack.isArmored() && jetpack.hasArmoredVersion() && jetpack.getPlatingMeta() == dmg) {
                     this.arecipes.add(new CachedDeArmoringRecipe(new ItemStack(SJItems.jetpacks, 1, i), new ItemStack(SJItems.jetpacks, 1, i - 100), new ItemStack(SJItems.components, 1, jetpack.getPlatingMeta())));
+                }
+            }
+            for (int i = 0; i <= FluxPack.getHighestMeta(); i++) {
+                FluxPack fluxpack = FluxPack.getFluxPack(i);
+                if (fluxpack != null && fluxpack.isArmored() && fluxpack.hasArmoredVersion() && fluxpack.getPlatingMeta() == dmg) {
+                    this.arecipes.add(new CachedDeArmoringRecipe(new ItemStack(SJItems.fluxpacks, 1, i), new ItemStack(SJItems.fluxpacks, 1, i - 100), new ItemStack(SJItems.components, 1, fluxpack.getPlatingMeta())));
                 }
             }
         }
@@ -69,6 +81,12 @@ public class DeArmoringRecipeHandler extends TemplateRecipeHandler {
             Jetpack jetpack = Jetpack.getJetpack(dmg);
             if (jetpack != null && jetpack.isArmored() && jetpack.hasArmoredVersion()) {
                 this.arecipes.add(new CachedDeArmoringRecipe(new ItemStack(SJItems.jetpacks, 1, dmg), new ItemStack(SJItems.jetpacks, 1, dmg - 100), new ItemStack(SJItems.components, 1, jetpack.getPlatingMeta())));
+            }
+        } else if (ingredient.getItem() == SJItems.fluxpacks) {
+            int dmg = ingredient.getItemDamage();
+            FluxPack fluxpack = FluxPack.getFluxPack(dmg);
+            if (fluxpack != null && fluxpack.isArmored() && fluxpack.hasArmoredVersion()) {
+                this.arecipes.add(new CachedDeArmoringRecipe(new ItemStack(SJItems.fluxpacks, 1, dmg), new ItemStack(SJItems.fluxpacks, 1, dmg - 100), new ItemStack(SJItems.components, 1, fluxpack.getPlatingMeta())));
             }
         }
     }

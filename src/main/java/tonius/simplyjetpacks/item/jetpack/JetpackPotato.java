@@ -33,17 +33,12 @@ public class JetpackPotato extends Jetpack {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, int energyStored) {
-        list.add(StringUtils.getChargeText(false, energyStored, this.energyCapacity));
-        if (StringUtils.canShowDetails()) {
-            list.add(StringUtils.getEnergyUsageText(this.energyPerTick));
-            list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
-            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
-            list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-            list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
-        } else {
-            list.add(StringUtils.getShiftText());
-        }
+    public void addShiftInformation(ItemStack itemStack, EntityPlayer player, List list) {
+        list.add(StringUtils.getEnergyUsageText(this.energyPerTick));
+        list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
+        list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
+        list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
+        list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
     }
 
     @Override

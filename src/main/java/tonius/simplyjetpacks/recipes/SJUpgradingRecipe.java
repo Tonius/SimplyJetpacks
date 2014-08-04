@@ -1,6 +1,7 @@
 package tonius.simplyjetpacks.recipes;
 
 import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -10,14 +11,14 @@ import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
-public class JetpackUpgradingRecipe extends ShapedOreRecipe {
+public class SJUpgradingRecipe extends ShapedOreRecipe {
 
-    private ItemJetpack resultItem;
+    private IEnergyContainerItem resultItem;
     private int resultMeta;
 
-    public JetpackUpgradingRecipe(ItemStack result, Object[] recipe) {
+    public SJUpgradingRecipe(ItemStack result, Object[] recipe) {
         super(result, recipe);
-        this.resultItem = (ItemJetpack) result.getItem();
+        this.resultItem = (IEnergyContainerItem) result.getItem();
         this.resultMeta = result.getItemDamage();
         result.getEnchantmentTagList();
     }
@@ -42,16 +43,17 @@ public class JetpackUpgradingRecipe extends ShapedOreRecipe {
             }
         }
 
-        ItemStack result = new ItemStack(resultItem, 1, this.resultMeta);
+        ItemStack result = new ItemStack((Item) resultItem, 1, this.resultMeta);
 
         if (tags != null) {
             result.setTagCompound(tags);
         }
 
-        resultItem.receiveEnergy(result, addedEnergy, false);
+        while (resultItem.getEnergyStored(result) < addedEnergy)
+            resultItem.receiveEnergy(result, addedEnergy, false);
 
-        if (particleType != null) {
-            resultItem.getJetpack(result).setParticleType(result, particleType);
+        if (resultItem instanceof ItemJetpack && particleType != null) {
+            ((ItemJetpack) resultItem).getJetpack(result).setParticleType(result, particleType);
         }
 
         return result;
