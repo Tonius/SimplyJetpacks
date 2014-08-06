@@ -29,7 +29,7 @@ group = "tonius.simplyjetpacks"
 archivesBaseName = "SimplyJetpacks-MC1.7.10"
 
 minecraft {
-    version = "1.7.10-10.13.0.1188"
+    version = "1.7.10-10.13.0.1197"
     runDir = "eclipse"
 }
 
