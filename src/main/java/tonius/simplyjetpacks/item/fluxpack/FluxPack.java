@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemFluxPack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
@@ -57,14 +58,14 @@ public class FluxPack {
     }
 
     public static void reconstructFluxPacks() {
-        new FluxPack(1, 1, false, EnumRarity.common, 400000, 80, 80, true);
-        new FluxPack(2, 2, false, EnumRarity.common, 2000000, 400, 400, true);
-        new FluxPack(3, 3, true, EnumRarity.uncommon, 10000000, 2000, 2000, true);
-        new FluxPack(4, 4, true, EnumRarity.rare, 50000000, 10000, 10000, true);
-        new FluxPackArmored(102, 2, false, EnumRarity.common, 2000000, 400, 400, true, 4, 0.2D, 80);
-        new FluxPackArmored(103, 3, true, EnumRarity.uncommon, 10000000, 2000, 2000, true, 5, 0.3D, 80);
-        new FluxPackArmored(104, 4, true, EnumRarity.rare, 50000000, 10000, 10000, true, 6, 0.4D, 80);
-        new FluxPackCreative(9001, true, 20000, 8, 0.6D);
+        new FluxPack(1, 1, SJConfig.fluxpackLeadstoneEnchantable, EnumRarity.common, SJConfig.fluxpackLeadstoneEnergyCapacity, SJConfig.fluxpackLeadstoneEnergyInRate, SJConfig.fluxpackLeadstoneEnergyOutRate, true);
+        new FluxPack(2, 2, SJConfig.fluxpackHardenedEnchantable, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate, true);
+        new FluxPack(3, 3, SJConfig.fluxpackRedstoneEnchantable, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate, true);
+        new FluxPack(4, 4, SJConfig.fluxpackResonantEnchantable, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate, true);
+        new FluxPackArmored(102, 2, SJConfig.fluxpackHardenedEnchantable, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate, true, SJConfig.fluxpackHardenedArmorDisplay, SJConfig.fluxpackHardenedArmorAbsorption, SJConfig.fluxpackHardenedArmorEnergyPerHit);
+        new FluxPackArmored(103, 3, SJConfig.fluxpackRedstoneEnchantable, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate, true, SJConfig.fluxpackRedstoneArmorDisplay, SJConfig.fluxpackRedstoneArmorAbsorption, SJConfig.fluxpackRedstoneArmorEnergyPerHit);
+        new FluxPackArmored(104, 4, SJConfig.fluxpackResonantEnchantable, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate, true, SJConfig.fluxpackResonantArmorDisplay, SJConfig.fluxpackResonantArmorAbsorption, SJConfig.fluxpackResonantArmorEnergyPerHit);
+        new FluxPackCreative(9001, SJConfig.fluxpackCreativeEnchantable, SJConfig.fluxpackCreativeEnergyOutRate, SJConfig.fluxpackCreativeArmorDisplay, SJConfig.fluxpackCreativeArmorAbsorption);
     }
 
     public String getBaseName() {
@@ -117,7 +118,7 @@ public class FluxPack {
         return StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
     }
 
-    public void toggle(ItemStack itemStack, EntityPlayer player) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         String msg = "";
         if (this.isOn(itemStack)) {
             msg = StringUtils.translate("chat.fluxpack.charger") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
@@ -126,7 +127,8 @@ public class FluxPack {
             msg = StringUtils.translate("chat.fluxpack.charger") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("FluxPackOn", true);
         }
-        player.addChatMessage(new ChatComponentText(msg));
+        if (showInChat)
+            player.addChatMessage(new ChatComponentText(msg));
     }
 
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, int energyStored) {

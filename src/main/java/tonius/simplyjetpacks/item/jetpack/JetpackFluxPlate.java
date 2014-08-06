@@ -25,7 +25,7 @@ public class JetpackFluxPlate extends JetpackArmored {
         return StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
     }
 
-    public void toggleCharger(ItemStack itemStack, EntityPlayer player) {
+    public void toggleCharger(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         String msg = "";
         if (this.isChargerOn(itemStack)) {
             msg = StringUtils.translate("chat.fluxpack.charger") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
@@ -34,7 +34,8 @@ public class JetpackFluxPlate extends JetpackArmored {
             msg = StringUtils.translate("chat.fluxpack.charger") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("FluxPackOn", true);
         }
-        player.addChatMessage(new ChatComponentText(msg));
+        if (showInChat)
+            player.addChatMessage(new ChatComponentText(msg));
     }
 
     @Override
@@ -48,11 +49,11 @@ public class JetpackFluxPlate extends JetpackArmored {
     }
 
     @Override
-    public void toggle(ItemStack itemStack, EntityPlayer player) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         if (player.isSneaking()) {
-            this.toggleCharger(itemStack, player);
+            this.toggleCharger(itemStack, player, showInChat);
         } else {
-            super.toggle(itemStack, player);
+            super.toggle(itemStack, player, showInChat);
         }
     }
 
@@ -77,8 +78,7 @@ public class JetpackFluxPlate extends JetpackArmored {
         list.add(StringUtils.getStateText(this.isOn(itemStack)));
         list.add(StringUtils.getHoverModeText(this.isHoverModeOn(itemStack)));
         list.add(StringUtils.getChargerStateText(this.isChargerOn(itemStack)));
-        int currentTickEnergy = this.isHoverModeOn(itemStack) ? this.energyPerTickHover : this.energyPerTick;
-        list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
+        list.add(StringUtils.getEnergyUsageText(this.energyPerTick));
         list.add(StringUtils.getChargerRateText(this.energyPerTickOut));
         list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));

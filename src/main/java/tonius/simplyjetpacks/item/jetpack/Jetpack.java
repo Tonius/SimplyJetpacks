@@ -32,7 +32,6 @@ public class Jetpack {
     public double speedVertical;
     public double accelVertical;
     public float speedSideways;
-    public int energyPerTickHover;
     public double speedVerticalHover;
     public double speedVerticalHoverSlow;
     public boolean emergencyHoverMode;
@@ -46,7 +45,6 @@ public class Jetpack {
         this.speedVertical = speedVertical;
         this.accelVertical = accelVertical;
         this.speedSideways = speedSideways;
-        this.energyPerTickHover = (int) (energyPerTick / 1.5);
         this.speedVerticalHover = speedVerticalHover;
         this.speedVerticalHoverSlow = speedVerticalHoverSlow;
         this.emergencyHoverMode = emergencyHoverMode;
@@ -123,9 +121,8 @@ public class Jetpack {
             }
 
             if (jumpKeyDown || (hoverMode && !user.onGround)) {
-                int usedPower = hoverMode ? this.energyPerTickHover : this.energyPerTick;
                 if (!user.worldObj.isRemote) {
-                    item.extractEnergy(armor, usedPower, false);
+                    item.extractEnergy(armor, this.energyPerTick, false);
                 }
 
                 if (item.getEnergyStored(armor) > 0) {
@@ -207,7 +204,7 @@ public class Jetpack {
         return null;
     }
 
-    public void toggle(ItemStack itemStack, EntityPlayer player) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         String msg = "";
         if (this.isOn(itemStack)) {
             msg = StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
@@ -216,14 +213,15 @@ public class Jetpack {
             msg = StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("JetpackOn", true);
         }
-        player.addChatMessage(new ChatComponentText(msg));
+        if (showInChat)
+            player.addChatMessage(new ChatComponentText(msg));
     }
 
     public boolean isHoverModeOn(ItemStack itemStack) {
         return StackUtils.getNBT(itemStack).getBoolean("JetpackHoverModeOn");
     }
 
-    public void switchMode(ItemStack itemStack, EntityPlayer player) {
+    public void switchMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         String msg = "";
         if (this.isHoverModeOn(itemStack)) {
             msg = StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
@@ -232,7 +230,8 @@ public class Jetpack {
             msg = StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("JetpackHoverModeOn", true);
         }
-        player.addChatMessage(new ChatComponentText(msg));
+        if (showInChat)
+            player.addChatMessage(new ChatComponentText(msg));
     }
 
     public double getHoverSpeed(ItemStack jetpack, EntityLivingBase user) {
@@ -250,8 +249,7 @@ public class Jetpack {
     public void addShiftInformation(ItemStack itemStack, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(itemStack)));
         list.add(StringUtils.getHoverModeText(this.isHoverModeOn(itemStack)));
-        int currentTickEnergy = this.isHoverModeOn(itemStack) ? this.energyPerTickHover : this.energyPerTick;
-        list.add(StringUtils.getEnergyUsageText(currentTickEnergy));
+        list.add(StringUtils.getEnergyUsageText(this.energyPerTick));
         list.add(StringUtils.getArmoredText(this.isArmored()));
         list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));

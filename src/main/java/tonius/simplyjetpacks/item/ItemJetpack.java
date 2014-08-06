@@ -55,18 +55,18 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     }
 
     @Override
-    public void toggle(ItemStack itemStack, EntityPlayer player) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            jetpack.toggle(itemStack, player);
+            jetpack.toggle(itemStack, player, showInChat);
         }
     }
 
     @Override
-    public void switchMode(ItemStack itemStack, EntityPlayer player) {
+    public void switchMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            jetpack.switchMode(itemStack, player);
+            jetpack.switchMode(itemStack, player, showInChat);
         }
     }
 

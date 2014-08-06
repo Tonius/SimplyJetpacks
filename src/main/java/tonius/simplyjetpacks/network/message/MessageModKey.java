@@ -13,22 +13,26 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, IMessage> {
 
     public int keyId;
+    public boolean showInChat;
 
     public MessageModKey() {
     }
 
-    public MessageModKey(SJKey key) {
+    public MessageModKey(SJKey key, boolean showInChat) {
         this.keyId = key.ordinal();
+        this.showInChat = showInChat;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         this.keyId = buf.readInt();
+        this.showInChat = buf.readBoolean();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(this.keyId);
+        buf.writeBoolean(this.showInChat);
     }
 
     @Override
@@ -39,9 +43,9 @@ public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, I
             ItemStack armor = entityPlayer.inventory.armorItemInSlot(2);
             if (armor != null) {
                 if (msg.keyId == SJKey.TOGGLE.ordinal() && armor.getItem() instanceof IToggleable) {
-                    ((IToggleable) armor.getItem()).toggle(armor, entityPlayer);
+                    ((IToggleable) armor.getItem()).toggle(armor, entityPlayer, msg.showInChat);
                 } else if (msg.keyId == SJKey.MODE.ordinal() && armor.getItem() instanceof IModeSwitchable) {
-                    ((IModeSwitchable) armor.getItem()).switchMode(armor, entityPlayer);
+                    ((IModeSwitchable) armor.getItem()).switchMode(armor, entityPlayer, msg.showInChat);
                 }
             }
         }

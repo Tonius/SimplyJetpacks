@@ -5,6 +5,6 @@ import net.minecraft.item.ItemStack;
 
 public interface IToggleable {
 
-    public void toggle(ItemStack itemStack, EntityPlayer player);
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat);
 
 }

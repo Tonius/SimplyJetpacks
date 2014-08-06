@@ -56,10 +56,10 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     }
 
     @Override
-    public void toggle(ItemStack itemStack, EntityPlayer player) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
         if (fluxpack != null) {
-            fluxpack.toggle(itemStack, player);
+            fluxpack.toggle(itemStack, player, showInChat);
         }
     }
 

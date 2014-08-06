@@ -4,24 +4,19 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 
-import org.lwjgl.opengl.GL11;
-
 public class RenderUtils {
 
     private static Minecraft mc = Minecraft.getMinecraft();
 
-    public static void drawStringLeft(String string, FontRenderer fontRenderer, int x, int y, double scale, int color, boolean shadow) {
-        GL11.glScaled(scale, scale, 1.0D);
+    public static void drawStringLeft(String string, FontRenderer fontRenderer, int x, int y, int color, boolean shadow) {
         fontRenderer.drawString(string, x, y, color, shadow);
     }
 
-    public static void drawStringCenter(String string, FontRenderer fontRenderer, int x, int y, double scale, int color, boolean shadow) {
-        GL11.glScaled(scale, scale, 1.0D);
+    public static void drawStringCenter(String string, FontRenderer fontRenderer, int x, int y, int color, boolean shadow) {
         fontRenderer.drawString(string, x - fontRenderer.getStringWidth(string) / 2, y, color, shadow);
     }
 
-    public static void drawStringRight(String string, FontRenderer fontRenderer, int x, int y, double scale, int color, boolean shadow) {
-        GL11.glScaled(scale, scale, 1.0D);
+    public static void drawStringRight(String string, FontRenderer fontRenderer, int x, int y, int color, boolean shadow) {
         fontRenderer.drawString(string, x - fontRenderer.getStringWidth(string), y, color, shadow);
     }
 
@@ -36,31 +31,31 @@ public class RenderUtils {
         switch (position) {
         case TOP_LEFT:
             yOffset += lineOffset * 9;
-            drawStringLeft(string, fontRenderer, 2 + xOffset, 2 + yOffset, scale, color, shadow);
+            drawStringLeft(string, fontRenderer, 2 + xOffset, 2 + yOffset, color, shadow);
             break;
         case TOP_CENTER:
             yOffset += lineOffset * 9;
-            drawStringCenter(string, fontRenderer, screenWidth / 2 + xOffset, 2 + yOffset, scale, color, shadow);
+            drawStringCenter(string, fontRenderer, screenWidth / 2 + xOffset, 2 + yOffset, color, shadow);
             break;
         case TOP_RIGHT:
             yOffset += lineOffset * 9;
-            drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, 2 + yOffset, scale, color, shadow);
+            drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, 2 + yOffset, color, shadow);
             break;
         case LEFT:
             yOffset += lineOffset * 9;
-            drawStringLeft(string, fontRenderer, 2 + xOffset, screenHeight / 2 + yOffset, scale, color, shadow);
+            drawStringLeft(string, fontRenderer, 2 + xOffset, screenHeight / 2 + yOffset, color, shadow);
             break;
         case RIGHT:
             yOffset += lineOffset * 9;
-            drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, screenHeight / 2 + yOffset, scale, color, shadow);
+            drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, screenHeight / 2 + yOffset, color, shadow);
             break;
         case BOTTOM_LEFT:
             yOffset -= lineOffset * 9;
-            drawStringLeft(string, fontRenderer, 2 + xOffset, screenHeight - 9 + yOffset, scale, color, shadow);
+            drawStringLeft(string, fontRenderer, 2 + xOffset, screenHeight - 9 + yOffset, color, shadow);
             break;
         case BOTTOM_RIGHT:
             yOffset -= lineOffset * 9;
-            drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, screenHeight - 9 + yOffset, scale, color, shadow);
+            drawStringRight(string, fontRenderer, screenWidth - 2 + xOffset, screenHeight - 9 + yOffset, color, shadow);
         }
     }
 

@@ -4,6 +4,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import org.lwjgl.opengl.GL11;
+
 import tonius.simplyjetpacks.client.util.RenderUtils;
 import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
 import tonius.simplyjetpacks.config.SJConfig;
@@ -26,7 +29,9 @@ public class HUDTickHandler {
 
     @SubscribeEvent
     public void onRenderTick(RenderTickEvent evt) {
-        if (SJConfig.enableEnergyHUD && evt.phase == Phase.END) {
+        if (!SJConfig.enableEnergyHUD && !SJConfig.enableStateHUD) {
+            return;
+        } else if (evt.phase == Phase.END) {
             tickEnd();
         }
     }
@@ -41,11 +46,11 @@ public class HUDTickHandler {
                         ItemJetpack item = (ItemJetpack) chestplate.getItem();
                         Jetpack jetpack = item.getJetpack(chestplate);
                         if (jetpack != null) {
+                            mc.entityRenderer.setupOverlayRendering();
+                            GL11.glScaled(SJConfig.energyHUDScale, SJConfig.energyHUDScale, 1.0D);
+
                             int tier = jetpack.tier;
-                            if (jetpack.hasDamageBar()) {
-
-                                mc.entityRenderer.setupOverlayRendering();
-
+                            if (SJConfig.enableEnergyHUD && jetpack.hasDamageBar()) {
                                 int energy = item.getEnergyStored(chestplate);
                                 int maxEnergy = item.getMaxEnergyStored(chestplate);
                                 int percent = (int) Math.round(((double) energy / (double) maxEnergy) * 100D);
@@ -53,24 +58,26 @@ public class HUDTickHandler {
                                 RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDEnergyText("jetpack", percent, energy), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 0xeeeeee, true, 0);
                             }
 
-                            Boolean engine = jetpack.isOn(chestplate);
-                            Boolean hover = jetpack.isHoverModeOn(chestplate);
-                            Boolean charger = null;
-                            if (jetpack instanceof JetpackFluxPlate) {
-                                charger = ((JetpackFluxPlate) jetpack).isChargerOn(chestplate);
-                            }
+                            if (SJConfig.enableStateHUD) {
+                                Boolean engine = jetpack.isOn(chestplate);
+                                Boolean hover = jetpack.isHoverModeOn(chestplate);
+                                Boolean charger = null;
+                                if (jetpack instanceof JetpackFluxPlate) {
+                                    charger = ((JetpackFluxPlate) jetpack).isChargerOn(chestplate);
+                                }
 
-                            RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDStateText(engine, hover, charger), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 0xeeeeee, true, jetpack.hasDamageBar() ? 1 : 0);
+                                RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDStateText(engine, hover, charger), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 0xeeeeee, true, jetpack.hasDamageBar() ? 1 : 0);
+                            }
                         }
                     } else if (chestplate.getItem() instanceof ItemFluxPack) {
                         ItemFluxPack item = (ItemFluxPack) chestplate.getItem();
                         FluxPack fluxpack = item.getFluxPack(chestplate);
                         if (fluxpack != null) {
+                            mc.entityRenderer.setupOverlayRendering();
+                            GL11.glScaled(SJConfig.energyHUDScale, SJConfig.energyHUDScale, 1.0D);
+
                             int tier = fluxpack.tier;
-                            if (fluxpack.hasDamageBar()) {
-
-                                mc.entityRenderer.setupOverlayRendering();
-
+                            if (SJConfig.enableEnergyHUD && fluxpack.hasDamageBar()) {
                                 int energy = item.getEnergyStored(chestplate);
                                 int maxEnergy = item.getMaxEnergyStored(chestplate);
                                 int percent = (int) Math.round(((double) energy / (double) maxEnergy) * 100D);
@@ -78,8 +85,10 @@ public class HUDTickHandler {
                                 RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDEnergyText("fluxpack", percent, energy), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 0xffffff, true, 0);
                             }
 
-                            Boolean charger = fluxpack.isOn(chestplate);
-                            RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDStateText(null, null, charger), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 0xeeeeee, true, fluxpack.hasDamageBar() ? 1 : 0);
+                            if (SJConfig.enableStateHUD) {
+                                Boolean charger = fluxpack.isOn(chestplate);
+                                RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDStateText(null, null, charger), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 0xeeeeee, true, fluxpack.hasDamageBar() ? 1 : 0);
+                            }
                         }
                     }
                 }
