@@ -10,6 +10,7 @@ public class CommonProxy {
 
     public void registerHandlers() {
         FMLCommonHandler.instance().bus().register(new PlayerTickHandler());
+        FMLCommonHandler.instance().bus().register(new SyncTracker());
     }
 
     public void showJetpackParticles(World world, EntityLivingBase wearer, JetpackParticleType particle) {

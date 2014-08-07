@@ -3,12 +3,10 @@ package tonius.simplyjetpacks.client.tickhandler;
 import java.util.Iterator;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
@@ -28,8 +26,6 @@ public class ClientTickHandler {
     private static boolean lastBackwardState = false;
     private static boolean lastLeftState = false;
     private static boolean lastRightState = false;
-
-    private static boolean configNeedsReset = false;
 
     @SubscribeEvent
     public void onClientTick(ClientTickEvent evt) {
@@ -78,13 +74,6 @@ public class ClientTickHandler {
                     }
                 }
             }
-        }
-
-        if (mc.currentScreen instanceof GuiMainMenu && configNeedsReset) {
-            configNeedsReset = false;
-            SJConfig.onConfigChanged("simplyjetpacks");
-        } else if (mc.inGameHasFocus) {
-            configNeedsReset = true;
         }
     }
 }
