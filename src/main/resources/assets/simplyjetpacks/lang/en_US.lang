@@ -85,6 +85,7 @@ simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to
 
 simplyjetpacks.gui.hud.jetpack.energy=Jetpack energy
 simplyjetpacks.gui.hud.fluxpack.energy=Flux Pack energy
+simplyjetpacks.gui.hud.energy.depleted=Depleted
 simplyjetpacks.gui.hud.state.engine=Engine
 simplyjetpacks.gui.hud.state.hover=Hover
 simplyjetpacks.gui.hud.state.charger=Charger

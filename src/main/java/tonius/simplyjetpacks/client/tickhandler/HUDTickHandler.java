@@ -53,7 +53,7 @@ public class HUDTickHandler {
                             if (SJConfig.enableEnergyHUD && jetpack.hasDamageBar()) {
                                 int energy = item.getEnergyStored(chestplate);
                                 int maxEnergy = item.getMaxEnergyStored(chestplate);
-                                int percent = (int) Math.round(((double) energy / (double) maxEnergy) * 100D);
+                                int percent = (int) Math.ceil(((double) energy / (double) maxEnergy) * 100D);
 
                                 RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDEnergyText("jetpack", percent, energy), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 0xeeeeee, true, 0);
                             }
@@ -80,7 +80,7 @@ public class HUDTickHandler {
                             if (SJConfig.enableEnergyHUD && fluxpack.hasDamageBar()) {
                                 int energy = item.getEnergyStored(chestplate);
                                 int maxEnergy = item.getMaxEnergyStored(chestplate);
-                                int percent = (int) Math.round(((double) energy / (double) maxEnergy) * 100D);
+                                int percent = (int) Math.ceil(((double) energy / (double) maxEnergy) * 100D);
 
                                 RenderUtils.drawStringAtHUDPosition(StringUtils.getHUDEnergyText("fluxpack", percent, energy), HUDPosition.values()[SJConfig.energyHUDPosition], mc.fontRenderer, SJConfig.energyHUDOffsetX, SJConfig.energyHUDOffsetY, SJConfig.energyHUDScale, 0xffffff, true, 0);
                             }

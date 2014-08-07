@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.network.PacketHandler;
+import tonius.simplyjetpacks.network.message.MessageConfigSync;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -64,7 +67,7 @@ public class SyncTracker {
 
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerLoggedInEvent evt) {
-        jetpackState.remove(evt.player.getEntityId());
+        PacketHandler.instance.sendTo(new MessageConfigSync(), (EntityPlayerMP) evt.player);
     }
 
     @SubscribeEvent

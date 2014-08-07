@@ -28,16 +28,14 @@ public class FluxPack {
     public int energyCapacity;
     public int energyPerTickIn;
     public int energyPerTickOut;
-    public boolean consumesEnergy;
 
-    public FluxPack(int meta, int tier, boolean enchantable, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut, boolean consumesEnergy) {
+    public FluxPack(int meta, int tier, boolean enchantable, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut) {
         this.tier = tier;
         this.enchantable = enchantable;
         this.rarity = rarity;
         this.energyCapacity = energyCapacity;
         this.energyPerTickIn = energyPerTickIn;
         this.energyPerTickOut = energyPerTickOut;
-        this.consumesEnergy = consumesEnergy;
 
         addFluxPack(meta, this);
     }
@@ -58,13 +56,13 @@ public class FluxPack {
     }
 
     public static void reconstructFluxPacks() {
-        new FluxPack(1, 1, SJConfig.fluxpackLeadstoneEnchantable, EnumRarity.common, SJConfig.fluxpackLeadstoneEnergyCapacity, SJConfig.fluxpackLeadstoneEnergyInRate, SJConfig.fluxpackLeadstoneEnergyOutRate, true);
-        new FluxPack(2, 2, SJConfig.fluxpackHardenedEnchantable, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate, true);
-        new FluxPack(3, 3, SJConfig.fluxpackRedstoneEnchantable, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate, true);
-        new FluxPack(4, 4, SJConfig.fluxpackResonantEnchantable, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate, true);
-        new FluxPackArmored(102, 2, SJConfig.fluxpackHardenedEnchantable, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate, true, SJConfig.fluxpackHardenedArmorDisplay, SJConfig.fluxpackHardenedArmorAbsorption, SJConfig.fluxpackHardenedArmorEnergyPerHit);
-        new FluxPackArmored(103, 3, SJConfig.fluxpackRedstoneEnchantable, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate, true, SJConfig.fluxpackRedstoneArmorDisplay, SJConfig.fluxpackRedstoneArmorAbsorption, SJConfig.fluxpackRedstoneArmorEnergyPerHit);
-        new FluxPackArmored(104, 4, SJConfig.fluxpackResonantEnchantable, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate, true, SJConfig.fluxpackResonantArmorDisplay, SJConfig.fluxpackResonantArmorAbsorption, SJConfig.fluxpackResonantArmorEnergyPerHit);
+        new FluxPack(1, 1, SJConfig.fluxpackLeadstoneEnchantable, EnumRarity.common, SJConfig.fluxpackLeadstoneEnergyCapacity, SJConfig.fluxpackLeadstoneEnergyInRate, SJConfig.fluxpackLeadstoneEnergyOutRate);
+        new FluxPack(2, 2, SJConfig.fluxpackHardenedEnchantable, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate);
+        new FluxPack(3, 3, SJConfig.fluxpackRedstoneEnchantable, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate);
+        new FluxPack(4, 4, SJConfig.fluxpackResonantEnchantable, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate);
+        new FluxPackArmored(102, 2, SJConfig.fluxpackHardenedEnchantable, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate, SJConfig.fluxpackHardenedArmorDisplay, SJConfig.fluxpackHardenedArmorAbsorption, SJConfig.fluxpackHardenedArmorEnergyPerHit);
+        new FluxPackArmored(103, 3, SJConfig.fluxpackRedstoneEnchantable, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate, SJConfig.fluxpackRedstoneArmorDisplay, SJConfig.fluxpackRedstoneArmorAbsorption, SJConfig.fluxpackRedstoneArmorEnergyPerHit);
+        new FluxPackArmored(104, 4, SJConfig.fluxpackResonantEnchantable, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate, SJConfig.fluxpackResonantArmorDisplay, SJConfig.fluxpackResonantArmorAbsorption, SJConfig.fluxpackResonantArmorEnergyPerHit);
         new FluxPackCreative(9001, SJConfig.fluxpackCreativeEnchantable, SJConfig.fluxpackCreativeEnergyOutRate, SJConfig.fluxpackCreativeArmorDisplay, SJConfig.fluxpackCreativeArmorAbsorption);
     }
 
@@ -97,12 +95,12 @@ public class FluxPack {
     }
 
     public void useFluxPack(EntityLivingBase user, ItemStack armor, ItemFluxPack item) {
-        if (this.isOn(armor)) {
+        if (!user.worldObj.isRemote && this.isOn(armor)) {
             for (int i = 0; i <= 4; i++) {
                 ItemStack currentStack = user.getEquipmentInSlot(i);
                 if (currentStack != null && currentStack != armor && currentStack.getItem() instanceof IEnergyContainerItem) {
                     IEnergyContainerItem heldEnergyItem = (IEnergyContainerItem) (currentStack.getItem());
-                    if (this.consumesEnergy) {
+                    if (!(this instanceof FluxPackCreative)) {
                         int energyToAdd = Math.min(item.extractEnergy(armor, this.energyPerTickOut, true), heldEnergyItem.receiveEnergy(currentStack, this.energyPerTickOut, true));
                         item.extractEnergy(armor, energyToAdd, false);
                         heldEnergyItem.receiveEnergy(currentStack, energyToAdd, false);

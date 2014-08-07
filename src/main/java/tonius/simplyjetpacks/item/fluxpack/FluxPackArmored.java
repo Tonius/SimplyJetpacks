@@ -14,8 +14,8 @@ public class FluxPackArmored extends FluxPack {
     public double armorAbsorption;
     public int energyPerHit;
 
-    public FluxPackArmored(int meta, int tier, boolean enchantable, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut, boolean consumesEnergy, int armorDisplay, double armorAbsorption, int energyPerHit) {
-        super(meta, tier, enchantable, rarity, energyCapacity, energyPerTickIn, energyPerTickOut, consumesEnergy);
+    public FluxPackArmored(int meta, int tier, boolean enchantable, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut, int armorDisplay, double armorAbsorption, int energyPerHit) {
+        super(meta, tier, enchantable, rarity, energyCapacity, energyPerTickIn, energyPerTickOut);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
         this.energyPerHit = energyPerHit;

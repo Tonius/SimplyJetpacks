@@ -90,7 +90,7 @@ public final class StringUtils {
     }
 
     public static String getChargerStateText(boolean state) {
-        String onOrOff = state ? BRIGHT_GREEN + translate("tooltip.on") : LIGHT_RED + translate("tooltip.off");
+        String onOrOff = state ? BRIGHT_GREEN + translate("tooltip.enabled") : LIGHT_RED + translate("tooltip.disabled");
         return ORANGE + translate("tooltip.chargerState") + ": " + onOrOff;
     }
 
@@ -127,7 +127,11 @@ public final class StringUtils {
         if (!SJConfig.minimalEnergyHUD) {
             text += translate("gui.hud." + prefix + ".energy") + ": ";
         }
-        text += getColoredPercent(percent) + "%";
+        if (percent > 0) {
+            text += getColoredPercent(percent) + "%";
+        } else {
+            text += RED + translate("gui.hud.energy.depleted");
+        }
         if (SJConfig.showExactEnergyInHUD) {
             text += " (" + getFormattedNumber(energy) + " RF)";
         }

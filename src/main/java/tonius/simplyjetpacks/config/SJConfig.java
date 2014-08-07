@@ -133,6 +133,7 @@ public class SJConfig {
     public static double fluxPlateArmorAbsorption = SJConfigDefaults.fluxPlateArmorAbsorption;
     public static int fluxPlateArmorEnergyPerHit = SJConfigDefaults.fluxPlateArmorEnergyPerHit;
     public static boolean fluxPlateEnchantable = SJConfigDefaults.fluxPlateEnchantable;
+    public static int fluxPlateEnergyOutRate = SJConfigDefaults.fluxPlateEnergyOutRate;
 
     // tuningCreative
     public static double creativeSpeedVertical = SJConfigDefaults.creativeSpeedVertical;
@@ -144,6 +145,7 @@ public class SJConfig {
     public static int creativeArmorDisplay = SJConfigDefaults.creativeArmorDisplay;
     public static double creativeArmorAbsorption = SJConfigDefaults.creativeArmorAbsorption;
     public static boolean creativeEnchantable = SJConfigDefaults.creativeEnchantable;
+    public static int creativeEnergyOutRate = SJConfigDefaults.creativeEnergyOutRate;
 
     // tuningFluxPackLeadstone
     public static int fluxpackLeadstoneEnergyCapacity = SJConfigDefaults.fluxpackLeadstoneEnergyCapacity;
@@ -203,7 +205,11 @@ public class SJConfig {
 
     @SubscribeEvent
     public void onConfigChanged(OnConfigChangedEvent evt) {
-        if (evt.modID.equals("simplyjetpacks")) {
+        onConfigChanged(evt.modID);
+    }
+
+    public static void onConfigChanged(String modid) {
+        if (modid.equals("simplyjetpacks")) {
             SimplyJetpacks.logger.info("Updating configuration file");
             syncConfig();
             Jetpack.reconstructJetpacks();
@@ -306,6 +312,7 @@ public class SJConfig {
         int fluxPlateArmorEnergyPerHit_temp = config.get(sectionTuningFluxPlate.name, "Armor Energy Per Hit", SJConfigDefaults.fluxPlateArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.fluxPlateArmorEnergyPerHit);
         fluxPlateArmorEnergyPerHit = fluxPlateArmorEnergyPerHit_temp > 0 ? fluxPlateArmorEnergyPerHit_temp : 1;
         fluxPlateEnchantable = config.get(sectionTuningFluxPlate.name, "Enchantable", SJConfigDefaults.fluxPlateEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.fluxPlateEnchantable);
+        fluxPlateEnergyOutRate = config.get(sectionTuningFluxPlate.name, "Energy Out Rate", SJConfigDefaults.fluxPlateEnergyOutRate, "The rate, in RF per tick, at which this jetpack can charge other items.").getInt(SJConfigDefaults.fluxPlateEnergyOutRate);
 
         creativeSpeedVertical = config.get(sectionTuningCreative.name, "Vertical Speed", SJConfigDefaults.creativeSpeedVertical, "The maximum vertical speed of the jetpack when flying.").getDouble(SJConfigDefaults.creativeSpeedVertical);
         creativeAccelVertical = config.get(sectionTuningCreative.name, "Vertical Acceleration", SJConfigDefaults.creativeAccelVertical, "The vertical acceleration of the jetpack when flying; every tick, this amount of vertical speed will be added until the jetpack reaches the maximum speed.").getDouble(SJConfigDefaults.creativeAccelVertical);
@@ -316,6 +323,7 @@ public class SJConfig {
         creativeArmorDisplay = config.get(sectionTuningCreative.name, "Armor Display", SJConfigDefaults.creativeArmorDisplay, "How powerful the ARMORED version of the jetpack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(SJConfigDefaults.creativeArmorDisplay);
         creativeArmorAbsorption = config.get(sectionTuningCreative.name, "Armor Absorption", SJConfigDefaults.creativeArmorAbsorption, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(SJConfigDefaults.creativeArmorAbsorption);
         creativeEnchantable = config.get(sectionTuningCreative.name, "Enchantable", SJConfigDefaults.creativeEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.creativeEnchantable);
+        creativeEnergyOutRate = config.get(sectionTuningCreative.name, "Energy Out Rate", SJConfigDefaults.creativeEnergyOutRate, "The rate, in RF per tick, at which this jetpack can charge other items.").getInt(SJConfigDefaults.creativeEnergyOutRate);
 
         fluxpackLeadstoneEnergyCapacity = config.get(sectionTuningFluxPackLeadstone.name, "Energy Capacity", SJConfigDefaults.fluxpackLeadstoneEnergyCapacity, "The maximum amount of energy that this flux pack can hold.").getInt(SJConfigDefaults.fluxpackLeadstoneEnergyCapacity);
         fluxpackLeadstoneEnergyInRate = config.get(sectionTuningFluxPackLeadstone.name, "Energy In Rate", SJConfigDefaults.fluxpackLeadstoneEnergyInRate, "The rate, in RF per tick, at which this flux pack can be charged.").getInt(SJConfigDefaults.fluxpackLeadstoneEnergyInRate);

@@ -7,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.DamageSource;
+import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
@@ -60,14 +62,18 @@ public class JetpackFluxPlate extends JetpackArmored {
     @Override
     public void useJetpack(EntityLivingBase user, ItemStack armor, ItemJetpack item, boolean force) {
         super.useJetpack(user, armor, item, force);
-        if (this.isChargerOn(armor)) {
+        if (!user.worldObj.isRemote && this.isChargerOn(armor)) {
             for (int i = 0; i <= 4; i++) {
                 ItemStack currentStack = user.getEquipmentInSlot(i);
                 if (currentStack != null && currentStack != armor && currentStack.getItem() instanceof IEnergyContainerItem) {
                     IEnergyContainerItem heldEnergyItem = (IEnergyContainerItem) (currentStack.getItem());
-                    int energyToAdd = Math.min(item.extractEnergy(armor, this.energyPerTickOut, true), heldEnergyItem.receiveEnergy(currentStack, this.energyPerTickOut, true));
-                    item.extractEnergy(armor, energyToAdd, false);
-                    heldEnergyItem.receiveEnergy(currentStack, energyToAdd, false);
+                    if (!(this instanceof JetpackCreative)) {
+                        int energyToAdd = Math.min(item.extractEnergy(armor, this.energyPerTickOut, true), heldEnergyItem.receiveEnergy(currentStack, this.energyPerTickOut, true));
+                        item.extractEnergy(armor, energyToAdd, false);
+                        heldEnergyItem.receiveEnergy(currentStack, energyToAdd, false);
+                    } else {
+                        heldEnergyItem.receiveEnergy(currentStack, this.energyPerTickOut, false);
+                    }
                 }
             }
         }
@@ -85,6 +91,23 @@ public class JetpackFluxPlate extends JetpackArmored {
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.fluxpack.description.1"));
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
         list.add(StringUtils.BRIGHT_BLUE + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackFluxPlate.controls"));
+    }
+
+    @Override
+    public ArmorProperties getProperties(EntityLivingBase player, ItemJetpack item, ItemStack armor, DamageSource source, double damage, int slot) {
+        if (source.damageType.equals("flux")) {
+            return new ArmorProperties(0, 0.5D, Integer.MAX_VALUE);
+        }
+        return super.getProperties(player, item, armor, source, damage, slot);
+    }
+
+    @Override
+    public void damageArmor(EntityLivingBase entity, ItemJetpack item, ItemStack armor, DamageSource source, int damage, int slot) {
+        if (source.damageType.equals("flux")) {
+            item.receiveEnergy(armor, damage * this.energyPerHit, false);
+        } else {
+            super.damageArmor(entity, item, armor, source, damage, slot);
+        }
     }
 
 }
