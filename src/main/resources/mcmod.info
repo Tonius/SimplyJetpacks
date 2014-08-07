@@ -2,7 +2,7 @@
 {
   "modid": "simplyjetpacks",
   "name": "Simply Jetpacks",
-  "description": "A mod that adds jetpacks that work on Redstone Flux.",
+  "description": "An addon for Thermal Expansion that adds jetpacks, among some other things.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "logoFile": "",
