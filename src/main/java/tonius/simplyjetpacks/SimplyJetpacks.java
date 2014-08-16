@@ -1,9 +1,13 @@
 package tonius.simplyjetpacks;
 
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.RecipeSorter.Category;
+
 import org.apache.logging.log4j.Logger;
 
 import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.network.PacketHandler;
+import tonius.simplyjetpacks.recipes.SJUpgradingRecipe;
 import tonius.simplyjetpacks.setup.SJItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -30,10 +34,12 @@ public class SimplyJetpacks {
         logger.info("Starting Simply Jetpacks");
 
         SJConfig.preInit(evt);
+
+        RecipeSorter.register("simplyjetpacks:upgrading", SJUpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
         SJItems.preInit();
+
         PacketHandler.preInit();
 
-        logger.info("Registering handlers");
         proxy.registerHandlers();
     }
 

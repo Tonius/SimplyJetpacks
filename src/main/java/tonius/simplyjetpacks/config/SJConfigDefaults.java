@@ -13,6 +13,7 @@ public class SJConfigDefaults {
     // crafting
     public static final boolean enableCraftingArmorPlating = true;
     public static final boolean enableCraftingPotatoJetpack = true;
+    public static final boolean enableCraftingFluxJetPlate = true;
 
     // gui
     public static final boolean enableStateChatMessages = false;
@@ -102,17 +103,18 @@ public class SJConfigDefaults {
     public static final double fluxPlateArmorAbsorption = 0.8D;
     public static final int fluxPlateArmorEnergyPerHit = 240;
     public static final boolean fluxPlateEnchantable = true;
+    public static final boolean fluxPlateHasCharger = true;
     public static final int fluxPlateEnergyOutRate = 20000;
 
     // tuningCreative
-    public static final double creativeSpeedVertical = 0.8D;
+    public static final double creativeSpeedVertical = 0.9D;
     public static final double creativeAccelVertical = 0.15D;
-    public static final double creativeSpeedSideways = 0.19D;
-    public static final double creativeSpeedVerticalHover = 0.4D;
+    public static final double creativeSpeedSideways = 0.20D;
+    public static final double creativeSpeedVerticalHover = 0.42D;
     public static final double creativeSpeedVerticalHoverSlow = 0.0D;
     public static final boolean creativeEmergencyHoverMode = true;
     public static final int creativeArmorDisplay = 8;
-    public static final double creativeArmorAbsorption = 0.6D;
+    public static final double creativeArmorAbsorption = 0.8D;
     public static final boolean creativeEnchantable = true;
     public static final int creativeEnergyOutRate = 20000;
 

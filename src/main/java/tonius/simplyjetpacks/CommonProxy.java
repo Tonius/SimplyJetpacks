@@ -9,6 +9,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class CommonProxy {
 
     public void registerHandlers() {
+        SimplyJetpacks.logger.info("Registering handlers");
         FMLCommonHandler.instance().bus().register(new PlayerTickHandler());
         FMLCommonHandler.instance().bus().register(new SyncTracker());
     }

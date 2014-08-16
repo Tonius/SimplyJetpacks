@@ -44,6 +44,7 @@ public class SJConfig {
     // crafting
     public static boolean enableCraftingArmorPlating = SJConfigDefaults.enableCraftingArmorPlating;
     public static boolean enableCraftingPotatoJetpack = SJConfigDefaults.enableCraftingPotatoJetpack;
+    public static boolean enableCraftingFluxJetPlate = SJConfigDefaults.enableCraftingFluxJetPlate;
 
     // gui
     public static boolean enableStateChatMessages = SJConfigDefaults.enableStateChatMessages;
@@ -133,6 +134,7 @@ public class SJConfig {
     public static double fluxPlateArmorAbsorption = SJConfigDefaults.fluxPlateArmorAbsorption;
     public static int fluxPlateArmorEnergyPerHit = SJConfigDefaults.fluxPlateArmorEnergyPerHit;
     public static boolean fluxPlateEnchantable = SJConfigDefaults.fluxPlateEnchantable;
+    public static boolean fluxPlateHasCharger = SJConfigDefaults.fluxPlateHasCharger;
     public static int fluxPlateEnergyOutRate = SJConfigDefaults.fluxPlateEnergyOutRate;
 
     // tuningCreative
@@ -225,6 +227,7 @@ public class SJConfig {
 
         enableCraftingArmorPlating = config.get(sectionCrafting.name, "Armor Plating craftable", SJConfigDefaults.enableCraftingArmorPlating, "When enabled, Armor Plating items will be craftable, and thus armored jetpacks are available.").setRequiresMcRestart(true).getBoolean(SJConfigDefaults.enableCraftingArmorPlating);
         enableCraftingPotatoJetpack = config.get(sectionCrafting.name, "Potato Jetpack craftable", SJConfigDefaults.enableCraftingPotatoJetpack, "When enabled, the Potato Jetpack will be craftable.").setRequiresMcRestart(true).getBoolean(SJConfigDefaults.enableCraftingPotatoJetpack);
+        enableCraftingFluxJetPlate = config.get(sectionCrafting.name, "Flux-Infused JetPlate craftable", SJConfigDefaults.enableCraftingFluxJetPlate, "When enabled, the Flux-Infused JetPlate will be craftable.").setRequiresMcRestart(true).getBoolean(SJConfigDefaults.enableCraftingFluxJetPlate);
 
         enableStateChatMessages = config.get(sectionGui.name, "Enable State Chat Messages", SJConfigDefaults.enableStateChatMessages, "When enabled, switching jetpacks on or off will display chat messages.").getBoolean(SJConfigDefaults.enableStateChatMessages);
         enableEnergyHUD = config.get(sectionGui.name, "Enable Energy HUD", SJConfigDefaults.enableEnergyHUD, "When enabled, a HUD that displays your current jetpack's energy level will show.").getBoolean(SJConfigDefaults.enableEnergyHUD);
@@ -312,6 +315,7 @@ public class SJConfig {
         int fluxPlateArmorEnergyPerHit_temp = config.get(sectionTuningFluxPlate.name, "Armor Energy Per Hit", SJConfigDefaults.fluxPlateArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.fluxPlateArmorEnergyPerHit);
         fluxPlateArmorEnergyPerHit = fluxPlateArmorEnergyPerHit_temp > 0 ? fluxPlateArmorEnergyPerHit_temp : 1;
         fluxPlateEnchantable = config.get(sectionTuningFluxPlate.name, "Enchantable", SJConfigDefaults.fluxPlateEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.fluxPlateEnchantable);
+        fluxPlateHasCharger = config.get(sectionTuningFluxPlate.name, "Has Charger", SJConfigDefaults.fluxPlateHasCharger, "When enabled, this jetpack will have an inbuilt Flux Pack that can charge other items.").setRequiresMcRestart(true).getBoolean(SJConfigDefaults.fluxPlateHasCharger);
         fluxPlateEnergyOutRate = config.get(sectionTuningFluxPlate.name, "Energy Out Rate", SJConfigDefaults.fluxPlateEnergyOutRate, "The rate, in RF per tick, at which this jetpack can charge other items.").getInt(SJConfigDefaults.fluxPlateEnergyOutRate);
 
         creativeSpeedVertical = config.get(sectionTuningCreative.name, "Vertical Speed", SJConfigDefaults.creativeSpeedVertical, "The maximum vertical speed of the jetpack when flying.").getDouble(SJConfigDefaults.creativeSpeedVertical);

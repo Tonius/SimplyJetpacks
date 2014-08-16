@@ -41,13 +41,13 @@ public class ClientProxy extends CommonProxy {
                 userPos = userPos.addVector(0, 1.6D, 0);
             }
 
-            Vec3 vLeft = Vec3.createVectorHelper(-0.28D, -1.0D, -0.38D);
+            Vec3 vLeft = Vec3.createVectorHelper(-0.28D, -0.95D, -0.38D);
             vLeft.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
 
-            Vec3 vRight = Vec3.createVectorHelper(0.28D, -1.0D, -0.38D);
+            Vec3 vRight = Vec3.createVectorHelper(0.28D, -0.95D, -0.38D);
             vRight.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
 
-            Vec3 vCenter = Vec3.createVectorHelper((rand.nextFloat() - 0.5F) * 0.25F, -1.0D, -0.38D);
+            Vec3 vCenter = Vec3.createVectorHelper((rand.nextFloat() - 0.5F) * 0.25F, -0.95D, -0.38D);
             vCenter.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
 
             vLeft = vLeft.addVector(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D);

@@ -62,7 +62,7 @@ public class HUDTickHandler {
                                 Boolean engine = jetpack.isOn(chestplate);
                                 Boolean hover = jetpack.isHoverModeOn(chestplate);
                                 Boolean charger = null;
-                                if (jetpack instanceof JetpackFluxPlate) {
+                                if (jetpack instanceof JetpackFluxPlate && ((JetpackFluxPlate) jetpack).allowCharger()) {
                                     charger = ((JetpackFluxPlate) jetpack).isChargerOn(chestplate);
                                 }
 

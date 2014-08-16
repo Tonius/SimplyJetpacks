@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
@@ -24,7 +25,7 @@ public class JetpackFluxPlate extends JetpackArmored {
     }
 
     public boolean isChargerOn(ItemStack itemStack) {
-        return StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
+        return this.allowCharger() && StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
     }
 
     public void toggleCharger(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
@@ -40,6 +41,10 @@ public class JetpackFluxPlate extends JetpackArmored {
             player.addChatMessage(new ChatComponentText(msg));
     }
 
+    public boolean allowCharger() {
+        return SJConfig.fluxPlateHasCharger;
+    }
+
     @Override
     public String getBaseName() {
         return "jetpack." + this.tier;
@@ -52,7 +57,7 @@ public class JetpackFluxPlate extends JetpackArmored {
 
     @Override
     public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
-        if (player.isSneaking()) {
+        if (this.allowCharger() && player.isSneaking()) {
             this.toggleCharger(itemStack, player, showInChat);
         } else {
             super.toggle(itemStack, player, showInChat);
