@@ -1,10 +1,10 @@
 itemGroup.tabSimplyJetpacks=심플리 제트팩
 
-item.simplyjetpacks.jetpack.0.name=Tuberous Jetpack
-item.simplyjetpacks.jetpack.1.name=Leadstone Jetpack
-item.simplyjetpacks.jetpack.2.name=Hardened Jetpack
-item.simplyjetpacks.jetpack.3.name=Reinforced Jetpack
-item.simplyjetpacks.jetpack.4.name=Resonant Jetpack
+item.simplyjetpacks.jetpackTier0.name=결절된 제트팩
+item.simplyjetpacks.jetpackTier1.name=납으로 만든 제트팩
+item.simplyjetpacks.jetpackTier2.name=경화 제트팩
+item.simplyjetpacks.jetpackTier3.name=강화 제트팩
+item.simplyjetpacks.jetpackTier4.name=공진 제트팩
 item.simplyjetpacks.jetpack.5.name=Flux-Infused JetPlate
 item.simplyjetpacks.jetpack.1.armored.name=Leadstone Jetpack (Armored)
 item.simplyjetpacks.jetpack.2.armored.name=Hardened Jetpack (Armored)
@@ -23,10 +23,10 @@ item.simplyjetpacks.fluxpack.4.armored.name=Resonant Flux Pack (Armored)
 item.simplyjetpacks.fluxpack.creative.name=Creative Flux Pack
 
 item.simplyjetpacks.leatherStrap.name=Leather Strap
-item.simplyjetpacks.thruster.1.name=Leadstone Thruster
-item.simplyjetpacks.thruster.2.name=Hardened Thruster
-item.simplyjetpacks.thruster.3.name=Reinforced Thruster
-item.simplyjetpacks.thruster.4.name=Resonant Thruster
+item.simplyjetpacks.thruster.1.name=납으로 만든 쓰러스터
+item.simplyjetpacks.thruster.2.name=경화 쓰러스터
+item.simplyjetpacks.thruster.3.name=강화 쓰러스터
+item.simplyjetpacks.thruster.4.name=공진 쓰러스터
 item.simplyjetpacks.thruster.5.name=Energetic Thruster
 item.simplyjetpacks.armorPlating.1.name=Iron Armor Plating
 item.simplyjetpacks.armorPlating.2.name=Tinker's Alloy Armor Plating
@@ -44,8 +44,8 @@ item.simplyjetpacks.particle.3.name=Particle Customizer (Rainbow Smoke)
 
 simplyjetpacks.chat.enabled=enabled
 simplyjetpacks.chat.disabled=disabled
-simplyjetpacks.chat.jetpack.engine=Jetpack engine
-simplyjetpacks.chat.jetpack.hoverMode=Hover Mode
+simplyjetpacks.chat.jetpack.engine=제트팩 엔진
+simplyjetpacks.chat.jetpack.hoverMode=호버 모드
 simplyjetpacks.chat.jetpack.emergencyHoverMode=User is about to die! Activating hover mode
 simplyjetpacks.chat.fluxpack.charger=Flux Pack charger
 
@@ -74,8 +74,8 @@ simplyjetpacks.tooltip.particles.0=Default
 simplyjetpacks.tooltip.particles.1=None
 simplyjetpacks.tooltip.particles.2=Smoke Only
 simplyjetpacks.tooltip.particles.3=Rainbow Smoke
-simplyjetpacks.tooltip.jetpack.description.1=Allows flight when active.
-simplyjetpacks.tooltip.jetpack.description.2=Must be worn as a chestplate.
+simplyjetpacks.tooltip.jetpack.description.1=비행중에도 활성화 할 수 있습니다.
+simplyjetpacks.tooltip.jetpack.description.2=갑옷 슬롯에 착용해야합니다.
 simplyjetpacks.tooltip.jetpackPotato.warning=Clever! But not survivable.
 simplyjetpacks.tooltip.jetpackFluxPlate.controls=Sneak while activating to activate charger.
 simplyjetpacks.tooltip.fluxpack.description.1=Charges armor and held items when active.
