@@ -104,9 +104,9 @@ death.attack.jetpackpotato.player=%1$s attempted to fly a potato
 death.attack.jetpackpotato.item=%1$s attempted to fly a potato
 
 simplyjetpacks.config.title=Simply Jetpacks Configuration
-simplyjetpacks.config.item=Item Settings
+simplyjetpacks.config.item=아이템 설정
 simplyjetpacks.config.item.tooltip=Configure various properties of the mod's items
-simplyjetpacks.config.crafting=Crafting Settings
+simplyjetpacks.config.crafting=조합 설정
 simplyjetpacks.config.crafting.tooltip=Enable/disable certain crafting recipes
 simplyjetpacks.config.gui=GUI Settings
 simplyjetpacks.config.gui.tooltip=Configure the mod's GUI-related elements
