@@ -15,6 +15,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
 @Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "after:ThermalExpansion;after:RedstoneArsenal", guiFactory = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ")
 public class SimplyJetpacks {
@@ -46,6 +47,11 @@ public class SimplyJetpacks {
     @EventHandler
     public static void init(FMLInitializationEvent evt) {
         SJItems.init();
+    }
+
+    @EventHandler
+    public static void serverStopping(FMLServerStoppingEvent evt) {
+        SyncTracker.clearAll();
     }
 
 }

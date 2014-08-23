@@ -11,6 +11,7 @@ import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageConfigSync;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 
 public class SyncTracker {
@@ -64,9 +65,30 @@ public class SyncTracker {
         return jetpackState;
     }
 
+    public static void clearAll() {
+        jumpKeyState.clear();
+        forwardKeyState.clear();
+        backwardKeyState.clear();
+        leftKeyState.clear();
+        rightKeyState.clear();
+    }
+
+    public static void removeFromAll(EntityPlayer player) {
+        jumpKeyState.remove(player);
+        forwardKeyState.remove(player);
+        backwardKeyState.remove(player);
+        leftKeyState.remove(player);
+        rightKeyState.remove(player);
+    }
+
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerLoggedInEvent evt) {
         PacketHandler.instance.sendTo(new MessageConfigSync(), (EntityPlayerMP) evt.player);
+    }
+
+    @SubscribeEvent
+    public void onPlayerLoggedOut(PlayerLoggedOutEvent evt) {
+        removeFromAll(evt.player);
     }
 
     @SubscribeEvent
