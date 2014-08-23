@@ -1,3 +1,5 @@
+# author TeamMMKP(@puyo061 , editor @clayweb)
+
 itemGroup.tabSimplyJetpacks=심플리 제트팩
 
 item.simplyjetpacks.jetpackTier0.name=결절된 제트팩
@@ -14,11 +16,11 @@ item.simplyjetpacks.jetpack.creative.name=크리에이티브 제트팩
 
 item.simplyjetpacks.fluxpack.1.name=리드스톤 플럭스 팩
 item.simplyjetpacks.fluxpack.2.name=경화 플럭스 팩
-item.simplyjetpacks.fluxpack.3.name=Redstone 플럭스 팩
+item.simplyjetpacks.fluxpack.3.name=레드스톤 플럭스 팩
 item.simplyjetpacks.fluxpack.4.name=공진 플럭스 팩
 item.simplyjetpacks.fluxpack.1.armored.name=리드스톤 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.2.armored.name=경화 플럭스 팩 (장갑)
-item.simplyjetpacks.fluxpack.3.armored.name=Redstone 플럭스 팩 (장갑)
+item.simplyjetpacks.fluxpack.3.armored.name=레드스톤 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.4.armored.name=공진 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.creative.name=크리에이티브 플럭스 팩
 
@@ -126,8 +128,8 @@ simplyjetpacks.config.tuningFluxPackLeadstone=Tuning - Leadstone Flux Pack
 simplyjetpacks.config.tuningFluxPackLeadstone.tooltip=Edit values like the energy storage and the energy rates of the Leadstone Flux Pack.
 simplyjetpacks.config.tuningFluxPackHardened=Tuning - Hardened Flux Pack
 simplyjetpacks.config.tuningFluxPackHardened.tooltip=Edit values like the energy storage and the energy rates of the Hardened Flux Pack.
-simplyjetpacks.config.tuningFluxPackRedstone=Tuning - Redstone Flux Pack
-simplyjetpacks.config.tuningFluxPackRedstone.tooltip=Edit values like the energy storage and the energy rates of the Redstone Flux Pack.
+simplyjetpacks.config.tuningFluxPackRedstone=Tuning - 레드스톤 Flux Pack
+simplyjetpacks.config.tuningFluxPackRedstone.tooltip=Edit values like the energy storage and the energy rates of the 레드스톤 Flux Pack.
 simplyjetpacks.config.tuningFluxPackResonant=Tuning - Resonant Flux Pack
 simplyjetpacks.config.tuningFluxPackResonant.tooltip=Edit values like the energy storage and the energy rates of the Resonant Flux Pack.
 simplyjetpacks.config.tuningFluxPackCreative=Tuning - Creative Flux Pack
