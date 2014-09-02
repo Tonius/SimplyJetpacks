@@ -1,0 +1,136 @@
+# author TeamMMKP(@puyo061 , editor @clayweb)
+
+itemGroup.tabSimplyJetpacks=심플리 제트팩
+
+item.simplyjetpacks.jetpackTier0.name=결절된 제트팩
+item.simplyjetpacks.jetpackTier1.name=리드스톤 제트팩
+item.simplyjetpacks.jetpackTier2.name=경화 제트팩
+item.simplyjetpacks.jetpackTier3.name=강화 제트팩
+item.simplyjetpacks.jetpackTier4.name=공진 제트팩
+item.simplyjetpacks.jetpack.5.name=플럭스가 주입된 분사
+item.simplyjetpacks.jetpack.1.armored.name=리드스톤 제트팩 (장갑)
+item.simplyjetpacks.jetpack.2.armored.name=경화 제트팩 (장갑)
+item.simplyjetpacks.jetpack.3.armored.name=강화 제트팩 (장갑)
+item.simplyjetpacks.jetpack.4.armored.name=공진 제트팩 (장갑)
+item.simplyjetpacks.jetpack.creative.name=크리에이티브 제트팩
+
+item.simplyjetpacks.fluxpack.1.name=리드스톤 플럭스 팩
+item.simplyjetpacks.fluxpack.2.name=경화 플럭스 팩
+item.simplyjetpacks.fluxpack.3.name=레드스톤 플럭스 팩
+item.simplyjetpacks.fluxpack.4.name=공진 플럭스 팩
+item.simplyjetpacks.fluxpack.1.armored.name=리드스톤 플럭스 팩 (장갑)
+item.simplyjetpacks.fluxpack.2.armored.name=경화 플럭스 팩 (장갑)
+item.simplyjetpacks.fluxpack.3.armored.name=레드스톤 플럭스 팩 (장갑)
+item.simplyjetpacks.fluxpack.4.armored.name=공진 플럭스 팩 (장갑)
+item.simplyjetpacks.fluxpack.creative.name=크리에이티브 플럭스 팩
+
+item.simplyjetpacks.leatherStrap.name=가죽 끝
+item.simplyjetpacks.thruster.1.name=납으로 만든 쓰러스터
+item.simplyjetpacks.thruster.2.name=경화 쓰러스터
+item.simplyjetpacks.thruster.3.name=강화 쓰러스터
+item.simplyjetpacks.thruster.4.name=공진 쓰러스터
+item.simplyjetpacks.thruster.5.name=에너제틱 쓰러스터
+item.simplyjetpacks.armorPlating.1.name=철 갑옷 도금
+item.simplyjetpacks.armorPlating.2.name=땜장이 합금 갑옷 도금
+item.simplyjetpacks.armorPlating.3.name=인바 갑옷 도금
+item.simplyjetpacks.armorPlating.4.name=엔더리움 갑옷 도금
+item.simplyjetpacks.unitCryotheum.empty.name=크라이오시움 냉각수 유닛 (비어있음)
+item.simplyjetpacks.unitCryotheum.name=크라이오시움 냉각수 유닛
+item.simplyjetpacks.unitGlowstone.empty.name=발광석 융기 유닛 (비어있음)
+item.simplyjetpacks.unitGlowstone.name=발광석 융기 유닛
+
+item.simplyjetpacks.particle.0.name=파티클 커스터마이징 (기본)
+item.simplyjetpacks.particle.1.name=파티클 커스터마이징 (없음)
+item.simplyjetpacks.particle.2.name=파티클 커스터마이징 (연기 만)
+item.simplyjetpacks.particle.3.name=파티클 커스터마이징 (무기재 연기)
+
+simplyjetpacks.chat.enabled=활성화
+simplyjetpacks.chat.disabled=비활성화
+simplyjetpacks.chat.jetpack.engine=제트팩 엔진
+simplyjetpacks.chat.jetpack.hoverMode=호버 모드
+simplyjetpacks.chat.jetpack.emergencyHoverMode=호버모드를 활성화 하지않으면 사용자는 죽을겁니다!
+simplyjetpacks.chat.fluxpack.charger=플럭스 팩 충전기
+
+simplyjetpacks.tooltip.holdShift1=누른상태
+simplyjetpacks.tooltip.holdShift2=Shift
+simplyjetpacks.tooltip.holdShift3=세부사항
+
+simplyjetpacks.tooltip.on=On
+simplyjetpacks.tooltip.off=Off
+simplyjetpacks.tooltip.enabled=활성화
+simplyjetpacks.tooltip.disabled=비활성화
+simplyjetpacks.tooltip.yes=예
+simplyjetpacks.tooltip.no=아니오
+simplyjetpacks.tooltip.energy.none=없음
+simplyjetpacks.tooltip.state=상태
+simplyjetpacks.tooltip.charge.infinite=무한 / 무한 RF
+simplyjetpacks.tooltip.energyUsage=에너지 사용량
+simplyjetpacks.tooltip.chargerRate=충전 속도
+simplyjetpacks.tooltip.energySend=보내기
+simplyjetpacks.tooltip.energyReceive=받기
+simplyjetpacks.tooltip.armored=장갑
+simplyjetpacks.tooltip.hoverMode=호버모드
+simplyjetpacks.tooltip.chargerState=충전기
+simplyjetpacks.tooltip.particles=파티클
+simplyjetpacks.tooltip.particles.0=기본
+simplyjetpacks.tooltip.particles.1=없음
+simplyjetpacks.tooltip.particles.2=연기만
+simplyjetpacks.tooltip.particles.3=무지개 연기
+simplyjetpacks.tooltip.jetpack.description.1=비행중에도 활성화 할 수 있습니다.
+simplyjetpacks.tooltip.jetpack.description.2=갑옷 슬롯에 착용해야합니다.
+simplyjetpacks.tooltip.jetpackPotato.warning=Clever! But not survivable.
+simplyjetpacks.tooltip.jetpackFluxPlate.controls=Sneak while activating to activate charger.
+simplyjetpacks.tooltip.fluxpack.description.1=Charges armor and held items when active.
+simplyjetpacks.tooltip.fluxpack.description.2=Must be worn as a chestplate.
+simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jetpack's particles.
+simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
+
+simplyjetpacks.gui.hud.jetpack.energy=제트팩 에너지량
+simplyjetpacks.gui.hud.fluxpack.energy=플럭스 팩 에너지량
+simplyjetpacks.gui.hud.energy.depleted=고갈
+simplyjetpacks.gui.hud.state.engine=엔진
+simplyjetpacks.gui.hud.state.hover=호버
+simplyjetpacks.gui.hud.state.charger=충전
+simplyjetpacks.gui.nei.recipe.armoring=Armoring
+simplyjetpacks.gui.nei.recipe.armoring.input=in your hand
+simplyjetpacks.gui.nei.recipe.armoring.plating=in your inventory
+simplyjetpacks.gui.nei.recipe.armoring.output=after using while sneaking
+simplyjetpacks.gui.nei.recipe.dearmoring.input=in your hand
+simplyjetpacks.gui.nei.recipe.dearmoring.output=after using while sneaking
+simplyjetpacks.gui.nei.recipe.dearmoring.plating=will be returned
+
+death.attack.jetpackpotato=%1$s attempted to fly a potato
+death.attack.jetpackpotato.player=%1$s attempted to fly a potato
+death.attack.jetpackpotato.item=%1$s attempted to fly a potato
+
+simplyjetpacks.config.title=Simply Jetpacks Configuration
+simplyjetpacks.config.item=아이템 설정
+simplyjetpacks.config.item.tooltip=Configure various properties of the mod's items
+simplyjetpacks.config.crafting=조합 설정
+simplyjetpacks.config.crafting.tooltip=Enable/disable certain crafting recipes
+simplyjetpacks.config.gui=GUI Settings
+simplyjetpacks.config.gui.tooltip=Configure the mod's GUI-related elements
+simplyjetpacks.config.tuningTuberous=Tuning - Tuberous Jetpack
+simplyjetpacks.config.tuningTuberous.tooltip=Edit values like the speed, flight and energy usage of the Tuberous Jetpack. Boom!
+simplyjetpacks.config.tuningLeadstone=Tuning - Leadstone Jetpack
+simplyjetpacks.config.tuningLeadstone.tooltip=Edit values like the speed, flight and energy usage of the Leadstone Jetpack.
+simplyjetpacks.config.tuningHardened=Tuning - Hardened Jetpack
+simplyjetpacks.config.tuningHardened.tooltip=Edit values like the speed, flight and energy usage of the Hardened Jetpack.
+simplyjetpacks.config.tuningReinforced=Tuning - Reinforced Jetpack
+simplyjetpacks.config.tuningReinforced.tooltip=Edit values like the speed, flight and energy usage of the Reinforced Jetpack.
+simplyjetpacks.config.tuningResonant=Tuning - Resonant Jetpack
+simplyjetpacks.config.tuningResonant.tooltip=Edit values like the speed, flight and energy usage of the Resonant Jetpack.
+simplyjetpacks.config.tuningFluxPlate=Tuning - Flux-Infused JetPlate
+simplyjetpacks.config.tuningFluxPlate.tooltip=Edit values like the speed, flight and energy usage of the Flux-Infused JetPlate.
+simplyjetpacks.config.tuningCreative=Tuning - Creative Jetpack
+simplyjetpacks.config.tuningCreative.tooltip=Edit values like the speed, flight and energy usage of the Creative Jetpack. Cheater!
+simplyjetpacks.config.tuningFluxPackLeadstone=Tuning - Leadstone Flux Pack
+simplyjetpacks.config.tuningFluxPackLeadstone.tooltip=Edit values like the energy storage and the energy rates of the Leadstone Flux Pack.
+simplyjetpacks.config.tuningFluxPackHardened=Tuning - Hardened Flux Pack
+simplyjetpacks.config.tuningFluxPackHardened.tooltip=Edit values like the energy storage and the energy rates of the Hardened Flux Pack.
+simplyjetpacks.config.tuningFluxPackRedstone=Tuning - 레드스톤 Flux Pack
+simplyjetpacks.config.tuningFluxPackRedstone.tooltip=Edit values like the energy storage and the energy rates of the 레드스톤 Flux Pack.
+simplyjetpacks.config.tuningFluxPackResonant=Tuning - Resonant Flux Pack
+simplyjetpacks.config.tuningFluxPackResonant.tooltip=Edit values like the energy storage and the energy rates of the Resonant Flux Pack.
+simplyjetpacks.config.tuningFluxPackCreative=Tuning - Creative Flux Pack
+simplyjetpacks.config.tuningFluxPackCreative.tooltip=Edit values like the energy storage and the energy rates of the Creative Flux Pack.
