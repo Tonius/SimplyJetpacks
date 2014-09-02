@@ -17,11 +17,15 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
-@Mod(modid = "simplyjetpacks", name = "SimplyJetpacks", dependencies = "after:ThermalExpansion;after:RedstoneArsenal", guiFactory = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ")
+@Mod(modid = SimplyJetpacks.modid, name = SimplyJetpacks.name, dependencies = SimplyJetpacks.dependencies, guiFactory = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ")
 public class SimplyJetpacks {
 
     @Instance("simplyjetpacks")
     public static SimplyJetpacks instance;
+
+    public static final String modid = "simplyjetpacks";
+    public static final String name = "SimplyJetpacks";
+    public static final String dependencies = "after:ThermalExpansion;after:RedstoneArsenal";
 
     @SidedProxy(clientSide = "tonius.simplyjetpacks.client.ClientProxy", serverSide = "tonius.simplyjetpacks.CommonProxy")
     public static CommonProxy proxy;
