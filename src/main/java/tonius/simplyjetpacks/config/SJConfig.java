@@ -201,6 +201,7 @@ public class SJConfig {
         configClient = new Configuration(new File(evt.getModConfigurationDirectory(), SimplyJetpacks.MODID + "-client.cfg"));
         SimplyJetpacks.logger.info("Loading configuration files");
         syncConfig();
+        SimplyJetpacks.proxy.updateCustomKeybinds();
     }
     
     public static void syncConfig() {
