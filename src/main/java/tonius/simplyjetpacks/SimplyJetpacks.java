@@ -17,45 +17,46 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
-@Mod(modid = SimplyJetpacks.modid, name = SimplyJetpacks.name, dependencies = SimplyJetpacks.dependencies, guiFactory = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ")
+@Mod(modid = SimplyJetpacks.MODID, dependencies = SimplyJetpacks.DEPENDENCIES, guiFactory = SimplyJetpacks.GUI_FACTORY)
 public class SimplyJetpacks {
-
+    
     @Instance("simplyjetpacks")
     public static SimplyJetpacks instance;
-
-    public static final String modid = "simplyjetpacks";
-    public static final String name = "SimplyJetpacks";
-    public static final String dependencies = "after:ThermalExpansion;after:RedstoneArsenal";
-
+    
+    public static final String MODID = "simplyjetpacks";
+    public static final String PREFIX = MODID + ".";
+    public static final String RESOURCE_PREFIX = MODID + ":";
+    public static final String DEPENDENCIES = "after:ThermalExpansion;after:RedstoneArsenal";
+    public static final String GUI_FACTORY = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ";
+    
     @SidedProxy(clientSide = "tonius.simplyjetpacks.client.ClientProxy", serverSide = "tonius.simplyjetpacks.CommonProxy")
     public static CommonProxy proxy;
-
+    
     public static Logger logger;
     public static SyncTracker keyboard;
-
+    
     @EventHandler
     public static void preInit(FMLPreInitializationEvent evt) {
         logger = evt.getModLog();
         logger.info("Starting Simply Jetpacks");
-
+        
         SJConfig.preInit(evt);
-
-        RecipeSorter.register("simplyjetpacks:upgrading", SJUpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
+        
+        RecipeSorter.register(SimplyJetpacks.RESOURCE_PREFIX + "upgrading", SJUpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
         SJItems.preInit();
-
-        PacketHandler.preInit();
-
+        
         proxy.registerHandlers();
     }
-
+    
     @EventHandler
     public static void init(FMLInitializationEvent evt) {
         SJItems.init();
+        PacketHandler.init();
     }
-
+    
     @EventHandler
     public static void serverStopping(FMLServerStoppingEvent evt) {
         SyncTracker.clearAll();
     }
-
+    
 }

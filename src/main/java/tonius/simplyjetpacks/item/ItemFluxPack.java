@@ -18,6 +18,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.model.ModelFluxPack;
 import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
@@ -29,24 +30,24 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem, IToggleable {
-
+    
     protected IIcon[] icons = null;
-
+    
     public ItemFluxPack() {
         super(ArmorMaterial.IRON, 2, 1);
-
-        this.setUnlocalizedName("simplyjetpacks.fluxpack");
+        
+        this.setUnlocalizedName(SimplyJetpacks.PREFIX + "fluxpack");
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setNoRepair();
         this.setCreativeTab(SJCreativeTab.tab);
         this.icons = new IIcon[FluxPack.getHighestMeta() + 1];
     }
-
+    
     public FluxPack getFluxPack(ItemStack itemStack) {
         return FluxPack.getFluxPack(itemStack.getItemDamage());
     }
-
+    
     public ItemStack getChargedItem(ItemFluxPack item, int meta) {
         ItemStack full = new ItemStack(item, 1, meta);
         while (item.getEnergyStored(full) < item.getMaxEnergyStored(full)) {
@@ -54,7 +55,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         }
         return full;
     }
-
+    
     @Override
     public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
@@ -62,7 +63,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
             fluxpack.toggle(itemStack, player, showInChat);
         }
     }
-
+    
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
@@ -71,7 +72,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         }
         return super.getUnlocalizedName();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
@@ -92,7 +93,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         }
         return armorModel;
     }
-
+    
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
@@ -101,7 +102,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
             fluxpack.addInformation(itemStack, player, list, this.getEnergyStored(itemStack));
         }
     }
-
+    
     @Override
     public EnumRarity getRarity(ItemStack itemStack) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
@@ -110,7 +111,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         }
         return super.getRarity(itemStack);
     }
-
+    
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
@@ -138,7 +139,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         }
         return super.onItemRightClick(itemStack, world, player);
     }
-
+    
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
@@ -146,7 +147,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
             fluxpack.useFluxPack(player, itemStack, this);
         }
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List list) {
@@ -160,34 +161,34 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
             }
         }
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
         for (int i = 0; i <= FluxPack.getHighestMeta(); i++) {
             FluxPack fluxpack = FluxPack.getFluxPack(i);
             if (fluxpack != null) {
-                this.icons[i] = register.registerIcon("simplyjetpacks:" + fluxpack.getBaseName());
+                this.icons[i] = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + fluxpack.getBaseName());
             }
         }
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int damage) {
         return damage < this.icons.length ? this.icons[damage] : null;
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public String getArmorTexture(ItemStack itemStack, Entity entity, int slot, String type) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
         if (fluxpack != null) {
-            return "simplyjetpacks:textures/armor/" + fluxpack.getBaseName() + ".png";
+            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + fluxpack.getBaseName() + ".png";
         }
         return null;
     }
-
+    
     @Override
     public boolean showDurabilityBar(ItemStack itemStack) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
@@ -196,30 +197,30 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         }
         return true;
     }
-
+    
     @Override
     public double getDurabilityForDisplay(ItemStack itemStack) {
         double stored = this.getMaxEnergyStored(itemStack) - this.getEnergyStored(itemStack) + 1;
         double max = this.getMaxEnergyStored(itemStack) + 1;
         return stored / max;
     }
-
+    
     @Override
     public boolean isItemTool(ItemStack itemStack) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
         return this.getItemEnchantability() > 0 ? fluxpack != null ? fluxpack.enchantable : false : false;
     }
-
+    
     @Override
     public int getItemEnchantability() {
         return SJConfig.fluxpackEnchantability;
     }
-
+    
     @Override
     public boolean isBookEnchantable(ItemStack itemStack, ItemStack book) {
         return this.isItemTool(itemStack);
     }
-
+    
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
         FluxPack fluxpack = this.getFluxPack(armor);
@@ -228,7 +229,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         }
         return null;
     }
-
+    
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
         FluxPack fluxpack = this.getFluxPack(armor);
@@ -237,7 +238,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         }
         return 0;
     }
-
+    
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack armor, DamageSource source, int damage, int slot) {
         FluxPack fluxpack = this.getFluxPack(armor);
@@ -245,44 +246,44 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
             fluxpack.damageArmor(entity, this, armor, source, damage, slot);
         }
     }
-
+    
     @Override
     public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
-        int energy = getEnergyStored(container);
+        int energy = this.getEnergyStored(container);
         FluxPack fluxpack = this.getFluxPack(container);
         int maxInput = fluxpack != null ? fluxpack.energyPerTickIn : 0;
-        int energyReceived = Math.min(getMaxEnergyStored(container) - energy, Math.min(maxReceive, maxInput));
-
+        int energyReceived = Math.min(this.getMaxEnergyStored(container) - energy, Math.min(maxReceive, maxInput));
+        
         if (!simulate) {
             energy += energyReceived;
             StackUtils.getNBT(container).setInteger("Energy", energy);
         }
         return energyReceived;
     }
-
+    
     @Override
     public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
-        int energy = getEnergyStored(container);
+        int energy = this.getEnergyStored(container);
         FluxPack fluxpack = this.getFluxPack(container);
         int maxOutput = fluxpack != null ? fluxpack.energyPerTickOut : 0;
         int energyExtracted = Math.min(energy, Math.min(maxExtract, maxOutput));
-
+        
         if (!simulate) {
             energy -= energyExtracted;
             StackUtils.getNBT(container).setInteger("Energy", energy);
         }
         return energyExtracted;
     }
-
+    
     @Override
     public int getEnergyStored(ItemStack container) {
         return StackUtils.getNBT(container).getInteger("Energy");
     }
-
+    
     @Override
     public int getMaxEnergyStored(ItemStack container) {
         FluxPack fluxpack = this.getFluxPack(container);
         return fluxpack != null ? fluxpack.energyCapacity : 0;
     }
-
+    
 }

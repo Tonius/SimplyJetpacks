@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
  * 
  */
 public interface IEnergyContainerItem {
-
+    
     /**
      * Adds energy to a container item. Returns the quantity of energy that was
      * accepted. This should always return 0 if the item cannot be externally
@@ -28,7 +28,7 @@ public interface IEnergyContainerItem {
      *         received by the item.
      */
     int receiveEnergy(ItemStack container, int maxReceive, boolean simulate);
-
+    
     /**
      * Removes energy from a container item. Returns the quantity of energy that
      * was removed. This should always return 0 if the item cannot be externally
@@ -44,15 +44,15 @@ public interface IEnergyContainerItem {
      *         extracted from the item.
      */
     int extractEnergy(ItemStack container, int maxExtract, boolean simulate);
-
+    
     /**
      * Get the amount of energy currently stored in the container item.
      */
     int getEnergyStored(ItemStack container);
-
+    
     /**
      * Get the max amount of energy that can be stored in the container item.
      */
     int getMaxEnergyStored(ItemStack container);
-
+    
 }

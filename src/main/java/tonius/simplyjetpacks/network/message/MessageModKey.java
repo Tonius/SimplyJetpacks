@@ -11,34 +11,34 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, IMessage> {
-
+    
     public int keyId;
     public boolean showInChat;
-
+    
     public MessageModKey() {
     }
-
+    
     public MessageModKey(SJKey key, boolean showInChat) {
         this.keyId = key.ordinal();
         this.showInChat = showInChat;
     }
-
+    
     @Override
     public void fromBytes(ByteBuf buf) {
         this.keyId = buf.readInt();
         this.showInChat = buf.readBoolean();
     }
-
+    
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(this.keyId);
         buf.writeBoolean(this.showInChat);
     }
-
+    
     @Override
     public IMessage onMessage(MessageModKey msg, MessageContext ctx) {
         EntityPlayer entityPlayer = ctx.getServerHandler().playerEntity;
-
+        
         if (entityPlayer != null) {
             ItemStack armor = entityPlayer.inventory.armorItemInSlot(2);
             if (armor != null) {
@@ -51,5 +51,5 @@ public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, I
         }
         return null;
     }
-
+    
 }

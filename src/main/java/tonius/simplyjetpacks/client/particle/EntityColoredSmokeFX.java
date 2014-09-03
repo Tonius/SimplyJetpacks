@@ -9,14 +9,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class EntityColoredSmokeFX extends EntityCustomSmokeFX {
-
+    
     public EntityColoredSmokeFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ, float red, float green, float blue) {
         super(world, posX, posY, posZ, velX, velY, velZ);
         this.particleRed = red;
         this.particleGreen = green;
         this.particleBlue = blue;
     }
-
+    
     public static EntityColoredSmokeFX getRainbowSmoke(World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
         Color color = ColorUtils.getRandomColor();
         float red = color.getRed() / 255.0F;
@@ -24,5 +24,5 @@ public class EntityColoredSmokeFX extends EntityCustomSmokeFX {
         float blue = color.getBlue() / 255.0F;
         return new EntityColoredSmokeFX(world, posX, posY, posZ, velX, velY, velZ, red, green, blue);
     }
-
+    
 }

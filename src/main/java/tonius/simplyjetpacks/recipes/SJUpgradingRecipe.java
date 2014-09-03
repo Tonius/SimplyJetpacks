@@ -12,23 +12,23 @@ import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class SJUpgradingRecipe extends ShapedOreRecipe {
-
+    
     private IEnergyContainerItem resultItem;
     private int resultMeta;
-
+    
     public SJUpgradingRecipe(ItemStack result, Object[] recipe) {
         super(result, recipe);
         this.resultItem = (IEnergyContainerItem) result.getItem();
         this.resultMeta = result.getItemDamage();
         result.getEnchantmentTagList();
     }
-
+    
     @Override
     public ItemStack getCraftingResult(InventoryCrafting inventoryCrafting) {
         int addedEnergy = 0;
         JetpackParticleType particleType = null;
         NBTTagCompound tags = null;
-
+        
         ItemStack slotStack;
         for (int i = 0; i < inventoryCrafting.getSizeInventory(); i++) {
             slotStack = inventoryCrafting.getStackInSlot(i);
@@ -42,21 +42,22 @@ public class SJUpgradingRecipe extends ShapedOreRecipe {
                 }
             }
         }
-
-        ItemStack result = new ItemStack((Item) resultItem, 1, this.resultMeta);
-
+        
+        ItemStack result = new ItemStack((Item) this.resultItem, 1, this.resultMeta);
+        
         if (tags != null) {
             result.setTagCompound(tags);
         }
-
-        while (resultItem.getEnergyStored(result) < addedEnergy)
-            resultItem.receiveEnergy(result, addedEnergy, false);
-
-        if (resultItem instanceof ItemJetpack && particleType != null) {
-            ((ItemJetpack) resultItem).getJetpack(result).setParticleType(result, particleType);
+        
+        while (this.resultItem.getEnergyStored(result) < addedEnergy) {
+            this.resultItem.receiveEnergy(result, addedEnergy, false);
         }
-
+        
+        if (this.resultItem instanceof ItemJetpack && particleType != null) {
+            ((ItemJetpack) this.resultItem).getJetpack(result).setParticleType(result, particleType);
+        }
+        
         return result;
     }
-
+    
 }

@@ -18,16 +18,16 @@ import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.relauncher.Side;
 
 public class PlayerTickHandler {
-
+    
     private static Map<Integer, JetpackParticleType> lastJetpackState = new HashMap<Integer, JetpackParticleType>();
-
+    
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent evt) {
         if (evt.side == Side.SERVER && evt.phase == Phase.END) {
             tickEnd(evt.player);
         }
     }
-
+    
     private static void tickEnd(EntityPlayer player) {
         JetpackParticleType jetpackState = null;
         ItemStack armor = player.getCurrentArmor(2);
@@ -39,14 +39,14 @@ public class PlayerTickHandler {
                 foundJetpack = true;
             }
         }
-
+        
         if (jetpackState != lastJetpackState.get(player.getEntityId())) {
             lastJetpackState.put(player.getEntityId(), jetpackState);
             PacketHandler.instance.sendToAllAround(new MessageJetpackSync(player.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(player.dimension, player.posX, player.posY, player.posZ, 256));
         } else if (foundJetpack && player.worldObj.getTotalWorldTime() % 160L == 0) {
             PacketHandler.instance.sendToAllAround(new MessageJetpackSync(player.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(player.dimension, player.posX, player.posY, player.posZ, 256));
         }
-
+        
         if (player.worldObj.getTotalWorldTime() % 200L == 0) {
             Iterator<Integer> itr = lastJetpackState.keySet().iterator();
             while (itr.hasNext()) {
@@ -57,5 +57,5 @@ public class PlayerTickHandler {
             }
         }
     }
-
+    
 }

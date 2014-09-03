@@ -11,30 +11,30 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageJetpackSync implements IMessage, IMessageHandler<MessageJetpackSync, IMessage> {
-
+    
     public int entityId;
     public int particleId;
-
+    
     public MessageJetpackSync() {
     }
-
+    
     public MessageJetpackSync(int entityId, int particleId) {
         this.entityId = entityId;
         this.particleId = particleId;
     }
-
+    
     @Override
     public void fromBytes(ByteBuf buf) {
         this.entityId = buf.readInt();
         this.particleId = buf.readInt();
     }
-
+    
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(this.entityId);
         buf.writeInt(this.particleId);
     }
-
+    
     @Override
     public IMessage onMessage(MessageJetpackSync msg, MessageContext ctx) {
         Entity entity = FMLClientHandler.instance().getClient().theWorld.getEntityByID(msg.entityId);

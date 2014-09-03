@@ -3,18 +3,13 @@ package tonius.simplyjetpacks.config;
 import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
 
 public class SJConfigDefaults {
-
-    // item
-    public static final boolean enableJetpackParticles = true;
+    
+    // controls
+    public static final boolean customControls = false;
+    public static final String flyKey = "SPACE";
+    public static final String descendKey = "LSHIFT";
     public static final boolean invertHoverSneakingBehavior = false;
-    public static final int jetpackEnchantability = 16;
-    public static final int fluxpackEnchantability = 8;
-
-    // crafting
-    public static final boolean enableCraftingArmorPlating = true;
-    public static final boolean enableCraftingPotatoJetpack = true;
-    public static final boolean enableCraftingFluxJetPlate = true;
-
+    
     // gui
     public static final boolean enableStateChatMessages = false;
     public static final boolean enableEnergyHUD = true;
@@ -27,13 +22,22 @@ public class SJConfigDefaults {
     public static final boolean minimalEnergyHUD = false;
     public static final boolean showEnergyHUDWhileChatting = true;
     public static final boolean showExactEnergyInHUD = false;
-
+    
+    // item
+    public static final int jetpackEnchantability = 16;
+    public static final int fluxpackEnchantability = 8;
+    
+    // crafting
+    public static final boolean enableCraftingArmorPlating = true;
+    public static final boolean enableCraftingPotatoJetpack = true;
+    public static final boolean enableCraftingFluxJetPlate = true;
+    
     // tuningTuberous
     public static final int tuberousEnergyCapacity = 1200;
     public static final int tuberousEnergyPerTick = 45;
     public static final double tuberousSpeedVertical = 0.9D;
     public static final double tuberousAccelVertical = 0.5D;
-
+    
     // tuningLeadstone
     public static final int leadstoneEnergyCapacity = 25000;
     public static final int leadstoneEnergyPerTick = 10;
@@ -47,7 +51,7 @@ public class SJConfigDefaults {
     public static final double leadstoneArmorAbsorption = 0.3D;
     public static final int leadstoneArmorEnergyPerHit = 80;
     public static final boolean leadstoneEnchantable = false;
-
+    
     // tuningHardened
     public static final int hardenedEnergyCapacity = 400000;
     public static final int hardenedEnergyPerTick = 50;
@@ -61,7 +65,7 @@ public class SJConfigDefaults {
     public static final double hardenedArmorAbsorption = 0.4D;
     public static final int hardenedArmorEnergyPerHit = 80;
     public static final boolean hardenedEnchantable = false;
-
+    
     // tuningReinforced
     public static final int reinforcedEnergyCapacity = 2000000;
     public static final int reinforcedEnergyPerTick = 100;
@@ -75,7 +79,7 @@ public class SJConfigDefaults {
     public static final double reinforcedArmorAbsorption = 0.5D;
     public static final int reinforcedArmorEnergyPerHit = 120;
     public static final boolean reinforcedEnchantable = true;
-
+    
     // tuningResonant
     public static final int resonantEnergyCapacity = 10000000;
     public static final int resonantEnergyPerTick = 200;
@@ -89,7 +93,7 @@ public class SJConfigDefaults {
     public static final double resonantArmorAbsorption = 0.6D;
     public static final int resonantArmorEnergyPerHit = 160;
     public static final boolean resonantEnchantable = true;
-
+    
     // tuningFluxPlate
     public static final int fluxPlateEnergyCapacity = 50000000;
     public static final int fluxPlateEnergyPerTick = 400;
@@ -105,7 +109,7 @@ public class SJConfigDefaults {
     public static final boolean fluxPlateEnchantable = true;
     public static final boolean fluxPlateHasCharger = true;
     public static final int fluxPlateEnergyOutRate = 20000;
-
+    
     // tuningCreative
     public static final double creativeSpeedVertical = 0.9D;
     public static final double creativeAccelVertical = 0.15D;
@@ -117,13 +121,13 @@ public class SJConfigDefaults {
     public static final double creativeArmorAbsorption = 0.8D;
     public static final boolean creativeEnchantable = true;
     public static final int creativeEnergyOutRate = 20000;
-
+    
     // tuningFluxPackLeadstone
     public static final int fluxpackLeadstoneEnergyCapacity = 400000;
     public static final int fluxpackLeadstoneEnergyInRate = 80;
     public static final int fluxpackLeadstoneEnergyOutRate = 80;
     public static final boolean fluxpackLeadstoneEnchantable = false;
-
+    
     // tuningFluxPackHardened
     public static final int fluxpackHardenedEnergyCapacity = 2000000;
     public static final int fluxpackHardenedEnergyInRate = 400;
@@ -132,7 +136,7 @@ public class SJConfigDefaults {
     public static final double fluxpackHardenedArmorAbsorption = 0.2D;
     public static final int fluxpackHardenedArmorEnergyPerHit = 80;
     public static final boolean fluxpackHardenedEnchantable = false;
-
+    
     // tuningFluxPackRedstone
     public static final int fluxpackRedstoneEnergyCapacity = 10000000;
     public static final int fluxpackRedstoneEnergyInRate = 2000;
@@ -141,7 +145,7 @@ public class SJConfigDefaults {
     public static final double fluxpackRedstoneArmorAbsorption = 0.3D;
     public static final int fluxpackRedstoneArmorEnergyPerHit = 120;
     public static final boolean fluxpackRedstoneEnchantable = true;
-
+    
     // tuningFluxPackResonant
     public static final int fluxpackResonantEnergyCapacity = 50000000;
     public static final int fluxpackResonantEnergyInRate = 10000;
@@ -150,11 +154,11 @@ public class SJConfigDefaults {
     public static final double fluxpackResonantArmorAbsorption = 0.4D;
     public static final int fluxpackResonantArmorEnergyPerHit = 160;
     public static final boolean fluxpackResonantEnchantable = true;
-
+    
     // tuningFluxPackCreative
     public static final int fluxpackCreativeEnergyOutRate = 20000;
     public static final int fluxpackCreativeArmorDisplay = 6;
     public static final double fluxpackCreativeArmorAbsorption = 0.5D;
     public static final boolean fluxpackCreativeEnchantable = true;
-
+    
 }

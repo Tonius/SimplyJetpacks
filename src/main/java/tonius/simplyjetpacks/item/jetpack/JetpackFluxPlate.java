@@ -16,18 +16,18 @@ import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class JetpackFluxPlate extends JetpackArmored {
-
+    
     public int energyPerTickOut;
-
+    
     public JetpackFluxPlate(int meta, int tier, boolean enchantable, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit, int energyPerTickOut) {
         super(meta, tier, enchantable, rarity, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode, armorDisplay, armorAbsorption, energyPerHit);
         this.energyPerTickOut = energyPerTickOut;
     }
-
+    
     public boolean isChargerOn(ItemStack itemStack) {
         return this.allowCharger() && StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
     }
-
+    
     public void toggleCharger(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         String msg = "";
         if (this.isChargerOn(itemStack)) {
@@ -37,24 +37,25 @@ public class JetpackFluxPlate extends JetpackArmored {
             msg = StringUtils.translate("chat.fluxpack.charger") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("FluxPackOn", true);
         }
-        if (showInChat)
+        if (showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
+        }
     }
-
+    
     public boolean allowCharger() {
         return SJConfig.fluxPlateHasCharger;
     }
-
+    
     @Override
     public String getBaseName() {
         return "jetpack." + this.tier;
     }
-
+    
     @Override
     public boolean hasArmoredVersion() {
         return false;
     }
-
+    
     @Override
     public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         if (this.allowCharger() && player.isSneaking()) {
@@ -63,15 +64,15 @@ public class JetpackFluxPlate extends JetpackArmored {
             super.toggle(itemStack, player, showInChat);
         }
     }
-
+    
     @Override
     public void useJetpack(EntityLivingBase user, ItemStack armor, ItemJetpack item, boolean force) {
         super.useJetpack(user, armor, item, force);
-        if (!user.worldObj.isRemote && this.isChargerOn(armor)) {
+        if (this.isChargerOn(armor)) {
             for (int i = 0; i <= 4; i++) {
                 ItemStack currentStack = user.getEquipmentInSlot(i);
                 if (currentStack != null && currentStack != armor && currentStack.getItem() instanceof IEnergyContainerItem) {
-                    IEnergyContainerItem heldEnergyItem = (IEnergyContainerItem) (currentStack.getItem());
+                    IEnergyContainerItem heldEnergyItem = (IEnergyContainerItem) currentStack.getItem();
                     if (!(this instanceof JetpackCreative)) {
                         int energyToAdd = Math.min(item.extractEnergy(armor, this.energyPerTickOut, true), heldEnergyItem.receiveEnergy(currentStack, this.energyPerTickOut, true));
                         item.extractEnergy(armor, energyToAdd, false);
@@ -83,7 +84,7 @@ public class JetpackFluxPlate extends JetpackArmored {
             }
         }
     }
-
+    
     @Override
     public void addShiftInformation(ItemStack itemStack, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(itemStack)));
@@ -97,7 +98,7 @@ public class JetpackFluxPlate extends JetpackArmored {
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
         list.add(StringUtils.BRIGHT_BLUE + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackFluxPlate.controls"));
     }
-
+    
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemJetpack item, ItemStack armor, DamageSource source, double damage, int slot) {
         if (source.damageType.equals("flux")) {
@@ -105,7 +106,7 @@ public class JetpackFluxPlate extends JetpackArmored {
         }
         return super.getProperties(player, item, armor, source, damage, slot);
     }
-
+    
     @Override
     public void damageArmor(EntityLivingBase entity, ItemJetpack item, ItemStack armor, DamageSource source, int damage, int slot) {
         if (source.damageType.equals("flux")) {
@@ -114,5 +115,5 @@ public class JetpackFluxPlate extends JetpackArmored {
             super.damageArmor(entity, item, armor, source, damage, slot);
         }
     }
-
+    
 }

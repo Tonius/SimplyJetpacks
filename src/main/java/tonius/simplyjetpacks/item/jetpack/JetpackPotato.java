@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.DamageSourcePotatoJetpack;
@@ -17,21 +18,21 @@ import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 
 public class JetpackPotato extends Jetpack {
-
+    
     public JetpackPotato(int meta, int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical) {
         super(meta, tier, false, EnumRarity.common, energyCapacity, energyPerTick, speedVertical, accelVertical, 0, 0, 0, false);
     }
-
+    
     @Override
     public boolean hasEmptyItem() {
         return false;
     }
-
+    
     @Override
     public boolean hasArmoredVersion() {
         return false;
     }
-
+    
     @Override
     public void addShiftInformation(ItemStack itemStack, EntityPlayer player, List list) {
         list.add(StringUtils.getEnergyUsageText(this.energyPerTick));
@@ -40,7 +41,7 @@ public class JetpackPotato extends Jetpack {
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
         list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
     }
-
+    
     @Override
     public void useJetpack(EntityLivingBase user, ItemStack jetpack, ItemJetpack item, boolean force) {
         if (this.isFired(jetpack)) {
@@ -59,11 +60,7 @@ public class JetpackPotato extends Jetpack {
                 }
             }
         } else {
-            boolean jumpKeyDown = true;
-            if (!force && user instanceof EntityPlayer && !SyncTracker.isJumpKeyDown((EntityPlayer) user)) {
-                jumpKeyDown = false;
-            }
-            if (jumpKeyDown) {
+            if (force || SyncTracker.isFlyKeyDown(user)) {
                 if (this.isTimerSet(jetpack)) {
                     this.decrementTimer(jetpack, user);
                 } else {
@@ -72,53 +69,53 @@ public class JetpackPotato extends Jetpack {
             }
         }
     }
-
+    
     @Override
     public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
     }
-
+    
     @Override
     public void switchMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
     }
-
+    
     @Override
     public JetpackParticleType particleToShow(ItemStack itemStack, ItemJetpack item, EntityLivingBase user) {
-        if (!this.isFired(itemStack) && (!(user instanceof EntityPlayer) || SyncTracker.isJumpKeyDown((EntityPlayer) user))) {
+        if (!this.isFired(itemStack) && SyncTracker.isFlyKeyDown(user)) {
             return user.getRNG().nextInt(5) == 0 ? JetpackParticleType.SMOKE : null;
         } else if (this.isFired(itemStack)) {
             return this.getParticleType(itemStack);
         }
         return null;
     }
-
+    
     @Override
     public boolean isOn(ItemStack itemStack) {
         return true;
     }
-
+    
     @Override
     public boolean isHoverModeOn(ItemStack itemStack) {
         return false;
     }
-
+    
     public boolean isFired(ItemStack itemStack) {
         return StackUtils.getNBT(itemStack).getBoolean("Fired");
     }
-
+    
     public void setFired(ItemStack itemStack) {
         StackUtils.getNBT(itemStack).setBoolean("Fired", true);
     }
-
+    
     public void setTimer(ItemStack itemStack, int timer) {
         StackUtils.getNBT(itemStack);
         itemStack.stackTagCompound.setInteger("RocketTimer", timer);
         itemStack.stackTagCompound.setBoolean("TimerSet", true);
     }
-
+    
     public boolean isTimerSet(ItemStack itemStack) {
         return StackUtils.getNBT(itemStack).getBoolean("TimerSet");
     }
-
+    
     public void decrementTimer(ItemStack itemStack, EntityLivingBase user) {
         StackUtils.getNBT(itemStack);
         int timer = itemStack.stackTagCompound.getInteger("RocketTimer");
@@ -126,8 +123,8 @@ public class JetpackPotato extends Jetpack {
         itemStack.stackTagCompound.setInteger("RocketTimer", timer);
         if (timer == 0) {
             this.setFired(itemStack);
-            user.worldObj.playSoundAtEntity(user, "simplyjetpacks:rocket", 1.0F, 1.0F);
+            user.worldObj.playSoundAtEntity(user, SimplyJetpacks.RESOURCE_PREFIX + "rocket", 1.0F, 1.0F);
         }
     }
-
+    
 }

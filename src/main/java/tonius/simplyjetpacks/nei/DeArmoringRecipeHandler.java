@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.setup.SJItems;
@@ -13,30 +14,30 @@ import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class DeArmoringRecipeHandler extends TemplateRecipeHandler {
-
+    
     @Override
     public String getRecipeName() {
         return StringUtils.translate("gui.nei.recipe.armoring");
     }
-
+    
     @Override
     public String getGuiTexture() {
-        return "simplyjetpacks:textures/gui/nei/armoring.png";
+        return SimplyJetpacks.RESOURCE_PREFIX + "textures/gui/nei/armoring.png";
     }
-
+    
     @Override
     public int recipiesPerPage() {
         return 1;
     }
-
+    
     @Override
     public void drawBackground(int recipe) {
         GL11.glColor4f(1, 1, 1, 1);
-        GuiDraw.changeTexture(getGuiTexture());
+        GuiDraw.changeTexture(this.getGuiTexture());
         GuiDraw.drawTexturedModalRect(6, 31, 0, 0, 13, 20);
         GuiDraw.drawTexturedModalRect(6, 73, 13, 0, 13, 13);
     }
-
+    
     @Override
     public void drawForeground(int recipe) {
         super.drawForeground(recipe);
@@ -44,7 +45,7 @@ public class DeArmoringRecipeHandler extends TemplateRecipeHandler {
         GuiDraw.drawString(StringUtils.translate("gui.nei.recipe.dearmoring.output"), 26, 58, 0x404040, false);
         GuiDraw.drawString(StringUtils.translate("gui.nei.recipe.dearmoring.plating"), 26, 94, 0x404040, false);
     }
-
+    
     @Override
     public void loadCraftingRecipes(ItemStack result) {
         int dmg = result.getItemDamage();
@@ -73,7 +74,7 @@ public class DeArmoringRecipeHandler extends TemplateRecipeHandler {
             }
         }
     }
-
+    
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
         if (ingredient.getItem() == SJItems.jetpacks) {
@@ -90,34 +91,34 @@ public class DeArmoringRecipeHandler extends TemplateRecipeHandler {
             }
         }
     }
-
+    
     public class CachedDeArmoringRecipe extends CachedRecipe {
-
+        
         private PositionedStack input;
         private PositionedStack output;
         private PositionedStack plating;
-
+        
         public CachedDeArmoringRecipe(ItemStack input, ItemStack output, ItemStack plating) {
             this.input = new PositionedStack(input, 4, 13);
             this.output = new PositionedStack(output, 4, 53);
             this.plating = new PositionedStack(plating, 4, 89);
         }
-
+        
         @Override
         public PositionedStack getIngredient() {
             return this.input;
         }
-
+        
         @Override
         public PositionedStack getOtherStack() {
             return this.plating;
         }
-
+        
         @Override
         public PositionedStack getResult() {
             return this.output;
         }
-
+        
     }
-
+    
 }

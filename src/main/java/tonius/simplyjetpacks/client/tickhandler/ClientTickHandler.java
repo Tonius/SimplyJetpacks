@@ -5,8 +5,12 @@ import java.util.Iterator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+
+import org.lwjgl.input.Keyboard;
+
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
@@ -18,15 +22,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ClientTickHandler {
-
+    
     private static Minecraft mc = Minecraft.getMinecraft();
-
-    private static boolean lastJumpState = false;
+    
+    private static boolean lastFlyState = false;
+    private static boolean lastDescendState = false;
+    
     private static boolean lastForwardState = false;
     private static boolean lastBackwardState = false;
     private static boolean lastLeftState = false;
     private static boolean lastRightState = false;
-
+    
     @SubscribeEvent
     public void onClientTick(ClientTickEvent evt) {
         if (evt.phase == Phase.START) {
@@ -35,27 +41,38 @@ public class ClientTickHandler {
             tickEnd();
         }
     }
-
+    
     private static void tickStart() {
         if (mc.thePlayer != null) {
-            boolean jumpState = mc.gameSettings.keyBindJump.getIsKeyPressed();
+            boolean flyState;
+            boolean descendState;
+            if (SJConfig.customControls) {
+                flyState = mc.inGameHasFocus && Keyboard.isKeyDown(SJConfig.flyKey);
+                descendState = mc.inGameHasFocus && Keyboard.isKeyDown(SJConfig.descendKey);
+            } else {
+                flyState = mc.gameSettings.keyBindJump.getIsKeyPressed();
+                descendState = mc.gameSettings.keyBindSneak.getIsKeyPressed();
+            }
+            
             boolean forwardState = mc.gameSettings.keyBindForward.getIsKeyPressed();
             boolean backwardState = mc.gameSettings.keyBindBack.getIsKeyPressed();
             boolean leftState = mc.gameSettings.keyBindLeft.getIsKeyPressed();
             boolean rightState = mc.gameSettings.keyBindRight.getIsKeyPressed();
-
-            if (jumpState != lastJumpState || forwardState != lastForwardState || backwardState != lastBackwardState || leftState != lastLeftState || rightState != lastRightState) {
-                lastJumpState = jumpState;
+            
+            if (flyState != lastFlyState || descendState != lastDescendState || forwardState != lastForwardState || backwardState != lastBackwardState || leftState != lastLeftState || rightState != lastRightState) {
+                lastFlyState = flyState;
+                lastDescendState = descendState;
+                
                 lastForwardState = forwardState;
                 lastBackwardState = backwardState;
                 lastLeftState = leftState;
                 lastRightState = rightState;
-                PacketHandler.instance.sendToServer(new MessageKeyboardSync(jumpState, forwardState, backwardState, leftState, rightState));
-                SyncTracker.processKeyUpdate(mc.thePlayer, jumpState, forwardState, backwardState, leftState, rightState);
+                PacketHandler.instance.sendToServer(new MessageKeyboardSync(flyState, descendState, forwardState, backwardState, leftState, rightState));
+                SyncTracker.processKeyUpdate(mc.thePlayer, flyState, descendState, forwardState, backwardState, leftState, rightState);
             }
         }
     }
-
+    
     private static void tickEnd() {
         if (mc.thePlayer != null && mc.theWorld != null && !mc.isGamePaused()) {
             Iterator<Integer> itr = SyncTracker.getJetpackStates().keySet().iterator();

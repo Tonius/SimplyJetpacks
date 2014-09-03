@@ -11,9 +11,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ParticleUtils {
-
+    
     private static Minecraft mc = Minecraft.getMinecraft();
-
+    
     public static void spawnParticle(JetpackParticleType particle, World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
         switch (particle) {
         case NONE:
