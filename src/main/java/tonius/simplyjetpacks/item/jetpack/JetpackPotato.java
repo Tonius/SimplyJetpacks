@@ -46,6 +46,7 @@ public class JetpackPotato extends Jetpack {
     public void useJetpack(EntityLivingBase user, ItemStack jetpack, ItemJetpack item, boolean force) {
         if (this.isFired(jetpack)) {
             super.useJetpack(user, jetpack, item, true);
+            user.rotationYawHead += 37.5F;
             if (item.getEnergyStored(jetpack) == 0) {
                 user.setCurrentItemOrArmor(3, null);
                 if (!user.worldObj.isRemote) {
@@ -55,8 +56,10 @@ public class JetpackPotato extends Jetpack {
                         ItemStack firework = FireworksGenerator.randomFirework();
                         user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
                     }
-                    user.attackEntityFrom(DamageSourcePotatoJetpack.causeJetpackPotatoDamage(user), 20.0F);
-                    user.dropItem(Items.baked_potato, 1);
+                    user.attackEntityFrom(DamageSourcePotatoJetpack.causeJetpackPotatoDamage(user), 100.0F);
+                    if (user instanceof EntityPlayer) {
+                        user.dropItem(Items.baked_potato, 1);
+                    }
                 }
             }
         } else {

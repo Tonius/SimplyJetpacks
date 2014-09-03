@@ -17,6 +17,7 @@ import tonius.simplyjetpacks.item.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.item.ItemMeta;
 import tonius.simplyjetpacks.item.ItemMeta.MetaItem;
+import tonius.simplyjetpacks.item.ItemMysteriousPotato;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.recipes.SJUpgradingRecipe;
@@ -28,6 +29,7 @@ public class SJItems {
     public static ItemFluxPack fluxpacks = null;
     public static ItemMeta components = null;
     public static ItemMeta particleCustomizers = null;
+    public static ItemMysteriousPotato mysteriousPotato = null;
     
     public static ItemStack jetpackTuberous = null;
     public static ItemStack jetpackLeadstone = null;
@@ -94,6 +96,7 @@ public class SJItems {
         
         components = new ItemMeta("components");
         particleCustomizers = new ItemMeta("particleCustomizers");
+        mysteriousPotato = new ItemMysteriousPotato();
         
         jetpackTuberous = jetpacks.getChargedItem(jetpacks, 0);
         jetpackLeadstone = new ItemStack(jetpacks, 1, 1);
@@ -149,6 +152,7 @@ public class SJItems {
         GameRegistry.registerItem(fluxpacks, "fluxpacks");
         GameRegistry.registerItem(components, "components");
         GameRegistry.registerItem(particleCustomizers, "particleCustomizers");
+        GameRegistry.registerItem(mysteriousPotato, "mysteriousPotato");
         
         GameRegistry.registerCustomItemStack("jetpack.0", jetpackTuberous);
         GameRegistry.registerCustomItemStack("jetpack.1", jetpackLeadstone);

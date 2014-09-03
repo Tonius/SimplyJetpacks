@@ -45,7 +45,7 @@ public class SyncTracker {
         if (user instanceof EntityPlayer) {
             return forwardKeyState.containsKey(user) && forwardKeyState.get(user);
         }
-        return false;
+        return true;
     }
     
     public static boolean isBackwardKeyDown(EntityLivingBase user) {

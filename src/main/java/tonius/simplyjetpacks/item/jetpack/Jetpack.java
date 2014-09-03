@@ -204,7 +204,7 @@ public class Jetpack {
             msg = StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("JetpackOn", true);
         }
-        if (showInChat) {
+        if (player != null && showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }
@@ -224,6 +224,15 @@ public class Jetpack {
         }
         if (showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
+        }
+    }
+    
+    public void setMobMode(ItemStack itemStack) {
+        if (!this.isOn(itemStack)) {
+            itemStack.stackTagCompound.setBoolean("JetpackOn", true);
+        }
+        if (this.isHoverModeOn(itemStack)) {
+            itemStack.stackTagCompound.setBoolean("JetpackHoverModeOn", false);
         }
     }
     

@@ -36,6 +36,7 @@ item.simplyjetpacks.unitCryotheum.empty.name=Cryotheum Coolant Unit (Empty)
 item.simplyjetpacks.unitCryotheum.name=Cryotheum Coolant Unit
 item.simplyjetpacks.unitGlowstone.empty.name=Glowstone Elevation Unit (Empty)
 item.simplyjetpacks.unitGlowstone.name=Glowstone Elevation Unit
+item.simplyjetpacks.mysteriousPotato.name=Mysterious Potato
 
 item.simplyjetpacks.particle.0.name=Particle Customizer (Default)
 item.simplyjetpacks.particle.1.name=Particle Customizer (None)
@@ -82,6 +83,7 @@ simplyjetpacks.tooltip.fluxpack.description.1=Charges armor and held items when 
 simplyjetpacks.tooltip.fluxpack.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jetpack's particles.
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
+simplyjetpacks.tooltip.mysteriousPotato.description=Can do the thing
 
 simplyjetpacks.gui.hud.jetpack.energy=Jetpack energy
 simplyjetpacks.gui.hud.fluxpack.energy=Flux Pack energy

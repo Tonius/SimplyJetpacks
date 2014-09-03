@@ -20,18 +20,16 @@ import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 @Mod(modid = SimplyJetpacks.MODID, dependencies = SimplyJetpacks.DEPENDENCIES, guiFactory = SimplyJetpacks.GUI_FACTORY)
 public class SimplyJetpacks {
     
-    @Instance("simplyjetpacks")
-    public static SimplyJetpacks instance;
-    
     public static final String MODID = "simplyjetpacks";
     public static final String PREFIX = MODID + ".";
     public static final String RESOURCE_PREFIX = MODID + ":";
     public static final String DEPENDENCIES = "after:ThermalExpansion;after:RedstoneArsenal";
     public static final String GUI_FACTORY = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ";
     
+    @Instance(MODID)
+    public static SimplyJetpacks instance;
     @SidedProxy(clientSide = "tonius.simplyjetpacks.client.ClientProxy", serverSide = "tonius.simplyjetpacks.CommonProxy")
     public static CommonProxy proxy;
-    
     public static Logger logger;
     public static SyncTracker keyboard;
     
@@ -42,7 +40,7 @@ public class SimplyJetpacks {
         
         SJConfig.preInit(evt);
         
-        RecipeSorter.register(SimplyJetpacks.RESOURCE_PREFIX + "upgrading", SJUpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
+        RecipeSorter.register(SimplyJetpacks.MODID + ":upgrading", SJUpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
         SJItems.preInit();
         
         proxy.registerHandlers();
