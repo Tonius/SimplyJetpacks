@@ -62,4 +62,9 @@ public class ClientProxy extends CommonProxy {
         ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
     }
     
+    @Override
+    public void updateCustomKeybinds() {
+        ClientTickHandler.updateCustomKeybinds();
+    }
+    
 }

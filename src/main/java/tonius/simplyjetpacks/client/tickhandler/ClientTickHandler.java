@@ -25,6 +25,9 @@ public class ClientTickHandler {
     
     private static Minecraft mc = Minecraft.getMinecraft();
     
+    private static int flyKey;
+    private static int descendKey;
+    
     private static boolean lastFlyState = false;
     private static boolean lastDescendState = false;
     
@@ -42,13 +45,18 @@ public class ClientTickHandler {
         }
     }
     
+    public static void updateCustomKeybinds() {
+        flyKey = Keyboard.getKeyIndex(SJConfig.flyKey);
+        descendKey = Keyboard.getKeyIndex(SJConfig.descendKey);
+    }
+    
     private static void tickStart() {
         if (mc.thePlayer != null) {
             boolean flyState;
             boolean descendState;
             if (SJConfig.customControls) {
-                flyState = mc.inGameHasFocus && Keyboard.isKeyDown(Keyboard.getKeyIndex(SJConfig.flyKey));
-                descendState = mc.inGameHasFocus && Keyboard.isKeyDown(Keyboard.getKeyIndex(SJConfig.descendKey));
+                flyState = mc.inGameHasFocus && Keyboard.isKeyDown(flyKey);
+                descendState = mc.inGameHasFocus && Keyboard.isKeyDown(descendKey);
             } else {
                 flyState = mc.gameSettings.keyBindJump.getIsKeyPressed();
                 descendState = mc.gameSettings.keyBindSneak.getIsKeyPressed();

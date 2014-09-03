@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
-
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
@@ -226,6 +225,7 @@ public class SJConfig {
             syncConfig();
             Jetpack.reconstructJetpacks();
             FluxPack.reconstructFluxPacks();
+            SimplyJetpacks.proxy.updateCustomKeybinds();
         }
     }
     
@@ -272,7 +272,7 @@ public class SJConfig {
         int leadstoneArmorEnergyPerHit_temp = config.get(sectionTuningLeadstone.name, "Armor Energy Per Hit", SJConfigDefaults.leadstoneArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.leadstoneArmorEnergyPerHit);
         leadstoneArmorEnergyPerHit = leadstoneArmorEnergyPerHit_temp > 0 ? leadstoneArmorEnergyPerHit_temp : 1;
         leadstoneEnchantable = config.get(sectionTuningLeadstone.name, "Enchantable", SJConfigDefaults.leadstoneEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.leadstoneEnchantable);
-
+        
         hardenedEnergyCapacity = config.get(sectionTuningHardened.name, "Energy Capacity", SJConfigDefaults.hardenedEnergyCapacity, "The maximum amount of energy that the jetpack can hold.").getInt(SJConfigDefaults.hardenedEnergyCapacity);
         hardenedEnergyPerTick = config.get(sectionTuningHardened.name, "Energy Usage per Tick", SJConfigDefaults.hardenedEnergyPerTick, "The amount of energy that the jetpack uses every tick when flying.").getInt(SJConfigDefaults.hardenedEnergyPerTick);
         hardenedSpeedVertical = config.get(sectionTuningHardened.name, "Vertical Speed", SJConfigDefaults.hardenedSpeedVertical, "The maximum vertical speed of the jetpack when flying.").getDouble(SJConfigDefaults.hardenedSpeedVertical);
@@ -286,7 +286,7 @@ public class SJConfig {
         int hardenedArmorEnergyPerHit_temp = config.get(sectionTuningHardened.name, "Armor Energy Per Hit", SJConfigDefaults.hardenedArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.hardenedArmorEnergyPerHit);
         hardenedArmorEnergyPerHit = hardenedArmorEnergyPerHit_temp > 0 ? hardenedArmorEnergyPerHit_temp : 1;
         hardenedEnchantable = config.get(sectionTuningHardened.name, "Enchantable", SJConfigDefaults.hardenedEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.hardenedEnchantable);
-
+        
         reinforcedEnergyCapacity = config.get(sectionTuningReinforced.name, "Energy Capacity", SJConfigDefaults.reinforcedEnergyCapacity, "The maximum amount of energy that the jetpack can hold.").getInt(SJConfigDefaults.reinforcedEnergyCapacity);
         reinforcedEnergyPerTick = config.get(sectionTuningReinforced.name, "Energy Usage per Tick", SJConfigDefaults.reinforcedEnergyPerTick, "The amount of energy that the jetpack uses every tick when flying.").getInt(SJConfigDefaults.reinforcedEnergyPerTick);
         reinforcedSpeedVertical = config.get(sectionTuningReinforced.name, "Vertical Speed", SJConfigDefaults.reinforcedSpeedVertical, "The maximum vertical speed of the jetpack when flying.").getDouble(SJConfigDefaults.reinforcedSpeedVertical);

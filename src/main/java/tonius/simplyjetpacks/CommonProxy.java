@@ -17,4 +17,7 @@ public class CommonProxy {
     public void showJetpackParticles(World world, EntityLivingBase wearer, JetpackParticleType particle) {
     }
     
+    public void updateCustomKeybinds() {
+    }
+    
 }
