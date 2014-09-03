@@ -18,7 +18,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
@@ -203,8 +202,13 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     }
     
     @Override
-    public int getItemEnchantability() {
-        return SJConfig.jetpackEnchantability;
+    public int getItemEnchantability(ItemStack itemStack) {
+        Jetpack jetpack = this.getJetpack(itemStack);
+        if (jetpack != null) {
+            System.out.println(jetpack.enchantability);
+            return jetpack.enchantability;
+        }
+        return super.getItemEnchantability(itemStack);
     }
     
     @Override

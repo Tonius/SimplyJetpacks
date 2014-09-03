@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.model.ModelFluxPack;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
@@ -212,8 +211,13 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     }
     
     @Override
-    public int getItemEnchantability() {
-        return SJConfig.fluxpackEnchantability;
+    public int getItemEnchantability(ItemStack itemStack) {
+        FluxPack fluxpack = this.getFluxPack(itemStack);
+        if (fluxpack != null) {
+            System.out.println(fluxpack.enchantability);
+            return fluxpack.enchantability;
+        }
+        return super.getItemEnchantability(itemStack);
     }
     
     @Override

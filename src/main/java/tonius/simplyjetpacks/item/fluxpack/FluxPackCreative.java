@@ -4,8 +4,8 @@ import net.minecraft.item.EnumRarity;
 
 public class FluxPackCreative extends FluxPackArmored {
     
-    public FluxPackCreative(int meta, boolean enchantable, int energyPerTickOut, int armorDisplay, double armorAbsorption) {
-        super(meta, 9001, enchantable, EnumRarity.epic, 9001, Integer.MAX_VALUE, energyPerTickOut, armorDisplay, armorAbsorption, 0);
+    public FluxPackCreative(int meta, boolean enchantable, int enchantability, int energyPerTickOut, int armorDisplay, double armorAbsorption) {
+        super(meta, 9001, enchantable, enchantability, EnumRarity.epic, 9001, Integer.MAX_VALUE, energyPerTickOut, armorDisplay, armorAbsorption, 0);
     }
     
     @Override

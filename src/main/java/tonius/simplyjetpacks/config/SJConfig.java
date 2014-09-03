@@ -22,7 +22,6 @@ public class SJConfig {
     
     public static final ConfigSection sectionControls = new ConfigSection(true, "Controls Settings", "controls");
     public static final ConfigSection sectionGui = new ConfigSection(true, "GUI Settings", "gui");
-    public static final ConfigSection sectionItem = new ConfigSection(false, "Item Settings", "item");
     public static final ConfigSection sectionCrafting = new ConfigSection(false, "Crafting Settings", "crafting");
     
     public static final ConfigSection sectionTuningTuberous = new ConfigSection(false, "Tuning - Tuberous Jetpack", "tuningTuberous");
@@ -42,6 +41,7 @@ public class SJConfig {
     public static boolean customControls = SJConfigDefaults.customControls;
     public static String flyKey = SJConfigDefaults.flyKey;
     public static String descendKey = SJConfigDefaults.descendKey;
+    public static boolean invertHoverSneakingBehavior = SJConfigDefaults.invertHoverSneakingBehavior;
     
     // gui
     public static boolean enableStateChatMessages = SJConfigDefaults.enableStateChatMessages;
@@ -55,11 +55,6 @@ public class SJConfig {
     public static boolean minimalEnergyHUD = SJConfigDefaults.minimalEnergyHUD;
     public static boolean showEnergyHUDWhileChatting = SJConfigDefaults.showEnergyHUDWhileChatting;
     public static boolean showExactEnergyInHUD = SJConfigDefaults.showExactEnergyInHUD;
-    
-    // item
-    public static boolean invertHoverSneakingBehavior = SJConfigDefaults.invertHoverSneakingBehavior;
-    public static int jetpackEnchantability = SJConfigDefaults.jetpackEnchantability;
-    public static int fluxpackEnchantability = SJConfigDefaults.fluxpackEnchantability;
     
     // crafting
     public static boolean enableCraftingArmorPlating = SJConfigDefaults.enableCraftingArmorPlating;
@@ -85,6 +80,7 @@ public class SJConfig {
     public static double leadstoneArmorAbsorption = SJConfigDefaults.leadstoneArmorAbsorption;
     public static int leadstoneArmorEnergyPerHit = SJConfigDefaults.leadstoneArmorEnergyPerHit;
     public static boolean leadstoneEnchantable = SJConfigDefaults.leadstoneEnchantable;
+    public static int leadstoneEnchantability = SJConfigDefaults.leadstoneEnchantability;
     
     // tuningHardened
     public static int hardenedEnergyCapacity = SJConfigDefaults.hardenedEnergyCapacity;
@@ -99,6 +95,7 @@ public class SJConfig {
     public static double hardenedArmorAbsorption = SJConfigDefaults.hardenedArmorAbsorption;
     public static int hardenedArmorEnergyPerHit = SJConfigDefaults.hardenedArmorEnergyPerHit;
     public static boolean hardenedEnchantable = SJConfigDefaults.hardenedEnchantable;
+    public static int hardenedEnchantability = SJConfigDefaults.hardenedEnchantability;
     
     // tuningReinforced
     public static int reinforcedEnergyCapacity = SJConfigDefaults.reinforcedEnergyCapacity;
@@ -113,6 +110,7 @@ public class SJConfig {
     public static double reinforcedArmorAbsorption = SJConfigDefaults.reinforcedArmorAbsorption;
     public static int reinforcedArmorEnergyPerHit = SJConfigDefaults.reinforcedArmorEnergyPerHit;
     public static boolean reinforcedEnchantable = SJConfigDefaults.reinforcedEnchantable;
+    public static int reinforcedEnchantability = SJConfigDefaults.reinforcedEnchantability;
     
     // tuningResonant
     public static int resonantEnergyCapacity = SJConfigDefaults.resonantEnergyCapacity;
@@ -127,6 +125,7 @@ public class SJConfig {
     public static double resonantArmorAbsorption = SJConfigDefaults.resonantArmorAbsorption;
     public static int resonantArmorEnergyPerHit = SJConfigDefaults.resonantArmorEnergyPerHit;
     public static boolean resonantEnchantable = SJConfigDefaults.resonantEnchantable;
+    public static int resonantEnchantability = SJConfigDefaults.resonantEnchantability;
     
     // tuningFluxPlate
     public static int fluxPlateEnergyCapacity = SJConfigDefaults.fluxPlateEnergyCapacity;
@@ -141,6 +140,7 @@ public class SJConfig {
     public static double fluxPlateArmorAbsorption = SJConfigDefaults.fluxPlateArmorAbsorption;
     public static int fluxPlateArmorEnergyPerHit = SJConfigDefaults.fluxPlateArmorEnergyPerHit;
     public static boolean fluxPlateEnchantable = SJConfigDefaults.fluxPlateEnchantable;
+    public static int fluxPlateEnchantability = SJConfigDefaults.fluxPlateEnchantability;
     public static boolean fluxPlateHasCharger = SJConfigDefaults.fluxPlateHasCharger;
     public static int fluxPlateEnergyOutRate = SJConfigDefaults.fluxPlateEnergyOutRate;
     
@@ -155,12 +155,14 @@ public class SJConfig {
     public static double creativeArmorAbsorption = SJConfigDefaults.creativeArmorAbsorption;
     public static boolean creativeEnchantable = SJConfigDefaults.creativeEnchantable;
     public static int creativeEnergyOutRate = SJConfigDefaults.creativeEnergyOutRate;
+    public static int creativeEnchantability = SJConfigDefaults.creativeEnchantability;
     
     // tuningFluxPackLeadstone
     public static int fluxpackLeadstoneEnergyCapacity = SJConfigDefaults.fluxpackLeadstoneEnergyCapacity;
     public static int fluxpackLeadstoneEnergyInRate = SJConfigDefaults.fluxpackLeadstoneEnergyInRate;
     public static int fluxpackLeadstoneEnergyOutRate = SJConfigDefaults.fluxpackLeadstoneEnergyOutRate;
     public static boolean fluxpackLeadstoneEnchantable = SJConfigDefaults.fluxpackLeadstoneEnchantable;
+    public static int fluxpackLeadstoneEnchantability = SJConfigDefaults.fluxpackLeadstoneEnchantability;
     
     // tuningFluxPackHardened
     public static int fluxpackHardenedEnergyCapacity = SJConfigDefaults.fluxpackHardenedEnergyCapacity;
@@ -170,6 +172,7 @@ public class SJConfig {
     public static double fluxpackHardenedArmorAbsorption = SJConfigDefaults.fluxpackHardenedArmorAbsorption;
     public static int fluxpackHardenedArmorEnergyPerHit = SJConfigDefaults.fluxpackHardenedArmorEnergyPerHit;
     public static boolean fluxpackHardenedEnchantable = SJConfigDefaults.fluxpackHardenedEnchantable;
+    public static int fluxpackHardenedEnchantability = SJConfigDefaults.fluxpackHardenedEnchantability;
     
     // tuningFluxPackRedstone
     public static int fluxpackRedstoneEnergyCapacity = SJConfigDefaults.fluxpackRedstoneEnergyCapacity;
@@ -179,6 +182,7 @@ public class SJConfig {
     public static double fluxpackRedstoneArmorAbsorption = SJConfigDefaults.fluxpackRedstoneArmorAbsorption;
     public static int fluxpackRedstoneArmorEnergyPerHit = SJConfigDefaults.fluxpackRedstoneArmorEnergyPerHit;
     public static boolean fluxpackRedstoneEnchantable = SJConfigDefaults.fluxpackRedstoneEnchantable;
+    public static int fluxpackRedstoneEnchantability = SJConfigDefaults.fluxpackRedstoneEnchantability;
     
     // tuningFluxPackResonant
     public static int fluxpackResonantEnergyCapacity = SJConfigDefaults.fluxpackResonantEnergyCapacity;
@@ -188,12 +192,14 @@ public class SJConfig {
     public static double fluxpackResonantArmorAbsorption = SJConfigDefaults.fluxpackResonantArmorAbsorption;
     public static int fluxpackResonantArmorEnergyPerHit = SJConfigDefaults.fluxpackResonantArmorEnergyPerHit;
     public static boolean fluxpackResonantEnchantable = SJConfigDefaults.fluxpackResonantEnchantable;
+    public static int fluxpackResonantEnchantability = SJConfigDefaults.fluxpackResonantEnchantability;
     
     // tuningFluxPackCreative
     public static int fluxpackCreativeEnergyOutRate = SJConfigDefaults.fluxpackCreativeEnergyOutRate;
     public static int fluxpackCreativeArmorDisplay = SJConfigDefaults.fluxpackCreativeArmorDisplay;
     public static double fluxpackCreativeArmorAbsorption = SJConfigDefaults.fluxpackCreativeArmorAbsorption;
     public static boolean fluxpackCreativeEnchantable = SJConfigDefaults.fluxpackCreativeEnchantable;
+    public static int fluxpackCreativeEnchantability = SJConfigDefaults.fluxpackCreativeEnchantability;
     
     public static void preInit(FMLPreInitializationEvent evt) {
         FMLCommonHandler.instance().bus().register(new SJConfig());
@@ -248,9 +254,6 @@ public class SJConfig {
         showEnergyHUDWhileChatting = configClient.get(sectionGui.name, "Show Energy HUD while chatting", SJConfigDefaults.showEnergyHUDWhileChatting, "When enabled, the energy HUD will display even when the chat window is opened.").getBoolean(SJConfigDefaults.showEnergyHUDWhileChatting);
         showExactEnergyInHUD = configClient.get(sectionGui.name, "Exact energy amounts in Energy HUD", SJConfigDefaults.showExactEnergyInHUD, "When enabled, the energy HUD will display the exact amount of RF other than just a percentage.").getBoolean(SJConfigDefaults.showExactEnergyInHUD);
         
-        jetpackEnchantability = config.get(sectionItem.name, "Jetpack Enchantability", SJConfigDefaults.jetpackEnchantability, "The enchantability of the jetpacks. Note that specific jetpacks may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.jetpackEnchantability);
-        fluxpackEnchantability = config.get(sectionItem.name, "Flux Pack Enchantability", SJConfigDefaults.fluxpackEnchantability, "The enchantability of the flux packs. Note that specific flux packs may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.fluxpackEnchantability);
-        
         enableCraftingArmorPlating = config.get(sectionCrafting.name, "Armor Plating craftable", SJConfigDefaults.enableCraftingArmorPlating, "When enabled, Armor Plating items will be craftable, and thus armored jetpacks are available.").setRequiresMcRestart(true).getBoolean(SJConfigDefaults.enableCraftingArmorPlating);
         enableCraftingPotatoJetpack = config.get(sectionCrafting.name, "Potato Jetpack craftable", SJConfigDefaults.enableCraftingPotatoJetpack, "When enabled, the Potato Jetpack will be craftable.").setRequiresMcRestart(true).getBoolean(SJConfigDefaults.enableCraftingPotatoJetpack);
         enableCraftingFluxJetPlate = config.get(sectionCrafting.name, "Flux-Infused JetPlate craftable", SJConfigDefaults.enableCraftingFluxJetPlate, "When enabled, the Flux-Infused JetPlate will be craftable.").setRequiresMcRestart(true).getBoolean(SJConfigDefaults.enableCraftingFluxJetPlate);
@@ -273,6 +276,7 @@ public class SJConfig {
         int leadstoneArmorEnergyPerHit_temp = config.get(sectionTuningLeadstone.name, "Armor Energy Per Hit", SJConfigDefaults.leadstoneArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.leadstoneArmorEnergyPerHit);
         leadstoneArmorEnergyPerHit = leadstoneArmorEnergyPerHit_temp > 0 ? leadstoneArmorEnergyPerHit_temp : 1;
         leadstoneEnchantable = config.get(sectionTuningLeadstone.name, "Enchantable", SJConfigDefaults.leadstoneEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.leadstoneEnchantable);
+        leadstoneEnchantability = config.get(sectionTuningLeadstone.name, "Enchantability", SJConfigDefaults.leadstoneEnchantability, "The enchantability of the jetpack. Note that the jetpack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.leadstoneEnchantability);
         
         hardenedEnergyCapacity = config.get(sectionTuningHardened.name, "Energy Capacity", SJConfigDefaults.hardenedEnergyCapacity, "The maximum amount of energy that the jetpack can hold.").getInt(SJConfigDefaults.hardenedEnergyCapacity);
         hardenedEnergyPerTick = config.get(sectionTuningHardened.name, "Energy Usage per Tick", SJConfigDefaults.hardenedEnergyPerTick, "The amount of energy that the jetpack uses every tick when flying.").getInt(SJConfigDefaults.hardenedEnergyPerTick);
@@ -287,6 +291,7 @@ public class SJConfig {
         int hardenedArmorEnergyPerHit_temp = config.get(sectionTuningHardened.name, "Armor Energy Per Hit", SJConfigDefaults.hardenedArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.hardenedArmorEnergyPerHit);
         hardenedArmorEnergyPerHit = hardenedArmorEnergyPerHit_temp > 0 ? hardenedArmorEnergyPerHit_temp : 1;
         hardenedEnchantable = config.get(sectionTuningHardened.name, "Enchantable", SJConfigDefaults.hardenedEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.hardenedEnchantable);
+        hardenedEnchantability = config.get(sectionTuningHardened.name, "Enchantability", SJConfigDefaults.hardenedEnchantability, "The enchantability of the jetpack. Note that the jetpack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.hardenedEnchantability);
         
         reinforcedEnergyCapacity = config.get(sectionTuningReinforced.name, "Energy Capacity", SJConfigDefaults.reinforcedEnergyCapacity, "The maximum amount of energy that the jetpack can hold.").getInt(SJConfigDefaults.reinforcedEnergyCapacity);
         reinforcedEnergyPerTick = config.get(sectionTuningReinforced.name, "Energy Usage per Tick", SJConfigDefaults.reinforcedEnergyPerTick, "The amount of energy that the jetpack uses every tick when flying.").getInt(SJConfigDefaults.reinforcedEnergyPerTick);
@@ -301,6 +306,7 @@ public class SJConfig {
         int reinforcedArmorEnergyPerHit_temp = config.get(sectionTuningReinforced.name, "Armor Energy Per Hit", SJConfigDefaults.reinforcedArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.reinforcedArmorEnergyPerHit);
         reinforcedArmorEnergyPerHit = reinforcedArmorEnergyPerHit_temp > 0 ? reinforcedArmorEnergyPerHit_temp : 1;
         reinforcedEnchantable = config.get(sectionTuningReinforced.name, "Enchantable", SJConfigDefaults.reinforcedEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.reinforcedEnchantable);
+        reinforcedEnchantability = config.get(sectionTuningReinforced.name, "Enchantability", SJConfigDefaults.reinforcedEnchantability, "The enchantability of the jetpack. Note that the jetpack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.reinforcedEnchantability);
         
         resonantEnergyCapacity = config.get(sectionTuningResonant.name, "Energy Capacity", SJConfigDefaults.resonantEnergyCapacity, "The maximum amount of energy that the jetpack can hold.").getInt(SJConfigDefaults.resonantEnergyCapacity);
         resonantEnergyPerTick = config.get(sectionTuningResonant.name, "Energy Usage per Tick", SJConfigDefaults.resonantEnergyPerTick, "The amount of energy that the jetpack uses every tick when flying.").getInt(SJConfigDefaults.resonantEnergyPerTick);
@@ -315,6 +321,7 @@ public class SJConfig {
         int resonantArmorEnergyPerHit_temp = config.get(sectionTuningResonant.name, "Armor Energy Per Hit", SJConfigDefaults.resonantArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.resonantArmorEnergyPerHit);
         resonantArmorEnergyPerHit = resonantArmorEnergyPerHit_temp > 0 ? resonantArmorEnergyPerHit_temp : 1;
         resonantEnchantable = config.get(sectionTuningResonant.name, "Enchantable", SJConfigDefaults.resonantEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.resonantEnchantable);
+        resonantEnchantability = config.get(sectionTuningResonant.name, "Enchantability", SJConfigDefaults.resonantEnchantability, "The enchantability of the jetpack. Note that the jetpack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.resonantEnchantability);
         
         fluxPlateEnergyCapacity = config.get(sectionTuningFluxPlate.name, "Energy Capacity", SJConfigDefaults.fluxPlateEnergyCapacity, "The maximum amount of energy that the jetpack can hold.").getInt(SJConfigDefaults.fluxPlateEnergyCapacity);
         fluxPlateEnergyPerTick = config.get(sectionTuningFluxPlate.name, "Energy Usage per Tick", SJConfigDefaults.fluxPlateEnergyPerTick, "The amount of energy that the jetpack uses every tick when flying.").getInt(SJConfigDefaults.fluxPlateEnergyPerTick);
@@ -329,6 +336,7 @@ public class SJConfig {
         int fluxPlateArmorEnergyPerHit_temp = config.get(sectionTuningFluxPlate.name, "Armor Energy Per Hit", SJConfigDefaults.fluxPlateArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.fluxPlateArmorEnergyPerHit);
         fluxPlateArmorEnergyPerHit = fluxPlateArmorEnergyPerHit_temp > 0 ? fluxPlateArmorEnergyPerHit_temp : 1;
         fluxPlateEnchantable = config.get(sectionTuningFluxPlate.name, "Enchantable", SJConfigDefaults.fluxPlateEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.fluxPlateEnchantable);
+        fluxPlateEnchantability = config.get(sectionTuningFluxPlate.name, "Enchantability", SJConfigDefaults.fluxPlateEnchantability, "The enchantability of the jetpack. Note that the jetpack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.fluxPlateEnchantability);
         fluxPlateHasCharger = config.get(sectionTuningFluxPlate.name, "Has Charger", SJConfigDefaults.fluxPlateHasCharger, "When enabled, this jetpack will have an inbuilt Flux Pack that can charge other items.").setRequiresMcRestart(true).getBoolean(SJConfigDefaults.fluxPlateHasCharger);
         fluxPlateEnergyOutRate = config.get(sectionTuningFluxPlate.name, "Energy Out Rate", SJConfigDefaults.fluxPlateEnergyOutRate, "The rate, in RF per tick, at which this jetpack can charge other items.").getInt(SJConfigDefaults.fluxPlateEnergyOutRate);
         
@@ -341,12 +349,14 @@ public class SJConfig {
         creativeArmorDisplay = config.get(sectionTuningCreative.name, "Armor Display", SJConfigDefaults.creativeArmorDisplay, "How powerful the ARMORED version of the jetpack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(SJConfigDefaults.creativeArmorDisplay);
         creativeArmorAbsorption = config.get(sectionTuningCreative.name, "Armor Absorption", SJConfigDefaults.creativeArmorAbsorption, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(SJConfigDefaults.creativeArmorAbsorption);
         creativeEnchantable = config.get(sectionTuningCreative.name, "Enchantable", SJConfigDefaults.creativeEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.creativeEnchantable);
+        creativeEnchantability = config.get(sectionTuningCreative.name, "Enchantability", SJConfigDefaults.creativeEnchantability, "The enchantability of the jetpack. Note that the jetpack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.creativeEnchantability);
         creativeEnergyOutRate = config.get(sectionTuningCreative.name, "Energy Out Rate", SJConfigDefaults.creativeEnergyOutRate, "The rate, in RF per tick, at which this jetpack can charge other items.").getInt(SJConfigDefaults.creativeEnergyOutRate);
         
         fluxpackLeadstoneEnergyCapacity = config.get(sectionTuningFluxPackLeadstone.name, "Energy Capacity", SJConfigDefaults.fluxpackLeadstoneEnergyCapacity, "The maximum amount of energy that this flux pack can hold.").getInt(SJConfigDefaults.fluxpackLeadstoneEnergyCapacity);
         fluxpackLeadstoneEnergyInRate = config.get(sectionTuningFluxPackLeadstone.name, "Energy In Rate", SJConfigDefaults.fluxpackLeadstoneEnergyInRate, "The rate, in RF per tick, at which this flux pack can be charged.").getInt(SJConfigDefaults.fluxpackLeadstoneEnergyInRate);
         fluxpackLeadstoneEnergyOutRate = config.get(sectionTuningFluxPackLeadstone.name, "Energy Out Rate", SJConfigDefaults.fluxpackLeadstoneEnergyOutRate, "The rate, in RF per tick, at which this flux pack can charge other items.").getInt(SJConfigDefaults.fluxpackLeadstoneEnergyOutRate);
         fluxpackLeadstoneEnchantable = config.get(sectionTuningFluxPackLeadstone.name, "Enchantable", SJConfigDefaults.fluxpackLeadstoneEnchantable, "When enabled, this flux pack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.fluxpackLeadstoneEnchantable);
+        fluxpackLeadstoneEnchantability = config.get(sectionTuningFluxPackLeadstone.name, "Enchantability", SJConfigDefaults.fluxpackLeadstoneEnchantability, "The enchantability of the flux pack. Note that the flux pack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.fluxpackLeadstoneEnchantability);
         
         fluxpackHardenedEnergyCapacity = config.get(sectionTuningFluxPackHardened.name, "Energy Capacity", SJConfigDefaults.fluxpackHardenedEnergyCapacity, "The maximum amount of energy that this flux pack can hold.").getInt(SJConfigDefaults.fluxpackHardenedEnergyCapacity);
         fluxpackHardenedEnergyInRate = config.get(sectionTuningFluxPackHardened.name, "Energy In Rate", SJConfigDefaults.fluxpackHardenedEnergyInRate, "The rate, in RF per tick, at which this flux pack can be charged.").getInt(SJConfigDefaults.fluxpackHardenedEnergyInRate);
@@ -356,6 +366,7 @@ public class SJConfig {
         int fluxpackHardenedArmorEnergyPerHit_temp = config.get(sectionTuningFluxPackHardened.name, "Armor Energy Per Hit", SJConfigDefaults.fluxpackHardenedArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the flux pack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.fluxpackHardenedArmorEnergyPerHit);
         fluxpackHardenedArmorEnergyPerHit = fluxpackHardenedArmorEnergyPerHit_temp > 0 ? fluxpackHardenedArmorEnergyPerHit_temp : 1;
         fluxpackHardenedEnchantable = config.get(sectionTuningFluxPackHardened.name, "Enchantable", SJConfigDefaults.fluxpackHardenedEnchantable, "When enabled, this flux pack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.fluxpackHardenedEnchantable);
+        fluxpackHardenedEnchantability = config.get(sectionTuningFluxPackHardened.name, "Enchantability", SJConfigDefaults.fluxpackHardenedEnchantability, "The enchantability of the flux pack. Note that the flux pack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.fluxpackHardenedEnchantability);
         
         fluxpackRedstoneEnergyCapacity = config.get(sectionTuningFluxPackRedstone.name, "Energy Capacity", SJConfigDefaults.fluxpackRedstoneEnergyCapacity, "The maximum amount of energy that this flux pack can hold.").getInt(SJConfigDefaults.fluxpackRedstoneEnergyCapacity);
         fluxpackRedstoneEnergyInRate = config.get(sectionTuningFluxPackRedstone.name, "Energy In Rate", SJConfigDefaults.fluxpackRedstoneEnergyInRate, "The rate, in RF per tick, at which this flux pack can be charged.").getInt(SJConfigDefaults.fluxpackRedstoneEnergyInRate);
@@ -365,6 +376,7 @@ public class SJConfig {
         int fluxpackRedstoneArmorEnergyPerHit_temp = config.get(sectionTuningFluxPackRedstone.name, "Armor Energy Per Hit", SJConfigDefaults.fluxpackRedstoneArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the flux pack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.fluxpackRedstoneArmorEnergyPerHit);
         fluxpackRedstoneArmorEnergyPerHit = fluxpackRedstoneArmorEnergyPerHit_temp > 0 ? fluxpackRedstoneArmorEnergyPerHit_temp : 1;
         fluxpackRedstoneEnchantable = config.get(sectionTuningFluxPackRedstone.name, "Enchantable", SJConfigDefaults.fluxpackRedstoneEnchantable, "When enabled, this flux pack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.fluxpackRedstoneEnchantable);
+        fluxpackRedstoneEnchantability = config.get(sectionTuningFluxPackRedstone.name, "Enchantability", SJConfigDefaults.fluxpackRedstoneEnchantability, "The enchantability of the flux pack. Note that the flux pack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.fluxpackRedstoneEnchantability);
         
         fluxpackResonantEnergyCapacity = config.get(sectionTuningFluxPackResonant.name, "Energy Capacity", SJConfigDefaults.fluxpackResonantEnergyCapacity, "The maximum amount of energy that this flux pack can hold.").getInt(SJConfigDefaults.fluxpackResonantEnergyCapacity);
         fluxpackResonantEnergyInRate = config.get(sectionTuningFluxPackResonant.name, "Energy In Rate", SJConfigDefaults.fluxpackResonantEnergyInRate, "The rate, in RF per tick, at which this flux pack can be charged.").getInt(SJConfigDefaults.fluxpackResonantEnergyInRate);
@@ -374,11 +386,13 @@ public class SJConfig {
         int fluxpackResonantArmorEnergyPerHit_temp = config.get(sectionTuningFluxPackResonant.name, "Armor Energy Per Hit", SJConfigDefaults.fluxpackResonantArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the flux pack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.fluxpackResonantArmorEnergyPerHit);
         fluxpackResonantArmorEnergyPerHit = fluxpackResonantArmorEnergyPerHit_temp > 0 ? fluxpackResonantArmorEnergyPerHit_temp : 1;
         fluxpackResonantEnchantable = config.get(sectionTuningFluxPackResonant.name, "Enchantable", SJConfigDefaults.fluxpackResonantEnchantable, "When enabled, this flux pack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.fluxpackResonantEnchantable);
+        fluxpackResonantEnchantability = config.get(sectionTuningFluxPackResonant.name, "Enchantability", SJConfigDefaults.fluxpackResonantEnchantability, "The enchantability of the flux pack. Note that the flux pack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.fluxpackResonantEnchantability);
         
         fluxpackCreativeEnergyOutRate = config.get(sectionTuningFluxPackCreative.name, "Energy Out Rate", SJConfigDefaults.fluxpackCreativeEnergyOutRate, "The rate, in RF per tick, at which this flux pack can charge other items.").getInt(SJConfigDefaults.fluxpackCreativeEnergyOutRate);
         fluxpackCreativeArmorDisplay = config.get(sectionTuningFluxPackCreative.name, "Armor Display", SJConfigDefaults.fluxpackCreativeArmorDisplay, "How powerful the ARMORED version of the flux pack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(SJConfigDefaults.fluxpackCreativeArmorDisplay);
         fluxpackCreativeArmorAbsorption = config.get(sectionTuningFluxPackCreative.name, "Armor Absorption", SJConfigDefaults.fluxpackCreativeArmorAbsorption, "The relative amount of damage that the ARMORED version of the flux pack will absorb when getting hit.").getDouble(SJConfigDefaults.fluxpackCreativeArmorAbsorption);
         fluxpackCreativeEnchantable = config.get(sectionTuningFluxPackCreative.name, "Enchantable", SJConfigDefaults.fluxpackCreativeEnchantable, "When enabled, this flux pack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.fluxpackCreativeEnchantable);
+        fluxpackCreativeEnchantability = config.get(sectionTuningFluxPackCreative.name, "Enchantability", SJConfigDefaults.fluxpackCreativeEnchantability, "The enchantability of the flux pack. Note that the flux pack may be set not to be enchantable.").setMinValue(0).getInt(SJConfigDefaults.fluxpackCreativeEnchantability);
     }
     
     public static class ConfigSection {

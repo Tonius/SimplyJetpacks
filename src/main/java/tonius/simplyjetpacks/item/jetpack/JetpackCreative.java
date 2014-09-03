@@ -4,8 +4,8 @@ import net.minecraft.item.EnumRarity;
 
 public class JetpackCreative extends JetpackFluxPlate {
     
-    public JetpackCreative(int meta, boolean enchantable, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerTickOut) {
-        super(meta, 9001, enchantable, EnumRarity.epic, 9001, 0, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode, armorDisplay, armorAbsorption, 0, energyPerTickOut);
+    public JetpackCreative(int meta, boolean enchantable, int enchantability, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerTickOut) {
+        super(meta, 9001, enchantable, enchantability, EnumRarity.epic, 9001, 0, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode, armorDisplay, armorAbsorption, 0, energyPerTickOut);
     }
     
     @Override

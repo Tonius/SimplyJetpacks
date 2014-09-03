@@ -23,10 +23,6 @@ public class SJConfigDefaults {
     public static final boolean showEnergyHUDWhileChatting = true;
     public static final boolean showExactEnergyInHUD = false;
     
-    // item
-    public static final int jetpackEnchantability = 16;
-    public static final int fluxpackEnchantability = 8;
-    
     // crafting
     public static final boolean enableCraftingArmorPlating = true;
     public static final boolean enableCraftingPotatoJetpack = true;
@@ -51,6 +47,7 @@ public class SJConfigDefaults {
     public static final double leadstoneArmorAbsorption = 0.3D;
     public static final int leadstoneArmorEnergyPerHit = 80;
     public static final boolean leadstoneEnchantable = false;
+    public static final int leadstoneEnchantability = 8;
     
     // tuningHardened
     public static final int hardenedEnergyCapacity = 400000;
@@ -65,6 +62,7 @@ public class SJConfigDefaults {
     public static final double hardenedArmorAbsorption = 0.4D;
     public static final int hardenedArmorEnergyPerHit = 80;
     public static final boolean hardenedEnchantable = false;
+    public static final int hardenedEnchantability = 11;
     
     // tuningReinforced
     public static final int reinforcedEnergyCapacity = 2000000;
@@ -79,6 +77,7 @@ public class SJConfigDefaults {
     public static final double reinforcedArmorAbsorption = 0.5D;
     public static final int reinforcedArmorEnergyPerHit = 120;
     public static final boolean reinforcedEnchantable = true;
+    public static final int reinforcedEnchantability = 14;
     
     // tuningResonant
     public static final int resonantEnergyCapacity = 10000000;
@@ -93,6 +92,7 @@ public class SJConfigDefaults {
     public static final double resonantArmorAbsorption = 0.6D;
     public static final int resonantArmorEnergyPerHit = 160;
     public static final boolean resonantEnchantable = true;
+    public static final int resonantEnchantability = 17;
     
     // tuningFluxPlate
     public static final int fluxPlateEnergyCapacity = 50000000;
@@ -107,6 +107,7 @@ public class SJConfigDefaults {
     public static final double fluxPlateArmorAbsorption = 0.8D;
     public static final int fluxPlateArmorEnergyPerHit = 240;
     public static final boolean fluxPlateEnchantable = true;
+    public static final int fluxPlateEnchantability = 20;
     public static final boolean fluxPlateHasCharger = true;
     public static final int fluxPlateEnergyOutRate = 20000;
     
@@ -120,6 +121,7 @@ public class SJConfigDefaults {
     public static final int creativeArmorDisplay = 8;
     public static final double creativeArmorAbsorption = 0.8D;
     public static final boolean creativeEnchantable = true;
+    public static final int creativeEnchantability = 20;
     public static final int creativeEnergyOutRate = 20000;
     
     // tuningFluxPackLeadstone
@@ -127,6 +129,7 @@ public class SJConfigDefaults {
     public static final int fluxpackLeadstoneEnergyInRate = 80;
     public static final int fluxpackLeadstoneEnergyOutRate = 80;
     public static final boolean fluxpackLeadstoneEnchantable = false;
+    public static final int fluxpackLeadstoneEnchantability = 4;
     
     // tuningFluxPackHardened
     public static final int fluxpackHardenedEnergyCapacity = 2000000;
@@ -136,6 +139,7 @@ public class SJConfigDefaults {
     public static final double fluxpackHardenedArmorAbsorption = 0.2D;
     public static final int fluxpackHardenedArmorEnergyPerHit = 80;
     public static final boolean fluxpackHardenedEnchantable = false;
+    public static final int fluxpackHardenedEnchantability = 6;
     
     // tuningFluxPackRedstone
     public static final int fluxpackRedstoneEnergyCapacity = 10000000;
@@ -145,6 +149,7 @@ public class SJConfigDefaults {
     public static final double fluxpackRedstoneArmorAbsorption = 0.3D;
     public static final int fluxpackRedstoneArmorEnergyPerHit = 120;
     public static final boolean fluxpackRedstoneEnchantable = true;
+    public static final int fluxpackRedstoneEnchantability = 8;
     
     // tuningFluxPackResonant
     public static final int fluxpackResonantEnergyCapacity = 50000000;
@@ -154,11 +159,13 @@ public class SJConfigDefaults {
     public static final double fluxpackResonantArmorAbsorption = 0.4D;
     public static final int fluxpackResonantArmorEnergyPerHit = 160;
     public static final boolean fluxpackResonantEnchantable = true;
+    public static final int fluxpackResonantEnchantability = 10;
     
     // tuningFluxPackCreative
     public static final int fluxpackCreativeEnergyOutRate = 20000;
     public static final int fluxpackCreativeArmorDisplay = 6;
     public static final double fluxpackCreativeArmorAbsorption = 0.5D;
     public static final boolean fluxpackCreativeEnchantable = true;
+    public static final int fluxpackCreativeEnchantability = 10;
     
 }

@@ -24,14 +24,16 @@ public class FluxPack {
     
     public int tier;
     public boolean enchantable;
+    public int enchantability;
     public EnumRarity rarity;
     public int energyCapacity;
     public int energyPerTickIn;
     public int energyPerTickOut;
     
-    public FluxPack(int meta, int tier, boolean enchantable, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut) {
+    public FluxPack(int meta, int tier, boolean enchantable, int enchantability, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut) {
         this.tier = tier;
         this.enchantable = enchantable;
+        this.enchantability = enchantability;
         this.rarity = rarity;
         this.energyCapacity = energyCapacity;
         this.energyPerTickIn = energyPerTickIn;
@@ -56,14 +58,14 @@ public class FluxPack {
     }
     
     public static void reconstructFluxPacks() {
-        new FluxPack(1, 1, SJConfig.fluxpackLeadstoneEnchantable, EnumRarity.common, SJConfig.fluxpackLeadstoneEnergyCapacity, SJConfig.fluxpackLeadstoneEnergyInRate, SJConfig.fluxpackLeadstoneEnergyOutRate);
-        new FluxPack(2, 2, SJConfig.fluxpackHardenedEnchantable, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate);
-        new FluxPack(3, 3, SJConfig.fluxpackRedstoneEnchantable, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate);
-        new FluxPack(4, 4, SJConfig.fluxpackResonantEnchantable, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate);
-        new FluxPackArmored(102, 2, SJConfig.fluxpackHardenedEnchantable, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate, SJConfig.fluxpackHardenedArmorDisplay, SJConfig.fluxpackHardenedArmorAbsorption, SJConfig.fluxpackHardenedArmorEnergyPerHit);
-        new FluxPackArmored(103, 3, SJConfig.fluxpackRedstoneEnchantable, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate, SJConfig.fluxpackRedstoneArmorDisplay, SJConfig.fluxpackRedstoneArmorAbsorption, SJConfig.fluxpackRedstoneArmorEnergyPerHit);
-        new FluxPackArmored(104, 4, SJConfig.fluxpackResonantEnchantable, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate, SJConfig.fluxpackResonantArmorDisplay, SJConfig.fluxpackResonantArmorAbsorption, SJConfig.fluxpackResonantArmorEnergyPerHit);
-        new FluxPackCreative(9001, SJConfig.fluxpackCreativeEnchantable, SJConfig.fluxpackCreativeEnergyOutRate, SJConfig.fluxpackCreativeArmorDisplay, SJConfig.fluxpackCreativeArmorAbsorption);
+        new FluxPack(1, 1, SJConfig.fluxpackLeadstoneEnchantable, SJConfig.fluxpackLeadstoneEnchantability, EnumRarity.common, SJConfig.fluxpackLeadstoneEnergyCapacity, SJConfig.fluxpackLeadstoneEnergyInRate, SJConfig.fluxpackLeadstoneEnergyOutRate);
+        new FluxPack(2, 2, SJConfig.fluxpackHardenedEnchantable, SJConfig.fluxpackHardenedEnchantability, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate);
+        new FluxPack(3, 3, SJConfig.fluxpackRedstoneEnchantable, SJConfig.fluxpackRedstoneEnchantability, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate);
+        new FluxPack(4, 4, SJConfig.fluxpackResonantEnchantable, SJConfig.fluxpackResonantEnchantability, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate);
+        new FluxPackArmored(102, 2, SJConfig.fluxpackHardenedEnchantable, SJConfig.fluxpackHardenedEnchantability, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate, SJConfig.fluxpackHardenedArmorDisplay, SJConfig.fluxpackHardenedArmorAbsorption, SJConfig.fluxpackHardenedArmorEnergyPerHit);
+        new FluxPackArmored(103, 3, SJConfig.fluxpackRedstoneEnchantable, SJConfig.fluxpackRedstoneEnchantability, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate, SJConfig.fluxpackRedstoneArmorDisplay, SJConfig.fluxpackRedstoneArmorAbsorption, SJConfig.fluxpackRedstoneArmorEnergyPerHit);
+        new FluxPackArmored(104, 4, SJConfig.fluxpackResonantEnchantable, SJConfig.fluxpackResonantEnchantability, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate, SJConfig.fluxpackResonantArmorDisplay, SJConfig.fluxpackResonantArmorAbsorption, SJConfig.fluxpackResonantArmorEnergyPerHit);
+        new FluxPackCreative(9001, SJConfig.fluxpackCreativeEnchantable, SJConfig.fluxpackCreativeEnchantability, SJConfig.fluxpackCreativeEnergyOutRate, SJConfig.fluxpackCreativeArmorDisplay, SJConfig.fluxpackCreativeArmorAbsorption);
     }
     
     public String getBaseName() {
