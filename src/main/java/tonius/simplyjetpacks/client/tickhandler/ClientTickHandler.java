@@ -47,8 +47,8 @@ public class ClientTickHandler {
             boolean flyState;
             boolean descendState;
             if (SJConfig.customControls) {
-                flyState = mc.inGameHasFocus && Keyboard.isKeyDown(SJConfig.flyKey);
-                descendState = mc.inGameHasFocus && Keyboard.isKeyDown(SJConfig.descendKey);
+                flyState = mc.inGameHasFocus && Keyboard.isKeyDown(Keyboard.getKeyIndex(SJConfig.flyKey));
+                descendState = mc.inGameHasFocus && Keyboard.isKeyDown(Keyboard.getKeyIndex(SJConfig.descendKey));
             } else {
                 flyState = mc.gameSettings.keyBindJump.getIsKeyPressed();
                 descendState = mc.gameSettings.keyBindSneak.getIsKeyPressed();

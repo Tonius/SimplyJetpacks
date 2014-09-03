@@ -6,8 +6,6 @@ import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 
-import org.lwjgl.input.Keyboard;
-
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
@@ -43,8 +41,8 @@ public class SJConfig {
     
     // controls
     public static boolean customControls = SJConfigDefaults.customControls;
-    public static int flyKey = Keyboard.getKeyIndex(SJConfigDefaults.flyKey);
-    public static int descendKey = Keyboard.getKeyIndex(SJConfigDefaults.descendKey);
+    public static String flyKey = SJConfigDefaults.flyKey;
+    public static String descendKey = SJConfigDefaults.descendKey;
     
     // gui
     public static boolean enableStateChatMessages = SJConfigDefaults.enableStateChatMessages;
@@ -233,8 +231,8 @@ public class SJConfig {
     
     public static void processConfig() {
         customControls = configClient.get(sectionControls.name, "Custom controls", SJConfigDefaults.customControls, "When enabled, the key codes specified here will be used for the fly and descend keys. Otherwise, the vanilla jump and sneak keys will be used.").getBoolean(SJConfigDefaults.customControls);
-        flyKey = Keyboard.getKeyIndex(configClient.get(sectionControls.name, "Custom Fly key", SJConfigDefaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString());
-        descendKey = Keyboard.getKeyIndex(configClient.get(sectionControls.name, "Custom Descend key", SJConfigDefaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString());
+        flyKey = configClient.get(sectionControls.name, "Custom Fly key", SJConfigDefaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
+        descendKey = configClient.get(sectionControls.name, "Custom Descend key", SJConfigDefaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
         invertHoverSneakingBehavior = configClient.get(sectionControls.name, "Invert Hover Mode sneaking behavior", SJConfigDefaults.invertHoverSneakingBehavior, "Invert Hover Mode sneaking behavior").getBoolean(SJConfigDefaults.invertHoverSneakingBehavior);
         
         enableStateChatMessages = configClient.get(sectionGui.name, "Enable State Chat Messages", SJConfigDefaults.enableStateChatMessages, "When enabled, switching jetpacks on or off will display chat messages.").getBoolean(SJConfigDefaults.enableStateChatMessages);
@@ -274,7 +272,7 @@ public class SJConfig {
         int leadstoneArmorEnergyPerHit_temp = config.get(sectionTuningLeadstone.name, "Armor Energy Per Hit", SJConfigDefaults.leadstoneArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.leadstoneArmorEnergyPerHit);
         leadstoneArmorEnergyPerHit = leadstoneArmorEnergyPerHit_temp > 0 ? leadstoneArmorEnergyPerHit_temp : 1;
         leadstoneEnchantable = config.get(sectionTuningLeadstone.name, "Enchantable", SJConfigDefaults.leadstoneEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.leadstoneEnchantable);
-        
+
         hardenedEnergyCapacity = config.get(sectionTuningHardened.name, "Energy Capacity", SJConfigDefaults.hardenedEnergyCapacity, "The maximum amount of energy that the jetpack can hold.").getInt(SJConfigDefaults.hardenedEnergyCapacity);
         hardenedEnergyPerTick = config.get(sectionTuningHardened.name, "Energy Usage per Tick", SJConfigDefaults.hardenedEnergyPerTick, "The amount of energy that the jetpack uses every tick when flying.").getInt(SJConfigDefaults.hardenedEnergyPerTick);
         hardenedSpeedVertical = config.get(sectionTuningHardened.name, "Vertical Speed", SJConfigDefaults.hardenedSpeedVertical, "The maximum vertical speed of the jetpack when flying.").getDouble(SJConfigDefaults.hardenedSpeedVertical);
@@ -288,7 +286,7 @@ public class SJConfig {
         int hardenedArmorEnergyPerHit_temp = config.get(sectionTuningHardened.name, "Armor Energy Per Hit", SJConfigDefaults.hardenedArmorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(SJConfigDefaults.hardenedArmorEnergyPerHit);
         hardenedArmorEnergyPerHit = hardenedArmorEnergyPerHit_temp > 0 ? hardenedArmorEnergyPerHit_temp : 1;
         hardenedEnchantable = config.get(sectionTuningHardened.name, "Enchantable", SJConfigDefaults.hardenedEnchantable, "When enabled, this jetpack will be enchantable using enchantment tables or anvils.").getBoolean(SJConfigDefaults.hardenedEnchantable);
-        
+
         reinforcedEnergyCapacity = config.get(sectionTuningReinforced.name, "Energy Capacity", SJConfigDefaults.reinforcedEnergyCapacity, "The maximum amount of energy that the jetpack can hold.").getInt(SJConfigDefaults.reinforcedEnergyCapacity);
         reinforcedEnergyPerTick = config.get(sectionTuningReinforced.name, "Energy Usage per Tick", SJConfigDefaults.reinforcedEnergyPerTick, "The amount of energy that the jetpack uses every tick when flying.").getInt(SJConfigDefaults.reinforcedEnergyPerTick);
         reinforcedSpeedVertical = config.get(sectionTuningReinforced.name, "Vertical Speed", SJConfigDefaults.reinforcedSpeedVertical, "The maximum vertical speed of the jetpack when flying.").getDouble(SJConfigDefaults.reinforcedSpeedVertical);
