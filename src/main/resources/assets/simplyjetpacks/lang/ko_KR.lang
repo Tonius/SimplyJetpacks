@@ -78,10 +78,10 @@ simplyjetpacks.tooltip.particles.2=연기만
 simplyjetpacks.tooltip.particles.3=무지개 연기
 simplyjetpacks.tooltip.jetpack.description.1=비행중에도 활성화 할 수 있습니다.
 simplyjetpacks.tooltip.jetpack.description.2=갑옷 슬롯에 착용해야합니다.
-simplyjetpacks.tooltip.jetpackPotato.warning=Clever! But not survivable.
+simplyjetpacks.tooltip.jetpackPotato.warning=영리하군요! 하지만 당신은 살아남지 못할 것입니다.
 simplyjetpacks.tooltip.jetpackFluxPlate.controls=Sneak while activating to activate charger.
 simplyjetpacks.tooltip.fluxpack.description.1=Charges armor and held items when active.
-simplyjetpacks.tooltip.fluxpack.description.2=Must be worn as a chestplate.
+simplyjetpacks.tooltip.fluxpack.description.2=갑옷 슬롯에 착용해야합니다.
 simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jetpack's particles.
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
 
@@ -99,9 +99,9 @@ simplyjetpacks.gui.nei.recipe.dearmoring.input=in your hand
 simplyjetpacks.gui.nei.recipe.dearmoring.output=after using while sneaking
 simplyjetpacks.gui.nei.recipe.dearmoring.plating=will be returned
 
-death.attack.jetpackpotato=%1$s attempted to fly a potato
-death.attack.jetpackpotato.player=%1$s attempted to fly a potato
-death.attack.jetpackpotato.item=%1$s attempted to fly a potato
+death.attack.jetpackpotato=%1$s 가 감자로 날기를 시도하다 죽었습니다.
+death.attack.jetpackpotato.player=%1$s 가 감자로 날기를 시도하다 죽었습니다.
+death.attack.jetpackpotato.item=%1$s 가 감자로 날기를 시도하다 죽었습니다.
 
 simplyjetpacks.config.title=Simply Jetpacks Configuration
 simplyjetpacks.config.item=아이템 설정
