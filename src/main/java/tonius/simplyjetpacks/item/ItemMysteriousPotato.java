@@ -46,48 +46,50 @@ public class ItemMysteriousPotato extends Item {
     
     @Override
     public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int meta, float hitX, float hitY, float hitZ) {
-        TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileEntityMobSpawner) {
-            NBTTagCompound tag = new NBTTagCompound();
-            ((TileEntityMobSpawner) tile).writeToNBT(tag);
-            
-            tag.setString("EntityId", "Zombie");
-            
-            NBTTagList spawnPotentials = new NBTTagList();
-            NBTTagCompound zombieSpawn = new NBTTagCompound();
-            
-            zombieSpawn.setString("Type", "Zombie");
-            zombieSpawn.setInteger("Weight", 1);
-            
-            NBTTagCompound zombieSpawnProperties = new NBTTagCompound();
-            zombieSpawnProperties.setString("id", "Zombie");
-            
-            NBTTagList equipment = new NBTTagList();
-            equipment.appendTag(new NBTTagCompound());
-            equipment.appendTag(new NBTTagCompound());
-            equipment.appendTag(new NBTTagCompound());
-            equipment.appendTag(SJItems.jetpackTuberous.writeToNBT(new NBTTagCompound()));
-            zombieSpawnProperties.setTag("Equipment", equipment);
-            
-            NBTTagList dropChances = new NBTTagList();
-            for (int i = 0; i <= 4; i++) {
-                equipment.appendTag(new NBTTagFloat(0.0F));
+        if (!world.isRemote) {
+            TileEntity tile = world.getTileEntity(x, y, z);
+            if (tile instanceof TileEntityMobSpawner) {
+                NBTTagCompound tag = new NBTTagCompound();
+                ((TileEntityMobSpawner) tile).writeToNBT(tag);
+                
+                tag.setString("EntityId", "Zombie");
+                
+                NBTTagList spawnPotentials = new NBTTagList();
+                NBTTagCompound zombieSpawn = new NBTTagCompound();
+                
+                zombieSpawn.setString("Type", "Zombie");
+                zombieSpawn.setInteger("Weight", 1);
+                
+                NBTTagCompound zombieSpawnProperties = new NBTTagCompound();
+                zombieSpawnProperties.setString("id", "Zombie");
+                
+                NBTTagList equipment = new NBTTagList();
+                equipment.appendTag(new NBTTagCompound());
+                equipment.appendTag(new NBTTagCompound());
+                equipment.appendTag(new NBTTagCompound());
+                equipment.appendTag(SJItems.jetpackTuberous.writeToNBT(new NBTTagCompound()));
+                zombieSpawnProperties.setTag("Equipment", equipment);
+                
+                NBTTagList dropChances = new NBTTagList();
+                for (int i = 0; i <= 4; i++) {
+                    dropChances.appendTag(new NBTTagFloat(0.0F));
+                }
+                zombieSpawnProperties.setTag("DropChances", dropChances);
+                
+                zombieSpawn.setTag("Properties", zombieSpawnProperties);
+                spawnPotentials.appendTag(zombieSpawn);
+                
+                tag.setTag("SpawnPotentials", spawnPotentials);
+                
+                tag.setShort("SpawnCount", (short) 2);
+                tag.setShort("SpawnRange", (short) 8);
+                tag.setShort("Delay", (short) -1);
+                tag.setShort("MinSpawnDelay", (short) 30);
+                tag.setShort("MaxSpawnDelay", (short) 60);
+                tag.setShort("MaxNearbyEntities", (short) 10);
+                tag.setShort("RequiredPlayerRange", (short) 96);
+                ((TileEntityMobSpawner) tile).readFromNBT(tag);
             }
-            zombieSpawnProperties.setTag("DropChances", dropChances);
-            
-            zombieSpawn.setTag("Properties", zombieSpawnProperties);
-            spawnPotentials.appendTag(zombieSpawn);
-            
-            tag.setTag("SpawnPotentials", spawnPotentials);
-            
-            tag.setShort("SpawnCount", (short) 2);
-            tag.setShort("SpawnRange", (short) 8);
-            tag.setShort("Delay", (short) -1);
-            tag.setShort("MinSpawnDelay", (short) 30);
-            tag.setShort("MaxSpawnDelay", (short) 60);
-            tag.setShort("MaxNearbyEntities", (short) 10);
-            tag.setShort("RequiredPlayerRange", (short) 96);
-            ((TileEntityMobSpawner) tile).readFromNBT(tag);
         }
         return true;
     }
