@@ -88,7 +88,7 @@ public class ClientTickHandler {
             while (itr.hasNext()) {
                 currentEntity = itr.next();
                 Entity entity = mc.theWorld.getEntityByID(currentEntity);
-                if (entity == null || !(entity instanceof EntityLivingBase)) {
+                if (entity == null || !(entity instanceof EntityLivingBase) || entity.dimension != mc.thePlayer.dimension) {
                     itr.remove();
                 } else {
                     JetpackParticleType particle = SyncTracker.getJetpackStates().get(currentEntity);

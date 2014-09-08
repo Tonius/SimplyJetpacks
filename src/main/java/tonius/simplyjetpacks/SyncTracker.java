@@ -11,6 +11,7 @@ import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageConfigSync;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
@@ -114,6 +115,11 @@ public class SyncTracker {
     
     @SubscribeEvent
     public void onPlayerLoggedOut(PlayerLoggedOutEvent evt) {
+        removeFromAll(evt.player);
+    }
+    
+    @SubscribeEvent
+    public void onDimChanged(PlayerChangedDimensionEvent evt) {
         removeFromAll(evt.player);
     }
     
