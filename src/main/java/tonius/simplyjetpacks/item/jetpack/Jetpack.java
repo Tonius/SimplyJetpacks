@@ -206,7 +206,7 @@ public class Jetpack {
             msg = StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("JetpackOn", true);
         }
-        if (player != null && showInChat) {
+        if (player != null && player.worldObj.isRemote && showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }
@@ -224,7 +224,7 @@ public class Jetpack {
             msg = StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("JetpackHoverModeOn", true);
         }
-        if (showInChat) {
+        if (player != null && player.worldObj.isRemote && showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }
