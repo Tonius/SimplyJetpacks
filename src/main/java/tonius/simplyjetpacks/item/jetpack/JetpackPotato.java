@@ -9,11 +9,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EntityDamageSource;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.util.DamageSourcePotatoJetpack;
-import tonius.simplyjetpacks.util.FireworksGenerator;
+import tonius.simplyjetpacks.util.FireworkUtils;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 
@@ -53,10 +53,10 @@ public class JetpackPotato extends Jetpack {
                     Random rand = new Random();
                     user.worldObj.createExplosion(user, user.posX, user.posY, user.posZ, 4.0F, false);
                     for (int i = 0; i <= rand.nextInt(3) + 4; i++) {
-                        ItemStack firework = FireworksGenerator.randomFirework();
+                        ItemStack firework = FireworkUtils.randomFirework();
                         user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
                     }
-                    user.attackEntityFrom(DamageSourcePotatoJetpack.causeJetpackPotatoDamage(user), 100.0F);
+                    user.attackEntityFrom(new EntityDamageSource("jetpackpotato", user), 100.0F);
                     if (user instanceof EntityPlayer) {
                         user.dropItem(Items.baked_potato, 1);
                     }
