@@ -24,11 +24,12 @@ import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.util.StackUtils;
+import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem, IToggleable {
+public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem, IToggleable, IEnergyHUDInfoProvider {
     
     protected IIcon[] icons = null;
     
@@ -288,6 +289,28 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     public int getMaxEnergyStored(ItemStack container) {
         FluxPack fluxpack = this.getFluxPack(container);
         return fluxpack != null ? fluxpack.energyCapacity : 0;
+    }
+    
+    @Override
+    public String getEnergyInfo(ItemStack stack) {
+        FluxPack fluxpack = this.getFluxPack(stack);
+        if (fluxpack != null) {
+            int energy = this.getEnergyStored(stack);
+            int maxEnergy = this.getMaxEnergyStored(stack);
+            int percent = (int) Math.ceil((double) energy / (double) maxEnergy * 100D);
+            return StringUtils.getHUDEnergyText("fluxpack", percent, energy);
+        }
+        return null;
+    }
+    
+    @Override
+    public String getStatesInfo(ItemStack stack) {
+        FluxPack fluxpack = this.getFluxPack(stack);
+        if (fluxpack != null) {
+            Boolean charger = fluxpack.isOn(stack);
+            return StringUtils.getHUDStateText(null, null, charger);
+        }
+        return null;
     }
     
 }

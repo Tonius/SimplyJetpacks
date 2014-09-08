@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
+import tonius.simplyjetpacks.item.jetpack.JetpackFluxPlate;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.util.StackUtils;
@@ -27,7 +28,7 @@ import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem, IToggleable, IModeSwitchable {
+public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem, IToggleable, IModeSwitchable, IEnergyHUDInfoProvider {
     
     protected IIcon[] icons = null;
     
@@ -279,6 +280,33 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public int getMaxEnergyStored(ItemStack container) {
         Jetpack jetpack = this.getJetpack(container);
         return jetpack != null ? jetpack.energyCapacity : 0;
+    }
+    
+    @Override
+    public String getEnergyInfo(ItemStack stack) {
+        Jetpack jetpack = this.getJetpack(stack);
+        if (jetpack != null) {
+            int energy = this.getEnergyStored(stack);
+            int maxEnergy = this.getMaxEnergyStored(stack);
+            int percent = (int) Math.ceil((double) energy / (double) maxEnergy * 100D);
+            return StringUtils.getHUDEnergyText("jetpack", percent, energy);
+        }
+        return null;
+    }
+    
+    @Override
+    public String getStatesInfo(ItemStack stack) {
+        Jetpack jetpack = this.getJetpack(stack);
+        if (jetpack != null) {
+            Boolean engine = jetpack.isOn(stack);
+            Boolean hover = jetpack.isHoverModeOn(stack);
+            Boolean charger = null;
+            if (jetpack instanceof JetpackFluxPlate && ((JetpackFluxPlate) jetpack).allowCharger()) {
+                charger = ((JetpackFluxPlate) jetpack).isChargerOn(stack);
+            }
+            return StringUtils.getHUDStateText(engine, hover, charger);
+        }
+        return null;
     }
     
 }
