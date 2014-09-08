@@ -203,7 +203,7 @@ public class SJItems {
             GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackReinforced.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced.copy(), 'T', thrusterReinforced.copy(), 'J', jetpackHardened.copy() }));
             GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackResonant.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant.copy(), 'T', thrusterResonant.copy(), 'J', jetpackReinforced.copy() }));
             
-            if (raAvailable && SJConfig.enableCraftingFluxJetPlate) {
+            if (raAvailable && SJConfig.enableCraftingFluxJetPlate && SJConfig.enableCraftingArmorPlating) {
                 GameRegistry.addRecipe(new ShapedOreRecipe(unitGlowstoneEmpty.copy(), new Object[] { "FLF", "LHL", "FLF", 'L', "ingotLumium", 'F', "ingotElectrumFlux", 'H', TEItems.frameIlluminator.copy() }));
                 GameRegistry.addRecipe(new ShapedOreRecipe(unitCryotheumEmpty.copy(), new Object[] { "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', TEItems.blockGlassHardened.copy() }));
                 GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEnergetic.copy(), new Object[] { "FPF", "GRG", 'G', unitGlowstone.copy(), 'P', RAItems.plateFlux.copy(), 'R', thrusterResonant.copy(), 'F', "ingotElectrumFlux" }));
