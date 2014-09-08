@@ -45,7 +45,7 @@ item.simplyjetpacks.particle.3.name=Deeltjes-aanpasser (Regenboog-rook)
 
 simplyjetpacks.chat.enabled=aangezet
 simplyjetpacks.chat.disabled=uitgezet
-simplyjetpacks.chat.jetpack.engine=Jetpack-motor
+simplyjetpacks.chat.jetpack.engine=Jetpackmotor
 simplyjetpacks.chat.jetpack.hoverMode=Zweefmodus
 simplyjetpacks.chat.jetpack.emergencyHoverMode=Gebruiker is in levensgevaar! Zweefmodus geactiveerd
 simplyjetpacks.chat.fluxpack.charger=Fluxpak-oplader
