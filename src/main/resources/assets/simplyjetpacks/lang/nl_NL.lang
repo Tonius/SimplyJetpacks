@@ -50,9 +50,8 @@ simplyjetpacks.chat.jetpack.hoverMode=Zweefmodus
 simplyjetpacks.chat.jetpack.emergencyHoverMode=Gebruiker is in levensgevaar! Zweefmodus geactiveerd
 simplyjetpacks.chat.fluxpack.charger=Fluxpak-oplader
 
-simplyjetpacks.tooltip.holdShift1=Druk op
-simplyjetpacks.tooltip.holdShift2=Shift
-simplyjetpacks.tooltip.holdShift3=voor details
+simplyjetpacks.tooltip.holdShift=Druk op %s voor details
+simplyjetpacks.tooltip.holdShift.shift=Shift
 
 simplyjetpacks.tooltip.on=Aan
 simplyjetpacks.tooltip.off=Uit

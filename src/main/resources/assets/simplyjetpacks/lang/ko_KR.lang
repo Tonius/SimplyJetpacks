@@ -51,9 +51,8 @@ simplyjetpacks.chat.jetpack.hoverMode=호버 모드
 simplyjetpacks.chat.jetpack.emergencyHoverMode=호버모드를 활성화 하지않으면 사용자는 죽을겁니다!
 simplyjetpacks.chat.fluxpack.charger=플럭스 팩 충전기
 
-simplyjetpacks.tooltip.holdShift1=누른상태
-simplyjetpacks.tooltip.holdShift2=Shift
-simplyjetpacks.tooltip.holdShift3=세부사항
+simplyjetpacks.tooltip.holdShift=누른상태 %s 세부사항
+simplyjetpacks.tooltip.holdShift.shift=Shift
 
 simplyjetpacks.tooltip.on=On
 simplyjetpacks.tooltip.off=Off

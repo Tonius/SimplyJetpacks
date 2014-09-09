@@ -50,9 +50,8 @@ simplyjetpacks.chat.jetpack.hoverMode=悬停模式
 simplyjetpacks.chat.jetpack.emergencyHoverMode=你就快要摔死了! 紧急启用悬停模式
 simplyjetpacks.chat.fluxpack.charger=背包充能模式
 
-simplyjetpacks.tooltip.holdShift1=按住
-simplyjetpacks.tooltip.holdShift2=Shift
-simplyjetpacks.tooltip.holdShift3=来查看详细信息
+simplyjetpacks.tooltip.holdShift=按住 %s 来查看详细信息
+simplyjetpacks.tooltip.holdShift.shift=Shift
 
 simplyjetpacks.tooltip.on=开启
 simplyjetpacks.tooltip.off=关闭

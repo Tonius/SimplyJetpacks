@@ -49,9 +49,8 @@ simplyjetpacks.chat.jetpack.hoverMode=Режим парения
 simplyjetpacks.chat.jetpack.emergencyHoverMode=Пользователь при смерти! Активация режима парения
 simplyjetpacks.chat.fluxpack.charger=Флакс-ранец заряжает
 
-simplyjetpacks.tooltip.holdShift1=Зажмите
-simplyjetpacks.tooltip.holdShift2=Shift
-simplyjetpacks.tooltip.holdShift3=для информации
+simplyjetpacks.tooltip.holdShift=Зажмите %s для информации
+simplyjetpacks.tooltip.holdShift.shift=Shift
 
 simplyjetpacks.tooltip.on=Вкл.
 simplyjetpacks.tooltip.off=Выкл.

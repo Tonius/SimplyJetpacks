@@ -50,9 +50,8 @@ simplyjetpacks.chat.jetpack.hoverMode=Hover Mode
 simplyjetpacks.chat.jetpack.emergencyHoverMode=User is about to die! Activating hover mode
 simplyjetpacks.chat.fluxpack.charger=Flux Pack charger
 
-simplyjetpacks.tooltip.holdShift1=Hold
-simplyjetpacks.tooltip.holdShift2=Shift
-simplyjetpacks.tooltip.holdShift3=for Details
+simplyjetpacks.tooltip.holdShift=Hold %s for Details
+simplyjetpacks.tooltip.holdShift.shift=Shift
 
 simplyjetpacks.tooltip.on=On
 simplyjetpacks.tooltip.off=Off

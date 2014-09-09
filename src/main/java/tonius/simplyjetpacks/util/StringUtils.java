@@ -172,7 +172,7 @@ public final class StringUtils {
     }
     
     public static String getShiftText() {
-        return LIGHT_GRAY + translate("tooltip.holdShift1") + " " + YELLOW + ITALIC + translate("tooltip.holdShift2") + " " + END + LIGHT_GRAY + translate("tooltip.holdShift3");
+        return LIGHT_GRAY + String.format(translate("tooltip.holdShift"), YELLOW + ITALIC + translate("tooltip.holdShift.shift") + END + LIGHT_GRAY);
     }
     
     public static boolean canShowDetails() {
