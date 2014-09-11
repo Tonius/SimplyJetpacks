@@ -28,4 +28,9 @@ public class FluxPackCreative extends FluxPackArmored {
         return false;
     }
     
+    @Override
+    public boolean consumesEnergy() {
+        return false;
+    }
+    
 }

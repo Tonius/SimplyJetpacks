@@ -29,6 +29,11 @@ public class JetpackCreative extends JetpackFluxPlate {
     }
     
     @Override
+    public boolean consumesEnergy() {
+        return false;
+    }
+    
+    @Override
     public boolean allowCharger() {
         return true;
     }

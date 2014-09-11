@@ -96,13 +96,17 @@ public class FluxPack {
         return this.tier + 119;
     }
     
+    public boolean consumesEnergy() {
+        return true;
+    }
+    
     public void useFluxPack(EntityLivingBase user, ItemStack armor, ItemFluxPack item) {
         if (this.isOn(armor)) {
             for (int i = 0; i <= 4; i++) {
                 ItemStack currentStack = user.getEquipmentInSlot(i);
                 if (currentStack != null && currentStack != armor && currentStack.getItem() instanceof IEnergyContainerItem) {
                     IEnergyContainerItem heldEnergyItem = (IEnergyContainerItem) currentStack.getItem();
-                    if (!(this instanceof FluxPackCreative)) {
+                    if (this.consumesEnergy()) {
                         int energyToAdd = Math.min(item.extractEnergy(armor, this.energyPerTickOut, true), heldEnergyItem.receiveEnergy(currentStack, this.energyPerTickOut, true));
                         item.extractEnergy(armor, energyToAdd, false);
                         heldEnergyItem.receiveEnergy(currentStack, energyToAdd, false);

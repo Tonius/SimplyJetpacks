@@ -37,7 +37,7 @@ public class FluxPackArmored extends FluxPack {
             return super.getProperties(player, item, armor, source, damage, slot);
         }
         int maxAbsorbed = Integer.MAX_VALUE;
-        if (!(this instanceof FluxPackCreative)) {
+        if (this.consumesEnergy()) {
             maxAbsorbed = this.energyPerHit > 0 ? item.getEnergyStored(armor) / this.energyPerHit * 100 : 0;
         }
         return new ArmorProperties(0, this.armorAbsorption, maxAbsorbed);

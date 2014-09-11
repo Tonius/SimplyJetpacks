@@ -73,7 +73,7 @@ public class JetpackFluxPlate extends JetpackArmored {
                 ItemStack currentStack = user.getEquipmentInSlot(i);
                 if (currentStack != null && currentStack != armor && currentStack.getItem() instanceof IEnergyContainerItem) {
                     IEnergyContainerItem heldEnergyItem = (IEnergyContainerItem) currentStack.getItem();
-                    if (!(this instanceof JetpackCreative)) {
+                    if (this.consumesEnergy()) {
                         int energyToAdd = Math.min(item.extractEnergy(armor, this.energyPerTickOut, true), heldEnergyItem.receiveEnergy(currentStack, this.energyPerTickOut, true));
                         item.extractEnergy(armor, energyToAdd, false);
                         heldEnergyItem.receiveEnergy(currentStack, energyToAdd, false);

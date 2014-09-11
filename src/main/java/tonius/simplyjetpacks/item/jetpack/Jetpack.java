@@ -112,6 +112,10 @@ public class Jetpack {
         return this.tier + 120;
     }
     
+    public boolean consumesEnergy() {
+        return true;
+    }
+    
     public void useJetpack(EntityLivingBase user, ItemStack armor, ItemJetpack item, boolean force) {
         if (this.isOn(armor)) {
             boolean hoverMode = this.isHoverModeOn(armor);
