@@ -5,13 +5,12 @@
   "description": "An addon for Thermal Expansion that adds jetpacks, among some other things.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "logoFile": "",
+  "logoFile": "assets/simplyjetpacks/Logo.png",
   "url": "",
   "updateUrl": "",
   "authorList": ["tonius11"],
   "credits": "Team CoFH, Pathaleon, kevba10",
   "parent": "",
   "screenshots": [],
-  "dependencies": []
 }
 ]
