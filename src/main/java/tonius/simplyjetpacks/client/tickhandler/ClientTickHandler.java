@@ -5,12 +5,15 @@ import java.util.Iterator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 
 import org.lwjgl.input.Keyboard;
 
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.config.SJConfig;
+import tonius.simplyjetpacks.item.ItemJetpack;
+import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
@@ -35,6 +38,8 @@ public class ClientTickHandler {
     private static boolean lastBackwardState = false;
     private static boolean lastLeftState = false;
     private static boolean lastRightState = false;
+    
+    private static JetpackParticleType lastJetpackState = null;
     
     @SubscribeEvent
     public void onClientTick(ClientTickEvent evt) {
@@ -77,6 +82,20 @@ public class ClientTickHandler {
                 lastRightState = rightState;
                 PacketHandler.instance.sendToServer(new MessageKeyboardSync(flyState, descendState, forwardState, backwardState, leftState, rightState));
                 SyncTracker.processKeyUpdate(mc.thePlayer, flyState, descendState, forwardState, backwardState, leftState, rightState);
+            }
+            
+            JetpackParticleType jetpackState = null;
+            ItemStack armor = mc.thePlayer.getEquipmentInSlot(3);
+            if (armor != null && armor.getItem() instanceof ItemJetpack) {
+                Jetpack jetpack = ((ItemJetpack) armor.getItem()).getJetpack(armor);
+                if (jetpack != null) {
+                    jetpackState = jetpack.particleToShow(armor, (ItemJetpack) armor.getItem(), mc.thePlayer);
+                }
+            }
+            
+            if (jetpackState != lastJetpackState) {
+                lastJetpackState = jetpackState;
+                SyncTracker.processJetpackUpdate(mc.thePlayer.getEntityId(), jetpackState);
             }
         }
     }

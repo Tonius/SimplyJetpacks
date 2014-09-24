@@ -25,34 +25,36 @@ public class LivingTickHandler {
     
     @SubscribeEvent
     public void onLivingTick(LivingUpdateEvent evt) {
-        JetpackParticleType jetpackState = null;
-        ItemStack armor = evt.entityLiving.getEquipmentInSlot(3);
-        boolean foundJetpack = false;
-        if (armor != null && armor.getItem() instanceof ItemJetpack) {
-            Jetpack jetpack = ((ItemJetpack) armor.getItem()).getJetpack(armor);
-            if (jetpack != null) {
-                jetpackState = jetpack.particleToShow(armor, (ItemJetpack) armor.getItem(), evt.entityLiving);
-                foundJetpack = true;
+        if (!evt.entityLiving.worldObj.isRemote) {
+            JetpackParticleType jetpackState = null;
+            ItemStack armor = evt.entityLiving.getEquipmentInSlot(3);
+            boolean foundJetpack = false;
+            if (armor != null && armor.getItem() instanceof ItemJetpack) {
+                Jetpack jetpack = ((ItemJetpack) armor.getItem()).getJetpack(armor);
+                if (jetpack != null) {
+                    jetpackState = jetpack.particleToShow(armor, (ItemJetpack) armor.getItem(), evt.entityLiving);
+                    foundJetpack = true;
+                }
             }
-        }
-        
-        if (jetpackState != lastJetpackState.get(evt.entityLiving.getEntityId())) {
-            if (jetpackState == null) {
-                lastJetpackState.remove(evt.entityLiving.getEntityId());
-            } else {
-                lastJetpackState.put(evt.entityLiving.getEntityId(), jetpackState);
+            
+            if (jetpackState != lastJetpackState.get(evt.entityLiving.getEntityId())) {
+                if (jetpackState == null) {
+                    lastJetpackState.remove(evt.entityLiving.getEntityId());
+                } else {
+                    lastJetpackState.put(evt.entityLiving.getEntityId(), jetpackState);
+                }
+                PacketHandler.instance.sendToAllAround(new MessageJetpackSync(evt.entityLiving.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(evt.entityLiving.dimension, evt.entityLiving.posX, evt.entityLiving.posY, evt.entityLiving.posZ, 256));
+            } else if (foundJetpack && evt.entityLiving.worldObj.getTotalWorldTime() % 160L == 0) {
+                PacketHandler.instance.sendToAllAround(new MessageJetpackSync(evt.entityLiving.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(evt.entityLiving.dimension, evt.entityLiving.posX, evt.entityLiving.posY, evt.entityLiving.posZ, 256));
             }
-            PacketHandler.instance.sendToAllAround(new MessageJetpackSync(evt.entityLiving.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(evt.entityLiving.dimension, evt.entityLiving.posX, evt.entityLiving.posY, evt.entityLiving.posZ, 256));
-        } else if (foundJetpack && evt.entityLiving.worldObj.getTotalWorldTime() % 160L == 0) {
-            PacketHandler.instance.sendToAllAround(new MessageJetpackSync(evt.entityLiving.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(evt.entityLiving.dimension, evt.entityLiving.posX, evt.entityLiving.posY, evt.entityLiving.posZ, 256));
-        }
-        
-        if (evt.entityLiving.worldObj.getTotalWorldTime() % 200L == 0) {
-            Iterator<Integer> itr = lastJetpackState.keySet().iterator();
-            while (itr.hasNext()) {
-                int entityId = itr.next();
-                if (evt.entityLiving.worldObj.getEntityByID(entityId) == null) {
-                    itr.remove();
+            
+            if (evt.entityLiving.worldObj.getTotalWorldTime() % 200L == 0) {
+                Iterator<Integer> itr = lastJetpackState.keySet().iterator();
+                while (itr.hasNext()) {
+                    int entityId = itr.next();
+                    if (evt.entityLiving.worldObj.getEntityByID(entityId) == null) {
+                        itr.remove();
+                    }
                 }
             }
         }
@@ -60,7 +62,7 @@ public class LivingTickHandler {
     
     @SubscribeEvent
     public void mobUseJetpack(LivingUpdateEvent evt) {
-        if (evt.entityLiving instanceof EntityMob) {
+        if (!evt.entityLiving.worldObj.isRemote && evt.entityLiving instanceof EntityMob) {
             ItemStack armor = evt.entityLiving.getEquipmentInSlot(3);
             if (armor != null && armor.getItem() instanceof ItemJetpack) {
                 ItemJetpack jetpackItem = (ItemJetpack) armor.getItem();
