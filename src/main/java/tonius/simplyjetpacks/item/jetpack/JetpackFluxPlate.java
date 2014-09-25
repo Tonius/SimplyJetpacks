@@ -37,7 +37,7 @@ public class JetpackFluxPlate extends JetpackArmored {
             msg = StringUtils.translate("chat.fluxpack.charger") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("FluxPackOn", true);
         }
-        if (showInChat) {
+        if (player != null && player.worldObj.isRemote && showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }

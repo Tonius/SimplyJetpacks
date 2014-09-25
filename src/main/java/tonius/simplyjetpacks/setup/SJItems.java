@@ -208,7 +208,7 @@ public class SJItems {
                 GameRegistry.addRecipe(new ShapedOreRecipe(unitCryotheumEmpty.copy(), new Object[] { "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', TEItems.blockGlassHardened.copy() }));
                 GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEnergetic.copy(), new Object[] { "FPF", "GRG", 'G', unitGlowstone.copy(), 'P', RAItems.plateFlux.copy(), 'R', thrusterResonant.copy(), 'F', "ingotElectrumFlux" }));
                 ItemStack charger = SJConfig.fluxPlateHasCharger ? fluxpackResonantArmored.copy() : TEItems.cellResonant.copy();
-                GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate.copy(), 'J', jetpackResonantArmored.copy(), 'O', unitCryotheum.copy(), 'C', charger, 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
+                GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackFluxPlate.copy(), new Object[] { "PAP", "OJO", "TCT", 'A', new ItemStack(RAItems.armorFluxPlate.getItem(), 1, OreDictionary.WILDCARD_VALUE), 'J', jetpackResonantArmored.copy(), 'O', unitCryotheum.copy(), 'C', charger, 'T', thrusterEnergetic.copy(), 'P', RAItems.plateFlux.copy() }));
             }
             
             GameRegistry.addRecipe(new ShapedOreRecipe(particleDefault.copy(), new Object[] { " D ", "DCD", " D ", 'C', "dustCoal", 'D', Blocks.torch }));
