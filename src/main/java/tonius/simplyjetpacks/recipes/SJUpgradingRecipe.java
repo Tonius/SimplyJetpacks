@@ -35,7 +35,8 @@ public class SJUpgradingRecipe extends ShapedOreRecipe {
             if (slotStack != null) {
                 if (slotStack.getItem() instanceof ItemJetpack) {
                     tags = (NBTTagCompound) StackUtils.getNBT(slotStack).copy();
-                } else if (slotStack.getItem() instanceof IEnergyContainerItem) {
+                }
+                if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     addedEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
                 } else if (slotStack.getItem() == SJItems.particleCustomizers) {
                     particleType = JetpackParticleType.values()[slotStack.getItemDamage()];
@@ -49,9 +50,7 @@ public class SJUpgradingRecipe extends ShapedOreRecipe {
             result.setTagCompound(tags);
         }
         
-        while (this.resultItem.getEnergyStored(result) < addedEnergy) {
-            this.resultItem.receiveEnergy(result, addedEnergy, false);
-        }
+        StackUtils.getNBT(result).setInteger("Energy", Math.min(addedEnergy, this.resultItem.getMaxEnergyStored(result)));
         
         if (this.resultItem instanceof ItemJetpack && particleType != null) {
             ((ItemJetpack) this.resultItem).getJetpack(result).setParticleType(result, particleType);

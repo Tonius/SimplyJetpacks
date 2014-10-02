@@ -24,7 +24,7 @@ repositories {
 
 apply plugin: 'forge'
 
-version = "1.1.3"
+version = "1.1.4"
 if (hasProperty('appendBuildNumber')) {
     version = version + "-" + appendBuildNumber
 }

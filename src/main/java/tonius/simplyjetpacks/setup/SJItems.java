@@ -198,7 +198,7 @@ public class SJItems {
             GameRegistry.addRecipe(new SJUpgradingRecipe(fluxpackReinforced.copy(), new Object[] { " C ", "ISI", "LOL", 'I', "ingotElectrum", 'L', "ingotLead", 'C', TEItems.frameCellReinforcedFull.copy(), 'S', fluxpackHardened.copy(), 'O', TEItems.powerCoilElectrum }));
             GameRegistry.addRecipe(new SJUpgradingRecipe(fluxpackResonant.copy(), new Object[] { " I ", "ISI", " I ", 'I', "ingotEnderium", 'S', fluxpackReinforced.copy() }));
             
-            GameRegistry.addRecipe(new ShapedOreRecipe(jetpackLeadstone.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotLead", 'B', TEItems.capacitorBasic.copy(), 'T', thrusterLeadstone.copy(), 'J', leatherStrap.copy() }));
+            GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackLeadstone.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotLead", 'B', TEItems.capacitorBasic.copy(), 'T', thrusterLeadstone.copy(), 'J', leatherStrap.copy() }));
             GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackHardened.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened.copy(), 'T', thrusterHardened.copy(), 'J', jetpackLeadstone.copy() }));
             GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackReinforced.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced.copy(), 'T', thrusterReinforced.copy(), 'J', jetpackHardened.copy() }));
             GameRegistry.addRecipe(new SJUpgradingRecipe(jetpackResonant.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant.copy(), 'T', thrusterResonant.copy(), 'J', jetpackReinforced.copy() }));
