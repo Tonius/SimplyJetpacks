@@ -1,24 +1,24 @@
-# author TeamMMKP(@puyo061 , editor @clayweb)
+# author TeamMMKP(@puyo061 , editor @clayweb,@alvin137)
 
-itemGroup.tabSimplyJetpacks=심플리 제트팩
+itemGroup.tabSimplyJetpacks=심플리 제트팩[Simply Jetpacks]
 
 item.simplyjetpacks.jetpackTier0.name=결절된 제트팩
-item.simplyjetpacks.jetpackTier1.name=리드스톤 제트팩
+item.simplyjetpacks.jetpackTier1.name=납 제트팩
 item.simplyjetpacks.jetpackTier2.name=경화 제트팩
 item.simplyjetpacks.jetpackTier3.name=강화 제트팩
 item.simplyjetpacks.jetpackTier4.name=공진 제트팩
-item.simplyjetpacks.jetpack.5.name=플럭스가 주입된 분사
-item.simplyjetpacks.jetpack.1.armored.name=리드스톤 제트팩 (장갑)
+item.simplyjetpacks.jetpack.5.name=플럭스가 주입된 분사체
+item.simplyjetpacks.jetpack.1.armored.name=납 제트팩 (장갑)
 item.simplyjetpacks.jetpack.2.armored.name=경화 제트팩 (장갑)
 item.simplyjetpacks.jetpack.3.armored.name=강화 제트팩 (장갑)
 item.simplyjetpacks.jetpack.4.armored.name=공진 제트팩 (장갑)
 item.simplyjetpacks.jetpack.creative.name=크리에이티브 제트팩
 
-item.simplyjetpacks.fluxpack.1.name=리드스톤 플럭스 팩
+item.simplyjetpacks.fluxpack.1.name=납 플럭스 팩
 item.simplyjetpacks.fluxpack.2.name=경화 플럭스 팩
 item.simplyjetpacks.fluxpack.3.name=레드스톤 플럭스 팩
 item.simplyjetpacks.fluxpack.4.name=공진 플럭스 팩
-item.simplyjetpacks.fluxpack.1.armored.name=리드스톤 플럭스 팩 (장갑)
+item.simplyjetpacks.fluxpack.1.armored.name=납 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.2.armored.name=경화 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.3.armored.name=레드스톤 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.4.armored.name=공진 플럭스 팩 (장갑)
@@ -102,7 +102,7 @@ death.attack.jetpackpotato=%1$s 가 감자로 날기를 시도하다 죽었습�
 death.attack.jetpackpotato.player=%1$s 가 감자로 날기를 시도하다 죽었습니다.
 death.attack.jetpackpotato.item=%1$s 가 감자로 날기를 시도하다 죽었습니다.
 
-simplyjetpacks.config.title=Simply Jetpacks 컨피그
+simplyjetpacks.config.title=Simply Jetpacks 설정
 simplyjetpacks.config.item=아이템 설정
 simplyjetpacks.config.item.tooltip=모드의 아이템들의 설정을 조정합니다.
 simplyjetpacks.config.crafting=조합 설정
@@ -111,8 +111,8 @@ simplyjetpacks.config.gui=GUI Settings
 simplyjetpacks.config.gui.tooltip=모드의 GUI설정을 변경합니다.
 simplyjetpacks.config.tuningTuberous=Tuning - 결절된 제트팩
 simplyjetpacks.config.tuningTuberous.tooltip=결절된 제트팩의 속도나 전력 사용량을 조정합니다. 쿠콰쾅!
-simplyjetpacks.config.tuningLeadstone=Tuning - 리드스톤 제트팩
-simplyjetpacks.config.tuningLeadstone.tooltip=리드스톤 제트팩의 속도나 전력 사용량을 조정합니다.
+simplyjetpacks.config.tuningLeadstone=Tuning - 납 제트팩
+simplyjetpacks.config.tuningLeadstone.tooltip=납 제트팩의 속도나 전력 사용량을 조정합니다.
 simplyjetpacks.config.tuningHardened=Tuning - 경화 제트팩
 simplyjetpacks.config.tuningHardened.tooltip=경화 제트팩의 속도나 전력 사용량을 조정합니다.
 simplyjetpacks.config.tuningReinforced=Tuning - 강화 제트팩
@@ -123,8 +123,8 @@ simplyjetpacks.config.tuningFluxPlate=Tuning - 플럭스가 주입된 분사
 simplyjetpacks.config.tuningFluxPlate.tooltip=플럭스가 주입된 분사의 속도나 전력 사용량을 조정합니다.
 simplyjetpacks.config.tuningCreative=Tuning - 크리에이티브 제트팩
 simplyjetpacks.config.tuningCreative.tooltip=크리에이티브 제트팩의 속도량이나 전력 사용량을 조정합니다. 치터군요!
-simplyjetpacks.config.tuningFluxPackLeadstone=Tuning - 리드스톤 플럭스 팩
-simplyjetpacks.config.tuningFluxPackLeadstone.tooltip=리드스톤 플럭스 팩의 전력 사용량이나 저장량을 조정합니다.
+simplyjetpacks.config.tuningFluxPackLeadstone=Tuning - 납 플럭스 팩
+simplyjetpacks.config.tuningFluxPackLeadstone.tooltip=납 플럭스 팩의 전력 사용량이나 저장량을 조정합니다.
 simplyjetpacks.config.tuningFluxPackHardened=Tuning - 경화 플럭스 팩
 simplyjetpacks.config.tuningFluxPackHardened.tooltip=경화 플럭스 팩의 전력 사용량이나 저장량을 조정합니다.
 simplyjetpacks.config.tuningFluxPackRedstone=Tuning - 레드스톤 플럭스 팩
