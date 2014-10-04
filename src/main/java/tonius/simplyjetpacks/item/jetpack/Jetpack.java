@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -169,9 +170,11 @@ public class Jetpack {
             if (user.posY < -5) {
                 this.doEmergencyHoverMode(armor, user);
             } else if (user instanceof EntityPlayer) {
-                if (!((EntityPlayer) user).capabilities.isCreativeMode && user.fallDistance - 1.2F >= user.getHealth()) {
+            	boolean flag = user.fallDistance - 1.2F >= user.getHealth();
+            	
+                if (!((EntityPlayer) user).capabilities.isCreativeMode) {
                     for (int i = 0; i <= 16; i++) {
-                        if (!user.worldObj.isAirBlock(Math.round((float) user.posX - 0.5F), Math.round((float) user.posY) - i, Math.round((float) user.posZ - 0.5F))) {
+                        if (doesBlockEmergencyHover(user, Math.round((float) user.posX - 0.5F), Math.round((float) user.posY) - i, Math.round((float) user.posZ - 0.5F), flag)) {
                             this.doEmergencyHoverMode(armor, user);
                             break;
                         }
@@ -179,6 +182,14 @@ public class Jetpack {
                 }
             }
         }
+    }
+    
+    private static boolean doesBlockEmergencyHover(EntityLivingBase user, int x, int y, int z, boolean flag) {
+    	return (flag && !user.worldObj.isAirBlock(x, y, z)) || isDangerousMaterial(user.worldObj.getBlock(x, y, z).getMaterial());
+    }
+    
+    private static boolean isDangerousMaterial(Material material) {
+    	return material == Material.lava || material == Material.fire;
     }
     
     public void doEmergencyHoverMode(ItemStack armor, EntityLivingBase user) {
