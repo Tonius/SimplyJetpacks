@@ -19,9 +19,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
-import tonius.simplyjetpacks.item.jetpack.JetpackFluxPlate;
+import tonius.simplyjetpacks.item.jetpack.JetpackJetPlate;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
+import tonius.simplyjetpacks.setup.SJItems.ModType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
@@ -30,21 +31,25 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem, IToggleable, IModeSwitchable, IEnergyHUDInfoProvider {
     
-    protected IIcon[] icons = null;
+    public final ItemIndex index;
+    public final ModType modType;
+    private IIcon[] icons = null;
     
-    public ItemJetpack() {
+    public ItemJetpack(ItemIndex index, ModType modType) {
         super(ArmorMaterial.IRON, 2, 1);
         
-        this.setUnlocalizedName(SimplyJetpacks.PREFIX + "jetpack");
+        this.setUnlocalizedName(SimplyJetpacks.PREFIX + "jetpack" + modType.suffix);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setNoRepair();
         this.setCreativeTab(SJCreativeTab.tab);
-        this.icons = new IIcon[Jetpack.getHighestMeta() + 1];
+        this.index = index;
+        this.modType = modType;
+        this.icons = new IIcon[Jetpack.getHighestMeta(index) + 1];
     }
     
     public Jetpack getJetpack(ItemStack itemStack) {
-        return Jetpack.getJetpack(itemStack.getItemDamage());
+        return Jetpack.getJetpack(this.index, itemStack.getItemDamage());
     }
     
     public ItemStack getChargedItem(ItemJetpack item, int meta) {
@@ -75,7 +80,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public String getUnlocalizedName(ItemStack itemStack) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            return "item.simplyjetpacks." + jetpack.getBaseName();
+            return "item.simplyjetpacks." + jetpack.getBaseName() + this.modType.suffix;
         }
         return super.getUnlocalizedName();
     }
@@ -111,14 +116,14 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
                 if (jetpack.isArmored()) {
                     jetpack.removeArmor(itemStack, player);
                     if (!world.isRemote) {
-                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.components, 1, jetpack.getPlatingMeta()), 0.0F);
+                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.armorPlatings, 1, jetpack.tier + this.modType.platingOffset), 0.0F);
                         item.delayBeforeCanPickup = 0;
                     }
                 } else {
                     InventoryPlayer inv = player.inventory;
                     for (int i = 0; i < inv.getSizeInventory(); i++) {
                         ItemStack currentStack = inv.getStackInSlot(i);
-                        if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == jetpack.getPlatingMeta()) {
+                        if (currentStack != null && currentStack.getItem() == SJItems.armorPlatings && currentStack.getItemDamage() == jetpack.tier + this.modType.platingOffset) {
                             inv.decrStackSize(i, 1);
                             jetpack.applyArmor(itemStack, player);
                             break;
@@ -142,8 +147,8 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (int i = 0; i <= Jetpack.getHighestMeta(); i++) {
-            Jetpack jetpack = Jetpack.getJetpack(i);
+        for (int i = 0; i <= Jetpack.getHighestMeta(this.index); i++) {
+            Jetpack jetpack = Jetpack.getJetpack(this.index, i);
             if (jetpack != null && jetpack.isVisible()) {
                 if (jetpack.hasEmptyItem()) {
                     list.add(new ItemStack(this, 1, i));
@@ -156,10 +161,10 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        for (int i = 0; i <= Jetpack.getHighestMeta(); i++) {
-            Jetpack jetpack = Jetpack.getJetpack(i);
+        for (int i = 0; i <= Jetpack.getHighestMeta(this.index); i++) {
+            Jetpack jetpack = Jetpack.getJetpack(this.index, i);
             if (jetpack != null) {
-                this.icons[i] = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + jetpack.getBaseName());
+                this.icons[i] = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + jetpack.getBaseName() + this.modType.suffix);
             }
         }
     }
@@ -175,7 +180,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public String getArmorTexture(ItemStack itemStack, Entity entity, int slot, String type) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + jetpack.getBaseName() + ".png";
+            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + jetpack.getBaseName() + this.modType.suffix + ".png";
         }
         return null;
     }
@@ -285,7 +290,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     @Override
     public String getEnergyInfo(ItemStack stack) {
         Jetpack jetpack = this.getJetpack(stack);
-        if (jetpack != null) {
+        if (jetpack != null && jetpack.hasDamageBar()) {
             int energy = this.getEnergyStored(stack);
             int maxEnergy = this.getMaxEnergyStored(stack);
             int percent = (int) Math.ceil((double) energy / (double) maxEnergy * 100D);
@@ -301,8 +306,8 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
             Boolean engine = jetpack.isOn(stack);
             Boolean hover = jetpack.isHoverModeOn(stack);
             Boolean charger = null;
-            if (jetpack instanceof JetpackFluxPlate && ((JetpackFluxPlate) jetpack).allowCharger()) {
-                charger = ((JetpackFluxPlate) jetpack).isChargerOn(stack);
+            if (jetpack instanceof JetpackJetPlate && ((JetpackJetPlate) jetpack).allowCharger) {
+                charger = ((JetpackJetPlate) jetpack).isChargerOn(stack);
             }
             return StringUtils.getHUDStateText(engine, hover, charger);
         }

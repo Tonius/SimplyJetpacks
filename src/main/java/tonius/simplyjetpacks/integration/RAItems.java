@@ -5,7 +5,7 @@ import tonius.simplyjetpacks.SimplyJetpacks;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class RAItems {
+public abstract class RAItems {
     
     public static ItemStack plateFlux = null;
     public static ItemStack armorFluxPlate = null;

@@ -10,7 +10,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ParticleUtils {
+public abstract class ParticleUtils {
     
     private static Minecraft mc = Minecraft.getMinecraft();
     

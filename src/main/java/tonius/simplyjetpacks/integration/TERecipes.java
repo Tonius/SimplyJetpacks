@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class TERecipes {
+public abstract class TERecipes {
     
     public static void addSmelterRecipe(int energy, ItemStack primaryInput, ItemStack secondaryInput, ItemStack primaryOutput, ItemStack secondaryOutput, int secondaryChance) {
         NBTTagCompound toSend = new NBTTagCompound();

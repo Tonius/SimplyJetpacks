@@ -2,10 +2,10 @@ package tonius.simplyjetpacks.item.jetpack;
 
 import net.minecraft.item.EnumRarity;
 
-public class JetpackCreative extends JetpackFluxPlate {
+public class JetpackCreative extends JetpackJetPlate {
     
-    public JetpackCreative(int meta, boolean enchantable, int enchantability, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerTickOut) {
-        super(meta, 9001, enchantable, enchantability, EnumRarity.epic, 9001, 0, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode, armorDisplay, armorAbsorption, 0, energyPerTickOut);
+    public JetpackCreative(double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerTickOut) {
+        super(9001, EnumRarity.epic, 9001, 0, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, enchantable, enchantability, emergencyHoverMode, armorDisplay, armorAbsorption, 0, energyPerTickOut);
     }
     
     @Override
@@ -24,18 +24,8 @@ public class JetpackCreative extends JetpackFluxPlate {
     }
     
     @Override
-    public boolean hasArmoredVersion() {
-        return false;
-    }
-    
-    @Override
     public boolean consumesEnergy() {
         return false;
-    }
-    
-    @Override
-    public boolean allowCharger() {
-        return true;
     }
     
 }

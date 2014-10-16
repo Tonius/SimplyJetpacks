@@ -10,15 +10,15 @@ import tonius.simplyjetpacks.item.ItemJetpack;
 
 public class JetpackArmored extends Jetpack {
     
-    public int armorDisplay;
-    public double armorAbsorption;
-    public int energyPerHit;
+    public final int armorDisplay;
+    public final double armorAbsorption;
+    public final int armorEnergyPerHit;
     
-    public JetpackArmored(int meta, int tier, boolean enchantable, int enchantabiliy, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit) {
-        super(meta, tier, enchantable, enchantabiliy, rarity, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode);
+    public JetpackArmored(int tier, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit) {
+        super(tier, rarity, energyCapacity, energyPerTick, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, enchantable, enchantability, emergencyHoverMode);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
-        this.energyPerHit = energyPerHit;
+        this.armorEnergyPerHit = energyPerHit;
     }
     
     @Override
@@ -38,14 +38,14 @@ public class JetpackArmored extends Jetpack {
         }
         int maxAbsorbed = Integer.MAX_VALUE;
         if (this.consumesEnergy()) {
-            maxAbsorbed = this.energyPerHit > 0 ? item.getEnergyStored(armor) / this.energyPerHit * 100 : 0;
+            maxAbsorbed = this.armorEnergyPerHit > 0 ? item.getEnergyStored(armor) / this.armorEnergyPerHit * 100 : 0;
         }
         return new ArmorProperties(0, this.armorAbsorption, maxAbsorbed);
     }
     
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemJetpack item, ItemStack armor, int slot) {
-        if (item.getEnergyStored(armor) >= this.energyPerHit) {
+        if (item.getEnergyStored(armor) >= this.armorEnergyPerHit) {
             return this.armorDisplay;
         }
         return 0;
@@ -53,7 +53,7 @@ public class JetpackArmored extends Jetpack {
     
     @Override
     public void damageArmor(EntityLivingBase entity, ItemJetpack item, ItemStack armor, DamageSource source, int damage, int slot) {
-        item.extractEnergy(armor, damage * this.energyPerHit, false);
+        item.extractEnergy(armor, damage * this.armorEnergyPerHit, false);
     }
     
 }

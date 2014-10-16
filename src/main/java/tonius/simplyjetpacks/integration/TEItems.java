@@ -5,7 +5,7 @@ import tonius.simplyjetpacks.SimplyJetpacks;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class TEItems {
+public abstract class TEItems {
     
     public static ItemStack blockGlassHardened = null;
     public static ItemStack capacitorBasic = null;

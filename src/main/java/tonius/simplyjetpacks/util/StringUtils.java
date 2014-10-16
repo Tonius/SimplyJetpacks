@@ -10,7 +10,7 @@ import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 
-public final class StringUtils {
+public abstract class StringUtils {
     
     private static DecimalFormat formatter = new DecimalFormat("###,###");
     

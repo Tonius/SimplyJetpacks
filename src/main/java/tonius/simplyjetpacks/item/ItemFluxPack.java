@@ -23,6 +23,7 @@ import tonius.simplyjetpacks.client.model.ModelFluxPack;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
+import tonius.simplyjetpacks.setup.SJItems.ModType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
@@ -31,21 +32,25 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyContainerItem, IToggleable, IEnergyHUDInfoProvider {
     
-    protected IIcon[] icons = null;
+    public final ItemIndex index;
+    public final ModType modType;
+    private IIcon[] icons = null;
     
-    public ItemFluxPack() {
+    public ItemFluxPack(ItemIndex index, ModType modType) {
         super(ArmorMaterial.IRON, 2, 1);
         
-        this.setUnlocalizedName(SimplyJetpacks.PREFIX + "fluxpack");
+        this.setUnlocalizedName(SimplyJetpacks.PREFIX + "fluxpack" + modType.suffix);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setNoRepair();
         this.setCreativeTab(SJCreativeTab.tab);
-        this.icons = new IIcon[FluxPack.getHighestMeta() + 1];
+        this.index = index;
+        this.modType = modType;
+        this.icons = new IIcon[FluxPack.getHighestMeta(index) + 1];
     }
     
     public FluxPack getFluxPack(ItemStack itemStack) {
-        return FluxPack.getFluxPack(itemStack.getItemDamage());
+        return FluxPack.getFluxPack(this.index, itemStack.getItemDamage());
     }
     
     public ItemStack getChargedItem(ItemFluxPack item, int meta) {
@@ -68,7 +73,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     public String getUnlocalizedName(ItemStack itemStack) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
         if (fluxpack != null) {
-            return "item.simplyjetpacks." + fluxpack.getBaseName();
+            return "item.simplyjetpacks." + fluxpack.getBaseName() + this.modType.suffix;
         }
         return super.getUnlocalizedName();
     }
@@ -77,13 +82,13 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
         ModelBiped armorModel = new ModelFluxPack(1.0F);
-        armorModel.bipedHead.showModel = armorSlot == 0;
-        armorModel.bipedHeadwear.showModel = armorSlot == 0;
-        armorModel.bipedBody.showModel = armorSlot == 1 || armorSlot == 2;
-        armorModel.bipedRightArm.showModel = armorSlot == 1;
-        armorModel.bipedLeftArm.showModel = armorSlot == 1;
-        armorModel.bipedRightLeg.showModel = armorSlot == 2 || armorSlot == 3;
-        armorModel.bipedLeftLeg.showModel = armorSlot == 2 || armorSlot == 3;
+        armorModel.bipedBody.showModel = true;
+        armorModel.bipedRightArm.showModel = true;
+        armorModel.bipedLeftArm.showModel = true;
+        armorModel.bipedHead.showModel = false;
+        armorModel.bipedHeadwear.showModel = false;
+        armorModel.bipedRightLeg.showModel = false;
+        armorModel.bipedLeftLeg.showModel = false;
         armorModel.isSneak = entityLiving.isSneaking();
         armorModel.isRiding = entityLiving.isRiding();
         armorModel.isChild = entityLiving.isChild();
@@ -120,14 +125,14 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
                 if (fluxpack.isArmored()) {
                     fluxpack.removeArmor(itemStack, player);
                     if (!world.isRemote) {
-                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.components, 1, fluxpack.getPlatingMeta()), 0.0F);
+                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.armorPlatings, 1, fluxpack.tier + this.modType.platingOffset - 1), 0.0F);
                         item.delayBeforeCanPickup = 0;
                     }
                 } else {
                     InventoryPlayer inv = player.inventory;
                     for (int i = 0; i < inv.getSizeInventory(); i++) {
                         ItemStack currentStack = inv.getStackInSlot(i);
-                        if (currentStack != null && currentStack.getItem() == SJItems.components && currentStack.getItemDamage() == fluxpack.getPlatingMeta()) {
+                        if (currentStack != null && currentStack.getItem() == SJItems.armorPlatings && currentStack.getItemDamage() == fluxpack.tier + this.modType.platingOffset - 1) {
                             inv.decrStackSize(i, 1);
                             fluxpack.applyArmor(itemStack, player);
                             break;
@@ -151,8 +156,8 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (int i = 0; i <= FluxPack.getHighestMeta(); i++) {
-            FluxPack fluxpack = FluxPack.getFluxPack(i);
+        for (int i = 0; i <= FluxPack.getHighestMeta(this.index); i++) {
+            FluxPack fluxpack = FluxPack.getFluxPack(this.index, i);
             if (fluxpack != null && fluxpack.isVisible()) {
                 if (fluxpack.hasEmptyItem()) {
                     list.add(new ItemStack(this, 1, i));
@@ -165,10 +170,10 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        for (int i = 0; i <= FluxPack.getHighestMeta(); i++) {
-            FluxPack fluxpack = FluxPack.getFluxPack(i);
+        for (int i = 0; i <= FluxPack.getHighestMeta(this.index); i++) {
+            FluxPack fluxpack = FluxPack.getFluxPack(this.index, i);
             if (fluxpack != null) {
-                this.icons[i] = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + fluxpack.getBaseName());
+                this.icons[i] = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + fluxpack.getBaseName() + this.modType.suffix);
             }
         }
     }
@@ -184,7 +189,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     public String getArmorTexture(ItemStack itemStack, Entity entity, int slot, String type) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
         if (fluxpack != null) {
-            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + fluxpack.getBaseName() + ".png";
+            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + fluxpack.getBaseName() + this.modType.suffix + ".png";
         }
         return null;
     }
@@ -294,7 +299,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     @Override
     public String getEnergyInfo(ItemStack stack) {
         FluxPack fluxpack = this.getFluxPack(stack);
-        if (fluxpack != null) {
+        if (fluxpack != null && fluxpack.hasDamageBar()) {
             int energy = this.getEnergyStored(stack);
             int maxEnergy = this.getMaxEnergyStored(stack);
             int percent = (int) Math.ceil((double) energy / (double) maxEnergy * 100D);

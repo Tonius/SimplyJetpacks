@@ -14,6 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.config.SJConfig;
+import tonius.simplyjetpacks.item.ItemIndex;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.setup.JetpackIcon;
 import tonius.simplyjetpacks.util.StackUtils;
@@ -21,67 +22,93 @@ import tonius.simplyjetpacks.util.StringUtils;
 
 public class Jetpack {
     
-    private static Map<Integer, Jetpack> jetpacks = new HashMap<Integer, Jetpack>();
-    private static int highestMeta;
+    public static final int ARMORED_META_OFFSET = 100;
     
-    public int tier;
-    public boolean enchantable;
-    public int enchantability;
-    public EnumRarity rarity;
-    public int energyCapacity;
-    public int energyPerTick;
-    public double speedVertical;
-    public double accelVertical;
-    public float speedSideways;
-    public double speedVerticalHover;
-    public double speedVerticalHoverSlow;
-    public boolean emergencyHoverMode;
+    private static Map<Integer, Jetpack> jetpacksCommon = new HashMap<Integer, Jetpack>();
+    private static int highestMetaCommon;
+    private static Map<Integer, Jetpack> jetpacksPerMod = new HashMap<Integer, Jetpack>();
+    private static int highestMetaPerMod;
     
-    public Jetpack(int meta, int tier, boolean enchantable, int enchantability, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode) {
+    public final int tier;
+    public final EnumRarity rarity;
+    
+    public final int energyCapacity;
+    public final int energyPerTick;
+    
+    public final double speedVertical;
+    public final double accelVertical;
+    public final double speedVerticalHover;
+    public final double speedVerticalHoverSlow;
+    public final float speedSideways;
+    
+    public final boolean enchantable;
+    public final int enchantability;
+    public final boolean emergencyHoverMode;
+    
+    public Jetpack(int tier, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode) {
         this.tier = tier;
-        this.enchantable = enchantable;
-        this.enchantability = enchantability;
         this.rarity = rarity;
+        
         this.energyCapacity = energyCapacity;
         this.energyPerTick = energyPerTick;
+        
         this.speedVertical = speedVertical;
         this.accelVertical = accelVertical;
-        this.speedSideways = speedSideways;
         this.speedVerticalHover = speedVerticalHover;
         this.speedVerticalHoverSlow = speedVerticalHoverSlow;
-        this.emergencyHoverMode = emergencyHoverMode;
+        this.speedSideways = speedSideways;
         
-        addJetpack(meta, this);
+        this.enchantable = enchantable;
+        this.enchantability = enchantability;
+        this.emergencyHoverMode = emergencyHoverMode;
     }
     
-    public static Jetpack getJetpack(int meta) {
-        return jetpacks.get(meta);
+    public static Jetpack getJetpack(ItemIndex index, int meta) {
+        switch (index) {
+        case COMMON:
+            return jetpacksCommon.get(meta);
+        case PER_MOD:
+            return jetpacksPerMod.get(meta);
+        }
+        return null;
     }
     
-    public static int getHighestMeta() {
-        return highestMeta;
+    public static int getHighestMeta(ItemIndex index) {
+        switch (index) {
+        case COMMON:
+            return highestMetaCommon;
+        case PER_MOD:
+            return highestMetaPerMod;
+        }
+        return 0;
     }
     
-    public static void addJetpack(int meta, Jetpack jetpack) {
-        jetpacks.put(meta, jetpack);
-        if (highestMeta < meta) {
-            highestMeta = meta;
+    public static void addJetpack(ItemIndex index, int meta, Jetpack jetpack) {
+        switch (index) {
+        case COMMON:
+            jetpacksCommon.put(meta, jetpack);
+            if (highestMetaCommon < meta) {
+                highestMetaCommon = meta;
+            }
+            break;
+        case PER_MOD:
+            jetpacksPerMod.put(meta, jetpack);
+            if (highestMetaPerMod < meta) {
+                highestMetaPerMod = meta;
+            }
         }
     }
     
     public static void reconstructJetpacks() {
-        new JetpackPotato(0, 0, SJConfig.tuberousEnergyCapacity, SJConfig.tuberousEnergyPerTick, SJConfig.tuberousSpeedVertical, SJConfig.tuberousAccelVertical);
-        new Jetpack(1, 1, SJConfig.leadstoneEnchantable, SJConfig.leadstoneEnchantability, EnumRarity.common, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode);
-        new Jetpack(2, 2, SJConfig.hardenedEnchantable, SJConfig.hardenedEnchantability, EnumRarity.common, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode);
-        new Jetpack(3, 3, SJConfig.reinforcedEnchantable, SJConfig.reinforcedEnchantability, EnumRarity.uncommon, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode);
-        new Jetpack(4, 4, SJConfig.resonantEnchantable, SJConfig.resonantEnchantability, EnumRarity.rare, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode);
-        new JetpackFluxPlate(5, 5, SJConfig.fluxPlateEnchantable, SJConfig.fluxPlateEnchantability, EnumRarity.epic, SJConfig.fluxPlateEnergyCapacity, SJConfig.fluxPlateEnergyPerTick, SJConfig.fluxPlateSpeedVertical, SJConfig.fluxPlateAccelVertical, (float) SJConfig.fluxPlateSpeedSideways, SJConfig.fluxPlateSpeedVerticalHover, SJConfig.fluxPlateSpeedVerticalHoverSlow, SJConfig.fluxPlateEmergencyHoverMode, SJConfig.fluxPlateArmorDisplay, SJConfig.fluxPlateArmorAbsorption, SJConfig.fluxPlateArmorEnergyPerHit, SJConfig.fluxPlateEnergyOutRate);
-        new JetpackArmored(101, 1, SJConfig.leadstoneEnchantable, SJConfig.leadstoneEnchantability, EnumRarity.common, SJConfig.leadstoneEnergyCapacity, SJConfig.leadstoneEnergyPerTick, SJConfig.leadstoneSpeedVertical, SJConfig.leadstoneAccelVertical, (float) SJConfig.leadstoneSpeedSideways, SJConfig.leadstoneSpeedVerticalHover, SJConfig.leadstoneSpeedVerticalHoverSlow, SJConfig.leadstoneEmergencyHoverMode, SJConfig.leadstoneArmorDisplay, SJConfig.leadstoneArmorAbsorption, SJConfig.leadstoneArmorEnergyPerHit);
-        new JetpackArmored(102, 2, SJConfig.hardenedEnchantable, SJConfig.hardenedEnchantability, EnumRarity.common, SJConfig.hardenedEnergyCapacity, SJConfig.hardenedEnergyPerTick, SJConfig.hardenedSpeedVertical, SJConfig.hardenedAccelVertical, (float) SJConfig.hardenedSpeedSideways, SJConfig.hardenedSpeedVerticalHover, SJConfig.hardenedSpeedVerticalHoverSlow, SJConfig.hardenedEmergencyHoverMode, SJConfig.hardenedArmorDisplay, SJConfig.hardenedArmorAbsorption, SJConfig.hardenedArmorEnergyPerHit);
-        new JetpackArmored(103, 3, SJConfig.reinforcedEnchantable, SJConfig.reinforcedEnchantability, EnumRarity.uncommon, SJConfig.reinforcedEnergyCapacity, SJConfig.reinforcedEnergyPerTick, SJConfig.reinforcedSpeedVertical, SJConfig.reinforcedAccelVertical, (float) SJConfig.reinforcedSpeedSideways, SJConfig.reinforcedSpeedVerticalHover, SJConfig.reinforcedSpeedVerticalHoverSlow, SJConfig.reinforcedEmergencyHoverMode, SJConfig.reinforcedArmorDisplay, SJConfig.reinforcedArmorAbsorption, SJConfig.reinforcedArmorEnergyPerHit);
-        new JetpackArmored(104, 4, SJConfig.resonantEnchantable, SJConfig.resonantEnchantability, EnumRarity.rare, SJConfig.resonantEnergyCapacity, SJConfig.resonantEnergyPerTick, SJConfig.resonantSpeedVertical, SJConfig.resonantAccelVertical, (float) SJConfig.resonantSpeedSideways, SJConfig.resonantSpeedVerticalHover, SJConfig.resonantSpeedVerticalHoverSlow, SJConfig.resonantEmergencyHoverMode, SJConfig.resonantArmorDisplay, SJConfig.resonantArmorAbsorption, SJConfig.resonantArmorEnergyPerHit);
-        new JetpackCreative(9001, SJConfig.creativeEnchantable, SJConfig.creativeEnchantability, SJConfig.creativeSpeedVertical, SJConfig.creativeAccelVertical, (float) SJConfig.creativeSpeedSideways, SJConfig.creativeSpeedVerticalHover, SJConfig.creativeSpeedVerticalHoverSlow, SJConfig.creativeEmergencyHoverMode, SJConfig.creativeArmorDisplay, SJConfig.creativeArmorAbsorption, SJConfig.creativeEnergyOutRate);
-        new JetpackIcon(9002);
+        JetpackFactory.newJetpack(ItemIndex.COMMON, 0, null, false);
+        addJetpack(ItemIndex.COMMON, 1, new JetpackIcon());
+        JetpackFactory.newJetpack(ItemIndex.COMMON, 9001, null, false);
+        
+        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 1, EnumRarity.common, true);
+        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 2, EnumRarity.common, true);
+        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 3, EnumRarity.uncommon, true);
+        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 4, EnumRarity.rare, true);
+        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 5, EnumRarity.epic, false);
     }
     
     public String getBaseName() {
@@ -106,10 +133,6 @@ public class Jetpack {
     
     public boolean hasDamageBar() {
         return true;
-    }
-    
-    public int getPlatingMeta() {
-        return this.tier + 120;
     }
     
     public boolean consumesEnergy() {
@@ -278,12 +301,12 @@ public class Jetpack {
     }
     
     public void applyArmor(ItemStack itemStack, EntityPlayer player) {
-        itemStack.setItemDamage(itemStack.getItemDamage() + 100);
+        itemStack.setItemDamage(itemStack.getItemDamage() + ARMORED_META_OFFSET);
         player.worldObj.playSoundAtEntity(player, "random.anvil_use", 0.8F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
     
     public void removeArmor(ItemStack itemStack, EntityPlayer player) {
-        itemStack.setItemDamage(itemStack.getItemDamage() - 100);
+        itemStack.setItemDamage(itemStack.getItemDamage() - ARMORED_META_OFFSET);
         player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
     

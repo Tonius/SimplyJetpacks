@@ -67,7 +67,7 @@ public class ItemMysteriousPotato extends Item {
                 equipment.appendTag(new NBTTagCompound());
                 equipment.appendTag(new NBTTagCompound());
                 equipment.appendTag(new NBTTagCompound());
-                equipment.appendTag(SJItems.jetpackTuberous.writeToNBT(new NBTTagCompound()));
+                equipment.appendTag(SJItems.jetpackPotato.writeToNBT(new NBTTagCompound()));
                 zombieSpawnProperties.setTag("Equipment", equipment);
                 
                 NBTTagList dropChances = new NBTTagList();

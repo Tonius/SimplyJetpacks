@@ -3,7 +3,7 @@ package tonius.simplyjetpacks.util;
 import java.awt.Color;
 import java.util.Random;
 
-public class ColorUtils {
+public abstract class ColorUtils {
     
     private static Random rand = new Random();
     

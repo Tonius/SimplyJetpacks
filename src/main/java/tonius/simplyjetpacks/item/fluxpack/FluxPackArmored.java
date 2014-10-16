@@ -12,13 +12,13 @@ public class FluxPackArmored extends FluxPack {
     
     public int armorDisplay;
     public double armorAbsorption;
-    public int energyPerHit;
+    public int armorEnergyPerHit;
     
-    public FluxPackArmored(int meta, int tier, boolean enchantable, int enchantability, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut, int armorDisplay, double armorAbsorption, int energyPerHit) {
-        super(meta, tier, enchantable, enchantability, rarity, energyCapacity, energyPerTickIn, energyPerTickOut);
+    public FluxPackArmored(int tier, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut, boolean enchantable, int enchantability, int armorDisplay, double armorAbsorption, int energyPerHit) {
+        super(tier, rarity, energyCapacity, energyPerTickIn, energyPerTickOut, enchantable, enchantability);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
-        this.energyPerHit = energyPerHit;
+        this.armorEnergyPerHit = energyPerHit;
     }
     
     @Override
@@ -38,14 +38,14 @@ public class FluxPackArmored extends FluxPack {
         }
         int maxAbsorbed = Integer.MAX_VALUE;
         if (this.consumesEnergy()) {
-            maxAbsorbed = this.energyPerHit > 0 ? item.getEnergyStored(armor) / this.energyPerHit * 100 : 0;
+            maxAbsorbed = this.armorEnergyPerHit > 0 ? item.getEnergyStored(armor) / this.armorEnergyPerHit * 100 : 0;
         }
         return new ArmorProperties(0, this.armorAbsorption, maxAbsorbed);
     }
     
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemFluxPack item, ItemStack armor, int slot) {
-        if (item.getEnergyStored(armor) >= this.energyPerHit) {
+        if (item.getEnergyStored(armor) >= this.armorEnergyPerHit) {
             return this.armorDisplay;
         }
         return 0;
@@ -53,7 +53,7 @@ public class FluxPackArmored extends FluxPack {
     
     @Override
     public void damageArmor(EntityLivingBase entity, ItemFluxPack item, ItemStack armor, DamageSource source, int damage, int slot) {
-        item.extractEnergy(armor, damage * this.energyPerHit, false);
+        item.extractEnergy(armor, damage * this.armorEnergyPerHit, false);
     }
     
 }

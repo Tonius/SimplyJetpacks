@@ -1,47 +1,49 @@
 itemGroup.tabSimplyJetpacks=Simply Jetpacks
 
-item.simplyjetpacks.jetpack.0.name=Неровный реактивный ранец
-item.simplyjetpacks.jetpack.1.name=Свинцовый реактивный ранец
-item.simplyjetpacks.jetpack.2.name=Усиленный реактивный ранец
-item.simplyjetpacks.jetpack.3.name=Укреплённый реактивный ранец
-item.simplyjetpacks.jetpack.4.name=Резонирующий реактивный ранец
-item.simplyjetpacks.jetpack.5.name=Энергетический реактивный ранец
-item.simplyjetpacks.jetpack.1.armored.name=Свинцовый реактивный ранец (Бронированный)
-item.simplyjetpacks.jetpack.2.armored.name=Усиленный реактивный ранец (Бронированный)
-item.simplyjetpacks.jetpack.3.armored.name=Укреплённый реактивный ранец (Бронированный)
-item.simplyjetpacks.jetpack.4.armored.name=Резонирующий реактивный ранец (Бронированный)
+item.simplyjetpacks.jetpack.1.te.name=Свинцовый реактивный ранец
+item.simplyjetpacks.jetpack.2.te.name=Усиленный реактивный ранец
+item.simplyjetpacks.jetpack.3.te.name=Укреплённый реактивный ранец
+item.simplyjetpacks.jetpack.4.te.name=Резонирующий реактивный ранец
+item.simplyjetpacks.jetpack.5.te.name=Энергетический реактивный ранец
+item.simplyjetpacks.jetpack.1.armored.te.name=Свинцовый реактивный ранец (Бронированный)
+item.simplyjetpacks.jetpack.2.armored.te.name=Усиленный реактивный ранец (Бронированный)
+item.simplyjetpacks.jetpack.3.armored.te.name=Укреплённый реактивный ранец (Бронированный)
+item.simplyjetpacks.jetpack.4.armored.te.name=Резонирующий реактивный ранец (Бронированный)
+item.simplyjetpacks.jetpack.potato.name=Неровный реактивный ранец
 item.simplyjetpacks.jetpack.creative.name=Творческий реактивный ранец
 
-item.simplyjetpacks.fluxpack.1.name=Свинцовый флакс-ранец
-item.simplyjetpacks.fluxpack.2.name=Усиленный флакс-ранец
-item.simplyjetpacks.fluxpack.3.name=Красный флакс-ранец
-item.simplyjetpacks.fluxpack.4.name=Резонирующий флакс-ранец
-item.simplyjetpacks.fluxpack.1.armored.name=Свинцовый флакс-ранец (Бронированный)
-item.simplyjetpacks.fluxpack.2.armored.name=Усиленный флакс-ранец (Бронированный)
-item.simplyjetpacks.fluxpack.3.armored.name=Красный флакс-ранец (Бронированный)
-item.simplyjetpacks.fluxpack.4.armored.name=Резонирующий флакс-ранец (Бронированный)
+item.simplyjetpacks.fluxpack.1.te.name=Свинцовый флакс-ранец
+item.simplyjetpacks.fluxpack.2.te.name=Усиленный флакс-ранец
+item.simplyjetpacks.fluxpack.3.te.name=Красный флакс-ранец
+item.simplyjetpacks.fluxpack.4.te.name=Резонирующий флакс-ранец
+item.simplyjetpacks.fluxpack.1.armored.te.name=Свинцовый флакс-ранец (Бронированный)
+item.simplyjetpacks.fluxpack.2.armored.te.name=Усиленный флакс-ранец (Бронированный)
+item.simplyjetpacks.fluxpack.3.armored.te.name=Красный флакс-ранец (Бронированный)
+item.simplyjetpacks.fluxpack.4.armored.te.name=Резонирующий флакс-ранец (Бронированный)
 item.simplyjetpacks.fluxpack.creative.name=Творческий флакс-ранец
 
 item.simplyjetpacks.leatherStrap.name=Кожаный ремень
-item.simplyjetpacks.thruster.1.name=Свинцовый реактивный двигатель
-item.simplyjetpacks.thruster.2.name=Усиленный реактивный двигатель
-item.simplyjetpacks.thruster.3.name=Укреплённый реактивный двигатель
-item.simplyjetpacks.thruster.4.name=Резонирующий реактивный двигатель
-item.simplyjetpacks.thruster.5.name=Энергетический реактивный двигатель
-item.simplyjetpacks.armorPlating.1.name=Железное броневое покрытие
-item.simplyjetpacks.armorPlating.2.name=Броневое покрытие из сплава инженера
-item.simplyjetpacks.armorPlating.3.name=Инваровое броневое покрытие
-item.simplyjetpacks.armorPlating.4.name=Броневое покрытие из металла Края
+item.simplyjetpacks.thruster.te.1.name=Свинцовый реактивный двигатель
+item.simplyjetpacks.thruster.te.2.name=Усиленный реактивный двигатель
+item.simplyjetpacks.thruster.te.3.name=Укреплённый реактивный двигатель
+item.simplyjetpacks.thruster.te.4.name=Резонирующий реактивный двигатель
+item.simplyjetpacks.thruster.te.5.name=Энергетический реактивный двигатель
 item.simplyjetpacks.unitCryotheum.empty.name=Криотеумный элемент охлаждения (Пустой)
 item.simplyjetpacks.unitCryotheum.name=Криотеумный элемент охлаждения
 item.simplyjetpacks.unitGlowstone.empty.name=Светящийся элемент возвышения (Пустой)
-item.simplyjetpacks.unitGlowstone.name=Светящийся элемент возвышения 
-item.simplyjetpacks.mysteriousPotato.name=Таинственный картофель
+item.simplyjetpacks.unitGlowstone.name=Светящийся элемент возвышения
+
+item.simplyjetpacks.armorPlating.te.1.name=Железное броневое покрытие
+item.simplyjetpacks.armorPlating.te.2.name=Броневое покрытие из сплава инженера
+item.simplyjetpacks.armorPlating.te.3.name=Инваровое броневое покрытие
+item.simplyjetpacks.armorPlating.te.4.name=Броневое покрытие из металла Края
 
 item.simplyjetpacks.particle.0.name=Настройщик частиц (Обычный)
 item.simplyjetpacks.particle.1.name=Настройщик частиц (Нету)
 item.simplyjetpacks.particle.2.name=Настройщик частиц (Только дым)
 item.simplyjetpacks.particle.3.name=Настройщик частиц (Радужный дым)
+
+item.simplyjetpacks.mysteriousPotato.name=Таинственный картофель
 
 simplyjetpacks.chat.enabled=включён
 simplyjetpacks.chat.disabled=выключен

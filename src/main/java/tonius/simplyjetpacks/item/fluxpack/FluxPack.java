@@ -11,61 +11,86 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemFluxPack;
+import tonius.simplyjetpacks.item.ItemIndex;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class FluxPack {
     
-    private static Map<Integer, FluxPack> fluxpacks = new HashMap<Integer, FluxPack>();
-    private static int highestMeta;
+    public static final int ARMORED_META_OFFSET = 100;
+    
+    private static Map<Integer, FluxPack> fluxPacksCommon = new HashMap<Integer, FluxPack>();
+    private static int highestMetaCommon;
+    private static Map<Integer, FluxPack> fluxPacksPerMod = new HashMap<Integer, FluxPack>();
+    private static int highestMetaPerMod;
     
     public int tier;
-    public boolean enchantable;
-    public int enchantability;
     public EnumRarity rarity;
+    
     public int energyCapacity;
     public int energyPerTickIn;
     public int energyPerTickOut;
     
-    public FluxPack(int meta, int tier, boolean enchantable, int enchantability, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut) {
+    public boolean enchantable;
+    public int enchantability;
+    
+    public FluxPack(int tier, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut, boolean enchantable, int enchantability) {
         this.tier = tier;
-        this.enchantable = enchantable;
-        this.enchantability = enchantability;
         this.rarity = rarity;
+        
         this.energyCapacity = energyCapacity;
         this.energyPerTickIn = energyPerTickIn;
         this.energyPerTickOut = energyPerTickOut;
         
-        addFluxPack(meta, this);
+        this.enchantable = enchantable;
+        this.enchantability = enchantability;
     }
     
-    public static FluxPack getFluxPack(int meta) {
-        return fluxpacks.get(meta);
+    public static FluxPack getFluxPack(ItemIndex index, int meta) {
+        switch (index) {
+        case COMMON:
+            return fluxPacksCommon.get(meta);
+        case PER_MOD:
+            return fluxPacksPerMod.get(meta);
+        }
+        return null;
     }
     
-    public static int getHighestMeta() {
-        return highestMeta;
+    public static int getHighestMeta(ItemIndex index) {
+        switch (index) {
+        case COMMON:
+            return highestMetaCommon;
+        case PER_MOD:
+            return highestMetaPerMod;
+        }
+        return 0;
     }
     
-    public static void addFluxPack(int meta, FluxPack fluxpack) {
-        fluxpacks.put(meta, fluxpack);
-        if (highestMeta < meta) {
-            highestMeta = meta;
+    public static void addFluxPack(ItemIndex index, int meta, FluxPack fluxPack) {
+        switch (index) {
+        case COMMON:
+            fluxPacksCommon.put(meta, fluxPack);
+            if (highestMetaCommon < meta) {
+                highestMetaCommon = meta;
+            }
+            break;
+        case PER_MOD:
+            fluxPacksPerMod.put(meta, fluxPack);
+            if (highestMetaPerMod < meta) {
+                highestMetaPerMod = meta;
+            }
         }
     }
     
     public static void reconstructFluxPacks() {
-        new FluxPack(1, 1, SJConfig.fluxpackLeadstoneEnchantable, SJConfig.fluxpackLeadstoneEnchantability, EnumRarity.common, SJConfig.fluxpackLeadstoneEnergyCapacity, SJConfig.fluxpackLeadstoneEnergyInRate, SJConfig.fluxpackLeadstoneEnergyOutRate);
-        new FluxPack(2, 2, SJConfig.fluxpackHardenedEnchantable, SJConfig.fluxpackHardenedEnchantability, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate);
-        new FluxPack(3, 3, SJConfig.fluxpackRedstoneEnchantable, SJConfig.fluxpackRedstoneEnchantability, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate);
-        new FluxPack(4, 4, SJConfig.fluxpackResonantEnchantable, SJConfig.fluxpackResonantEnchantability, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate);
-        new FluxPackArmored(102, 2, SJConfig.fluxpackHardenedEnchantable, SJConfig.fluxpackHardenedEnchantability, EnumRarity.common, SJConfig.fluxpackHardenedEnergyCapacity, SJConfig.fluxpackHardenedEnergyInRate, SJConfig.fluxpackHardenedEnergyOutRate, SJConfig.fluxpackHardenedArmorDisplay, SJConfig.fluxpackHardenedArmorAbsorption, SJConfig.fluxpackHardenedArmorEnergyPerHit);
-        new FluxPackArmored(103, 3, SJConfig.fluxpackRedstoneEnchantable, SJConfig.fluxpackRedstoneEnchantability, EnumRarity.uncommon, SJConfig.fluxpackRedstoneEnergyCapacity, SJConfig.fluxpackRedstoneEnergyInRate, SJConfig.fluxpackRedstoneEnergyOutRate, SJConfig.fluxpackRedstoneArmorDisplay, SJConfig.fluxpackRedstoneArmorAbsorption, SJConfig.fluxpackRedstoneArmorEnergyPerHit);
-        new FluxPackArmored(104, 4, SJConfig.fluxpackResonantEnchantable, SJConfig.fluxpackResonantEnchantability, EnumRarity.rare, SJConfig.fluxpackResonantEnergyCapacity, SJConfig.fluxpackResonantEnergyInRate, SJConfig.fluxpackResonantEnergyOutRate, SJConfig.fluxpackResonantArmorDisplay, SJConfig.fluxpackResonantArmorAbsorption, SJConfig.fluxpackResonantArmorEnergyPerHit);
-        new FluxPackCreative(9001, SJConfig.fluxpackCreativeEnchantable, SJConfig.fluxpackCreativeEnchantability, SJConfig.fluxpackCreativeEnergyOutRate, SJConfig.fluxpackCreativeArmorDisplay, SJConfig.fluxpackCreativeArmorAbsorption);
+        FluxPackFactory.newFluxPack(ItemIndex.COMMON, 9001, null, false);
+        
+        FluxPackFactory.newFluxPack(ItemIndex.PER_MOD, 1, EnumRarity.common, false);
+        FluxPackFactory.newFluxPack(ItemIndex.PER_MOD, 2, EnumRarity.common, true);
+        FluxPackFactory.newFluxPack(ItemIndex.PER_MOD, 3, EnumRarity.uncommon, true);
+        FluxPackFactory.newFluxPack(ItemIndex.PER_MOD, 4, EnumRarity.rare, true);
     }
     
     public String getBaseName() {
@@ -90,10 +115,6 @@ public class FluxPack {
     
     public boolean hasDamageBar() {
         return true;
-    }
-    
-    public int getPlatingMeta() {
-        return this.tier + 119;
     }
     
     public boolean consumesEnergy() {

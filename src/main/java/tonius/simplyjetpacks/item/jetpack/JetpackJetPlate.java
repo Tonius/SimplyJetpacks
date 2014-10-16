@@ -9,23 +9,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
-public class JetpackFluxPlate extends JetpackArmored {
+public class JetpackJetPlate extends JetpackArmored {
     
-    public int energyPerTickOut;
+    public final int energyPerTickOut;
+    public final boolean allowCharger;
     
-    public JetpackFluxPlate(int meta, int tier, boolean enchantable, int enchantability, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, float speedSideways, double speedVerticalHover, double speedVerticalHoverSlow, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit, int energyPerTickOut) {
-        super(meta, tier, enchantable, enchantability, rarity, energyCapacity, energyPerTick, speedVertical, accelVertical, speedSideways, speedVerticalHover, speedVerticalHoverSlow, emergencyHoverMode, armorDisplay, armorAbsorption, energyPerHit);
+    public JetpackJetPlate(int tier, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit, int energyPerTickOut) {
+        super(tier, rarity, energyCapacity, energyPerTick, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, enchantable, enchantability, emergencyHoverMode, armorDisplay, armorAbsorption, energyPerHit);
+        this.allowCharger = energyPerTickOut > 0;
         this.energyPerTickOut = energyPerTickOut;
     }
     
+    @Override
+    public boolean hasArmoredVersion() {
+        return false;
+    }
+    
     public boolean isChargerOn(ItemStack itemStack) {
-        return this.allowCharger() && StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
+        return this.allowCharger && StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
     }
     
     public void toggleCharger(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
@@ -42,23 +48,14 @@ public class JetpackFluxPlate extends JetpackArmored {
         }
     }
     
-    public boolean allowCharger() {
-        return SJConfig.fluxPlateHasCharger;
-    }
-    
     @Override
     public String getBaseName() {
         return "jetpack." + this.tier;
     }
     
     @Override
-    public boolean hasArmoredVersion() {
-        return false;
-    }
-    
-    @Override
     public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
-        if (this.allowCharger() && player.isSneaking()) {
+        if (this.allowCharger && player.isSneaking()) {
             this.toggleCharger(itemStack, player, showInChat);
         } else {
             super.toggle(itemStack, player, showInChat);
@@ -110,7 +107,7 @@ public class JetpackFluxPlate extends JetpackArmored {
     @Override
     public void damageArmor(EntityLivingBase entity, ItemJetpack item, ItemStack armor, DamageSource source, int damage, int slot) {
         if (source.damageType.equals("flux")) {
-            item.receiveEnergy(armor, damage * this.energyPerHit, false);
+            item.receiveEnergy(armor, damage * this.armorEnergyPerHit, false);
         } else {
             super.damageArmor(entity, item, armor, source, damage, slot);
         }

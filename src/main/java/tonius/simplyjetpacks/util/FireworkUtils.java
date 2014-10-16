@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class FireworkUtils {
+public abstract class FireworkUtils {
     
     public static enum FireworkType {
         BALL, LARGE_BALL, STAR, CREEPER, BURST;

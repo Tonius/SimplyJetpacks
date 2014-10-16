@@ -5,8 +5,8 @@ import tonius.simplyjetpacks.item.jetpack.Jetpack;
 
 public class JetpackIcon extends Jetpack {
     
-    public JetpackIcon(int meta) {
-        super(meta, 0, false, 0, EnumRarity.epic, 0, 0, 0, 0, 0, 0, 0, false);
+    public JetpackIcon() {
+        super(0, EnumRarity.epic, 0, 0, 0, 0, 0, 0, 0, false, 0, false);
     }
     
     @Override
@@ -21,6 +21,11 @@ public class JetpackIcon extends Jetpack {
     
     @Override
     public boolean hasDamageBar() {
+        return false;
+    }
+    
+    @Override
+    public boolean hasArmoredVersion() {
         return false;
     }
     

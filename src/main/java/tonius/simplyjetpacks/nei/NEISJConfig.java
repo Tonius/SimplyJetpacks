@@ -7,10 +7,8 @@ public class NEISJConfig implements IConfigureNEI {
     
     @Override
     public void loadConfig() {
-        API.registerRecipeHandler(new ArmoringRecipeHandler());
-        API.registerUsageHandler(new ArmoringRecipeHandler());
-        API.registerRecipeHandler(new DeArmoringRecipeHandler());
-        API.registerUsageHandler(new DeArmoringRecipeHandler());
+        API.registerRecipeHandler(new RecipeHandlerArmoring());
+        API.registerUsageHandler(new RecipeHandlerArmoring());
     }
     
     @Override
@@ -20,7 +18,7 @@ public class NEISJConfig implements IConfigureNEI {
     
     @Override
     public String getVersion() {
-        return "1.0";
+        return "1.1";
     }
     
 }
