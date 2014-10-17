@@ -32,7 +32,7 @@ public class HUDTickHandler {
     
     private static void tickEnd() {
         if (mc.thePlayer != null) {
-            if ((mc.currentScreen == null || SJConfig.showEnergyHUDWhileChatting && mc.currentScreen instanceof GuiChat) && !mc.gameSettings.hideGUI) {
+            if ((mc.currentScreen == null || SJConfig.showEnergyHUDWhileChatting && mc.currentScreen instanceof GuiChat) && !mc.gameSettings.hideGUI && !mc.gameSettings.showDebugInfo) {
                 ItemStack chestplate = mc.thePlayer.getCurrentArmor(2);
                 if (chestplate != null && chestplate.getItem() instanceof IEnergyHUDInfoProvider) {
                     IEnergyHUDInfoProvider provider = (IEnergyHUDInfoProvider) chestplate.getItem();
