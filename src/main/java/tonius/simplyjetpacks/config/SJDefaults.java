@@ -4,6 +4,10 @@ import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
 
 public abstract class SJDefaults {
     
+    // integration
+    public static final boolean enableIntegrationTE = true;
+    public static final boolean enableIntegrationEIO = true;
+    
     // controls
     public static final boolean customControls = false;
     public static final String flyKey = "SPACE";
@@ -26,6 +30,6 @@ public abstract class SJDefaults {
     // crafting
     public static final boolean enableCraftingArmorPlating = true;
     public static final boolean enableCraftingPotatoJetpack = true;
-    public static final boolean enableCraftingFluxJetPlate = true;
+    public static final boolean enableCraftingJetPlate = true;
     
 }

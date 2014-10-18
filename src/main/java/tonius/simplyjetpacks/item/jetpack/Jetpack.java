@@ -274,6 +274,7 @@ public class Jetpack {
     }
     
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, int energyStored) {
+        list.add(StringUtils.getTierText(this.tier));
         list.add(StringUtils.getChargeText(this.tier == 9001, energyStored, this.energyCapacity));
     }
     

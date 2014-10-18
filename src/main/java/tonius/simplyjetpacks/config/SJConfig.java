@@ -28,9 +28,14 @@ public class SJConfig {
     public static Map<Integer, FluxPackDefaults> fluxPackDefaults = new HashMap<Integer, FluxPackDefaults>();
     public static Map<Integer, FluxPackConfig> fluxPackConfigs = new HashMap<Integer, FluxPackConfig>();
     
+    public static final ConfigSection sectionIntegration = new ConfigSection(false, "Integration Settings", "integration");
     public static final ConfigSection sectionControls = new ConfigSection(true, "Controls Settings", "controls");
     public static final ConfigSection sectionGui = new ConfigSection(true, "GUI Settings", "gui");
     public static final ConfigSection sectionCrafting = new ConfigSection(false, "Crafting Settings", "crafting");
+    
+    // integration
+    public static boolean enableIntegrationTE = SJDefaults.enableIntegrationTE;
+    public static boolean enableIntegrationEIO = SJDefaults.enableIntegrationEIO;
     
     // controls
     public static boolean customControls = SJDefaults.customControls;
@@ -54,7 +59,7 @@ public class SJConfig {
     // crafting
     public static boolean enableCraftingArmorPlating = SJDefaults.enableCraftingArmorPlating;
     public static boolean enableCraftingPotatoJetpack = SJDefaults.enableCraftingPotatoJetpack;
-    public static boolean enableCraftingFluxJetPlate = SJDefaults.enableCraftingFluxJetPlate;
+    public static boolean enableCraftingJetPlate = SJDefaults.enableCraftingJetPlate;
     
     private static void initJetpackConfigs() {
         jetpackDefaults.put(0, new JetpackDefaults(1200, 45, 0.9D, 0.5D, null, null, null, null, null, null, null, null, null, null));
@@ -127,6 +132,9 @@ public class SJConfig {
     }
     
     public static void processConfig() {
+        enableIntegrationTE = config.get(sectionIntegration.name, "Thermal Expansion integration", SJDefaults.enableIntegrationTE, "When enabled, Simply Jetpacks will register its Thermal Expansion-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(SJDefaults.enableIntegrationTE);
+        enableIntegrationEIO = config.get(sectionIntegration.name, "Ender IO integration", SJDefaults.enableIntegrationEIO, "When enabled, Simply Jetpacks will register its Ender IO-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(SJDefaults.enableIntegrationEIO);
+        
         customControls = configClient.get(sectionControls.name, "Custom controls", SJDefaults.customControls, "When enabled, the key codes specified here will be used for the fly and descend keys. Otherwise, the vanilla jump and sneak keys will be used.").getBoolean(SJDefaults.customControls);
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", SJDefaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", SJDefaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
@@ -138,7 +146,7 @@ public class SJConfig {
         energyHUDOffsetX = configClient.get(sectionGui.name, "Energy HUD Offset - X", SJDefaults.energyHUDOffsetX, "The energy HUD display will be shifted horizontally by this value. This value may be negative.").getInt(SJDefaults.energyHUDOffsetX);
         energyHUDOffsetY = configClient.get(sectionGui.name, "Energy HUD Offset - Y", SJDefaults.energyHUDOffsetY, "The energy HUD display will be shifted vertically by this value. This value may be negative.").getInt(SJDefaults.energyHUDOffsetY);
         energyHUDPosition = configClient.get(sectionGui.name, "Energy HUD Base Position", SJDefaults.energyHUDPosition, "The base position of the energy HUD on the screen. 0 = top left, 1 = top center, 2 = top right, 3 = left, 4 = right, 5 = bottom left, 6 = bottom right").setMinValue(0).setMaxValue(HUDPosition.values().length - 1).getInt(SJDefaults.energyHUDPosition);
-        energyHUDScale = Math.abs(configClient.get(sectionGui.name, "Energy HUD Scale", SJDefaults.energyHUDScale, "How large the energy HUD will be rendered. Default is 1.0, can be bigger or smaller").setMinValue(0).getDouble(SJDefaults.energyHUDScale));
+        energyHUDScale = Math.abs(configClient.get(sectionGui.name, "Energy HUD Scale", SJDefaults.energyHUDScale, "How large the energy HUD will be rendered. Default is 1.0, can be bigger or smaller").setMinValue(0.001D).getDouble(SJDefaults.energyHUDScale));
         holdShiftForDetails = configClient.get(sectionGui.name, "Hold Shift for Details", SJDefaults.holdShiftForDetails, "When enabled, item details are only shown in the tooltip when holding Shift.").getBoolean(SJDefaults.holdShiftForDetails);
         minimalEnergyHUD = configClient.get(sectionGui.name, "Minimal Energy HUD", SJDefaults.minimalEnergyHUD, "When enabled, only the actual power amounts will be rendered on the energy HUD.").getBoolean(SJDefaults.minimalEnergyHUD);
         showEnergyHUDWhileChatting = configClient.get(sectionGui.name, "Show Energy HUD while chatting", SJDefaults.showEnergyHUDWhileChatting, "When enabled, the energy HUD will display even when the chat window is opened.").getBoolean(SJDefaults.showEnergyHUDWhileChatting);
@@ -146,7 +154,7 @@ public class SJConfig {
         
         enableCraftingArmorPlating = config.get(sectionCrafting.name, "Armor Plating craftable", SJDefaults.enableCraftingArmorPlating, "When enabled, Armor Plating items will be craftable, and thus armored jetpacks are available.").setRequiresMcRestart(true).getBoolean(SJDefaults.enableCraftingArmorPlating);
         enableCraftingPotatoJetpack = config.get(sectionCrafting.name, "Potato Jetpack craftable", SJDefaults.enableCraftingPotatoJetpack, "When enabled, the Potato Jetpack will be craftable.").setRequiresMcRestart(true).getBoolean(SJDefaults.enableCraftingPotatoJetpack);
-        enableCraftingFluxJetPlate = config.get(sectionCrafting.name, "Flux-Infused JetPlate craftable", SJDefaults.enableCraftingFluxJetPlate, "When enabled, the Flux-Infused JetPlate will be craftable.").setRequiresMcRestart(true).getBoolean(SJDefaults.enableCraftingFluxJetPlate);
+        enableCraftingJetPlate = config.get(sectionCrafting.name, "JetPlates craftable", SJDefaults.enableCraftingJetPlate, "When enabled, JetPlates will be craftable.").setRequiresMcRestart(true).getBoolean(SJDefaults.enableCraftingJetPlate);
         
         for (JetpackConfig jc : jetpackConfigs.values()) {
             jc.processConfig(config);

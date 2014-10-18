@@ -106,6 +106,18 @@ public class ItemMeta extends Item {
     
     @Override
     @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack itemStack, int pass) {
+        if (pass == 0) {
+            MetaItem metaItem = this.getMetaItem(itemStack);
+            if (metaItem != null && metaItem.glow) {
+                return true;
+            }
+        }
+        return super.hasEffect(itemStack, pass);
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
         for (int i = 0; i <= this.highestMeta; i++) {
             MetaItem metaItem = this.metaItems.get(i);
@@ -126,11 +138,17 @@ public class ItemMeta extends Item {
         public String name;
         public String[] tooltipLines;
         public EnumRarity rarity;
+        public boolean glow;
         
-        public MetaItem(String name, String[] tooltipLines, EnumRarity rarity) {
+        public MetaItem(String name, String[] tooltipLines, EnumRarity rarity, boolean glow) {
             this.name = name;
             this.tooltipLines = tooltipLines != null ? tooltipLines : new String[0];
             this.rarity = rarity;
+            this.glow = glow;
+        }
+        
+        public MetaItem(String name, String[] tooltipLines, EnumRarity rarity) {
+            this(name, tooltipLines, rarity, false);
         }
         
     }

@@ -73,6 +73,10 @@ public abstract class StringUtils {
         return formatter.format(number);
     }
     
+    public static String getTierText(int tier) {
+        return String.format(translate("tooltip.tier"), tier);
+    }
+    
     public static String getChargeText(boolean infinite, int charge, int total) {
         if (infinite) {
             return LIGHT_GRAY + translate("tooltip.charge.infinite");

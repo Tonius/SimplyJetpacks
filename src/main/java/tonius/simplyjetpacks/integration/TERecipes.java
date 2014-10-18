@@ -3,11 +3,14 @@ package tonius.simplyjetpacks.integration;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 public abstract class TERecipes {
     
     public static void addSmelterRecipe(int energy, ItemStack primaryInput, ItemStack secondaryInput, ItemStack primaryOutput, ItemStack secondaryOutput, int secondaryChance) {
+        SimplyJetpacks.logger.info("Registering TE Induction Smelter recipe");
+        
         NBTTagCompound toSend = new NBTTagCompound();
         
         toSend.setInteger("energy", energy);
@@ -28,6 +31,8 @@ public abstract class TERecipes {
     }
     
     public static void addTransposerFill(int energy, ItemStack input, ItemStack output, FluidStack fluid, boolean reversible) {
+        SimplyJetpacks.logger.info("Registering TE Fluid Transposer fill recipe");
+        
         NBTTagCompound toSend = new NBTTagCompound();
         
         toSend.setInteger("energy", energy);
