@@ -1,12 +1,13 @@
 ----------------------------------
 Version 1.2.0
-(unreleased)
+2014-10-18
 ----------------------------------
 - Added full EnderIO support! This includes EnderIO versions of the jetpacks, flux packs and components.
 - Integration with TE or EIO can be disabled/enabled in the config
 - Changed the structure of the config... again. Mainly the tuning portions of it, make sure to transfer over any edits you did to them if needed.
 - HUD now hides if F3 debug mode is enabled
 - Code refactors and cleanups
+- Note: the item IDs of Creative Jetpack/Flux Packs, Tuberous Jetpacks and Armor Platings have changed. Shouldn't cause any problems, they will just disappear or change into missing textures which you can just delete.
 
 
 
