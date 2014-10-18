@@ -1,0 +1,179 @@
+----------------------------------
+Version 1.2.0
+(unreleased)
+----------------------------------
+- Added full EnderIO support! This includes EnderIO versions of the jetpacks, flux packs and components.
+- Integration with TE or EIO can be disabled/enabled in the config
+- Changed the structure of the config... again. Mainly the tuning portions of it, make sure to transfer over any edits you did to them if needed.
+- HUD now hides if F3 debug mode is enabled
+- Code refactors and cleanups
+
+
+
+----------------------------------
+Version 1.1.4
+2014-10-02
+----------------------------------
+- Removed potentially infinite loop when upgrading jetpacks
+- Fixed Leadstone Jetpack recipe not taking power from used Leadstone Flux Capacitors
+- Recipes that use glass blocks now use Ore Dictionary glass
+
+
+
+----------------------------------
+Version 1.1.3
+2014-09-25
+----------------------------------
+- Fixed the Flux-Infused JetPlate not being craftable with a (partially) charged Flux-Infused Chestplate
+
+
+
+----------------------------------
+Version 1.1.2
+2014-09-24
+----------------------------------
+- Fixed spamming isue in the client console
+
+
+
+----------------------------------
+Version 1.1.1
+2014-09-14
+----------------------------------
+- Added the Mysterious Potato (creative-only). It can do the thing. The thing involves spawners.
+- Mobs can use jetpacks again. Should be less crashy than last time.
+- Enchantability can now be set per jetpack/flux pack
+- Jetpack particles now respect the particles option in the video settings menu
+- Split the config file so that the client-only options are kept separate
+- Fly and descend keys can now be changed using the configs, to be something else than the vanilla jump and sneak keys.
+- Fixed potential memory leak in single player
+- Various code cleanups
+
+
+
+----------------------------------
+Version 1.1.0
+2014-08-16
+----------------------------------
+- Added Flux Packs. These items are worn as chestplates and can charge held items and other worn armor.
+- Added the Flux-Infused JetPlate. Only available when Redstone Arsenal is installed, this is the new final tier of jetpacks. It is basically the Flux-Infused Chestplate, the Resonant Jetpack and the Resonant Flux Pack in one.
+- Hover mode no longer makes the jetpack use less power. Default tuning values have been adjusted to balance this out.
+- Some rebalancing of the default tuning values. If you wish to use these, use the config GUI to reset the tuning values, or delete the config file.
+- Added a NEI plugin to show the 'recipes' for armored jetpacks.
+- Replaced the status chat messages with a new part in the HUD that displays the states of the jetpack engine, hover mode, etc. Chat messages can still be enabled in the config.
+- Updated CoFH API
+
+
+
+----------------------------------
+Version 1.0.1
+2014-08-02
+----------------------------------
+- Fixed a bug in jetpack upgrading recipes
+
+
+
+----------------------------------
+Version 1.0.0
+2014-07-30
+----------------------------------
+- Ported to Minecraft 1.7.10 and Thermal Expansion 4
+- NOT compatible with any previous versions. Pretty much everything changed internally.
+- Added support for the new ingame config GUI system
+- Jetpacks are now meta items. All jetpacks are under the same (internal) item id.
+- Made particles a lot smoother on laggy servers
+- Jetpacks now save everything when upgraded, including on/off state, display names and enchantments
+- Added safety features. Higher tier jetpacks will save their users from falling to their death or into the void. (Configurable)
+- Made jetpack enchantability configurable
+- Renamed Redstone Jetpack to Reinforced Jetpack
+- Slightly altered creative tab icon
+- Some tweaks to the default tuning values
+- Some tweaks to tooltips. Energy level is now always visible. Also added some more info to the rest of the tooltips.
+- Made the energy HUD a lot more configurable
+- LOTS of changes in the format of the language files. It is likely that anything other than English will break. If you want to fix this, please open a pull request.
+- Also a lot of changes to what the texture file names are called. Sorry, texture pack users!
+
+
+
+----------------------------------
+Version 0.3.1.1
+2014-06-30
+----------------------------------
+- Fixed a crash when using a Creative Jetpack and taking damage
+
+
+
+----------------------------------
+Version 0.3.1
+2014-06-27
+----------------------------------
+- Hopefully fixed armored jetpacks sometimes breaking when on low power
+- Fixed possible item dupes with Tinkers' Construct
+- Armored jetpacks use power when getting hit (power usage is configurable)
+- Displaying stored energy no longer changes a jetpack item's damage value. Don't worry, the damage bar still works fine.
+- Fixed a crash when attempting to 'remove' armor from a creative jetpack
+
+
+
+----------------------------------
+Version 0.3.0.0
+2014-05-29
+----------------------------------
+- Added Creative Jetpack. Not Creative as in creative-flight, but as in infinite charge, like the Creative TE items.
+- Added Particle Customizers. They can be used to disable or change the type of particles on specific jetpacks.
+- Jetpack particles from other players can now actually be seen from a distance
+- Jetpacks now also boost sideways and backwards when flying around (it used to only boost forward)
+- Tuberous jetpacks can now be tuned in the configs
+- Added config to disable the "Hold Shift for details"
+- Improved armored jetpack item textures
+- Hopefully fixed a crash with Morph interaction
+- I would call this 0.2.1.0, but it would probably get confused with 0.2.0.1. :V
+
+
+
+----------------------------------
+Version 0.2.0.1
+2014-05-24
+----------------------------------
+- Fixed a small yet annoying bug with the energy HUD
+
+
+
+----------------------------------
+Version 0.2
+2014-05-24
+----------------------------------
+- Added a way to put armor on jetpacks. Refer to the jetpacks' tooltips for more info
+- Added a basic ingame jetpack energy HUD. The HUD's position cannot be changed yet, if this bothers you the HUD can be disabled in the config
+- Small rebalances in thruster and jetpack recipes
+- Jetpacks no longer require a chestplate to be crafted
+- Jetpacks can now be upgraded from any tier to any tier, if the config is not set to force going through the tiers
+- Thrusters can now be used to do high jumps
+- Improved item tooltips
+- Added a config option to invert the hover mode sneaking behavior
+- Added a config option to hide the death warning in Tuberous Jetpacks tooltips
+- Added Russian translation (Thanks to Adaptivity)
+- Various cleanups in the code
+
+
+
+----------------------------------
+Version 0.1.4.1
+2014-05-03
+----------------------------------
+- Attempt to fix crashes with jetpack upgrading recipes in mod workbenches
+
+
+
+----------------------------------
+Version 0.1.4
+2014-05-02
+----------------------------------
+- Mobs are now able to 'use' jetpacks when picking them up
+- Mobs wearing jetpacks will die when flying past the world height limit
+- Added a config option to only allow crafting jetpacks by upgrading previous tiers
+- Tuberous jetpacks are now even more cartoonish
+- Added a config option to disable tuberous jetpack crafting
+- Jetpacks now retain their stored power when upgraded
+- Jetpacks will take the stored power from flux capacitors in crafting
+- Added localization support
