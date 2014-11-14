@@ -72,7 +72,11 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public void switchMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            jetpack.switchMode(itemStack, player, showInChat);
+            if (!player.isSneaking()) {
+                jetpack.switchHoverMode(itemStack, player, showInChat);
+            } else {
+                jetpack.switchEmergencyHoverMode(itemStack, player, showInChat);
+            }
         }
     }
     

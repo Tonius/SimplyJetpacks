@@ -188,15 +188,17 @@ public class Jetpack {
             }
         }
         
-        if (!user.worldObj.isRemote && this.emergencyHoverMode && item.getEnergyStored(armor) > 0 && (!this.isHoverModeOn(armor) || !this.isOn(armor))) {
-            if (user.posY < -5) {
-                this.doEmergencyHoverMode(armor, user);
-            } else if (user instanceof EntityPlayer) {
-                if (!((EntityPlayer) user).capabilities.isCreativeMode && user.fallDistance - 1.2F >= user.getHealth()) {
-                    for (int i = 0; i <= 16; i++) {
-                        if (!user.worldObj.isAirBlock(Math.round((float) user.posX - 0.5F), Math.round((float) user.posY) - i, Math.round((float) user.posZ - 0.5F))) {
-                            this.doEmergencyHoverMode(armor, user);
-                            break;
+        if (!user.worldObj.isRemote && this.emergencyHoverMode && this.isEmergencyHoverModeOn(armor)) {
+            if (item.getEnergyStored(armor) > 0 && (!this.isHoverModeOn(armor) || !this.isOn(armor))) {
+                if (user.posY < -5) {
+                    this.doEmergencyHoverMode(armor, user);
+                } else if (user instanceof EntityPlayer) {
+                    if (!((EntityPlayer) user).capabilities.isCreativeMode && user.fallDistance - 1.2F >= user.getHealth()) {
+                        for (int i = 0; i <= 16; i++) {
+                            if (!user.worldObj.isAirBlock(Math.round((float) user.posX - 0.5F), Math.round((float) user.posY) - i, Math.round((float) user.posZ - 0.5F))) {
+                                this.doEmergencyHoverMode(armor, user);
+                                break;
+                            }
                         }
                     }
                 }
@@ -242,7 +244,7 @@ public class Jetpack {
         return StackUtils.getNBT(itemStack).getBoolean("JetpackHoverModeOn");
     }
     
-    public void switchMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
+    public void switchHoverMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         String msg = "";
         if (this.isHoverModeOn(itemStack)) {
             msg = StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
@@ -252,6 +254,24 @@ public class Jetpack {
             itemStack.stackTagCompound.setBoolean("JetpackHoverModeOn", true);
         }
         if (player != null && player.worldObj.isRemote && showInChat) {
+            player.addChatMessage(new ChatComponentText(msg));
+        }
+    }
+    
+    public boolean isEmergencyHoverModeOn(ItemStack itemStack) {
+        return !StackUtils.getNBT(itemStack).getBoolean("JetpackEmergencyHoverModeOff");
+    }
+    
+    public void switchEmergencyHoverMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
+        String msg = "";
+        if (this.isEmergencyHoverModeOn(itemStack)) {
+            msg = StringUtils.translate("chat.jetpack.hoverMode.emergency") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
+            itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOff", true);
+        } else {
+            msg = StringUtils.translate("chat.jetpack.hoverMode.emergency") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
+            itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOff", false);
+        }
+        if (player != null && player.worldObj.isRemote) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }

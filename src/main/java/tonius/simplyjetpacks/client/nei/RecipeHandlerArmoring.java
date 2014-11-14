@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.nei;
+package tonius.simplyjetpacks.client.nei;
 
 import net.minecraft.item.ItemStack;
 
@@ -15,7 +15,10 @@ import tonius.simplyjetpacks.util.StringUtils;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class RecipeHandlerArmoring extends TemplateRecipeHandler {
     
     public class CachedArmoringRecipe extends CachedRecipe {

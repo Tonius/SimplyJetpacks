@@ -4,10 +4,7 @@ import java.awt.Color;
 
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.util.ColorUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public class EntityColoredSmokeFX extends EntityCustomSmokeFX {
     
     public EntityColoredSmokeFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ, float red, float green, float blue) {

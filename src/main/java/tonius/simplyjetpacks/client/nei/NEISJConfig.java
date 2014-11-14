@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.nei;
+package tonius.simplyjetpacks.client.nei;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;

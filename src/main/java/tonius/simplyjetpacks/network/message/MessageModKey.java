@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.item.IModeSwitchable;
 import tonius.simplyjetpacks.item.IToggleable;
-import tonius.simplyjetpacks.setup.SJKey;
+import tonius.simplyjetpacks.setup.SJControls;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -18,7 +18,7 @@ public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, I
     public MessageModKey() {
     }
     
-    public MessageModKey(SJKey key, boolean showInChat) {
+    public MessageModKey(SJControls key, boolean showInChat) {
         this.keyId = key.ordinal();
         this.showInChat = showInChat;
     }
@@ -42,9 +42,9 @@ public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, I
         if (entityPlayer != null) {
             ItemStack armor = entityPlayer.inventory.armorItemInSlot(2);
             if (armor != null) {
-                if (msg.keyId == SJKey.TOGGLE.ordinal() && armor.getItem() instanceof IToggleable) {
+                if (msg.keyId == SJControls.TOGGLE.ordinal() && armor.getItem() instanceof IToggleable) {
                     ((IToggleable) armor.getItem()).toggle(armor, entityPlayer, msg.showInChat);
-                } else if (msg.keyId == SJKey.MODE.ordinal() && armor.getItem() instanceof IModeSwitchable) {
+                } else if (msg.keyId == SJControls.MODE.ordinal() && armor.getItem() instanceof IModeSwitchable) {
                     ((IModeSwitchable) armor.getItem()).switchMode(armor, entityPlayer, msg.showInChat);
                 }
             }

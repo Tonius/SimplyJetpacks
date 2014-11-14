@@ -79,6 +79,7 @@ simplyjetpacks.chat.enabled=enabled
 simplyjetpacks.chat.disabled=disabled
 simplyjetpacks.chat.jetpack.engine=Jetpack engine
 simplyjetpacks.chat.jetpack.hoverMode=Hover Mode
+simplyjetpacks.chat.jetpack.hoverMode.emergency=Emergency Hover Mode
 simplyjetpacks.chat.jetpack.emergencyHoverMode=User is about to die! Activating hover mode
 simplyjetpacks.chat.fluxpack.charger=Flux Pack charger
 

@@ -21,16 +21,13 @@ import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
 import tonius.simplyjetpacks.network.message.MessageModKey;
-import tonius.simplyjetpacks.setup.SJKey;
+import tonius.simplyjetpacks.setup.SJControls;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public class ClientTickHandler {
     
     private static Minecraft mc = Minecraft.getMinecraft();
@@ -145,10 +142,10 @@ public class ClientTickHandler {
                 ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
                 if (itemStack != null) {
                     if (toggle && itemStack.getItem() instanceof IToggleable) {
-                        PacketHandler.instance.sendToServer(new MessageModKey(SJKey.TOGGLE, SJConfig.enableStateChatMessages));
+                        PacketHandler.instance.sendToServer(new MessageModKey(SJControls.TOGGLE, SJConfig.enableStateChatMessages));
                         ((IToggleable) itemStack.getItem()).toggle(itemStack, mc.thePlayer, SJConfig.enableStateChatMessages);
                     } else if (mode && itemStack.getItem() instanceof IModeSwitchable) {
-                        PacketHandler.instance.sendToServer(new MessageModKey(SJKey.MODE, SJConfig.enableStateChatMessages));
+                        PacketHandler.instance.sendToServer(new MessageModKey(SJControls.MODE, SJConfig.enableStateChatMessages));
                         ((IModeSwitchable) itemStack.getItem()).switchMode(itemStack, mc.thePlayer, SJConfig.enableStateChatMessages);
                     }
                 }

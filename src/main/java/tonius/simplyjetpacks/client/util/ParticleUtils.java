@@ -6,10 +6,7 @@ import tonius.simplyjetpacks.client.particle.EntityColoredSmokeFX;
 import tonius.simplyjetpacks.client.particle.EntityCustomFlameFX;
 import tonius.simplyjetpacks.client.particle.EntityCustomSmokeFX;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public abstract class ParticleUtils {
     
     private static Minecraft mc = Minecraft.getMinecraft();
