@@ -32,17 +32,17 @@ group = "tonius.simplyjetpacks"
 archivesBaseName = "SimplyJetpacks-MC1.7.10"
 
 minecraft {
-    version = "1.7.10-10.13.0.1208"
+    version = "1.7.10-10.13.1.1217"
     runDir = "run"
 }
 
 dependencies {
     // http://files.minecraftforge.net/CodeChickenLib/
-    compile "codechicken:CodeChickenLib:1.7.10-1.1.1.95:dev"
+    compile "codechicken:CodeChickenLib:1.7.10-1.1.1.104:dev"
     
     // http://chickenbones.net/maven
-    compile "codechicken:CodeChickenCore:1.7.10-1.0.2.9:dev"
-    compile "codechicken:NotEnoughItems:1.7.10-1.0.2.15:dev"
+    compile "codechicken:CodeChickenCore:1.7.10-1.0.3.26:dev"
+    compile "codechicken:NotEnoughItems:1.7.10-1.0.3.67:dev"
 }
 
 jar {
