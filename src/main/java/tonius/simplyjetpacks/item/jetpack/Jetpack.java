@@ -165,17 +165,18 @@ public class Jetpack {
                         user.motionY = Math.min(user.motionY + currentAccel, -hoverSpeed);
                     }
                     
+                    float speedSideways = user.isSneaking() ? this.speedSideways * 0.5F : this.speedSideways;
                     if (SyncTracker.isForwardKeyDown(user)) {
-                        user.moveFlying(0, this.speedSideways, this.speedSideways);
+                        user.moveFlying(0, speedSideways, speedSideways);
                     }
                     if (SyncTracker.isBackwardKeyDown(user)) {
-                        user.moveFlying(0, -this.speedSideways, this.speedSideways * 0.8F);
+                        user.moveFlying(0, -speedSideways, speedSideways * 0.8F);
                     }
                     if (SyncTracker.isLeftKeyDown(user)) {
-                        user.moveFlying(this.speedSideways, 0, this.speedSideways);
+                        user.moveFlying(speedSideways, 0, speedSideways);
                     }
                     if (SyncTracker.isRightKeyDown(user)) {
-                        user.moveFlying(-this.speedSideways, 0, this.speedSideways);
+                        user.moveFlying(-speedSideways, 0, speedSideways);
                     }
                     
                     if (!user.worldObj.isRemote) {
