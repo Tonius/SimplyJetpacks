@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.tickhandler.ClientTickHandler;
 import tonius.simplyjetpacks.client.tickhandler.HUDTickHandler;
-import tonius.simplyjetpacks.client.tickhandler.KeyHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -27,7 +26,6 @@ public class ClientProxy extends CommonProxy {
         super.registerHandlers();
         
         FMLCommonHandler.instance().bus().register(new ClientTickHandler());
-        FMLCommonHandler.instance().bus().register(new KeyHandler());
         FMLCommonHandler.instance().bus().register(new HUDTickHandler());
     }
     
