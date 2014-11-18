@@ -2,6 +2,7 @@ package tonius.simplyjetpacks.item;
 
 import java.util.List;
 
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -18,6 +19,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.client.model.ModelJetpack;
+import tonius.simplyjetpacks.client.util.RenderUtils;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackJetPlate;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
@@ -87,6 +91,18 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
             return "item.simplyjetpacks." + jetpack.getBaseName() + this.modType.suffix;
         }
         return super.getUnlocalizedName();
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
+        if (SJConfig.enableJetpackModel) {
+            Jetpack jetpack = this.getJetpack(itemStack);
+            if (jetpack != null && jetpack.useModel) {
+                return RenderUtils.getChestplateModel(entityLiving, ModelJetpack.INSTANCE);
+            }
+        }
+        return super.getArmorModel(entityLiving, itemStack, armorSlot);
     }
     
     @SideOnly(Side.CLIENT)
@@ -184,7 +200,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public String getArmorTexture(ItemStack itemStack, Entity entity, int slot, String type) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + jetpack.getBaseName() + this.modType.suffix + ".png";
+            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + jetpack.getBaseName() + this.modType.suffix + ((SJConfig.enableJetpackModel && jetpack.useModel) ? ".3d" : "") + ".png";
         }
         return null;
     }

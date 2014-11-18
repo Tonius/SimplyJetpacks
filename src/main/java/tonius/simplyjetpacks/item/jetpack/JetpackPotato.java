@@ -20,7 +20,7 @@ import tonius.simplyjetpacks.util.StringUtils;
 public class JetpackPotato extends Jetpack {
     
     public JetpackPotato(int tier, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical) {
-        super(tier, EnumRarity.common, energyCapacity, energyPerTick, speedVertical, accelVertical, 0, 0, 0, false, 0, false);
+        super(tier, EnumRarity.common, false, energyCapacity, energyPerTick, speedVertical, accelVertical, 0, 0, 0, false, 0, false);
     }
     
     @Override

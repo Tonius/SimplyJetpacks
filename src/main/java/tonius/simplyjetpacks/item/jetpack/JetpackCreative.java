@@ -5,7 +5,7 @@ import net.minecraft.item.EnumRarity;
 public class JetpackCreative extends JetpackJetPlate {
     
     public JetpackCreative(double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerTickOut) {
-        super(9001, EnumRarity.epic, 9001, 0, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, enchantable, enchantability, emergencyHoverMode, armorDisplay, armorAbsorption, 0, energyPerTickOut);
+        super(9001, EnumRarity.epic, true, 9001, 0, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, enchantable, enchantability, emergencyHoverMode, armorDisplay, armorAbsorption, 0, energyPerTickOut);
     }
     
     @Override

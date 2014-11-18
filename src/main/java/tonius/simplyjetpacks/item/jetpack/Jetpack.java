@@ -13,6 +13,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tonius.simplyjetpacks.SyncTracker;
+import tonius.simplyjetpacks.config.JetpackConfig;
 import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemIndex;
 import tonius.simplyjetpacks.item.ItemJetpack;
@@ -31,6 +32,7 @@ public class Jetpack {
     
     public final int tier;
     public final EnumRarity rarity;
+    public final boolean useModel;
     
     public final int energyCapacity;
     public final int energyPerTick;
@@ -45,9 +47,10 @@ public class Jetpack {
     public final int enchantability;
     public final boolean emergencyHoverMode;
     
-    public Jetpack(int tier, EnumRarity rarity, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode) {
+    public Jetpack(int tier, EnumRarity rarity, boolean useModel, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode) {
         this.tier = tier;
         this.rarity = rarity;
+        this.useModel = useModel;
         
         this.energyCapacity = energyCapacity;
         this.energyPerTick = energyPerTick;
@@ -100,15 +103,40 @@ public class Jetpack {
     }
     
     public static void reconstructJetpacks() {
-        JetpackFactory.newJetpack(ItemIndex.COMMON, 0, null, false);
+        newJetpack(ItemIndex.COMMON, 0, null, false, false);
         addJetpack(ItemIndex.COMMON, 1, new JetpackIcon());
-        JetpackFactory.newJetpack(ItemIndex.COMMON, 9001, null, false);
+        newJetpack(ItemIndex.COMMON, 9001, null, true, false);
         
-        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 1, EnumRarity.common, true);
-        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 2, EnumRarity.common, true);
-        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 3, EnumRarity.uncommon, true);
-        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 4, EnumRarity.rare, true);
-        JetpackFactory.newJetpack(ItemIndex.PER_MOD, 5, EnumRarity.epic, false);
+        newJetpack(ItemIndex.PER_MOD, 1, EnumRarity.common, true, true);
+        newJetpack(ItemIndex.PER_MOD, 2, EnumRarity.common, true, true);
+        newJetpack(ItemIndex.PER_MOD, 3, EnumRarity.uncommon, true, true);
+        newJetpack(ItemIndex.PER_MOD, 4, EnumRarity.rare, true, true);
+        newJetpack(ItemIndex.PER_MOD, 5, EnumRarity.epic, true, false);
+    }
+    
+    public static void newJetpack(ItemIndex index, int tier, EnumRarity rarity, boolean hasModel, boolean canBeArmored) {
+        JetpackConfig config = SJConfig.jetpackConfigs.get(tier);
+        if (config != null) {
+            Jetpack jetpack;
+            switch (tier) {
+            case 0:
+                jetpack = new JetpackPotato(tier, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical);
+                break;
+            case 5:
+                jetpack = new JetpackJetPlate(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit, config.chargerRate);
+                break;
+            case 9001:
+                jetpack = new JetpackCreative(config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.chargerRate);
+                break;
+            default:
+                jetpack = new Jetpack(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode);
+                if (canBeArmored) {
+                    Jetpack jetpackArmored = new JetpackArmored(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit);
+                    Jetpack.addJetpack(index, tier + Jetpack.ARMORED_META_OFFSET, jetpackArmored);
+                }
+            }
+            Jetpack.addJetpack(index, tier, jetpack);
+        }
     }
     
     public String getBaseName() {

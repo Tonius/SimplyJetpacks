@@ -2,21 +2,30 @@ package tonius.simplyjetpacks.client.model;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
 public class ModelFluxPack extends ModelBiped {
     
-    ModelRenderer energyCell;
+    public static final ModelFluxPack INSTANCE = new ModelFluxPack(1.0F);
+    
+    private ModelRenderer energyCell;
     
     public ModelFluxPack(float scale) {
         super(scale, 0, 64, 64);
         
-        this.energyCell = new ModelRenderer(this, 0, 32);
+        this.bipedBody.showModel = true;
+        this.bipedRightArm.showModel = true;
+        this.bipedLeftArm.showModel = true;
+        this.bipedHead.showModel = false;
+        this.bipedHeadwear.showModel = false;
+        this.bipedRightLeg.showModel = false;
+        this.bipedLeftLeg.showModel = false;
+        
+        this.energyCell = new ModelRenderer(this, 0, 32).setTextureSize(64, 64);
         this.energyCell.addBox(-4F, 1.5F, 2F, 8, 8, 8);
         this.energyCell.setRotationPoint(0F, 0F, 0F);
-        this.energyCell.setTextureSize(64, 64);
         this.energyCell.mirror = true;
         this.setRotation(this.energyCell, 0F, 0F, 0F);
+        
         this.bipedBody.addChild(this.energyCell);
     }
     
@@ -24,11 +33,6 @@ public class ModelFluxPack extends ModelBiped {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
-    }
-    
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        super.render(entity, f, f1, f2, f3, f4, f5);
     }
     
 }

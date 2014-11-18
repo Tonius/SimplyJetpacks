@@ -14,6 +14,9 @@ public abstract class SJDefaults {
     public static final String descendKey = "LSHIFT";
     public static final boolean invertHoverSneakingBehavior = false;
     
+    // aesthetics
+    public static final boolean enableJetpackModel = true;
+    
     // gui
     public static final boolean enableStateChatMessages = false;
     public static final boolean enableEnergyHUD = true;

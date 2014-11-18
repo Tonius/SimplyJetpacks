@@ -11,8 +11,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
+import tonius.simplyjetpacks.config.FluxPackConfig;
+import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemIndex;
+import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
@@ -85,12 +88,31 @@ public class FluxPack {
     }
     
     public static void reconstructFluxPacks() {
-        FluxPackFactory.newFluxPack(ItemIndex.COMMON, 9001, null, false);
+        newFluxPack(ItemIndex.COMMON, 9001, null, false);
         
-        FluxPackFactory.newFluxPack(ItemIndex.PER_MOD, 1, EnumRarity.common, false);
-        FluxPackFactory.newFluxPack(ItemIndex.PER_MOD, 2, EnumRarity.common, true);
-        FluxPackFactory.newFluxPack(ItemIndex.PER_MOD, 3, EnumRarity.uncommon, true);
-        FluxPackFactory.newFluxPack(ItemIndex.PER_MOD, 4, EnumRarity.rare, true);
+        newFluxPack(ItemIndex.PER_MOD, 1, EnumRarity.common, false);
+        newFluxPack(ItemIndex.PER_MOD, 2, EnumRarity.common, true);
+        newFluxPack(ItemIndex.PER_MOD, 3, EnumRarity.uncommon, true);
+        newFluxPack(ItemIndex.PER_MOD, 4, EnumRarity.rare, true);
+    }
+    
+    public static void newFluxPack(ItemIndex index, int tier, EnumRarity rarity, boolean canBeArmored) {
+        FluxPackConfig config = SJConfig.fluxPackConfigs.get(tier);
+        if (config != null) {
+            FluxPack fluxPack;
+            switch (tier) {
+            case 9001:
+                fluxPack = new FluxPackCreative(config.energyOutRate, config.enchantable, config.enchantability, config.armorDisplay, config.armorAbsorption);
+                break;
+            default:
+                fluxPack = new FluxPack(tier, rarity, config.energyCapacity, config.energyInRate, config.energyOutRate, config.enchantable, config.enchantability);
+                if (canBeArmored) {
+                    FluxPack fluxPackArmored = new FluxPackArmored(tier, rarity, config.energyCapacity, config.energyInRate, config.energyOutRate, config.enchantable, config.enchantability, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit);
+                    FluxPack.addFluxPack(index, tier + Jetpack.ARMORED_META_OFFSET, fluxPackArmored);
+                }
+            }
+            FluxPack.addFluxPack(index, tier, fluxPack);
+        }
     }
     
     public String getBaseName() {

@@ -30,6 +30,7 @@ public class SJConfig {
     
     public static final ConfigSection sectionIntegration = new ConfigSection(false, "Integration Settings", "integration");
     public static final ConfigSection sectionControls = new ConfigSection(true, "Controls Settings", "controls");
+    public static final ConfigSection sectionAesthetics = new ConfigSection(true, "Aesthetics Settings", "aesthetics");
     public static final ConfigSection sectionGui = new ConfigSection(true, "GUI Settings", "gui");
     public static final ConfigSection sectionCrafting = new ConfigSection(false, "Crafting Settings", "crafting");
     
@@ -42,6 +43,9 @@ public class SJConfig {
     public static String flyKey = SJDefaults.flyKey;
     public static String descendKey = SJDefaults.descendKey;
     public static boolean invertHoverSneakingBehavior = SJDefaults.invertHoverSneakingBehavior;
+    
+    // aesthetics
+    public static boolean enableJetpackModel = SJDefaults.enableJetpackModel;
     
     // gui
     public static boolean enableStateChatMessages = SJDefaults.enableStateChatMessages;
@@ -139,6 +143,8 @@ public class SJConfig {
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", SJDefaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", SJDefaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
         invertHoverSneakingBehavior = configClient.get(sectionControls.name, "Invert Hover Mode sneaking behavior", SJDefaults.invertHoverSneakingBehavior, "Invert Hover Mode sneaking behavior").getBoolean(SJDefaults.invertHoverSneakingBehavior);
+        
+        enableJetpackModel = configClient.get(sectionAesthetics.name, "Enable Jetpack 3D Model", SJDefaults.enableJetpackModel, "When enabled, worn jetpacks will have a 3D armor model. Otherwise, flat textures will be used.").getBoolean(SJDefaults.enableJetpackModel);
         
         enableStateChatMessages = configClient.get(sectionGui.name, "Enable State Chat Messages", SJDefaults.enableStateChatMessages, "When enabled, switching jetpacks on or off will display chat messages.").getBoolean(SJDefaults.enableStateChatMessages);
         enableEnergyHUD = configClient.get(sectionGui.name, "Enable Energy HUD", SJDefaults.enableEnergyHUD, "When enabled, a HUD that displays your current jetpack's energy level will show.").getBoolean(SJDefaults.enableEnergyHUD);

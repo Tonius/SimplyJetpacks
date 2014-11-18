@@ -140,6 +140,7 @@ simplyjetpacks.config.title=Simply Jetpacks Configuration
 simplyjetpacks.config.integration=Integration Settings
 simplyjetpacks.config.controls=Controls Settings
 simplyjetpacks.config.crafting=Crafting Settings
+simplyjetpacks.config.aesthetics=Aesthetics Settings
 simplyjetpacks.config.gui=GUI Settings
 simplyjetpacks.config.tuningJetpack0=Tuning - Tuberous Jetpack
 simplyjetpacks.config.tuningJetpack1=Tuning - Tier 1 Jetpacks

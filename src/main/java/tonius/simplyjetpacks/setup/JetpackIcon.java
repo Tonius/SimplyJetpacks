@@ -6,7 +6,7 @@ import tonius.simplyjetpacks.item.jetpack.Jetpack;
 public class JetpackIcon extends Jetpack {
     
     public JetpackIcon() {
-        super(0, EnumRarity.epic, 0, 0, 0, 0, 0, 0, 0, false, 0, false);
+        super(0, EnumRarity.epic, false, 0, 0, 0, 0, 0, 0, 0, false, 0, false);
     }
     
     @Override

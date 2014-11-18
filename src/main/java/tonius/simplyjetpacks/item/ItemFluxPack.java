@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.model.ModelFluxPack;
+import tonius.simplyjetpacks.client.util.RenderUtils;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
 import tonius.simplyjetpacks.setup.SJItems;
@@ -81,22 +82,7 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
-        ModelBiped armorModel = new ModelFluxPack(1.0F);
-        armorModel.bipedBody.showModel = true;
-        armorModel.bipedRightArm.showModel = true;
-        armorModel.bipedLeftArm.showModel = true;
-        armorModel.bipedHead.showModel = false;
-        armorModel.bipedHeadwear.showModel = false;
-        armorModel.bipedRightLeg.showModel = false;
-        armorModel.bipedLeftLeg.showModel = false;
-        armorModel.isSneak = entityLiving.isSneaking();
-        armorModel.isRiding = entityLiving.isRiding();
-        armorModel.isChild = entityLiving.isChild();
-        armorModel.heldItemRight = entityLiving.getEquipmentInSlot(0) != null ? 1 : 0;
-        if (entityLiving instanceof EntityPlayer) {
-            armorModel.aimedBow = ((EntityPlayer) entityLiving).getItemInUseDuration() > 2;
-        }
-        return armorModel;
+        return RenderUtils.getChestplateModel(entityLiving, ModelFluxPack.INSTANCE);
     }
     
     @SideOnly(Side.CLIENT)
