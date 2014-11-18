@@ -143,10 +143,8 @@ public class ClientTickHandler {
                 if (itemStack != null) {
                     if (toggle && itemStack.getItem() instanceof IToggleable) {
                         PacketHandler.instance.sendToServer(new MessageModKey(SJControls.TOGGLE, SJConfig.enableStateChatMessages));
-                        ((IToggleable) itemStack.getItem()).toggle(itemStack, mc.thePlayer, SJConfig.enableStateChatMessages);
                     } else if (mode && itemStack.getItem() instanceof IModeSwitchable) {
                         PacketHandler.instance.sendToServer(new MessageModKey(SJControls.MODE, SJConfig.enableStateChatMessages));
-                        ((IModeSwitchable) itemStack.getItem()).switchMode(itemStack, mc.thePlayer, SJConfig.enableStateChatMessages);
                     }
                 }
             }
