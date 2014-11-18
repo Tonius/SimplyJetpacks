@@ -76,7 +76,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public void switchMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            if (!player.isSneaking()) {
+            if (!player.isSneaking() || !jetpack.emergencyHoverMode) {
                 jetpack.switchHoverMode(itemStack, player, showInChat);
             } else {
                 jetpack.switchEmergencyHoverMode(itemStack, player, showInChat);
@@ -200,7 +200,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public String getArmorTexture(ItemStack itemStack, Entity entity, int slot, String type) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + jetpack.getBaseName() + this.modType.suffix + ((SJConfig.enableJetpackModel && jetpack.useModel) ? ".3d" : "") + ".png";
+            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + jetpack.getBaseName() + this.modType.suffix + (SJConfig.enableJetpackModel && jetpack.useModel ? ".3d" : "") + ".png";
         }
         return null;
     }
