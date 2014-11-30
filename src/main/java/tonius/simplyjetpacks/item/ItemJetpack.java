@@ -7,9 +7,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -25,7 +23,6 @@ import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackJetPlate;
 import tonius.simplyjetpacks.setup.SJCreativeTab;
-import tonius.simplyjetpacks.setup.SJItems;
 import tonius.simplyjetpacks.setup.SJItems.ModType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
@@ -126,34 +123,6 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
             return jetpack.rarity;
         }
         return super.getRarity(itemStack);
-    }
-    
-    @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        Jetpack jetpack = this.getJetpack(itemStack);
-        if (jetpack != null) {
-            if (jetpack.hasArmoredVersion() && player.isSneaking()) {
-                if (jetpack.isArmored()) {
-                    jetpack.removeArmor(itemStack, player);
-                    if (!world.isRemote) {
-                        EntityItem item = player.entityDropItem(new ItemStack(SJItems.armorPlatings, 1, jetpack.tier + this.modType.platingOffset), 0.0F);
-                        item.delayBeforeCanPickup = 0;
-                    }
-                } else {
-                    InventoryPlayer inv = player.inventory;
-                    for (int i = 0; i < inv.getSizeInventory(); i++) {
-                        ItemStack currentStack = inv.getStackInSlot(i);
-                        if (currentStack != null && currentStack.getItem() == SJItems.armorPlatings && currentStack.getItemDamage() == jetpack.tier + this.modType.platingOffset) {
-                            inv.decrStackSize(i, 1);
-                            jetpack.applyArmor(itemStack, player);
-                            break;
-                        }
-                    }
-                }
-                return itemStack;
-            }
-        }
-        return super.onItemRightClick(itemStack, world, player);
     }
     
     @Override

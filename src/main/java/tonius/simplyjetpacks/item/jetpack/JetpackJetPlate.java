@@ -25,11 +25,6 @@ public class JetpackJetPlate extends JetpackArmored {
         this.energyPerTickOut = energyPerTickOut;
     }
     
-    @Override
-    public boolean hasArmoredVersion() {
-        return false;
-    }
-    
     public boolean isChargerOn(ItemStack itemStack) {
         return this.allowCharger && StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
     }

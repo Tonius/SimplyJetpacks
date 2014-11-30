@@ -6,9 +6,9 @@ import net.minecraftforge.oredict.RecipeSorter.Category;
 import org.apache.logging.log4j.Logger;
 
 import tonius.simplyjetpacks.config.SJConfig;
+import tonius.simplyjetpacks.crafting.SJUpgradingRecipe;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.setup.SJItems;
-import tonius.simplyjetpacks.setup.SJUpgradingRecipe;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;

@@ -24,11 +24,6 @@ public class FluxPackCreative extends FluxPackArmored {
     }
     
     @Override
-    public boolean hasArmoredVersion() {
-        return false;
-    }
-    
-    @Override
     public boolean consumesEnergy() {
         return false;
     }

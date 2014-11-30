@@ -132,7 +132,7 @@ public class Jetpack {
                 jetpack = new Jetpack(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode);
                 if (canBeArmored) {
                     Jetpack jetpackArmored = new JetpackArmored(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit);
-                    Jetpack.addJetpack(index, tier + Jetpack.ARMORED_META_OFFSET, jetpackArmored);
+                    Jetpack.addJetpack(index, tier + ARMORED_META_OFFSET, jetpackArmored);
                 }
             }
             Jetpack.addJetpack(index, tier, jetpack);
@@ -348,16 +348,6 @@ public class Jetpack {
     
     public void setParticleType(ItemStack jetpack, JetpackParticleType particle) {
         StackUtils.getNBT(jetpack).setInteger("JetpackParticleType", particle.ordinal());
-    }
-    
-    public void applyArmor(ItemStack itemStack, EntityPlayer player) {
-        itemStack.setItemDamage(itemStack.getItemDamage() + ARMORED_META_OFFSET);
-        player.worldObj.playSoundAtEntity(player, "random.anvil_use", 0.8F, 0.9F + player.getRNG().nextFloat() * 0.2F);
-    }
-    
-    public void removeArmor(ItemStack itemStack, EntityPlayer player) {
-        itemStack.setItemDamage(itemStack.getItemDamage() - ARMORED_META_OFFSET);
-        player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
     
     public ArmorProperties getProperties(EntityLivingBase player, ItemJetpack item, ItemStack armor, DamageSource source, double damage, int slot) {

@@ -34,11 +34,6 @@ public class JetpackPotato extends Jetpack {
     }
     
     @Override
-    public boolean hasArmoredVersion() {
-        return false;
-    }
-    
-    @Override
     public void addShiftInformation(ItemStack itemStack, EntityPlayer player, List list) {
         list.add(StringUtils.getEnergyUsageText(this.energyPerTick));
         list.add(StringUtils.getParticlesText(this.getParticleType(itemStack)));

@@ -123,10 +123,6 @@ public class FluxPack {
         return false;
     }
     
-    public boolean hasArmoredVersion() {
-        return this.tier != 1;
-    }
-    
     public boolean isVisible() {
         return true;
     }
@@ -192,16 +188,6 @@ public class FluxPack {
         } else {
             list.add(StringUtils.getShiftText());
         }
-    }
-    
-    public void applyArmor(ItemStack itemStack, EntityPlayer player) {
-        itemStack.setItemDamage(itemStack.getItemDamage() + 100);
-        player.worldObj.playSoundAtEntity(player, "random.anvil_use", 0.8F, 0.9F + player.getRNG().nextFloat() * 0.2F);
-    }
-    
-    public void removeArmor(ItemStack itemStack, EntityPlayer player) {
-        itemStack.setItemDamage(itemStack.getItemDamage() - 100);
-        player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 0.9F + player.getRNG().nextFloat() * 0.2F);
     }
     
     public ArmorProperties getProperties(EntityLivingBase player, ItemFluxPack item, ItemStack armor, DamageSource source, double damage, int slot) {
