@@ -175,7 +175,6 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
     public int getItemEnchantability(ItemStack itemStack) {
         FluxPack fluxpack = this.getFluxPack(itemStack);
         if (fluxpack != null) {
-            System.out.println(fluxpack.enchantability);
             return fluxpack.enchantability;
         }
         return super.getItemEnchantability(itemStack);

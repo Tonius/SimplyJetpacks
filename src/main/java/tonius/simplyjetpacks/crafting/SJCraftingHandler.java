@@ -15,8 +15,6 @@ public class SJCraftingHandler {
     
     @SubscribeEvent
     public void onItemCrafted(ItemCraftedEvent evt) {
-        System.out.println("test");
-        
         if (evt.crafting.getItem() instanceof ItemJetpack) {
             Jetpack jetpackResult = ((ItemJetpack) evt.crafting.getItem()).getJetpack(evt.crafting);
             if (jetpackResult != null && !jetpackResult.isArmored()) {
@@ -25,8 +23,9 @@ public class SJCraftingHandler {
                     if (input != null && input.getItem() instanceof ItemJetpack) {
                         ItemJetpack jetpackInputItem = (ItemJetpack) input.getItem();
                         Jetpack jetpackInput = jetpackInputItem.getJetpack(input);
-                        if (jetpackResult != null && jetpackResult.isArmored()) {
+                        if (jetpackInput != null && jetpackInput.isArmored()) {
                             returnPlating(evt.player, jetpackInput.tier, jetpackInputItem.modType.platingOffset);
+                            break;
                         }
                     }
                 }
@@ -39,8 +38,9 @@ public class SJCraftingHandler {
                     if (input != null && input.getItem() instanceof ItemFluxPack) {
                         ItemFluxPack fluxpackInputItem = (ItemFluxPack) input.getItem();
                         FluxPack fluxpackInput = fluxpackInputItem.getFluxPack(input);
-                        if (fluxpackResult != null && fluxpackResult.isArmored()) {
+                        if (fluxpackInput != null && fluxpackInput.isArmored()) {
                             returnPlating(evt.player, fluxpackInput.tier, fluxpackInputItem.modType.platingOffset);
+                            break;
                         }
                     }
                 }

@@ -200,7 +200,6 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public int getItemEnchantability(ItemStack itemStack) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            System.out.println(jetpack.enchantability);
             return jetpack.enchantability;
         }
         return super.getItemEnchantability(itemStack);

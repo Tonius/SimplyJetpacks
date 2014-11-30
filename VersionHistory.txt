@@ -3,6 +3,7 @@ Version 1.2.1
 (unreleased)
 ----------------------------------
 - Added 3D armor models for the jetpacks. Many thanks to Cybercat and dand0 for providing a model. (There is a config option to switch back to the boring old flat jetpacks.)
+- Adding or removing armor is now done using a crafting grid. This allows armored jetpacks to be auto-crafted. Note that removing armor will only properly return plating if done by a player.
 - Emergency hover mode can be toggled by switching hover mode while sneaking
 - Sneaking while flying slows down sideways flight to half speed
 - Fixed engine/hover controls not working when bound to mouse buttons
