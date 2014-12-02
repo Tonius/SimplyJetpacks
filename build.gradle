@@ -15,13 +15,6 @@ buildscript {
     }
 }
 
-repositories {
-    maven {
-        name = "chickenbones"
-        url = "http://chickenbones.net/maven/"
-    }
-}
-
 apply plugin: 'forge'
 
 version = "1.2.0"
@@ -34,15 +27,6 @@ archivesBaseName = "SimplyJetpacks-MC1.7.10"
 minecraft {
     version = "1.7.10-10.13.1.1217"
     runDir = "run"
-}
-
-dependencies {
-    // http://files.minecraftforge.net/CodeChickenLib/
-    compile "codechicken:CodeChickenLib:1.7.10-1.1.1.104:dev"
-    
-    // http://chickenbones.net/maven
-    compile "codechicken:CodeChickenCore:1.7.10-1.0.3.26:dev"
-    compile "codechicken:NotEnoughItems:1.7.10-1.0.3.67:dev"
 }
 
 jar {
