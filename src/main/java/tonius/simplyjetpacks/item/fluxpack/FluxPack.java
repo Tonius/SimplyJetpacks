@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.config.FluxPackConfig;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemIndex;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
@@ -97,7 +97,7 @@ public class FluxPack {
     }
     
     public static void newFluxPack(ItemIndex index, int tier, EnumRarity rarity, boolean canBeArmored) {
-        FluxPackConfig config = SJConfig.fluxPackConfigs.get(tier);
+        FluxPackConfig config = Config.fluxPackConfigs.get(tier);
         if (config != null) {
             FluxPack fluxPack;
             switch (tier) {

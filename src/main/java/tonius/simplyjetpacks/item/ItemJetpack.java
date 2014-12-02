@@ -19,11 +19,11 @@ import net.minecraftforge.common.ISpecialArmor;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.model.ModelJetpack;
 import tonius.simplyjetpacks.client.util.RenderUtils;
-import tonius.simplyjetpacks.config.SJConfig;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackJetPlate;
-import tonius.simplyjetpacks.setup.SJCreativeTab;
-import tonius.simplyjetpacks.setup.SJItems.ModType;
+import tonius.simplyjetpacks.setup.ModCreativeTab;
+import tonius.simplyjetpacks.setup.ModItems.ModType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
@@ -43,7 +43,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setNoRepair();
-        this.setCreativeTab(SJCreativeTab.tab);
+        this.setCreativeTab(ModCreativeTab.tab);
         this.index = index;
         this.modType = modType;
         this.icons = new IIcon[Jetpack.getHighestMeta(index) + 1];
@@ -93,7 +93,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
-        if (SJConfig.enableJetpackModel) {
+        if (Config.enableJetpackModel) {
             Jetpack jetpack = this.getJetpack(itemStack);
             if (jetpack != null && jetpack.useModel) {
                 return RenderUtils.getChestplateModel(entityLiving, ModelJetpack.INSTANCE);
@@ -169,7 +169,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     public String getArmorTexture(ItemStack itemStack, Entity entity, int slot, String type) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + jetpack.getBaseName() + this.modType.suffix + (SJConfig.enableJetpackModel && jetpack.useModel ? ".3d" : "") + ".png";
+            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + jetpack.getBaseName() + this.modType.suffix + (Config.enableJetpackModel && jetpack.useModel ? ".3d" : "") + ".png";
         }
         return null;
     }

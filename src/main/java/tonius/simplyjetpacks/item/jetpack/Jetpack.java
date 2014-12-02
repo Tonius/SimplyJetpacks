@@ -13,8 +13,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import tonius.simplyjetpacks.SyncTracker;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.config.JetpackConfig;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.ItemIndex;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.setup.JetpackIcon;
@@ -119,7 +119,7 @@ public class Jetpack {
     }
     
     public static void newJetpack(ItemIndex index, int tier, EnumRarity rarity, boolean hasModel, boolean canBeArmored) {
-        JetpackConfig config = SJConfig.jetpackConfigs.get(tier);
+        JetpackConfig config = Config.jetpackConfigs.get(tier);
         if (config != null) {
             Jetpack jetpack;
             switch (tier) {
@@ -320,7 +320,7 @@ public class Jetpack {
     }
     
     public double getHoverSpeed(ItemStack jetpack, EntityLivingBase user) {
-        if (SJConfig.invertHoverSneakingBehavior) {
+        if (Config.invertHoverSneakingBehavior) {
             return SyncTracker.isDescendKeyDown(user) ? this.speedVerticalHoverSlow : this.speedVerticalHover;
         } else {
             return SyncTracker.isDescendKeyDown(user) ? this.speedVerticalHover : this.speedVerticalHoverSlow;

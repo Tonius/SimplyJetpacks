@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import cpw.mods.fml.client.IModGuiFactory;
 
-public class ConfigGuiFactorySJ implements IModGuiFactory {
+public class ConfigGuiFactory implements IModGuiFactory {
     
     @Override
     public void initialize(Minecraft mc) {
@@ -14,7 +14,7 @@ public class ConfigGuiFactorySJ implements IModGuiFactory {
     
     @Override
     public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return ConfigGuiSJ.class;
+        return ConfigGui.class;
     }
     
     @Override

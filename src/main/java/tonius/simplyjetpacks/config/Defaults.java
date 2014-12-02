@@ -2,7 +2,7 @@ package tonius.simplyjetpacks.config;
 
 import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
 
-public abstract class SJDefaults {
+public abstract class Defaults {
     
     // integration
     public static final boolean enableIntegrationTE = true;

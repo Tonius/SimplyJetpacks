@@ -6,19 +6,19 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class SJCreativeTab extends CreativeTabs {
+public class ModCreativeTab extends CreativeTabs {
     
     private static ItemStack display;
-    public static final SJCreativeTab tab = new SJCreativeTab();
+    public static final ModCreativeTab tab = new ModCreativeTab();
     
-    private SJCreativeTab() {
+    private ModCreativeTab() {
         super("tabSimplyJetpacks");
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public Item getTabIconItem() {
-        return SJItems.jetpacksCommon;
+        return ModItems.jetpacksCommon;
     }
     
     @Override

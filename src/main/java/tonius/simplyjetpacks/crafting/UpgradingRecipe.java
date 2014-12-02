@@ -7,16 +7,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
-import tonius.simplyjetpacks.setup.SJItems;
+import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
-public class SJUpgradingRecipe extends ShapedOreRecipe {
+public class UpgradingRecipe extends ShapedOreRecipe {
     
     private IEnergyContainerItem resultItem;
     private int resultMeta;
     
-    public SJUpgradingRecipe(ItemStack result, Object[] recipe) {
+    public UpgradingRecipe(ItemStack result, Object[] recipe) {
         super(result, recipe);
         this.resultItem = (IEnergyContainerItem) result.getItem();
         this.resultMeta = result.getItemDamage();
@@ -38,7 +38,7 @@ public class SJUpgradingRecipe extends ShapedOreRecipe {
                 }
                 if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     addedEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
-                } else if (slotStack.getItem() == SJItems.particleCustomizers) {
+                } else if (slotStack.getItem() == ModItems.particleCustomizers) {
                     particleType = JetpackParticleType.values()[slotStack.getItemDamage()];
                 }
             }

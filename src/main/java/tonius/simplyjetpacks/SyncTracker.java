@@ -6,7 +6,7 @@ import java.util.Map;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import tonius.simplyjetpacks.config.SJConfig;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageConfigSync;
@@ -125,7 +125,7 @@ public class SyncTracker {
     
     @SubscribeEvent
     public void onClientDisconnectedFromServer(ClientDisconnectionFromServerEvent evt) {
-        SJConfig.onConfigChanged("simplyjetpacks");
+        Config.onConfigChanged("simplyjetpacks");
     }
     
 }

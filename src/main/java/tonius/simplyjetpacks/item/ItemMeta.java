@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.setup.SJCreativeTab;
+import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -32,7 +32,7 @@ public class ItemMeta extends Item {
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + fallbackName);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        this.setCreativeTab(SJCreativeTab.tab);
+        this.setCreativeTab(ModCreativeTab.tab);
     }
     
     public MetaItem getMetaItem(ItemStack itemStack) {

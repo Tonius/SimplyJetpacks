@@ -5,10 +5,10 @@ import net.minecraftforge.oredict.RecipeSorter.Category;
 
 import org.apache.logging.log4j.Logger;
 
-import tonius.simplyjetpacks.config.SJConfig;
-import tonius.simplyjetpacks.crafting.SJUpgradingRecipe;
+import tonius.simplyjetpacks.config.Config;
+import tonius.simplyjetpacks.crafting.UpgradingRecipe;
 import tonius.simplyjetpacks.network.PacketHandler;
-import tonius.simplyjetpacks.setup.SJItems;
+import tonius.simplyjetpacks.setup.ModItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -24,7 +24,7 @@ public class SimplyJetpacks {
     public static final String PREFIX = MODID + ".";
     public static final String RESOURCE_PREFIX = MODID + ":";
     public static final String DEPENDENCIES = "after:ThermalExpansion;after:RedstoneArsenal;after:EnderIO";
-    public static final String GUI_FACTORY = "tonius.simplyjetpacks.config.ConfigGuiFactorySJ";
+    public static final String GUI_FACTORY = "tonius.simplyjetpacks.config.ConfigGuiFactory";
     
     @Instance(MODID)
     public static SimplyJetpacks instance;
@@ -38,17 +38,17 @@ public class SimplyJetpacks {
         logger = evt.getModLog();
         logger.info("Starting Simply Jetpacks");
         
-        SJConfig.preInit(evt);
+        Config.preInit(evt);
         
-        RecipeSorter.register(SimplyJetpacks.MODID + ":upgrading", SJUpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
-        SJItems.preInit();
+        RecipeSorter.register(SimplyJetpacks.MODID + ":upgrading", UpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
+        ModItems.preInit();
         
         proxy.registerHandlers();
     }
     
     @EventHandler
     public static void init(FMLInitializationEvent evt) {
-        SJItems.init();
+        ModItems.init();
         PacketHandler.init();
     }
     

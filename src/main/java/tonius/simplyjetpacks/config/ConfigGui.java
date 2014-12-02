@@ -11,9 +11,9 @@ import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.IConfigElement;
 
-public class ConfigGuiSJ extends GuiConfig {
+public class ConfigGui extends GuiConfig {
     
-    public ConfigGuiSJ(GuiScreen parentScreen) {
+    public ConfigGui(GuiScreen parentScreen) {
         super(parentScreen, getConfigElements(parentScreen), SimplyJetpacks.MODID, false, false, StringUtils.translate("config.title"));
     }
     
@@ -21,11 +21,11 @@ public class ConfigGuiSJ extends GuiConfig {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         String prefix = SimplyJetpacks.PREFIX + "config.";
         
-        for (ConfigSection configSection : SJConfig.configSections) {
+        for (Section configSection : Config.configSections) {
             if (configSection.client) {
-                list.add(new ConfigElement<ConfigCategory>(SJConfig.configClient.getCategory(configSection.toLowerCase()).setLanguageKey(prefix + configSection.id)));
+                list.add(new ConfigElement<ConfigCategory>(Config.configClient.getCategory(configSection.toLowerCase()).setLanguageKey(prefix + configSection.id)));
             } else {
-                list.add(new ConfigElement<ConfigCategory>(SJConfig.config.getCategory(configSection.toLowerCase()).setLanguageKey(prefix + configSection.id)));
+                list.add(new ConfigElement<ConfigCategory>(Config.config.getCategory(configSection.toLowerCase()).setLanguageKey(prefix + configSection.id)));
             }
         }
         

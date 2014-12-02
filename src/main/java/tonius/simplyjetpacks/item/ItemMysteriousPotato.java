@@ -13,8 +13,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.setup.SJCreativeTab;
-import tonius.simplyjetpacks.setup.SJItems;
+import tonius.simplyjetpacks.setup.ModCreativeTab;
+import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.util.StringUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,7 +24,7 @@ public class ItemMysteriousPotato extends Item {
     public ItemMysteriousPotato() {
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + "mysteriousPotato");
         this.setTextureName("potato_poisonous");
-        this.setCreativeTab(SJCreativeTab.tab);
+        this.setCreativeTab(ModCreativeTab.tab);
     }
     
     @Override
@@ -67,7 +67,7 @@ public class ItemMysteriousPotato extends Item {
                 equipment.appendTag(new NBTTagCompound());
                 equipment.appendTag(new NBTTagCompound());
                 equipment.appendTag(new NBTTagCompound());
-                equipment.appendTag(SJItems.jetpackPotato.writeToNBT(new NBTTagCompound()));
+                equipment.appendTag(ModItems.jetpackPotato.writeToNBT(new NBTTagCompound()));
                 zombieSpawnProperties.setTag("Equipment", equipment);
                 
                 NBTTagList dropChances = new NBTTagList();

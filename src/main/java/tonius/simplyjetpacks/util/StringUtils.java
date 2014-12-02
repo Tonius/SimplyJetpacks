@@ -7,7 +7,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.input.Keyboard;
 
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.config.SJConfig;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 
 public abstract class StringUtils {
@@ -129,7 +129,7 @@ public abstract class StringUtils {
     
     public static String getHUDEnergyText(String prefix, int percent, int energy) {
         String text = "";
-        if (!SJConfig.minimalEnergyHUD) {
+        if (!Config.minimalEnergyHUD) {
             text += translate("gui.hud." + prefix + ".energy") + ": ";
         }
         if (percent > 0) {
@@ -137,7 +137,7 @@ public abstract class StringUtils {
         } else {
             text += RED + translate("gui.hud.energy.depleted");
         }
-        if (SJConfig.showExactEnergyInHUD) {
+        if (Config.showExactEnergyInHUD) {
             text += " (" + getFormattedNumber(energy) + " RF)";
         }
         return text;
@@ -180,7 +180,7 @@ public abstract class StringUtils {
     }
     
     public static boolean canShowDetails() {
-        return SJConfig.holdShiftForDetails ? isShiftKeyDown() : true;
+        return Config.holdShiftForDetails ? isShiftKeyDown() : true;
     }
     
     public static String translate(String unlocalized) {

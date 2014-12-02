@@ -5,7 +5,7 @@ import net.minecraftforge.common.config.Configuration;
 
 public class FluxPackConfig {
     
-    public final ConfigSection section;
+    public final Section section;
     public final FluxPackDefaults defaults;
     
     public Integer energyCapacity;
@@ -19,7 +19,7 @@ public class FluxPackConfig {
     public Boolean enchantable;
     public Integer enchantability;
     
-    public FluxPackConfig(ConfigSection section, FluxPackDefaults defaults) {
+    public FluxPackConfig(Section section, FluxPackDefaults defaults) {
         this.section = section;
         this.defaults = defaults;
         this.setDefaults();

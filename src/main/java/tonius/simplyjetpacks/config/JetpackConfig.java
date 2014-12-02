@@ -5,7 +5,7 @@ import net.minecraftforge.common.config.Configuration;
 
 public class JetpackConfig {
     
-    public final ConfigSection section;
+    public final Section section;
     public final JetpackDefaults defaults;
     
     public Integer energyCapacity;
@@ -29,7 +29,7 @@ public class JetpackConfig {
     
     public Integer chargerRate;
     
-    public JetpackConfig(ConfigSection section, JetpackDefaults defaults) {
+    public JetpackConfig(Section section, JetpackDefaults defaults) {
         this.section = section;
         this.defaults = defaults;
         this.setDefaults();

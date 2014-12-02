@@ -7,11 +7,11 @@ import tonius.simplyjetpacks.item.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.item.fluxpack.FluxPack;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
-import tonius.simplyjetpacks.setup.SJItems;
+import tonius.simplyjetpacks.setup.ModItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 
-public class SJCraftingHandler {
+public class PlatingReturnHandler {
     
     @SubscribeEvent
     public void onItemCrafted(ItemCraftedEvent evt) {
@@ -50,7 +50,7 @@ public class SJCraftingHandler {
     
     private static void returnPlating(EntityPlayer player, int tier, int platingOffset) {
         if (!player.worldObj.isRemote) {
-            EntityItem item = player.entityDropItem(new ItemStack(SJItems.armorPlatings, 1, tier + platingOffset), 0.0F);
+            EntityItem item = player.entityDropItem(new ItemStack(ModItems.armorPlatings, 1, tier + platingOffset), 0.0F);
             item.delayBeforeCanPickup = 0;
         }
     }

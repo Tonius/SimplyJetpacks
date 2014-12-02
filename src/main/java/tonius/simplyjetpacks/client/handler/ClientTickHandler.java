@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
-import tonius.simplyjetpacks.config.SJConfig;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.IModeSwitchable;
 import tonius.simplyjetpacks.item.IToggleable;
 import tonius.simplyjetpacks.item.ItemJetpack;
@@ -21,7 +21,7 @@ import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
 import tonius.simplyjetpacks.network.message.MessageModKey;
-import tonius.simplyjetpacks.setup.SJControls;
+import tonius.simplyjetpacks.setup.ModControls;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -63,15 +63,15 @@ public class ClientTickHandler {
     }
     
     public static void updateCustomKeybinds() {
-        flyKey = Keyboard.getKeyIndex(SJConfig.flyKey);
-        descendKey = Keyboard.getKeyIndex(SJConfig.descendKey);
+        flyKey = Keyboard.getKeyIndex(Config.flyKey);
+        descendKey = Keyboard.getKeyIndex(Config.descendKey);
     }
     
     private static void tickStart() {
         if (mc.thePlayer != null) {
             boolean flyState;
             boolean descendState;
-            if (SJConfig.customControls) {
+            if (Config.customControls) {
                 flyState = mc.inGameHasFocus && Keyboard.isKeyDown(flyKey);
                 descendState = mc.inGameHasFocus && Keyboard.isKeyDown(descendKey);
             } else {
@@ -142,9 +142,9 @@ public class ClientTickHandler {
                 ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
                 if (itemStack != null) {
                     if (toggle && itemStack.getItem() instanceof IToggleable) {
-                        PacketHandler.instance.sendToServer(new MessageModKey(SJControls.TOGGLE, SJConfig.enableStateChatMessages));
+                        PacketHandler.instance.sendToServer(new MessageModKey(ModControls.TOGGLE, Config.enableStateChatMessages));
                     } else if (mode && itemStack.getItem() instanceof IModeSwitchable) {
-                        PacketHandler.instance.sendToServer(new MessageModKey(SJControls.MODE, SJConfig.enableStateChatMessages));
+                        PacketHandler.instance.sendToServer(new MessageModKey(ModControls.MODE, Config.enableStateChatMessages));
                     }
                 }
             }

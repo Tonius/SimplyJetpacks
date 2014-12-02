@@ -1,16 +1,16 @@
 package tonius.simplyjetpacks.config;
 
-public class ConfigSection {
+public class Section {
     
     public boolean client;
     public String name;
     public String id;
     
-    public ConfigSection(boolean client, String name, String id) {
+    public Section(boolean client, String name, String id) {
         this.client = client;
         this.name = name;
         this.id = id;
-        SJConfig.configSections.add(this);
+        Config.configSections.add(this);
     }
     
     public String toLowerCase() {

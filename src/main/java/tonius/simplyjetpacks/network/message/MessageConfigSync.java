@@ -6,9 +6,9 @@ import java.util.Map.Entry;
 
 import net.minecraft.nbt.NBTTagCompound;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.config.FluxPackConfig;
 import tonius.simplyjetpacks.config.JetpackConfig;
-import tonius.simplyjetpacks.config.SJConfig;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -23,12 +23,12 @@ public class MessageConfigSync implements IMessage, IMessageHandler<MessageConfi
     public void toBytes(ByteBuf buf) {
         NBTTagCompound toSend = new NBTTagCompound();
         
-        for (Entry<Integer, JetpackConfig> e : SJConfig.jetpackConfigs.entrySet()) {
+        for (Entry<Integer, JetpackConfig> e : Config.jetpackConfigs.entrySet()) {
             NBTTagCompound jetpackConfig = new NBTTagCompound();
             e.getValue().writeToNBT(jetpackConfig);
             toSend.setTag("Jetpack" + e.getKey(), jetpackConfig);
         }
-        for (Entry<Integer, FluxPackConfig> e : SJConfig.fluxPackConfigs.entrySet()) {
+        for (Entry<Integer, FluxPackConfig> e : Config.fluxPackConfigs.entrySet()) {
             NBTTagCompound fluxPackConfig = new NBTTagCompound();
             e.getValue().writeToNBT(fluxPackConfig);
             toSend.setTag("FluxPack" + e.getKey(), fluxPackConfig);
@@ -44,11 +44,11 @@ public class MessageConfigSync implements IMessage, IMessageHandler<MessageConfi
     
     @Override
     public IMessage onMessage(MessageConfigSync msg, MessageContext ctx) {
-        for (Entry<Integer, JetpackConfig> e : SJConfig.jetpackConfigs.entrySet()) {
+        for (Entry<Integer, JetpackConfig> e : Config.jetpackConfigs.entrySet()) {
             NBTTagCompound jetpackConfig = msg.recv.getCompoundTag("Jetpack" + e.getKey());
             e.getValue().readFromNBT(jetpackConfig);
         }
-        for (Entry<Integer, FluxPackConfig> e : SJConfig.fluxPackConfigs.entrySet()) {
+        for (Entry<Integer, FluxPackConfig> e : Config.fluxPackConfigs.entrySet()) {
             NBTTagCompound fluxPackConfig = msg.recv.getCompoundTag("FluxPack" + e.getKey());
             e.getValue().readFromNBT(fluxPackConfig);
         }

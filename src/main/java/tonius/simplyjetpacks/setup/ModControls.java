@@ -1,5 +1,5 @@
 package tonius.simplyjetpacks.setup;
 
-public enum SJControls {
+public enum ModControls {
     TOGGLE, MODE
 }
