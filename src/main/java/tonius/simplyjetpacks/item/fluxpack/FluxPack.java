@@ -158,7 +158,7 @@ public class FluxPack {
     }
     
     public boolean isOn(ItemStack itemStack) {
-        return StackUtils.getNBT(itemStack).getBoolean("FluxPackOn");
+        return StackUtils.getNBTBoolean(itemStack, "FluxPackOn", true);
     }
     
     public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
@@ -170,7 +170,7 @@ public class FluxPack {
             msg = StringUtils.translate("chat.fluxpack.charger") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("FluxPackOn", true);
         }
-        if (player != null && player.worldObj.isRemote && showInChat) {
+        if (player != null && showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }

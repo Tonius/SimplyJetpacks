@@ -249,7 +249,7 @@ public class Jetpack {
     }
     
     public boolean isOn(ItemStack itemStack) {
-        return StackUtils.getNBT(itemStack).getBoolean("JetpackOn");
+        return StackUtils.getNBTBoolean(itemStack, "JetpackOn", true);
     }
     
     public JetpackParticleType particleToShow(ItemStack itemStack, ItemJetpack item, EntityLivingBase user) {
@@ -269,13 +269,13 @@ public class Jetpack {
             msg = StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("JetpackOn", true);
         }
-        if (player != null && player.worldObj.isRemote && showInChat) {
+        if (player != null && showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }
     
     public boolean isHoverModeOn(ItemStack itemStack) {
-        return StackUtils.getNBT(itemStack).getBoolean("JetpackHoverModeOn");
+        return StackUtils.getNBTBoolean(itemStack, "JetpackHoverModeOn", false);
     }
     
     public void switchHoverMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
@@ -287,25 +287,25 @@ public class Jetpack {
             msg = StringUtils.translate("chat.jetpack.hoverMode") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
             itemStack.stackTagCompound.setBoolean("JetpackHoverModeOn", true);
         }
-        if (player != null && player.worldObj.isRemote && showInChat) {
+        if (player != null && showInChat) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }
     
     public boolean isEmergencyHoverModeOn(ItemStack itemStack) {
-        return !StackUtils.getNBT(itemStack).getBoolean("JetpackEmergencyHoverModeOff");
+        return StackUtils.getNBTBoolean(itemStack, "JetpackEmergencyHoverModeOn", true);
     }
     
     public void switchEmergencyHoverMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
         String msg = "";
         if (this.isEmergencyHoverModeOn(itemStack)) {
             msg = StringUtils.translate("chat.jetpack.hoverMode.emergency") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
-            itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOff", true);
+            itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOn", false);
         } else {
             msg = StringUtils.translate("chat.jetpack.hoverMode.emergency") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
-            itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOff", false);
+            itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOn", true);
         }
-        if (player != null && player.worldObj.isRemote) {
+        if (player != null) {
             player.addChatMessage(new ChatComponentText(msg));
         }
     }

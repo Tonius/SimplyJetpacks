@@ -12,4 +12,12 @@ public abstract class StackUtils {
         return itemStack.stackTagCompound;
     }
     
+    public static boolean getNBTBoolean(ItemStack itemStack, String tag, boolean fallback) {
+        NBTTagCompound tagCompound = getNBT(itemStack);
+        if (!tagCompound.hasKey(tag)) {
+            tagCompound.setBoolean(tag, fallback);
+        }
+        return tagCompound.getBoolean(tag);
+    }
+    
 }
