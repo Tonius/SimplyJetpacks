@@ -42,12 +42,14 @@ public class Jetpack {
     public final double speedVerticalHover;
     public final double speedVerticalHoverSlow;
     public final float speedSideways;
+    public final float sprintSpeedModifier;
+    public final float sprintEnergyModifier;
     
     public final boolean enchantable;
     public final int enchantability;
     public final boolean emergencyHoverMode;
     
-    public Jetpack(int tier, EnumRarity rarity, boolean useModel, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode) {
+    public Jetpack(int tier, EnumRarity rarity, boolean useModel, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, float sprintSpeedModifier, float sprintEnergyModifier, boolean enchantable, int enchantability, boolean emergencyHoverMode) {
         this.tier = tier;
         this.rarity = rarity;
         this.useModel = useModel;
@@ -60,6 +62,8 @@ public class Jetpack {
         this.speedVerticalHover = speedVerticalHover;
         this.speedVerticalHoverSlow = speedVerticalHoverSlow;
         this.speedSideways = speedSideways;
+        this.sprintSpeedModifier = sprintSpeedModifier;
+        this.sprintEnergyModifier = sprintEnergyModifier;
         
         this.enchantable = enchantable;
         this.enchantability = enchantability;
@@ -123,15 +127,15 @@ public class Jetpack {
                 jetpack = new JetpackPotato(tier, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical);
                 break;
             case 5:
-                jetpack = new JetpackJetPlate(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit, config.chargerRate);
+                jetpack = new JetpackJetPlate(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit, config.chargerRate);
                 break;
             case 9001:
-                jetpack = new JetpackCreative(config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.chargerRate);
+                jetpack = new JetpackCreative(config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.chargerRate);
                 break;
             default:
-                jetpack = new Jetpack(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode);
+                jetpack = new Jetpack(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode);
                 if (canBeArmored) {
-                    Jetpack jetpackArmored = new JetpackArmored(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit);
+                    Jetpack jetpackArmored = new JetpackArmored(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit);
                     Jetpack.addJetpack(index, tier + ARMORED_META_OFFSET, jetpackArmored);
                 }
             }
@@ -176,7 +180,7 @@ public class Jetpack {
             double currentAccel = user.motionY < 0.3D ? this.accelVertical * 2.5 : this.accelVertical;
             
             if (flyKeyDown || hoverMode && !user.onGround) {
-                item.extractEnergy(armor, this.energyPerTick, false);
+                item.extractEnergy(armor, user.isSprinting() ? Math.round(this.energyPerTick * this.sprintEnergyModifier) : this.energyPerTick, false);
                 
                 if (item.getEnergyStored(armor) > 0) {
                     if (flyKeyDown) {
@@ -194,8 +198,9 @@ public class Jetpack {
                     }
                     
                     float speedSideways = user.isSneaking() ? this.speedSideways * 0.5F : this.speedSideways;
+                    float speedForward = user.isSprinting() ? speedSideways * this.sprintSpeedModifier : speedSideways;
                     if (SyncTracker.isForwardKeyDown(user)) {
-                        user.moveFlying(0, speedSideways, speedSideways);
+                        user.moveFlying(0, speedForward, speedForward);
                     }
                     if (SyncTracker.isBackwardKeyDown(user)) {
                         user.moveFlying(0, -speedSideways, speedSideways * 0.8F);

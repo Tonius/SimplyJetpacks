@@ -44,7 +44,7 @@ public class FluxPackArmored extends FluxPack {
         if (source.isUnblockable()) {
             return super.getProperties(player, item, armor, source, damage, slot);
         }
-        int maxAbsorbed = getEnergyPerDamage(armor) > 0 ? 25 * item.getEnergyStored(armor) / getEnergyPerDamage(armor) : 0;
+        int maxAbsorbed = this.getEnergyPerDamage(armor) > 0 ? 25 * item.getEnergyStored(armor) / this.getEnergyPerDamage(armor) : 0;
         // diamond reduction amount = 8
         // 1 / 20 (max armor) = 0.05
         // 8 * 0.05 = 0.4
@@ -61,7 +61,7 @@ public class FluxPackArmored extends FluxPack {
     
     @Override
     public void damageArmor(EntityLivingBase entity, ItemFluxPack item, ItemStack armor, DamageSource source, int damage, int slot) {
-        item.extractEnergy(armor, damage * getEnergyPerDamage(armor), false);
+        item.extractEnergy(armor, damage * this.getEnergyPerDamage(armor), false);
     }
     
 }

@@ -16,6 +16,8 @@ public class JetpackConfig {
     public Double speedVerticalHover;
     public Double speedVerticalHoverSlow;
     public Double speedSideways;
+    public Double sprintSpeedModifier;
+    public Double sprintEnergyModifier;
     
     public Integer armorDisplay;
     public Double armorAbsorption;
@@ -42,6 +44,8 @@ public class JetpackConfig {
         this.speedVerticalHover = this.defaults.speedVerticalHover;
         this.speedVerticalHoverSlow = this.defaults.speedVerticalHoverSlow;
         this.speedSideways = this.defaults.speedSideways;
+        this.sprintSpeedModifier = this.defaults.sprintSpeedModifier;
+        this.sprintEnergyModifier = this.defaults.sprintEnergyModifier;
         
         this.armorDisplay = this.defaults.armorDisplay;
         this.armorAbsorption = this.defaults.armorAbsorption;
@@ -73,6 +77,8 @@ public class JetpackConfig {
         if (this.speedSideways != null) {
             this.speedSideways = config.get(this.section.name, "Sideways Speed", this.defaults.speedSideways, "The speed of the jetpack when flying sideways. This is mostly noticeable in hover mode.").getDouble(this.defaults.speedSideways);
         }
+        this.sprintSpeedModifier = config.get(this.section.name, "Sprint Speed Modifier", this.defaults.sprintSpeedModifier, "How much faster the jetpack will fly forward when sprinting. Setting this to 1.0 will make sprinting have no effect apart from the added speed from vanilla.").getDouble(this.defaults.sprintSpeedModifier);
+        this.sprintEnergyModifier = config.get(this.section.name, "Sprint Energy Modifier", this.defaults.sprintEnergyModifier, "How much more energy the jetpack will use when sprinting. Setting this to 1.0 will make sprinting have no effect on energy usage.").getDouble(this.defaults.sprintEnergyModifier);
         
         if (this.armorDisplay != null) {
             this.armorDisplay = config.get(this.section.name, "Armor Display", this.defaults.armorDisplay, "How powerful the ARMORED version of the jetpack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(this.defaults.armorDisplay);
@@ -119,6 +125,8 @@ public class JetpackConfig {
         if (this.speedSideways != null) {
             tag.setDouble("SpeedSideways", this.speedSideways);
         }
+        tag.setDouble("SprintSpeedModifier", this.sprintSpeedModifier);
+        tag.setDouble("SprintEnergyModifier", this.sprintEnergyModifier);
         
         if (this.armorDisplay != null) {
             tag.setInteger("ArmorDisplay", this.armorDisplay);
@@ -148,6 +156,8 @@ public class JetpackConfig {
         if (this.speedSideways != null) {
             this.speedSideways = tag.getDouble("SpeedSideways");
         }
+        this.sprintSpeedModifier = tag.getDouble("SprintSpeedModifier");
+        this.sprintEnergyModifier = tag.getDouble("SprintEnergyModifier");
         
         if (this.armorDisplay != null) {
             this.armorDisplay = tag.getInteger("ArmorDisplay");

@@ -5,7 +5,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -18,8 +17,8 @@ public class JetpackArmored extends Jetpack {
     public final double armorAbsorption;
     public final int armorEnergyPerHit;
     
-    public JetpackArmored(int tier, EnumRarity rarity, boolean hasModel, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, boolean enchantable, int enchantability, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit) {
-        super(tier, rarity, hasModel, energyCapacity, energyPerTick, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, enchantable, enchantability, emergencyHoverMode);
+    public JetpackArmored(int tier, EnumRarity rarity, boolean hasModel, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, float sprintSpeedModifier, float sprintEnergyModifier, boolean enchantable, int enchantability, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit) {
+        super(tier, rarity, hasModel, energyCapacity, energyPerTick, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, sprintSpeedModifier, sprintEnergyModifier, enchantable, enchantability, emergencyHoverMode);
         this.armorDisplay = armorDisplay;
         this.armorAbsorption = armorAbsorption;
         this.armorEnergyPerHit = energyPerHit;
@@ -45,7 +44,7 @@ public class JetpackArmored extends Jetpack {
         if (source.isUnblockable()) {
             return super.getProperties(player, item, armor, source, damage, slot);
         }
-        int maxAbsorbed = getEnergyPerDamage(armor) > 0 ? 25 * item.getEnergyStored(armor) / getEnergyPerDamage(armor) : 0;
+        int maxAbsorbed = this.getEnergyPerDamage(armor) > 0 ? 25 * item.getEnergyStored(armor) / this.getEnergyPerDamage(armor) : 0;
         // diamond reduction amount = 8
         // 1 / 20 (max armor) = 0.05
         // 8 * 0.05 = 0.4
@@ -62,7 +61,7 @@ public class JetpackArmored extends Jetpack {
     
     @Override
     public void damageArmor(EntityLivingBase entity, ItemJetpack item, ItemStack armor, DamageSource source, int damage, int slot) {
-        item.extractEnergy(armor, damage * getEnergyPerDamage(armor), false);
+        item.extractEnergy(armor, damage * this.getEnergyPerDamage(armor), false);
     }
     
 }
