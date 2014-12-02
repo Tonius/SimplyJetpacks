@@ -39,7 +39,7 @@ public class SJCraftingHandler {
                         ItemFluxPack fluxpackInputItem = (ItemFluxPack) input.getItem();
                         FluxPack fluxpackInput = fluxpackInputItem.getFluxPack(input);
                         if (fluxpackInput != null && fluxpackInput.isArmored()) {
-                            returnPlating(evt.player, fluxpackInput.tier, fluxpackInputItem.modType.platingOffset);
+                            returnPlating(evt.player, fluxpackInput.tier, fluxpackInputItem.modType.platingOffset - 1);
                             break;
                         }
                     }
