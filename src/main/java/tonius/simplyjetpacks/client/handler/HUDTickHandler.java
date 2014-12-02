@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.client.tickhandler;
+package tonius.simplyjetpacks.client.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;

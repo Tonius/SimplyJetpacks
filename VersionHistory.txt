@@ -9,6 +9,7 @@ Version 1.3.0
 - Emergency hover mode can be toggled by switching hover mode while sneaking
 - Sneaking while flying slows down sideways flight to half speed
 - Jetpacks and Flux Packs are now on by default upon creation
+- Sneak-right clicking a jetpack on a Zombie or a Skeleton will force it to wear and use it
 - Fixed armored jetpacks absorbing much more damage than intended. This was making players invincible when they were also wearing other pieces of armor
 - Fixed engine/hover controls not working when bound to mouse buttons
 - Updated CoFH Energy API, and actually include the whole package this time *cough*

@@ -4,8 +4,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import tonius.simplyjetpacks.crafting.SJCraftingHandler;
+import tonius.simplyjetpacks.handler.EntityInteractHandler;
+import tonius.simplyjetpacks.handler.LivingTickHandler;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
-import tonius.simplyjetpacks.tickhandler.LivingTickHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class CommonProxy {
@@ -14,6 +15,7 @@ public class CommonProxy {
         SimplyJetpacks.logger.info("Registering handlers");
         FMLCommonHandler.instance().bus().register(new SyncTracker());
         FMLCommonHandler.instance().bus().register(new SJCraftingHandler());
+        MinecraftForge.EVENT_BUS.register(new EntityInteractHandler());
         MinecraftForge.EVENT_BUS.register(new LivingTickHandler());
     }
     

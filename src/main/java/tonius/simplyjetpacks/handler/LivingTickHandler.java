@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.tickhandler;
+package tonius.simplyjetpacks.handler;
 
 import java.util.Iterator;
 import java.util.Map;
