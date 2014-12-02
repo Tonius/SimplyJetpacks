@@ -102,7 +102,7 @@ public class JetpackJetPlate extends JetpackArmored {
     @Override
     public void damageArmor(EntityLivingBase entity, ItemJetpack item, ItemStack armor, DamageSource source, int damage, int slot) {
         if (source.damageType.equals("flux")) {
-            item.receiveEnergy(armor, damage * this.armorEnergyPerHit, false);
+            item.receiveEnergy(armor, damage * (source.getEntity() == null ? this.armorEnergyPerHit / 2 : getEnergyPerDamage(armor)), false);
         } else {
             super.damageArmor(entity, item, armor, source, damage, slot);
         }
