@@ -22,6 +22,7 @@ import tonius.simplyjetpacks.client.util.RenderUtils;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.item.jetpack.JetpackJetPlate;
+import tonius.simplyjetpacks.item.jetpack.JetpackPotato;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.setup.ModItems.ModType;
 import tonius.simplyjetpacks.util.StackUtils;
@@ -62,21 +63,21 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     }
     
     @Override
-    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            jetpack.toggle(itemStack, player, showInChat);
+            jetpack.toggle(itemStack, player, sneakChangesToggleBehavior, showInChat);
         }
     }
     
     @Override
-    public void switchMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
+    public void switchMode(ItemStack itemStack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
         Jetpack jetpack = this.getJetpack(itemStack);
         if (jetpack != null) {
-            if (!player.isSneaking() || !jetpack.emergencyHoverMode) {
+            if (!player.isSneaking() || !jetpack.emergencyHoverMode || !sneakChangesToggleBehavior) {
                 jetpack.switchHoverMode(itemStack, player, showInChat);
             } else {
-                jetpack.switchEmergencyHoverMode(itemStack, player, showInChat);
+                jetpack.switchEmergencyHoverMode(itemStack, player);
             }
         }
     }
@@ -278,7 +279,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     @Override
     public String getEnergyInfo(ItemStack stack) {
         Jetpack jetpack = this.getJetpack(stack);
-        if (jetpack != null && jetpack.hasDamageBar()) {
+        if (jetpack != null && jetpack.hasDamageBar() && !(jetpack instanceof JetpackPotato)) {
             int energy = this.getEnergyStored(stack);
             int maxEnergy = this.getMaxEnergyStored(stack);
             int percent = (int) Math.ceil((double) energy / (double) maxEnergy * 100D);
@@ -290,7 +291,7 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
     @Override
     public String getStatesInfo(ItemStack stack) {
         Jetpack jetpack = this.getJetpack(stack);
-        if (jetpack != null) {
+        if (jetpack != null && !(jetpack instanceof JetpackPotato)) {
             Boolean engine = jetpack.isOn(stack);
             Boolean hover = jetpack.isHoverModeOn(stack);
             Boolean charger = null;

@@ -74,7 +74,7 @@ public class JetpackPotato extends Jetpack {
     }
     
     @Override
-    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
     }
     
     @Override
@@ -82,7 +82,8 @@ public class JetpackPotato extends Jetpack {
     }
     
     @Override
-    public void switchEmergencyHoverMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
+    public boolean switchEmergencyHoverMode(ItemStack itemStack, EntityPlayer player) {
+        return false;
     }
     
     @Override

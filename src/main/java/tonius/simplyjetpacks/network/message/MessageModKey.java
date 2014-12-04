@@ -13,25 +13,29 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, IMessage> {
     
     public int keyId;
+    public boolean sneakChangesToggleBehavior;
     public boolean showInChat;
     
     public MessageModKey() {
     }
     
-    public MessageModKey(ModControls key, boolean showInChat) {
+    public MessageModKey(ModControls key, boolean sneakChangesToggleBehavior, boolean showInChat) {
         this.keyId = key.ordinal();
+        this.sneakChangesToggleBehavior = sneakChangesToggleBehavior;
         this.showInChat = showInChat;
     }
     
     @Override
     public void fromBytes(ByteBuf buf) {
         this.keyId = buf.readInt();
+        this.sneakChangesToggleBehavior = buf.readBoolean();
         this.showInChat = buf.readBoolean();
     }
     
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(this.keyId);
+        buf.writeBoolean(this.sneakChangesToggleBehavior);
         buf.writeBoolean(this.showInChat);
     }
     
@@ -43,9 +47,9 @@ public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, I
             ItemStack armor = entityPlayer.inventory.armorItemInSlot(2);
             if (armor != null) {
                 if (msg.keyId == ModControls.TOGGLE.ordinal() && armor.getItem() instanceof IToggleable) {
-                    ((IToggleable) armor.getItem()).toggle(armor, entityPlayer, msg.showInChat);
+                    ((IToggleable) armor.getItem()).toggle(armor, entityPlayer, msg.sneakChangesToggleBehavior, msg.showInChat);
                 } else if (msg.keyId == ModControls.MODE.ordinal() && armor.getItem() instanceof IModeSwitchable) {
-                    ((IModeSwitchable) armor.getItem()).switchMode(armor, entityPlayer, msg.showInChat);
+                    ((IModeSwitchable) armor.getItem()).switchMode(armor, entityPlayer, msg.sneakChangesToggleBehavior, msg.showInChat);
                 }
             }
         }

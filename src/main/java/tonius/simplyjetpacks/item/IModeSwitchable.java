@@ -5,5 +5,5 @@ import net.minecraft.item.ItemStack;
 
 public interface IModeSwitchable {
     
-    public void switchMode(ItemStack itemStack, EntityPlayer player, boolean showInChat);
+    public void switchMode(ItemStack itemStack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat);
 }

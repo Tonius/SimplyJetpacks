@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.ItemJetpack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
@@ -49,11 +50,11 @@ public class JetpackJetPlate extends JetpackArmored {
     }
     
     @Override
-    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
-        if (this.allowCharger && player.isSneaking()) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
+        if (this.allowCharger && sneakChangesToggleBehavior && player.isSneaking()) {
             this.toggleCharger(itemStack, player, showInChat);
         } else {
-            super.toggle(itemStack, player, showInChat);
+            super.toggle(itemStack, player, sneakChangesToggleBehavior, showInChat);
         }
     }
     
@@ -88,7 +89,7 @@ public class JetpackJetPlate extends JetpackArmored {
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.1"));
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.fluxpack.description.1"));
         list.add(StringUtils.BRIGHT_GREEN + StringUtils.translate("tooltip.jetpack.description.2"));
-        list.add(StringUtils.BRIGHT_BLUE + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackFluxPlate.controls"));
+        list.add(StringUtils.BRIGHT_BLUE + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackFluxPlate.controls" + (Config.sneakChangesToggleBehavior ? "" : ".command")));
     }
     
     @Override

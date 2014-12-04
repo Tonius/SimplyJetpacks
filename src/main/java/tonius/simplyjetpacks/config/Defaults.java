@@ -13,6 +13,7 @@ public abstract class Defaults {
     public static final String flyKey = "SPACE";
     public static final String descendKey = "LSHIFT";
     public static final boolean invertHoverSneakingBehavior = false;
+    public static final boolean sneakChangesToggleBehavior = true;
     
     // aesthetics
     public static final boolean enableJetpackModel = true;

@@ -142,9 +142,9 @@ public class ClientTickHandler {
                 ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
                 if (itemStack != null) {
                     if (toggle && itemStack.getItem() instanceof IToggleable) {
-                        PacketHandler.instance.sendToServer(new MessageModKey(ModControls.TOGGLE, Config.enableStateChatMessages));
+                        PacketHandler.instance.sendToServer(new MessageModKey(ModControls.TOGGLE, Config.sneakChangesToggleBehavior, Config.enableStateChatMessages));
                     } else if (mode && itemStack.getItem() instanceof IModeSwitchable) {
-                        PacketHandler.instance.sendToServer(new MessageModKey(ModControls.MODE, Config.enableStateChatMessages));
+                        PacketHandler.instance.sendToServer(new MessageModKey(ModControls.MODE, Config.sneakChangesToggleBehavior, Config.enableStateChatMessages));
                     }
                 }
             }

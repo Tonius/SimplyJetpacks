@@ -43,6 +43,7 @@ public class Config {
     public static String flyKey = Defaults.flyKey;
     public static String descendKey = Defaults.descendKey;
     public static boolean invertHoverSneakingBehavior = Defaults.invertHoverSneakingBehavior;
+    public static boolean sneakChangesToggleBehavior = Defaults.sneakChangesToggleBehavior;
     
     // aesthetics
     public static boolean enableJetpackModel = Defaults.enableJetpackModel;
@@ -66,12 +67,17 @@ public class Config {
     public static boolean enableCraftingJetPlate = Defaults.enableCraftingJetPlate;
     
     private static void initJetpackConfigs() {
+        // energyCapacity, energyPerTick, speedVertical,
+        // accelVertical, speedVerticalHover, speedVerticalHoverSlow,
+        // speedSideways, sprintSpeedModifier, sprintEnergyModifier,
+        // armorDisplay, armorAbsorption, armorEnergyPerHit,
+        // enchantable, enchantability, emergencyHoverMode, chargerRate
         jetpackDefaults.put(0, new JetpackDefaults(1200, 45, 0.9D, 0.5D, null, null, null, null, null, null, null, null, null, null, null, null));
         jetpackDefaults.put(1, new JetpackDefaults(25000, 10, 0.22D, 0.1D, 0.18D, 0.14D, 0.0D, null, null, 4, 0.3D, 80, false, 8, false, null));
         jetpackDefaults.put(2, new JetpackDefaults(400000, 50, 0.3D, 0.12D, 0.18D, 0.1D, 0.08D, null, null, 5, 0.4D, 80, false, 11, false, null));
-        jetpackDefaults.put(3, new JetpackDefaults(2000000, 100, 0.48D, 0.13D, 0.34D, 0.03D, 0.14D, 1.5D, 3.0D, 6, 0.5D, 120, true, 14, true, null));
-        jetpackDefaults.put(4, new JetpackDefaults(10000000, 200, 0.8D, 0.14D, 0.4D, 0.005D, 0.19D, 2.0D, 5.0D, 7, 0.6D, 160, true, 17, true, null));
-        jetpackDefaults.put(5, new JetpackDefaults(50000000, 400, 0.9D, 0.15D, 0.45D, 0.0D, 0.21D, 2.5D, 8.0D, 8, 0.8D, 240, true, 20, true, 20000));
+        jetpackDefaults.put(3, new JetpackDefaults(2000000, 100, 0.48D, 0.13D, 0.34D, 0.03D, 0.14D, 1.3D, 3.0D, 6, 0.5D, 120, true, 14, true, null));
+        jetpackDefaults.put(4, new JetpackDefaults(10000000, 200, 0.8D, 0.14D, 0.4D, 0.005D, 0.19D, 1.8D, 5.0D, 7, 0.6D, 160, true, 17, true, null));
+        jetpackDefaults.put(5, new JetpackDefaults(50000000, 400, 0.9D, 0.15D, 0.45D, 0.0D, 0.21D, 2.4D, 8.0D, 8, 0.8D, 240, true, 20, true, 20000));
         
         for (int i : jetpackDefaults.keySet()) {
             jetpackConfigs.put(i, new JetpackConfig(new Section(false, "Tuning - Jetpack tier " + i, "tuningJetpack" + i), jetpackDefaults.get(i)));
@@ -82,6 +88,8 @@ public class Config {
     }
     
     private static void initFluxPackConfigs() {
+        // energyCapacity, energyInRate, energyOutRate, armorDisplay,
+        // armorAbsorption, armorEnergyPerHit, enchantable, enchantability
         fluxPackDefaults.put(1, new FluxPackDefaults(400000, 80, 80, null, null, null, false, 4));
         fluxPackDefaults.put(2, new FluxPackDefaults(2000000, 400, 400, 3, 0.2D, 80, false, 6));
         fluxPackDefaults.put(3, new FluxPackDefaults(10000000, 2000, 2000, 4, 0.3D, 120, true, 8));
@@ -143,6 +151,7 @@ public class Config {
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", Defaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", Defaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
         invertHoverSneakingBehavior = configClient.get(sectionControls.name, "Invert Hover Mode sneaking behavior", Defaults.invertHoverSneakingBehavior, "Invert Hover Mode sneaking behavior").getBoolean(Defaults.invertHoverSneakingBehavior);
+        sneakChangesToggleBehavior = configClient.get(sectionControls.name, "Sneak Changes Toggle Behavior", Defaults.sneakChangesToggleBehavior, "If enabled, when sneaking, the Turn on/off and Switch mode keys will respectively toggle JetPlate chargers and emergency hover mode. If not, use /simplyjetpacks_switch or /sjs to toggle these features.").getBoolean(Defaults.sneakChangesToggleBehavior);
         
         enableJetpackModel = configClient.get(sectionAesthetics.name, "Enable Jetpack 3D Model", Defaults.enableJetpackModel, "When enabled, worn jetpacks will have a 3D armor model. Otherwise, flat textures will be used.").getBoolean(Defaults.enableJetpackModel);
         

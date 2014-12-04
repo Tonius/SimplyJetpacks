@@ -7,6 +7,7 @@ Version 1.3.0
 - Adding or removing armor is now done using a crafting grid. This allows armored jetpacks to be auto-crafted. Note that removing armor will only properly return plating if done by a player.
 - Removed armoring NEI handlers as they are no longer needed
 - Emergency hover mode can be toggled by switching hover mode while sneaking
+- Added /simplyjetpacks_switch (/sjs) command to switch emergency hover and chargers, and a config option to disable secondary actions when sneaking and pressing the toggling keys
 - Sneaking while flying slows down sideways flight to half speed
 - Jetpacks and Flux Packs are now on by default upon creation
 - Sneak-right clicking a jetpack on a Zombie or a Skeleton will force it to wear and use it

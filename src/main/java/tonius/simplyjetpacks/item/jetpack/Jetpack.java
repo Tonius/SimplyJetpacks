@@ -260,7 +260,7 @@ public class Jetpack {
         return null;
     }
     
-    public void toggle(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
+    public void toggle(ItemStack itemStack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
         String msg = "";
         if (this.isOn(itemStack)) {
             msg = StringUtils.translate("chat.jetpack.engine") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
@@ -296,18 +296,22 @@ public class Jetpack {
         return StackUtils.getNBTBoolean(itemStack, "JetpackEmergencyHoverModeOn", true);
     }
     
-    public void switchEmergencyHoverMode(ItemStack itemStack, EntityPlayer player, boolean showInChat) {
-        String msg = "";
-        if (this.isEmergencyHoverModeOn(itemStack)) {
-            msg = StringUtils.translate("chat.jetpack.hoverMode.emergency") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
-            itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOn", false);
-        } else {
-            msg = StringUtils.translate("chat.jetpack.hoverMode.emergency") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
-            itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOn", true);
+    public boolean switchEmergencyHoverMode(ItemStack itemStack, EntityPlayer player) {
+        if (this.emergencyHoverMode) {
+            String msg = "";
+            if (this.isEmergencyHoverModeOn(itemStack)) {
+                msg = StringUtils.translate("chat.jetpack.hoverMode.emergency") + " " + StringUtils.LIGHT_RED + StringUtils.translate("chat.disabled");
+                itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOn", false);
+            } else {
+                msg = StringUtils.translate("chat.jetpack.hoverMode.emergency") + " " + StringUtils.BRIGHT_GREEN + StringUtils.translate("chat.enabled");
+                itemStack.stackTagCompound.setBoolean("JetpackEmergencyHoverModeOn", true);
+            }
+            if (player != null) {
+                player.addChatMessage(new ChatComponentText(msg));
+            }
+            return true;
         }
-        if (player != null) {
-            player.addChatMessage(new ChatComponentText(msg));
-        }
+        return false;
     }
     
     public void setMobMode(ItemStack itemStack) {

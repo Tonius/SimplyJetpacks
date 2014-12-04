@@ -111,7 +111,8 @@ simplyjetpacks.tooltip.particles.3=Rainbow Smoke
 simplyjetpacks.tooltip.jetpack.description.1=Allows flight when active.
 simplyjetpacks.tooltip.jetpack.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.jetpackPotato.warning=Clever! But not survivable.
-simplyjetpacks.tooltip.jetpackFluxPlate.controls=Sneak while activating to activate charger.
+simplyjetpacks.tooltip.jetpackFluxPlate.controls=Sneak while activating to toggle charger.
+simplyjetpacks.tooltip.jetpackFluxPlate.controls.command=Use '/sjs charger' to toggle charger.
 simplyjetpacks.tooltip.fluxpack.description.1=Charges armor and held items when active.
 simplyjetpacks.tooltip.fluxpack.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jetpack's particles.
@@ -135,6 +136,11 @@ simplyjetpacks.gui.nei.recipe.dearmoring.plating=will be returned
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato
 death.attack.jetpackpotato.item=%1$s attempted to fly a potato
+
+simplyjetpacks.command.switch.neither=No jetpack or charger equipped.
+simplyjetpacks.command.switch.noJetpack=No jetpack equipped.
+simplyjetpacks.command.switch.noEmergencyHover=Jetpack does not support emergency hover mode.
+simplyjetpacks.command.switch.noCharger=No charger equipped.
 
 simplyjetpacks.config.title=Simply Jetpacks Configuration
 simplyjetpacks.config.integration=Integration Settings
