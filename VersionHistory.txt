@@ -1,6 +1,6 @@
 ----------------------------------
 Version 1.3.0
-(unreleased)
+2014-12-06
 ----------------------------------
 - Added 3D armor models for the jetpacks. Many thanks to Cybercat and dand0 for providing a model. (There is a config option to switch back to the boring old flat jetpacks.)
 - Added a configurable speed boost when sprinting while flying forward
