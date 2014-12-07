@@ -79,7 +79,8 @@ simplyjetpacks.chat.enabled=已启用
 simplyjetpacks.chat.disabled=已禁用
 simplyjetpacks.chat.jetpack.engine=飞行背包引擎
 simplyjetpacks.chat.jetpack.hoverMode=悬停模式
-simplyjetpacks.chat.jetpack.emergencyHoverMode=近地警报! 紧急启用悬停模式
+simplyjetpacks.chat.jetpack.hoverMode.emergency=紧急悬停模式
+simplyjetpacks.chat.jetpack.emergencyHoverMode=近地警报! 启用紧急悬停模式
 simplyjetpacks.chat.fluxpack.charger=背包充能模式
 
 simplyjetpacks.tooltip.holdShift=按住 %s 来查看详细信息
@@ -107,14 +108,15 @@ simplyjetpacks.tooltip.particles.0=默认
 simplyjetpacks.tooltip.particles.1=无
 simplyjetpacks.tooltip.particles.2=烟雾
 simplyjetpacks.tooltip.particles.3=彩虹烟雾
-simplyjetpacks.tooltip.jetpack.description.1=启动后能使你飞起来
-simplyjetpacks.tooltip.jetpack.description.2=必须穿着在胸甲装备槽内
+simplyjetpacks.tooltip.jetpack.description.1=启用飞行模式能使你飞起来
+simplyjetpacks.tooltip.jetpack.description.2=必须穿着于胸甲装备槽内
 simplyjetpacks.tooltip.jetpackPotato.warning=十分聪明! 但命不久矣
-simplyjetpacks.tooltip.jetpackFluxPlate.controls=穿着后按住
-simplyjetpacks.tooltip.fluxpack.description.1=启用后将会为你的装备以及手持物品充能
-simplyjetpacks.tooltip.fluxpack.description.2=必须穿着在胸甲装备槽内
+simplyjetpacks.tooltip.jetpackFluxPlate.controls=潜行时按下启用键切换至充能模式.
+simplyjetpacks.tooltip.jetpackFluxPlate.controls.command=键入指令"/sjs charger"切换至充能模式.
+simplyjetpacks.tooltip.fluxpack.description.1=启用充能模式将会为你的装备以及手持物品充能
+simplyjetpacks.tooltip.fluxpack.description.2=必须穿着在胸甲装备槽内.
 simplyjetpacks.tooltip.particleCustomizers.description.1=用于改变飞行背包的喷射粒子效果
-simplyjetpacks.tooltip.particleCustomizers.description.2=将它与一个飞行背包合成来改变
+simplyjetpacks.tooltip.particleCustomizers.description.2=将它与一个飞行背包合成来改变.
 simplyjetpacks.tooltip.mysteriousPotato.description=能用来做些什么
 
 simplyjetpacks.gui.hud.jetpack.energy=飞行背包能量
@@ -131,14 +133,20 @@ simplyjetpacks.gui.nei.recipe.dearmoring.input=你的手上
 simplyjetpacks.gui.nei.recipe.dearmoring.output=按住Shift使用将移除护甲板
 simplyjetpacks.gui.nei.recipe.dearmoring.plating=护甲板将被归还至
 
-death.attack.jetpackpotato=%1$s 尝试用土豆飞行
-death.attack.jetpackpotato.player=%1$s 尝试用土豆飞行
-death.attack.jetpackpotato.item=%1$s 尝试用土豆飞行
+death.attack.jetpackpotato=%1$s尝试用土豆飞行
+death.attack.jetpackpotato.player=%1$s尝试用土豆飞行
+death.attack.jetpackpotato.item=%1$s尝试用土豆飞行
+
+simplyjetpacks.command.switch.neither=未装备飞行背包或能源背包.
+simplyjetpacks.command.switch.noJetpack=未装备飞行背包.
+simplyjetpacks.command.switch.noEmergencyHover=此飞行背包不支持紧急悬停模式.
+simplyjetpacks.command.switch.noCharger=未装备能源背包.
 
 simplyjetpacks.config.title=简易飞行背包配置
 simplyjetpacks.config.integration=兼容设定
 simplyjetpacks.config.controls=控制设定
 simplyjetpacks.config.crafting=合成设定
+simplyjetpacks.config.aesthetics=模型设定
 simplyjetpacks.config.gui=界面设定
 simplyjetpacks.config.tuningJetpack0=设置 - 土豆喷气背包
 simplyjetpacks.config.tuningJetpack1=设置 - 铅石飞行背包
