@@ -400,8 +400,13 @@ public abstract class ModItems {
             
             GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO1.copy(), new Object[] { "CIC", "ISI", "IPI", 'S', leatherStrap.copy(), 'C', EIOItems.basicCapacitor.copy(), 'I', "ingotConductiveIron", 'P', "dustCoal" }));
             GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO2.copy(), new Object[] { "DCD", "ISI", "IPI", 'S', fluxpackEIO1.copy(), 'C', EIOItems.basicCapacitor.copy(), 'D', EIOItems.doubleCapacitor.copy(), 'I', "ingotElectricalSteel", 'P', "dustGold" }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO3.copy(), new Object[] { "CBC", "ISI", "IPI", 'S', fluxpackEIO2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'B', EIOItems.capacitorBank.copy(), 'I', "ingotEnergeticAlloy", 'P', EIOItems.pulsatingCrystal.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO4.copy(), new Object[] { "CBC", "ISI", "BPB", 'S', fluxpackEIO3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'B', EIOItems.capacitorBank.copy(), 'I', "ingotPhasedGold", 'P', EIOItems.vibrantCrystal.copy() }));
+            if (EIOItems.capacitorBank != null && EIOItems.capacitorBank.getItem() != null) {
+                GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO3.copy(), new Object[] { "CBC", "ISI", "IPI", 'S', fluxpackEIO2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'B', EIOItems.capacitorBank.copy(), 'I', "ingotEnergeticAlloy", 'P', EIOItems.pulsatingCrystal.copy() }));
+                GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO4.copy(), new Object[] { "BCB", "ISI", "CPC", 'S', fluxpackEIO3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'B', EIOItems.capacitorBankVibrant.copy(), 'I', "ingotPhasedGold", 'P', EIOItems.vibrantCrystal.copy() }));
+            } else {
+                GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO3.copy(), new Object[] { "CBC", "ISI", "IPI", 'S', fluxpackEIO2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'B', EIOItems.capacitorBankOld.copy(), 'I', "ingotEnergeticAlloy", 'P', EIOItems.pulsatingCrystal.copy() }));
+                GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO4.copy(), new Object[] { "CBC", "ISI", "BPB", 'S', fluxpackEIO3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'B', EIOItems.capacitorBankOld.copy(), 'I', "ingotPhasedGold", 'P', EIOItems.vibrantCrystal.copy() }));
+            }
             
             if (Config.enableCraftingArmorPlating) {
                 GameRegistry.addRecipe(new UpgradingRecipe(fluxpackEIO2Armored.copy(), new Object[] { "P", "J", 'J', fluxpackEIO2.copy(), 'P', armorPlatingEIO1.copy() }));

@@ -1,5 +1,6 @@
 package tonius.simplyjetpacks.integration;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.SimplyJetpacks;
@@ -7,7 +8,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class EIOItems {
     
+    public static ItemStack capacitorBankOld;
+    public static ItemStack capacitorBankBasic;
     public static ItemStack capacitorBank;
+    public static ItemStack capacitorBankVibrant;
     public static ItemStack redstoneConduit;
     public static ItemStack energyConduit1;
     public static ItemStack energyConduit2;
@@ -24,7 +28,12 @@ public abstract class EIOItems {
     public static void init() {
         SimplyJetpacks.logger.info("Stealing Ender IO's items");
         
-        capacitorBank = new ItemStack(GameRegistry.findBlock("EnderIO", "blockCapacitorBank"));
+        capacitorBankOld = new ItemStack(GameRegistry.findBlock("EnderIO", "blockCapacitorBank"));
+        
+        Block capBankBlock = GameRegistry.findBlock("EnderIO", "blockCapBank");
+        capacitorBankBasic = new ItemStack(capBankBlock, 1, 1);
+        capacitorBank = new ItemStack(capBankBlock, 1, 2);
+        capacitorBankVibrant = new ItemStack(capBankBlock, 1, 3);
         
         redstoneConduit = new ItemStack(GameRegistry.findItem("EnderIO", "itemRedstoneConduit"), 1, 2);
         
