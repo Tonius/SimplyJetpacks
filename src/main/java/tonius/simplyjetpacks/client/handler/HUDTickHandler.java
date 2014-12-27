@@ -34,6 +34,7 @@ public class HUDTickHandler {
                 if (chestplate != null && chestplate.getItem() instanceof IEnergyHUDInfoProvider) {
                     IEnergyHUDInfoProvider provider = (IEnergyHUDInfoProvider) chestplate.getItem();
                     
+                    GL11.glPushMatrix();
                     mc.entityRenderer.setupOverlayRendering();
                     GL11.glScaled(Config.energyHUDScale, Config.energyHUDScale, 1.0D);
                     
@@ -48,6 +49,8 @@ public class HUDTickHandler {
                             RenderUtils.drawStringAtHUDPosition(statesInfo, HUDPosition.values()[Config.energyHUDPosition], mc.fontRenderer, Config.energyHUDOffsetX, Config.energyHUDOffsetY, Config.energyHUDScale, 0xeeeeee, true, energyInfo != null ? 1 : 0);
                         }
                     }
+                    
+                    GL11.glPopMatrix();
                 }
             }
         }
