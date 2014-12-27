@@ -13,15 +13,13 @@ import tonius.simplyjetpacks.item.ItemFluxPack;
 
 public class FluxPackArmored extends FluxPack {
     
-    public int armorDisplay;
-    public double armorAbsorption;
+    public int armorReduction;
     public int armorEnergyPerHit;
     
-    public FluxPackArmored(int tier, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut, boolean enchantable, int enchantability, int armorDisplay, double armorAbsorption, int energyPerHit) {
+    public FluxPackArmored(int tier, EnumRarity rarity, int energyCapacity, int energyPerTickIn, int energyPerTickOut, boolean enchantable, int enchantability, int armorReduction, int armorEnergyPerHit) {
         super(tier, rarity, energyCapacity, energyPerTickIn, energyPerTickOut, enchantable, enchantability);
-        this.armorDisplay = armorDisplay;
-        this.armorAbsorption = armorAbsorption;
-        this.armorEnergyPerHit = energyPerHit;
+        this.armorReduction = armorReduction;
+        this.armorEnergyPerHit = armorEnergyPerHit;
     }
     
     @Override
@@ -36,7 +34,7 @@ public class FluxPackArmored extends FluxPack {
     
     protected int getEnergyPerDamage(ItemStack stack) {
         int unbreakingLevel = MathHelper.clamp_int(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
-        return this.armorEnergyPerHit * (5 - unbreakingLevel) / 5;
+        return (int) Math.round(this.armorEnergyPerHit * (5 - unbreakingLevel) / 5.0D);
     }
     
     @Override
@@ -44,17 +42,14 @@ public class FluxPackArmored extends FluxPack {
         if (source.isUnblockable()) {
             return super.getProperties(player, item, armor, source, damage, slot);
         }
-        int maxAbsorbed = this.getEnergyPerDamage(armor) > 0 ? 25 * item.getEnergyStored(armor) / this.getEnergyPerDamage(armor) : 0;
-        // diamond reduction amount = 8
-        // 1 / 20 (max armor) = 0.05
-        // 8 * 0.05 = 0.4
-        return new ArmorProperties(0, this.armorAbsorption * 8 * 0.05, maxAbsorbed);
+        int maxAbsorbed = this.getEnergyPerDamage(armor) > 0 ? 25 * (item.getEnergyStored(armor) / this.getEnergyPerDamage(armor)) : 0;
+        return new ArmorProperties(0, 0.75D * (this.armorReduction / 20.0D), maxAbsorbed);
     }
     
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemFluxPack item, ItemStack armor, int slot) {
         if (item.getEnergyStored(armor) >= this.armorEnergyPerHit) {
-            return this.armorDisplay;
+            return this.armorReduction;
         }
         return 0;
     }

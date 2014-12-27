@@ -79,7 +79,7 @@ public class JetpackConfig {
         this.sprintEnergyModifier = config.get(this.section.name, "Sprint Energy Modifier", this.defaults.sprintEnergyModifier, "How much more energy the jetpack will use when sprinting. Setting this to 1.0 will make sprinting have no effect on energy usage.").getDouble(this.defaults.sprintEnergyModifier);
         
         if (this.armorReduction != null) {
-            this.armorReduction = config.get(this.section.name, "Armor Reduction", this.defaults.armorReduction, "How well the ARMORED version of the jetpack can protect the user from damage. The higher the value, the stronger the jetpack's armor will be.").getInt(this.defaults.armorReduction);
+            this.armorReduction = config.get(this.section.name, "Armor Reduction", this.defaults.armorReduction, "How well the ARMORED version of the jetpack can protect the user from damage. The higher the value, the stronger the jetpack's armor will be.").setMinValue(0).setMaxValue(20).getInt(this.defaults.armorReduction);
         }
         if (this.armorEnergyPerHit != null) {
             int armorEnergyPerHit_temp = config.get(this.section.name, "Armor Energy Per Hit", this.defaults.armorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(this.defaults.armorEnergyPerHit);

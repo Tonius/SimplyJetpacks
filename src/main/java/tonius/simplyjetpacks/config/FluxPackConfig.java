@@ -12,8 +12,7 @@ public class FluxPackConfig {
     public Integer energyInRate;
     public Integer energyOutRate;
     
-    public Integer armorDisplay;
-    public Double armorAbsorption;
+    public Integer armorReduction;
     public Integer armorEnergyPerHit;
     
     public Boolean enchantable;
@@ -30,8 +29,7 @@ public class FluxPackConfig {
         this.energyInRate = this.defaults.energyInRate;
         this.energyOutRate = this.defaults.energyOutRate;
         
-        this.armorDisplay = this.defaults.armorDisplay;
-        this.armorAbsorption = this.defaults.armorAbsorption;
+        this.armorReduction = this.defaults.armorReduction;
         this.armorEnergyPerHit = this.defaults.armorEnergyPerHit;
         
         this.enchantable = this.defaults.enchantable;
@@ -49,11 +47,8 @@ public class FluxPackConfig {
             this.energyOutRate = config.get(this.section.name, "Energy Usage per Tick", this.defaults.energyOutRate, "The rate in RF/t at which the flux pack can charge other items.").getInt(this.defaults.energyOutRate);
         }
         
-        if (this.armorDisplay != null) {
-            this.armorDisplay = config.get(this.section.name, "Armor Display", this.defaults.armorDisplay, "How powerful the ARMORED version of the flux pack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(this.defaults.armorDisplay);
-        }
-        if (this.armorAbsorption != null) {
-            this.armorAbsorption = config.get(this.section.name, "Armor Absorption", this.defaults.armorAbsorption, "The relative amount of damage that the ARMORED version of the flux pack will absorb when getting hit.").getDouble(this.defaults.armorAbsorption);
+        if (this.armorReduction != null) {
+            this.armorReduction = config.get(this.section.name, "Armor Reduction", this.defaults.armorReduction, "How well the ARMORED version of the flux pack can protect the user from damage. The higher the value, the stronger the flux pack's armor will be.").setMinValue(0).setMaxValue(20).getInt(this.defaults.armorReduction);
         }
         if (this.armorEnergyPerHit != null) {
             int armorEnergyPerHit_temp = config.get(this.section.name, "Armor Energy Per Hit", this.defaults.armorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the flux pack when getting hit. This value will be multiplied by the amount of damage done.").getInt(this.defaults.armorEnergyPerHit);
@@ -79,8 +74,8 @@ public class FluxPackConfig {
             tag.setInteger("EnergyOutRate", this.energyOutRate);
         }
         
-        if (this.armorDisplay != null) {
-            tag.setInteger("ArmorDisplay", this.armorDisplay);
+        if (this.armorReduction != null) {
+            tag.setInteger("ArmorReduction", this.armorReduction);
         }
     }
     
@@ -95,8 +90,8 @@ public class FluxPackConfig {
             this.energyOutRate = tag.getInteger("EnergyOutRate");
         }
         
-        if (this.armorDisplay != null) {
-            this.armorDisplay = tag.getInteger("ArmorDisplay");
+        if (this.armorReduction != null) {
+            this.armorReduction = tag.getInteger("ArmorReduction");
         }
     }
     

@@ -15,7 +15,6 @@ import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.config.FluxPackConfig;
 import tonius.simplyjetpacks.item.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemIndex;
-import tonius.simplyjetpacks.item.jetpack.Jetpack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
 import cofh.api.energy.IEnergyContainerItem;
@@ -102,13 +101,13 @@ public class FluxPack {
             FluxPack fluxPack;
             switch (tier) {
             case 9001:
-                fluxPack = new FluxPackCreative(config.energyOutRate, config.enchantable, config.enchantability, config.armorDisplay, config.armorAbsorption);
+                fluxPack = new FluxPackCreative(config.energyOutRate, config.enchantable, config.enchantability, config.armorReduction);
                 break;
             default:
                 fluxPack = new FluxPack(tier, rarity, config.energyCapacity, config.energyInRate, config.energyOutRate, config.enchantable, config.enchantability);
                 if (canBeArmored) {
-                    FluxPack fluxPackArmored = new FluxPackArmored(tier, rarity, config.energyCapacity, config.energyInRate, config.energyOutRate, config.enchantable, config.enchantability, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit);
-                    FluxPack.addFluxPack(index, tier + Jetpack.ARMORED_META_OFFSET, fluxPackArmored);
+                    FluxPack fluxPackArmored = new FluxPackArmored(tier, rarity, config.energyCapacity, config.energyInRate, config.energyOutRate, config.enchantable, config.enchantability, config.armorReduction, config.armorEnergyPerHit);
+                    FluxPack.addFluxPack(index, tier + ARMORED_META_OFFSET, fluxPackArmored);
                 }
             }
             FluxPack.addFluxPack(index, tier, fluxPack);

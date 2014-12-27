@@ -70,36 +70,36 @@ public class Config {
         // energyCapacity, energyPerTick, speedVertical,
         // accelVertical, speedVerticalHover, speedVerticalHoverSlow,
         // speedSideways, sprintSpeedModifier, sprintEnergyModifier,
-        // armorDisplay, armorAbsorption, armorEnergyPerHit,
+        // armorReduction, armorEnergyPerHit,
         // enchantable, enchantability, emergencyHoverMode, chargerRate
         jetpackDefaults.put(0, new JetpackDefaults(1200, 45, 0.9D, 0.5D, null, null, null, null, null, null, null, null, null, null, null));
         jetpackDefaults.put(1, new JetpackDefaults(25000, 10, 0.22D, 0.1D, 0.18D, 0.14D, 0.0D, null, null, 5, 80, false, 8, false, null));
-        jetpackDefaults.put(2, new JetpackDefaults(400000, 50, 0.3D, 0.12D, 0.18D, 0.1D, 0.08D, null, null, 5, 80, false, 11, false, null));
-        jetpackDefaults.put(3, new JetpackDefaults(2000000, 100, 0.48D, 0.13D, 0.34D, 0.03D, 0.14D, 1.3D, 3.0D, 6, 120, true, 14, true, null));
+        jetpackDefaults.put(2, new JetpackDefaults(400000, 50, 0.3D, 0.12D, 0.18D, 0.1D, 0.08D, null, null, 6, 80, false, 11, false, null));
+        jetpackDefaults.put(3, new JetpackDefaults(2000000, 100, 0.48D, 0.13D, 0.34D, 0.03D, 0.14D, 1.3D, 3.0D, 7, 120, true, 14, true, null));
         jetpackDefaults.put(4, new JetpackDefaults(10000000, 200, 0.8D, 0.14D, 0.4D, 0.005D, 0.19D, 1.8D, 5.0D, 8, 160, true, 17, true, null));
-        jetpackDefaults.put(5, new JetpackDefaults(50000000, 400, 0.9D, 0.15D, 0.45D, 0.0D, 0.21D, 2.4D, 8.0D, 10, 240, true, 20, true, 20000));
+        jetpackDefaults.put(5, new JetpackDefaults(50000000, 400, 0.9D, 0.15D, 0.45D, 0.0D, 0.21D, 2.4D, 8.0D, 12, 240, true, 20, true, 20000));
         
         for (int i : jetpackDefaults.keySet()) {
             jetpackConfigs.put(i, new JetpackConfig(new Section(false, "Tuning - Jetpack tier " + i, "tuningJetpack" + i), jetpackDefaults.get(i)));
         }
         
-        jetpackDefaults.put(9001, new JetpackDefaults(null, null, 0.9D, 0.15D, 0.45D, 0.0D, 0.21D, 2.5D, null, 10, null, true, 20, true, 20000));
+        jetpackDefaults.put(9001, new JetpackDefaults(null, null, 0.9D, 0.15D, 0.45D, 0.0D, 0.21D, 2.5D, null, 12, null, true, 20, true, 20000));
         jetpackConfigs.put(9001, new JetpackConfig(new Section(false, "Tuning - Creative Jetpack", "tuningJetpackCreative"), jetpackDefaults.get(9001)));
     }
     
     private static void initFluxPackConfigs() {
-        // energyCapacity, energyInRate, energyOutRate, armorDisplay,
-        // armorAbsorption, armorEnergyPerHit, enchantable, enchantability
-        fluxPackDefaults.put(1, new FluxPackDefaults(400000, 80, 80, null, null, null, false, 4));
-        fluxPackDefaults.put(2, new FluxPackDefaults(2000000, 400, 400, 3, 0.2D, 80, false, 6));
-        fluxPackDefaults.put(3, new FluxPackDefaults(10000000, 2000, 2000, 4, 0.3D, 120, true, 8));
-        fluxPackDefaults.put(4, new FluxPackDefaults(50000000, 10000, 10000, 5, 0.4D, 160, true, 10));
+        // energyCapacity, energyInRate, energyOutRate,
+        // armorReduction, armorEnergyPerHit, enchantable, enchantability
+        fluxPackDefaults.put(1, new FluxPackDefaults(400000, 80, 80, null, null, false, 4));
+        fluxPackDefaults.put(2, new FluxPackDefaults(2000000, 400, 400, 5, 80, false, 6));
+        fluxPackDefaults.put(3, new FluxPackDefaults(10000000, 2000, 2000, 6, 120, true, 8));
+        fluxPackDefaults.put(4, new FluxPackDefaults(50000000, 10000, 10000, 7, 160, true, 10));
         
         for (int i : fluxPackDefaults.keySet()) {
             fluxPackConfigs.put(i, new FluxPackConfig(new Section(false, "Tuning - Flux Pack tier " + i, "tuningFluxPack" + i), fluxPackDefaults.get(i)));
         }
         
-        fluxPackDefaults.put(9001, new FluxPackDefaults(null, null, 20000, 6, 0.5D, null, true, 10));
+        fluxPackDefaults.put(9001, new FluxPackDefaults(null, null, 20000, 8, null, true, 10));
         fluxPackConfigs.put(9001, new FluxPackConfig(new Section(false, "Tuning - Creative Flux Pack", "tuningFluxPackCreative"), fluxPackDefaults.get(9001)));
     }
     
