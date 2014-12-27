@@ -535,7 +535,9 @@ public abstract class ModItems {
     
     public enum ModType {
         
-        COMMON("", null), THERMAL_EXPANSION(".te", 0), ENDER_IO(".eio", 10);
+        COMMON("", null),
+        THERMAL_EXPANSION(".te", 0),
+        ENDER_IO(".eio", 10);
         
         public final String suffix;
         public final Integer platingOffset;

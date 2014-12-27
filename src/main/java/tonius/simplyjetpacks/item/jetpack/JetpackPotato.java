@@ -53,7 +53,7 @@ public class JetpackPotato extends Jetpack {
                     Random rand = new Random();
                     user.worldObj.createExplosion(user, user.posX, user.posY, user.posZ, 4.0F, false);
                     for (int i = 0; i <= rand.nextInt(3) + 4; i++) {
-                        ItemStack firework = FireworkUtils.randomFirework();
+                        ItemStack firework = FireworkUtils.getRandomFirework();
                         user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
                     }
                     user.attackEntityFrom(new EntityDamageSource("jetpackpotato", user), 100.0F);

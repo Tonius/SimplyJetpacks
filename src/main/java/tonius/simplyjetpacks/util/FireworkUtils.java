@@ -9,57 +9,83 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public abstract class FireworkUtils {
+public class FireworkUtils {
     
     public static enum FireworkType {
-        BALL, LARGE_BALL, STAR, CREEPER, BURST;
-        private FireworkType() {
-        }
+        BALL,
+        LARGE_BALL,
+        STAR,
+        CREEPER,
+        BURST;
     }
     
     public static class Firework {
         
-        int flight = 0;
-        boolean flicker = false;
-        boolean trail = false;
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-        FireworkType type = FireworkType.BALL;
+        private int flightDuration = 0;
+        private boolean flicker = false;
+        private boolean trail = false;
+        private ArrayList<Integer> colors = new ArrayList<Integer>();
+        private FireworkType type = FireworkType.BALL;
         
-        public Firework setFlight(int duration) {
+        public Firework setFlightDuration(int duration) {
+            
             if (duration >= 0 && duration <= 3) {
-                this.flight = duration;
+                this.flightDuration = duration;
             }
             return this;
         }
         
         public Firework setFlicker() {
+            
             this.flicker = true;
             return this;
         }
         
         public Firework setTrail() {
+            
             this.trail = true;
             return this;
         }
         
         public Firework setType(FireworkType type) {
+            
             this.type = type;
             return this;
         }
         
         public Firework setType(int type) {
+            
             if (type >= 0 && type <= 4) {
-                this.type = FireworkType.values()[type];
+                this.setType(FireworkType.values()[type]);
             }
             return this;
         }
         
         public Firework addColor(int red, int green, int blue) {
+            
             this.colors.add((red << 16) + (green << 8) + blue);
             return this;
         }
         
-        private NBTTagCompound getTags() {
+        public ItemStack getStack() {
+            
+            NBTTagCompound tags = new NBTTagCompound();
+            
+            NBTTagCompound fireworksTag = new NBTTagCompound();
+            NBTTagList explosionsList = new NBTTagList();
+            explosionsList.appendTag(this.getNBT());
+            
+            fireworksTag.setByte("Flight", (byte) this.flightDuration);
+            fireworksTag.setTag("Explosions", explosionsList);
+            tags.setTag("Fireworks", fireworksTag);
+            
+            ItemStack stack = new ItemStack(Items.fireworks);
+            stack.setTagCompound(tags);
+            return stack;
+        }
+        
+        private NBTTagCompound getNBT() {
+            
             NBTTagCompound explosionTag = new NBTTagCompound();
             
             explosionTag.setBoolean("Flicker", this.flicker);
@@ -76,33 +102,21 @@ public abstract class FireworkUtils {
             return explosionTag;
         }
         
-        public ItemStack getStack() {
-            NBTTagCompound tags = new NBTTagCompound();
-            
-            NBTTagCompound fireworksTag = new NBTTagCompound();
-            NBTTagList explosionsList = new NBTTagList();
-            explosionsList.appendTag(this.getTags());
-            
-            fireworksTag.setByte("Flight", (byte) this.flight);
-            fireworksTag.setTag("Explosions", explosionsList);
-            tags.setTag("Fireworks", fireworksTag);
-            
-            ItemStack stack = new ItemStack(Items.fireworks);
-            stack.setTagCompound(tags);
-            return stack;
-        }
-        
     }
     
-    public static ItemStack randomFirework() {
-        Random rand = new Random();
+    public static ItemStack getRandomFirework() {
         
+        Random rand = new Random();
         Firework firework = new Firework();
         
-        switch (rand.nextInt(3)) {
+        int v;
+        switch (v = rand.nextInt(4)) {
+        case 2:
         case 0:
             firework.setFlicker();
-            break;
+            if (v == 0) {
+                break;
+            }
         case 1:
             firework.setTrail();
         }
@@ -111,7 +125,7 @@ public abstract class FireworkUtils {
         firework.setType(type);
         
         for (int i = 0; i <= rand.nextInt(6); i++) {
-            Color randomColor = ColorUtils.getRandomColor();
+            Color randomColor = new Color(Color.HSBtoRGB(rand.nextFloat() * 360, rand.nextFloat() * 0.15F + 0.8F, 0.85F));
             firework.addColor(randomColor.getRed(), randomColor.getGreen(), randomColor.getBlue());
         }
         

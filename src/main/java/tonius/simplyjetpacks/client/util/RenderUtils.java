@@ -63,7 +63,13 @@ public abstract class RenderUtils {
     }
     
     public enum HUDPosition {
-        TOP_LEFT, TOP_CENTER, TOP_RIGHT, LEFT, RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT
+        TOP_LEFT,
+        TOP_CENTER,
+        TOP_RIGHT,
+        LEFT,
+        RIGHT,
+        BOTTOM_LEFT,
+        BOTTOM_RIGHT
     }
     
     public static ModelBiped getChestplateModel(EntityLivingBase entity, ModelBiped model) {

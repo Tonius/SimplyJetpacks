@@ -1,11 +1,13 @@
 package tonius.simplyjetpacks.client.particle;
 
 import java.awt.Color;
+import java.util.Random;
 
 import net.minecraft.world.World;
-import tonius.simplyjetpacks.util.ColorUtils;
 
 public class EntityColoredSmokeFX extends EntityCustomSmokeFX {
+    
+    private static Random rand = new Random();
     
     public EntityColoredSmokeFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ, float red, float green, float blue) {
         super(world, posX, posY, posZ, velX, velY, velZ);
@@ -15,7 +17,7 @@ public class EntityColoredSmokeFX extends EntityCustomSmokeFX {
     }
     
     public static EntityColoredSmokeFX getRainbowSmoke(World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
-        Color color = ColorUtils.getRandomColor();
+        Color color = new Color(Color.HSBtoRGB(rand.nextFloat() * 360, rand.nextFloat() * 0.15F + 0.8F, 0.85F));
         float red = color.getRed() / 255.0F;
         float green = color.getGreen() / 255.0F;
         float blue = color.getBlue() / 255.0F;
