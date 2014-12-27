@@ -19,8 +19,7 @@ public class JetpackConfig {
     public Double sprintSpeedModifier;
     public Double sprintEnergyModifier;
     
-    public Integer armorDisplay;
-    public Double armorAbsorption;
+    public Integer armorReduction;
     public Integer armorEnergyPerHit;
     
     public Boolean enchantable;
@@ -47,8 +46,7 @@ public class JetpackConfig {
         this.sprintSpeedModifier = this.defaults.sprintSpeedModifier;
         this.sprintEnergyModifier = this.defaults.sprintEnergyModifier;
         
-        this.armorDisplay = this.defaults.armorDisplay;
-        this.armorAbsorption = this.defaults.armorAbsorption;
+        this.armorReduction = this.defaults.armorReduction;
         this.armorEnergyPerHit = this.defaults.armorEnergyPerHit;
         
         this.enchantable = this.defaults.enchantable;
@@ -80,11 +78,8 @@ public class JetpackConfig {
         this.sprintSpeedModifier = config.get(this.section.name, "Sprint Speed Modifier", this.defaults.sprintSpeedModifier, "How much faster the jetpack will fly forward when sprinting. Setting this to 1.0 will make sprinting have no effect apart from the added speed from vanilla.").getDouble(this.defaults.sprintSpeedModifier);
         this.sprintEnergyModifier = config.get(this.section.name, "Sprint Energy Modifier", this.defaults.sprintEnergyModifier, "How much more energy the jetpack will use when sprinting. Setting this to 1.0 will make sprinting have no effect on energy usage.").getDouble(this.defaults.sprintEnergyModifier);
         
-        if (this.armorDisplay != null) {
-            this.armorDisplay = config.get(this.section.name, "Armor Display", this.defaults.armorDisplay, "How powerful the ARMORED version of the jetpack will show up on the ingame GUI. The higher the value, the more armor points show up.").getInt(this.defaults.armorDisplay);
-        }
-        if (this.armorAbsorption != null) {
-            this.armorAbsorption = config.get(this.section.name, "Armor Absorption", this.defaults.armorAbsorption, "The relative amount of damage that the ARMORED version of the jetpack will absorb when getting hit.").getDouble(this.defaults.armorAbsorption);
+        if (this.armorReduction != null) {
+            this.armorReduction = config.get(this.section.name, "Armor Reduction", this.defaults.armorReduction, "How well the ARMORED version of the jetpack can protect the user from damage. The higher the value, the stronger the jetpack's armor will be.").getInt(this.defaults.armorReduction);
         }
         if (this.armorEnergyPerHit != null) {
             int armorEnergyPerHit_temp = config.get(this.section.name, "Armor Energy Per Hit", this.defaults.armorEnergyPerHit, "The amount of energy that is consumed from the ARMORED version of the jetpack when getting hit. This value will be multiplied by the amount of damage done.").getInt(this.defaults.armorEnergyPerHit);
@@ -128,8 +123,8 @@ public class JetpackConfig {
         tag.setDouble("SprintSpeedModifier", this.sprintSpeedModifier);
         tag.setDouble("SprintEnergyModifier", this.sprintEnergyModifier);
         
-        if (this.armorDisplay != null) {
-            tag.setInteger("ArmorDisplay", this.armorDisplay);
+        if (this.armorReduction != null) {
+            tag.setInteger("ArmorReduction", this.armorReduction);
         }
         
         if (this.chargerRate != null) {
@@ -159,8 +154,8 @@ public class JetpackConfig {
         this.sprintSpeedModifier = tag.getDouble("SprintSpeedModifier");
         this.sprintEnergyModifier = tag.getDouble("SprintEnergyModifier");
         
-        if (this.armorDisplay != null) {
-            this.armorDisplay = tag.getInteger("ArmorDisplay");
+        if (this.armorReduction != null) {
+            this.armorReduction = tag.getInteger("ArmorReduction");
         }
         
         if (this.chargerRate != null) {

@@ -20,8 +20,8 @@ public class JetpackJetPlate extends JetpackArmored {
     public final int energyPerTickOut;
     public final boolean allowCharger;
     
-    public JetpackJetPlate(int tier, EnumRarity rarity, boolean hasModel, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, float sprintSpeedModifier, float sprintEnergyModifier, boolean enchantable, int enchantability, boolean emergencyHoverMode, int armorDisplay, double armorAbsorption, int energyPerHit, int energyPerTickOut) {
-        super(tier, rarity, hasModel, energyCapacity, energyPerTick, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, sprintSpeedModifier, sprintEnergyModifier, enchantable, enchantability, emergencyHoverMode, armorDisplay, armorAbsorption, energyPerHit);
+    public JetpackJetPlate(int tier, EnumRarity rarity, boolean hasModel, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, float sprintSpeedModifier, float sprintEnergyModifier, boolean enchantable, int enchantability, boolean emergencyHoverMode, int armorReduction, int energyPerHit, int energyPerTickOut) {
+        super(tier, rarity, hasModel, energyCapacity, energyPerTick, speedVertical, accelVertical, speedVerticalHover, speedVerticalHoverSlow, speedSideways, sprintSpeedModifier, sprintEnergyModifier, enchantable, enchantability, emergencyHoverMode, armorReduction, energyPerHit);
         this.allowCharger = energyPerTickOut > 0;
         this.energyPerTickOut = energyPerTickOut;
     }

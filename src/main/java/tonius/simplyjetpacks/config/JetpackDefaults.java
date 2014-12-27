@@ -13,8 +13,7 @@ public class JetpackDefaults {
     public final Double sprintSpeedModifier;
     public final Double sprintEnergyModifier;
     
-    public final Integer armorDisplay;
-    public final Double armorAbsorption;
+    public final Integer armorReduction;
     public final Integer armorEnergyPerHit;
     
     public final Boolean enchantable;
@@ -23,7 +22,7 @@ public class JetpackDefaults {
     
     public final Integer chargerRate;
     
-    public JetpackDefaults(Integer energyCapacity, Integer energyPerTick, Double speedVertical, Double accelVertical, Double speedVerticalHover, Double speedVerticalHoverSlow, Double speedSideways, Double sprintSpeedModifier, Double sprintEnergyModifier, Integer armorDisplay, Double armorAbsorption, Integer armorEnergyPerHit, Boolean enchantable, Integer enchantability, Boolean emergencyHoverMode, Integer chargerRate) {
+    public JetpackDefaults(Integer energyCapacity, Integer energyPerTick, Double speedVertical, Double accelVertical, Double speedVerticalHover, Double speedVerticalHoverSlow, Double speedSideways, Double sprintSpeedModifier, Double sprintEnergyModifier, Integer armorReduction, Integer armorEnergyPerHit, Boolean enchantable, Integer enchantability, Boolean emergencyHoverMode, Integer chargerRate) {
         this.energyCapacity = energyCapacity;
         this.energyPerTick = energyPerTick;
         
@@ -35,8 +34,7 @@ public class JetpackDefaults {
         this.sprintSpeedModifier = sprintSpeedModifier != null ? sprintSpeedModifier : 1.0D;
         this.sprintEnergyModifier = sprintEnergyModifier != null ? sprintEnergyModifier : 1.0D;
         
-        this.armorDisplay = armorDisplay;
-        this.armorAbsorption = armorAbsorption;
+        this.armorReduction = armorReduction;
         this.armorEnergyPerHit = armorEnergyPerHit;
         
         this.enchantable = enchantable;

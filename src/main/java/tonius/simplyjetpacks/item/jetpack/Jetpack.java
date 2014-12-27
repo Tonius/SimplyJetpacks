@@ -127,15 +127,15 @@ public class Jetpack {
                 jetpack = new JetpackPotato(tier, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical);
                 break;
             case 5:
-                jetpack = new JetpackJetPlate(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit, config.chargerRate);
+                jetpack = new JetpackJetPlate(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorReduction, config.armorEnergyPerHit, config.chargerRate);
                 break;
             case 9001:
-                jetpack = new JetpackCreative(config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.chargerRate);
+                jetpack = new JetpackCreative(config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorReduction, config.chargerRate);
                 break;
             default:
                 jetpack = new Jetpack(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode);
                 if (canBeArmored) {
-                    Jetpack jetpackArmored = new JetpackArmored(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorDisplay, config.armorAbsorption, config.armorEnergyPerHit);
+                    Jetpack jetpackArmored = new JetpackArmored(tier, rarity, hasModel, config.energyCapacity, config.energyPerTick, config.speedVertical, config.accelVertical, config.speedVerticalHover, config.speedVerticalHoverSlow, config.speedSideways.floatValue(), config.sprintSpeedModifier.floatValue(), config.sprintEnergyModifier.floatValue(), config.enchantable, config.enchantability, config.emergencyHoverMode, config.armorReduction, config.armorEnergyPerHit);
                     Jetpack.addJetpack(index, tier + ARMORED_META_OFFSET, jetpackArmored);
                 }
             }
