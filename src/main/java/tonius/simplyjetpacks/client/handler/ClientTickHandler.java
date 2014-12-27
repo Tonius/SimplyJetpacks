@@ -135,8 +135,8 @@ public class ClientTickHandler {
     
     @SubscribeEvent
     public void onKey(InputEvent evt) {
-        boolean toggle = keyToggle.getIsKeyPressed();
-        boolean mode = keyMode.getIsKeyPressed();
+        boolean toggle = keyToggle.isPressed();
+        boolean mode = keyMode.isPressed();
         if (toggle || mode) {
             if (mc.inGameHasFocus) {
                 ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
