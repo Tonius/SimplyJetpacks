@@ -2,6 +2,7 @@
 Version 1.3.2
 (unreleased)
 ----------------------------------
+- Fixed major bug in jetpack armor that could nullify armor values
 - Fixed energy HUD scale affecting other mod HUDs
 
 

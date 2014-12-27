@@ -36,7 +36,7 @@ public class JetpackArmored extends Jetpack {
     
     protected int getEnergyPerDamage(ItemStack stack) {
         int unbreakingLevel = MathHelper.clamp_int(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
-        return this.armorEnergyPerHit * (5 - unbreakingLevel) / 5;
+        return (int) Math.round(this.armorEnergyPerHit * (5 - unbreakingLevel) / 5.0D);
     }
     
     @Override
@@ -44,11 +44,8 @@ public class JetpackArmored extends Jetpack {
         if (source.isUnblockable()) {
             return super.getProperties(player, item, armor, source, damage, slot);
         }
-        int maxAbsorbed = this.getEnergyPerDamage(armor) > 0 ? 25 * item.getEnergyStored(armor) / this.getEnergyPerDamage(armor) : 0;
-        // diamond reduction amount = 8
-        // 1 / 20 (max armor) = 0.05
-        // 8 * 0.05 = 0.4
-        return new ArmorProperties(0, this.armorAbsorption * 8 * 0.05, maxAbsorbed);
+        int maxAbsorbed = this.getEnergyPerDamage(armor) > 0 ? 25 * (item.getEnergyStored(armor) / this.getEnergyPerDamage(armor)) : 0;
+        return new ArmorProperties(0, this.armorAbsorption * (8.0D / 20.0D), maxAbsorbed);
     }
     
     @Override
