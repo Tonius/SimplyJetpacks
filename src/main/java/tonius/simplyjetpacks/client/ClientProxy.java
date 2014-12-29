@@ -6,9 +6,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
+import tonius.simplyjetpacks.client.handler.SoundHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -24,6 +26,7 @@ public class ClientProxy extends CommonProxy {
         
         FMLCommonHandler.instance().bus().register(new ClientTickHandler());
         FMLCommonHandler.instance().bus().register(new HUDTickHandler());
+        MinecraftForge.EVENT_BUS.register(new SoundHandler());
     }
     
     @Override

@@ -4,5 +4,28 @@
         "sounds": [
             "rocket"
         ]
+    },
+    "jetpack_flight_idle": {
+        "category": "master",
+        "sounds": [
+            "jetpack_flight_idle_00",
+            "jetpack_flight_idle_01",
+            "jetpack_flight_idle_02",
+            "jetpack_flight_idle_03",
+            "jetpack_flight_idle_04",
+            "jetpack_flight_idle_05",
+            "jetpack_flight_idle_06",
+            "jetpack_flight_idle_07",
+            "jetpack_flight_idle_08",
+            "jetpack_flight_idle_09",
+            "jetpack_flight_idle_10",
+            "jetpack_flight_idle_11",
+            "jetpack_flight_idle_12",
+            "jetpack_flight_idle_13",
+            "jetpack_flight_idle_14",
+            "jetpack_flight_idle_15",
+            "jetpack_flight_idle_16",
+            "jetpack_flight_idle_17"
+        ]
     }
 }

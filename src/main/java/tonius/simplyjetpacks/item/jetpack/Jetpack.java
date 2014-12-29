@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.config.JetpackConfig;
@@ -48,6 +49,8 @@ public class Jetpack {
     public final boolean enchantable;
     public final int enchantability;
     public final boolean emergencyHoverMode;
+    
+    protected int idleSoundTimer;
     
     public Jetpack(int tier, EnumRarity rarity, boolean useModel, int energyCapacity, int energyPerTick, double speedVertical, double accelVertical, double speedVerticalHover, double speedVerticalHoverSlow, float speedSideways, float sprintSpeedModifier, float sprintEnergyModifier, boolean enchantable, int enchantability, boolean emergencyHoverMode) {
         this.tier = tier;
@@ -220,6 +223,8 @@ public class Jetpack {
                     }
                 }
             }
+        } else {
+            this.idleSoundTimer = 0; // Start sounds as soon as possible after take-off.
         }
         
         if (!user.worldObj.isRemote && this.emergencyHoverMode && this.isEmergencyHoverModeOn(armor)) {
@@ -368,6 +373,18 @@ public class Jetpack {
     }
     
     public void damageArmor(EntityLivingBase entity, ItemJetpack item, ItemStack armor, DamageSource source, int damage, int slot) {
+    }
+    
+    public void tickSounds(EntityLivingBase user, ItemStack armor) {
+        // Server-side only! Client-side idle flight sound killing in SoundHandler.
+        if (this.isOn(armor) && (SyncTracker.isFlyKeyDown(user) || this.isHoverModeOn(armor) && !user.onGround) && !user.worldObj.isRemote && Config.enableFlightSounds) {
+            if (this.idleSoundTimer > 0) {
+                --this.idleSoundTimer;
+            } else {
+                user.worldObj.playSoundAtEntity(user, SimplyJetpacks.RESOURCE_PREFIX + "jetpack_flight_idle", 1, .8f);
+                this.idleSoundTimer = 6; // 1 tick less than the sounds are
+            }
+        }
     }
     
 }

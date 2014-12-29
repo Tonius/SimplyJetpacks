@@ -36,4 +36,7 @@ public abstract class Defaults {
     public static final boolean enableCraftingPotatoJetpack = true;
     public static final boolean enableCraftingJetPlate = true;
     
+    // sounds
+    public static final boolean enableFlightSounds = true;
+    
 }

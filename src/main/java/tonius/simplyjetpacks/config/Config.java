@@ -33,6 +33,7 @@ public class Config {
     public static final Section sectionAesthetics = new Section(true, "Aesthetics Settings", "aesthetics");
     public static final Section sectionGui = new Section(true, "GUI Settings", "gui");
     public static final Section sectionCrafting = new Section(false, "Crafting Settings", "crafting");
+    public static final Section sectionSounds = new Section(false, "Sound Settings", "sounds");
     
     // integration
     public static boolean enableIntegrationTE = Defaults.enableIntegrationTE;
@@ -65,6 +66,9 @@ public class Config {
     public static boolean enableCraftingArmorPlating = Defaults.enableCraftingArmorPlating;
     public static boolean enableCraftingPotatoJetpack = Defaults.enableCraftingPotatoJetpack;
     public static boolean enableCraftingJetPlate = Defaults.enableCraftingJetPlate;
+    
+    // sounds
+    public static boolean enableFlightSounds = Defaults.enableFlightSounds;
     
     private static void initJetpackConfigs() {
         // energyCapacity, energyPerTick, speedVertical,
@@ -170,6 +174,8 @@ public class Config {
         enableCraftingArmorPlating = config.get(sectionCrafting.name, "Armor Plating craftable", Defaults.enableCraftingArmorPlating, "When enabled, Armor Plating items will be craftable, and thus armored jetpacks are available.").setRequiresMcRestart(true).getBoolean(Defaults.enableCraftingArmorPlating);
         enableCraftingPotatoJetpack = config.get(sectionCrafting.name, "Potato Jetpack craftable", Defaults.enableCraftingPotatoJetpack, "When enabled, the Potato Jetpack will be craftable.").setRequiresMcRestart(true).getBoolean(Defaults.enableCraftingPotatoJetpack);
         enableCraftingJetPlate = config.get(sectionCrafting.name, "JetPlates craftable", Defaults.enableCraftingJetPlate, "When enabled, JetPlates will be craftable.").setRequiresMcRestart(true).getBoolean(Defaults.enableCraftingJetPlate);
+        
+        enableFlightSounds = config.get(sectionSounds.name, "Flight sounds", Defaults.enableFlightSounds, "When enabled, idle flight sounds will be emited.").getBoolean(Defaults.enableFlightSounds);
         
         for (JetpackConfig jc : jetpackConfigs.values()) {
             jc.processConfig(config);
