@@ -382,7 +382,7 @@ public class Jetpack {
                 --this.idleSoundTimer;
             } else {
                 user.worldObj.playSoundAtEntity(user, SimplyJetpacks.RESOURCE_PREFIX + "jetpack_flight_idle", 1, .8f);
-                this.idleSoundTimer = 6; // 1 tick less than the sounds are
+                this.idleSoundTimer = 15;
             }
         }
     }
