@@ -142,6 +142,9 @@ simplyjetpacks.command.switch.noJetpack=No jetpack equipped.
 simplyjetpacks.command.switch.noEmergencyHover=Jetpack does not support emergency hover mode.
 simplyjetpacks.command.switch.noCharger=No charger equipped.
 
+simplyjetpacks.keybind.toggle=Turn on/off
+simplyjetpacks.keybind.mode=Switch mode
+
 simplyjetpacks.config.title=Simply Jetpacks Configuration
 simplyjetpacks.config.integration=Integration Settings
 simplyjetpacks.config.controls=Controls Settings

@@ -45,8 +45,8 @@ public class ClientTickHandler {
     
     private static JetpackParticleType lastJetpackState = null;
     
-    private static KeyBinding keyToggle = new KeyBinding("Turn on/off", Keyboard.KEY_F, "Simply Jetpacks");
-    private static KeyBinding keyMode = new KeyBinding("Switch mode", Keyboard.KEY_C, "Simply Jetpacks");
+    private static KeyBinding keyToggle = new KeyBinding(SimplyJetpacks.PREFIX + "keybind.toggle", Keyboard.KEY_F, "Simply Jetpacks");
+    private static KeyBinding keyMode = new KeyBinding(SimplyJetpacks.PREFIX + "keybind.mode", Keyboard.KEY_C, "Simply Jetpacks");
     
     public ClientTickHandler() {
         ClientRegistry.registerKeyBinding(keyToggle);
