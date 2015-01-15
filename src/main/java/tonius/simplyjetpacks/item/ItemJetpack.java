@@ -43,7 +43,6 @@ public class ItemJetpack extends ItemArmor implements ISpecialArmor, IEnergyCont
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + "jetpack" + modType.suffix);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        this.setNoRepair();
         this.setCreativeTab(ModCreativeTab.tab);
         this.index = index;
         this.modType = modType;

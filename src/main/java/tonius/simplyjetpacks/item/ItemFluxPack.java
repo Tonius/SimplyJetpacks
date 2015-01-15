@@ -40,7 +40,6 @@ public class ItemFluxPack extends ItemArmor implements ISpecialArmor, IEnergyCon
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + "fluxpack" + modType.suffix);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        this.setNoRepair();
         this.setCreativeTab(ModCreativeTab.tab);
         this.index = index;
         this.modType = modType;
