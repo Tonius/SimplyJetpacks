@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks.client.sound;
+package tonius.simplyjetpacks.client.audio;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,14 +14,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class MovingSoundIdleJetpack extends MovingSound {
+public class SoundJetpack extends MovingSound {
     
-    private static final ResourceLocation SOUND = new ResourceLocation(SimplyJetpacks.RESOURCE_PREFIX + "jetpack_flight_idle");
+    private static final ResourceLocation SOUND = new ResourceLocation(SimplyJetpacks.RESOURCE_PREFIX + "jetpack");
     public static Set<Integer> playingFor = Collections.synchronizedSet(new HashSet<Integer>());
     
     private EntityLivingBase user;
     
-    public MovingSoundIdleJetpack(EntityLivingBase target) {
+    public SoundJetpack(EntityLivingBase target) {
         super(SOUND);
         this.repeat = true;
         this.user = target;

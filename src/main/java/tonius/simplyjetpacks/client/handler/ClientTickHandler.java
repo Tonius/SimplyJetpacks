@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
-import tonius.simplyjetpacks.client.sound.MovingSoundIdleJetpack;
+import tonius.simplyjetpacks.client.audio.SoundJetpack;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.IModeSwitchable;
 import tonius.simplyjetpacks.item.IToggleable;
@@ -126,8 +126,8 @@ public class ClientTickHandler {
                     JetpackParticleType particle = SyncTracker.getJetpackStates().get(currentEntity);
                     if (particle != null) {
                         SimplyJetpacks.proxy.showJetpackParticles(mc.theWorld, (EntityLivingBase) entity, particle);
-                        if (Config.enableFlightSounds && !MovingSoundIdleJetpack.playingFor.contains(entity.getEntityId())) {
-                            Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundIdleJetpack((EntityLivingBase) entity));
+                        if (Config.enableFlightSounds && !SoundJetpack.playingFor.contains(entity.getEntityId())) {
+                            Minecraft.getMinecraft().getSoundHandler().playSound(new SoundJetpack((EntityLivingBase) entity));
                         }
                     } else {
                         itr.remove();

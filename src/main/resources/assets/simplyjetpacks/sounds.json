@@ -5,10 +5,10 @@
             "rocket"
         ]
     },
-    "jetpack_flight_idle": {
+    "jetpack": {
         "category": "master",
         "sounds": [
-            "jetpack_flight_idle"
+            "jetpack"
         ]
     }
 }
