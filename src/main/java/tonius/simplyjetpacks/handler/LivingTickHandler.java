@@ -5,9 +5,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -48,10 +46,6 @@ public class LivingTickHandler {
             } else if (jetpack != null && evt.entityLiving.worldObj.getTotalWorldTime() % 160L == 0) {
                 PacketHandler.instance.sendToAllAround(new MessageJetpackSync(evt.entityLiving.getEntityId(), jetpackState != null ? jetpackState.ordinal() : -1), new TargetPoint(evt.entityLiving.dimension, evt.entityLiving.posX, evt.entityLiving.posY, evt.entityLiving.posZ, 256));
             }
-            if(evt.entityLiving instanceof EntityPlayer)
-            if (jetpack != null) {
-                updateBackgroundFlyingSound(jetpack, evt.entityLiving, armor);
-            }
             
             if (evt.entityLiving.worldObj.getTotalWorldTime() % 200L == 0) {
                 Iterator<Integer> itr = lastJetpackState.keySet().iterator();
@@ -63,10 +57,6 @@ public class LivingTickHandler {
                 }
             }
         }
-    }
-    
-    private void updateBackgroundFlyingSound(Jetpack jetpack, EntityLivingBase user, ItemStack armor) {
-        jetpack.tickSounds(user, armor);
     }
     
     @SubscribeEvent

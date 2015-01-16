@@ -1,45 +1,46 @@
 package tonius.simplyjetpacks.client.sound;
 
-import java.util.ArrayList;
-import java.util.List;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
-import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.item.jetpack.Jetpack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class MovingSoundIdleJetpack extends MovingSound {
-
-    private static ResourceLocation       location   = new ResourceLocation((SimplyJetpacks.RESOURCE_PREFIX + "jetpack_flight_idle"));
-    public static  List<EntityLivingBase> playingFor = new ArrayList<EntityLivingBase>();
-
+    
+    private static final ResourceLocation SOUND = new ResourceLocation(SimplyJetpacks.RESOURCE_PREFIX + "jetpack_flight_idle");
+    public static Set<Integer> playingFor = Collections.synchronizedSet(new HashSet<Integer>());
+    
     private EntityLivingBase user;
-    private int left = 126;
-
+    
     public MovingSoundIdleJetpack(EntityLivingBase target) {
-        super(location);
-        playingFor.add(user);
+        super(SOUND);
+        this.repeat = true;
         this.user = target;
+        playingFor.add(target.getEntityId());
     }
-
+    
     @Override
     public void update() {
-        ItemStack armor = user.getEquipmentInSlot(3);
-        Jetpack jet = ((ItemJetpack)armor.getItem()).getJetpack(armor);
-        if(this.user.isDead || this.left-- == 0 && jet.isOn(armor) && (SyncTracker.isFlyKeyDown(this.user) || jet.isHoverModeOn(armor) && !this.user.onGround)) {
+        ItemStack armor = this.user.getEquipmentInSlot(3);
+        if (!SyncTracker.getJetpackStates().keySet().contains(this.user.getEntityId())) {
             this.donePlaying = true;
-            playingFor.remove(this.user);
+            synchronized (playingFor) {
+                playingFor.remove(this.user.getEntityId());
+            }
         }
-
-        this.xPosF = (float)this.user.posX;
-        this.yPosF = (float)this.user.posY;
-        this.zPosF = (float)this.user.posZ;
+        
+        this.xPosF = (float) this.user.posX;
+        this.yPosF = (float) this.user.posY;
+        this.zPosF = (float) this.user.posZ;
     }
-
+    
 }
