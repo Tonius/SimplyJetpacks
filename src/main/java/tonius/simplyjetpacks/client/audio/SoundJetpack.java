@@ -6,7 +6,6 @@ import java.util.Set;
 
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.SyncTracker;
@@ -20,6 +19,7 @@ public class SoundJetpack extends MovingSound {
     public static Set<Integer> playingFor = Collections.synchronizedSet(new HashSet<Integer>());
     
     private EntityLivingBase user;
+    private int ticks = 0;
     
     public SoundJetpack(EntityLivingBase target) {
         super(SOUND);
@@ -30,7 +30,6 @@ public class SoundJetpack extends MovingSound {
     
     @Override
     public void update() {
-        ItemStack armor = this.user.getEquipmentInSlot(3);
         if (!SyncTracker.getJetpackStates().keySet().contains(this.user.getEntityId())) {
             this.donePlaying = true;
             synchronized (playingFor) {
@@ -41,6 +40,9 @@ public class SoundJetpack extends MovingSound {
         this.xPosF = (float) this.user.posX;
         this.yPosF = (float) this.user.posY;
         this.zPosF = (float) this.user.posZ;
+        
+        ticks++;
+        this.volume = 1.0F * ticks >= 5 ? 1.0F : ticks / 5F;
     }
     
 }
