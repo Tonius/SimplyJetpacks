@@ -19,7 +19,7 @@ public class SoundJetpack extends MovingSound {
     public static Set<Integer> playingFor = Collections.synchronizedSet(new HashSet<Integer>());
     
     private EntityLivingBase user;
-    private int ticks = 0;
+    private int fadeOut = -1;
     
     public SoundJetpack(EntityLivingBase target) {
         super(SOUND);
@@ -30,19 +30,21 @@ public class SoundJetpack extends MovingSound {
     
     @Override
     public void update() {
-        if (!SyncTracker.getJetpackStates().keySet().contains(this.user.getEntityId())) {
-            this.donePlaying = true;
-            synchronized (playingFor) {
-                playingFor.remove(this.user.getEntityId());
-            }
-        }
-        
         this.xPosF = (float) this.user.posX;
         this.yPosF = (float) this.user.posY;
         this.zPosF = (float) this.user.posZ;
         
-        ticks++;
-        this.volume = 1.0F * ticks >= 5 ? 1.0F : ticks / 5F;
+        if (this.fadeOut < 0 && !SyncTracker.getJetpackStates().keySet().contains(this.user.getEntityId())) {
+            this.fadeOut = 0;
+            synchronized (playingFor) {
+                playingFor.remove(this.user.getEntityId());
+            }
+        } else if (this.fadeOut == 5) {
+            this.donePlaying = true;
+        } else if (this.fadeOut >= 0) {
+            this.volume = 1.0F - this.fadeOut / 5F;
+            this.fadeOut++;
+        }
     }
     
 }
