@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -16,13 +17,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SoundJetpack extends MovingSound {
     
     private static final ResourceLocation SOUND = new ResourceLocation(SimplyJetpacks.RESOURCE_PREFIX + "jetpack");
+    private static final ResourceLocation SOUND_OTHER = new ResourceLocation(SimplyJetpacks.RESOURCE_PREFIX + "jetpack_other");
+    
     public static Set<Integer> playingFor = Collections.synchronizedSet(new HashSet<Integer>());
+    private static Minecraft mc = Minecraft.getMinecraft();
     
     private EntityLivingBase user;
     private int fadeOut = -1;
     
     public SoundJetpack(EntityLivingBase target) {
-        super(SOUND);
+        super(target == mc.thePlayer ? SOUND : SOUND_OTHER);
         this.repeat = true;
         this.user = target;
         playingFor.add(target.getEntityId());
