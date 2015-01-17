@@ -31,6 +31,7 @@ public class Config {
     public static final Section sectionIntegration = new Section(false, "Integration Settings", "integration");
     public static final Section sectionControls = new Section(true, "Controls Settings", "controls");
     public static final Section sectionAesthetics = new Section(true, "Aesthetics Settings", "aesthetics");
+    public static final Section sectionSounds = new Section(true, "Sound Settings", "sounds");
     public static final Section sectionGui = new Section(true, "GUI Settings", "gui");
     public static final Section sectionCrafting = new Section(false, "Crafting Settings", "crafting");
     
@@ -47,6 +48,9 @@ public class Config {
     
     // aesthetics
     public static boolean enableJetpackModel = Defaults.enableJetpackModel;
+    
+    // sounds
+    public static boolean jetpackSounds = Defaults.jetpackSounds;
     
     // gui
     public static boolean enableStateChatMessages = Defaults.enableStateChatMessages;
@@ -154,6 +158,8 @@ public class Config {
         sneakChangesToggleBehavior = configClient.get(sectionControls.name, "Sneak Changes Toggle Behavior", Defaults.sneakChangesToggleBehavior, "If enabled, when sneaking, the Turn on/off and Switch mode keys will respectively toggle JetPlate chargers and emergency hover mode. If not, use /simplyjetpacks_switch or /sjs to toggle these features.").getBoolean(Defaults.sneakChangesToggleBehavior);
         
         enableJetpackModel = configClient.get(sectionAesthetics.name, "Enable Jetpack 3D Model", Defaults.enableJetpackModel, "When enabled, worn jetpacks will have a 3D armor model. Otherwise, flat textures will be used.").getBoolean(Defaults.enableJetpackModel);
+        
+        jetpackSounds = configClient.get(sectionSounds.name, "Jetpack Sounds", Defaults.jetpackSounds, "When enabled, jetpacks will make sounds when used.").getBoolean(Defaults.jetpackSounds);
         
         enableStateChatMessages = configClient.get(sectionGui.name, "Enable State Chat Messages", Defaults.enableStateChatMessages, "When enabled, switching jetpacks on or off will display chat messages.").getBoolean(Defaults.enableStateChatMessages);
         enableEnergyHUD = configClient.get(sectionGui.name, "Enable Energy HUD", Defaults.enableEnergyHUD, "When enabled, a HUD that displays your current jetpack's energy level will show.").getBoolean(Defaults.enableEnergyHUD);

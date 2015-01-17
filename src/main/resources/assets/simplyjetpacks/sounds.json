@@ -1,6 +1,18 @@
 {
+    "jetpack": {
+        "category": "player",
+        "sounds": [
+            "jetpack"
+        ]
+    },
+    "jetpack_other": {
+        "category": "player",
+        "sounds": [
+            "jetpack_other"
+        ]
+    },
     "rocket": {
-        "category": "master",
+        "category": "player",
         "sounds": [
             "rocket"
         ]

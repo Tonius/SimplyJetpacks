@@ -18,6 +18,9 @@ public abstract class Defaults {
     // aesthetics
     public static final boolean enableJetpackModel = true;
     
+    // sounds
+    public static final boolean jetpackSounds = true;
+    
     // gui
     public static final boolean enableStateChatMessages = false;
     public static final boolean enableEnergyHUD = true;
