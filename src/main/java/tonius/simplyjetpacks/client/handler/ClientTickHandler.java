@@ -126,7 +126,7 @@ public class ClientTickHandler {
                     JetpackParticleType particle = SyncTracker.getJetpackStates().get(currentEntity);
                     if (particle != null) {
                         SimplyJetpacks.proxy.showJetpackParticles(mc.theWorld, (EntityLivingBase) entity, particle);
-                        if (Config.enableFlightSounds && !SoundJetpack.playingFor.contains(entity.getEntityId())) {
+                        if (Config.jetpackSounds && !SoundJetpack.isPlayingFor(entity.getEntityId())) {
                             Minecraft.getMinecraft().getSoundHandler().playSound(new SoundJetpack((EntityLivingBase) entity));
                         }
                     } else {

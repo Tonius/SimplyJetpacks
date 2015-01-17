@@ -1,8 +1,8 @@
 package tonius.simplyjetpacks.client.audio;
 
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSound;
@@ -19,7 +19,7 @@ public class SoundJetpack extends MovingSound {
     private static final ResourceLocation SOUND = new ResourceLocation(SimplyJetpacks.RESOURCE_PREFIX + "jetpack");
     private static final ResourceLocation SOUND_OTHER = new ResourceLocation(SimplyJetpacks.RESOURCE_PREFIX + "jetpack_other");
     
-    public static Set<Integer> playingFor = Collections.synchronizedSet(new HashSet<Integer>());
+    private static Map<Integer, SoundJetpack> playingFor = Collections.synchronizedMap(new HashMap<Integer, SoundJetpack>());
     private static Minecraft mc = Minecraft.getMinecraft();
     
     private EntityLivingBase user;
@@ -29,7 +29,7 @@ public class SoundJetpack extends MovingSound {
         super(target == mc.thePlayer ? SOUND : SOUND_OTHER);
         this.repeat = true;
         this.user = target;
-        playingFor.add(target.getEntityId());
+        playingFor.put(target.getEntityId(), this);
     }
     
     @Override
@@ -43,12 +43,20 @@ public class SoundJetpack extends MovingSound {
             synchronized (playingFor) {
                 playingFor.remove(this.user.getEntityId());
             }
-        } else if (this.fadeOut == 5) {
+        } else if (this.fadeOut >= 5) {
             this.donePlaying = true;
         } else if (this.fadeOut >= 0) {
             this.volume = 1.0F - this.fadeOut / 5F;
             this.fadeOut++;
         }
+    }
+    
+    public static boolean isPlayingFor(int entityId) {
+        return playingFor.containsKey(entityId) && playingFor.get(entityId) != null && !playingFor.get(entityId).donePlaying;
+    }
+    
+    public static void clearPlayingFor() {
+        playingFor.clear();
     }
     
 }
