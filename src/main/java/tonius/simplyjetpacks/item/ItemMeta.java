@@ -83,11 +83,9 @@ public class ItemMeta extends Item {
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
         MetaItem metaItem = this.getMetaItem(itemStack);
-        if (metaItem != null && metaItem.tooltipLines.length > 0) {
+        if (metaItem != null && metaItem.tooltipKey != null) {
             if (StringUtils.canShowDetails()) {
-                for (int i = 0; i < metaItem.tooltipLines.length; i++) {
-                    list.add(StringUtils.translate(metaItem.tooltipLines[i]));
-                }
+                StringUtils.addDescriptionLines(list, metaItem.tooltipKey, StringUtils.LIGHT_GRAY);
             } else {
                 list.add(StringUtils.getShiftText());
             }
@@ -98,7 +96,8 @@ public class ItemMeta extends Item {
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List list) {
         for (int i = 0; i <= this.highestMeta; i++) {
-            if (this.metaItems.get(i) != null) {
+            MetaItem metaItem = this.metaItems.get(i);
+            if (metaItem != null && !metaItem.hidden) {
                 list.add(new ItemStack(item, 1, i));
             }
         }
@@ -136,19 +135,21 @@ public class ItemMeta extends Item {
     public static class MetaItem {
         
         public String name;
-        public String[] tooltipLines;
+        public String tooltipKey;
         public EnumRarity rarity;
         public boolean glow;
+        public boolean hidden;
         
-        public MetaItem(String name, String[] tooltipLines, EnumRarity rarity, boolean glow) {
+        public MetaItem(String name, String tooltipKey, EnumRarity rarity, boolean glow, boolean hidden) {
             this.name = name;
-            this.tooltipLines = tooltipLines != null ? tooltipLines : new String[0];
+            this.tooltipKey = tooltipKey;
             this.rarity = rarity;
             this.glow = glow;
+            this.hidden = hidden;
         }
         
-        public MetaItem(String name, String[] tooltipLines, EnumRarity rarity) {
-            this(name, tooltipLines, rarity, false);
+        public MetaItem(String name, String tooltipKey, EnumRarity rarity) {
+            this(name, tooltipKey, rarity, false, false);
         }
         
     }

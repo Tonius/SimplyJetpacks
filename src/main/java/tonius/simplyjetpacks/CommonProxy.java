@@ -6,7 +6,7 @@ import net.minecraftforge.common.MinecraftForge;
 import tonius.simplyjetpacks.crafting.PlatingReturnHandler;
 import tonius.simplyjetpacks.handler.EntityInteractHandler;
 import tonius.simplyjetpacks.handler.LivingTickHandler;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.setup.ParticleType;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class CommonProxy {
@@ -19,7 +19,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(new LivingTickHandler());
     }
     
-    public void showJetpackParticles(World world, EntityLivingBase wearer, JetpackParticleType particle) {
+    public void showJetpackParticles(World world, EntityLivingBase wearer, ParticleType particle) {
     }
     
     public void updateCustomKeybinds() {

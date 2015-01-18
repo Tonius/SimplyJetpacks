@@ -5,13 +5,13 @@ import net.minecraft.world.World;
 import tonius.simplyjetpacks.client.particle.EntityColoredSmokeFX;
 import tonius.simplyjetpacks.client.particle.EntityCustomFlameFX;
 import tonius.simplyjetpacks.client.particle.EntityCustomSmokeFX;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.setup.ParticleType;
 
 public abstract class ParticleUtils {
     
     private static Minecraft mc = Minecraft.getMinecraft();
     
-    public static void spawnParticle(JetpackParticleType particle, World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
+    public static void spawnParticle(ParticleType particle, World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
         switch (particle) {
         case NONE:
             return;

@@ -10,7 +10,7 @@ import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.setup.ParticleType;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientProxy extends CommonProxy {
@@ -27,7 +27,7 @@ public class ClientProxy extends CommonProxy {
     }
     
     @Override
-    public void showJetpackParticles(World world, EntityLivingBase wearer, JetpackParticleType particle) {
+    public void showJetpackParticles(World world, EntityLivingBase wearer, ParticleType particle) {
         if (mc.gameSettings.particleSetting == 2) {
             return;
         } else if (mc.gameSettings.particleSetting == 0 || mc.gameSettings.particleSetting == 1 && mc.theWorld.getTotalWorldTime() % 4L == 0) {

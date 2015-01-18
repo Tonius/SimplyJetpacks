@@ -10,6 +10,7 @@ import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.crafting.UpgradingRecipe;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.setup.ModItems;
+import tonius.simplyjetpacks.setup.Packs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -40,6 +41,7 @@ public class SimplyJetpacks {
         logger = evt.getModLog();
         logger.info("Starting Simply Jetpacks");
         
+        Packs.preInit();
         Config.preInit(evt);
         
         RecipeSorter.register(SimplyJetpacks.MODID + ":upgrading", UpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");

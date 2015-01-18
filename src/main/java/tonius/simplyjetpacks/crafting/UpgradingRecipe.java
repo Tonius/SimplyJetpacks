@@ -5,9 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.item.ItemPack;
+import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
 import tonius.simplyjetpacks.setup.ModItems;
+import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.StackUtils;
 import cofh.api.energy.IEnergyContainerItem;
 
@@ -26,20 +27,20 @@ public class UpgradingRecipe extends ShapedOreRecipe {
     @Override
     public ItemStack getCraftingResult(InventoryCrafting inventoryCrafting) {
         int addedEnergy = 0;
-        JetpackParticleType particleType = null;
+        ParticleType particleType = null;
         NBTTagCompound tags = null;
         
         ItemStack slotStack;
         for (int i = 0; i < inventoryCrafting.getSizeInventory(); i++) {
             slotStack = inventoryCrafting.getStackInSlot(i);
             if (slotStack != null) {
-                if (slotStack.getItem() instanceof ItemJetpack) {
+                if (slotStack.getItem() instanceof ItemPack) {
                     tags = (NBTTagCompound) StackUtils.getNBT(slotStack).copy();
                 }
                 if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     addedEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
                 } else if (slotStack.getItem() == ModItems.particleCustomizers) {
-                    particleType = JetpackParticleType.values()[slotStack.getItemDamage()];
+                    particleType = ParticleType.values()[slotStack.getItemDamage()];
                 }
             }
         }
@@ -53,7 +54,7 @@ public class UpgradingRecipe extends ShapedOreRecipe {
         StackUtils.getNBT(result).setInteger("Energy", Math.min(addedEnergy, this.resultItem.getMaxEnergyStored(result)));
         
         if (this.resultItem instanceof ItemJetpack && particleType != null) {
-            ((ItemJetpack) this.resultItem).getJetpack(result).setParticleType(result, particleType);
+            ((ItemJetpack) this.resultItem).getPack(result).setParticleType(result, particleType);
         }
         
         return result;
