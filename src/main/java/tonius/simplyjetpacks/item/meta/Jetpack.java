@@ -11,9 +11,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
-import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.config.Config;
+import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.StackUtils;
@@ -36,9 +36,16 @@ public class Jetpack extends PackBase {
     public double sprintFuelModifier = 0.0D;
     public boolean emergencyHoverMode = false;
     
+    public ParticleType defaultParticleType = ParticleType.DEFAULT;
+    
     public Jetpack(int tier, EnumRarity rarity, String defaultConfigKey) {
         super("jetpack", tier, rarity, defaultConfigKey);
         this.setArmorModel(PackModelType.JETPACK);
+    }
+    
+    public Jetpack setDefaultParticleType(ParticleType defaultParticleType) {
+        this.defaultParticleType = defaultParticleType;
+        return this;
     }
     
     @Override
@@ -49,9 +56,9 @@ public class Jetpack extends PackBase {
     public void flyUser(EntityLivingBase user, ItemStack stack, ItemPack item, boolean force) {
         if (this.isOn(stack)) {
             boolean hoverMode = this.isHoverModeOn(stack);
-            double hoverSpeed = Config.invertHoverSneakingBehavior == SyncTracker.isDescendKeyDown(user) ? this.speedVerticalHoverSlow : this.speedVerticalHover;
-            boolean flyKeyDown = force || SyncTracker.isFlyKeyDown(user);
-            boolean descendKeyDown = SyncTracker.isDescendKeyDown(user);
+            double hoverSpeed = Config.invertHoverSneakingBehavior == SyncHandler.isDescendKeyDown(user) ? this.speedVerticalHoverSlow : this.speedVerticalHover;
+            boolean flyKeyDown = force || SyncHandler.isFlyKeyDown(user);
+            boolean descendKeyDown = SyncHandler.isDescendKeyDown(user);
             double currentAccel = user.motionY < 0.3D ? this.accelVertical * 2.5 : this.accelVertical;
             
             if (flyKeyDown || hoverMode && !user.onGround) {
@@ -76,16 +83,16 @@ public class Jetpack extends PackBase {
                     
                     float speedSideways = (float) (user.isSneaking() ? this.speedSideways * 0.5F : this.speedSideways);
                     float speedForward = (float) (user.isSprinting() ? speedSideways * this.sprintSpeedModifier : speedSideways);
-                    if (SyncTracker.isForwardKeyDown(user)) {
+                    if (SyncHandler.isForwardKeyDown(user)) {
                         user.moveFlying(0, speedForward, speedForward);
                     }
-                    if (SyncTracker.isBackwardKeyDown(user)) {
+                    if (SyncHandler.isBackwardKeyDown(user)) {
                         user.moveFlying(0, -speedSideways, speedSideways * 0.8F);
                     }
-                    if (SyncTracker.isLeftKeyDown(user)) {
+                    if (SyncHandler.isLeftKeyDown(user)) {
                         user.moveFlying(speedSideways, 0, speedSideways);
                     }
-                    if (SyncTracker.isRightKeyDown(user)) {
+                    if (SyncHandler.isRightKeyDown(user)) {
                         user.moveFlying(-speedSideways, 0, speedSideways);
                     }
                     
@@ -160,16 +167,19 @@ public class Jetpack extends PackBase {
     }
     
     protected ParticleType getParticleType(ItemStack stack) {
-        int particle = StackUtils.getNBT(stack).getInteger(TAG_PARTICLE);
-        ParticleType particleType = ParticleType.values()[particle];
-        if (particleType != null) {
-            return particleType;
+        if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(TAG_PARTICLE)) {
+            int particle = StackUtils.getNBT(stack).getInteger(TAG_PARTICLE);
+            ParticleType particleType = ParticleType.values()[particle];
+            if (particleType != null) {
+                return particleType;
+            }
         }
-        return ParticleType.DEFAULT;
+        StackUtils.getNBT(stack).setInteger(TAG_PARTICLE, this.defaultParticleType.ordinal());
+        return this.defaultParticleType;
     }
     
     public ParticleType getDisplayParticleType(ItemStack stack, ItemPack item, EntityLivingBase user) {
-        boolean flyKeyDown = SyncTracker.isFlyKeyDown(user);
+        boolean flyKeyDown = SyncHandler.isFlyKeyDown(user);
         if (this.isOn(stack) && item.getFuelStored(stack) > 0 && (flyKeyDown || this.isHoverModeOn(stack) && !user.onGround && user.motionY < 0)) {
             return this.getParticleType(stack);
         }

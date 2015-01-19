@@ -3,7 +3,7 @@ package tonius.simplyjetpacks.network.message;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import tonius.simplyjetpacks.SyncTracker;
+import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.setup.ParticleType;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -41,9 +41,9 @@ public class MessageJetpackSync implements IMessage, IMessageHandler<MessageJetp
         if (entity != null && entity instanceof EntityLivingBase && entity != FMLClientHandler.instance().getClient().thePlayer) {
             if (msg.particleId >= 0) {
                 ParticleType particle = ParticleType.values()[msg.particleId];
-                SyncTracker.processJetpackUpdate(msg.entityId, particle);
+                SyncHandler.processJetpackUpdate(msg.entityId, particle);
             } else {
-                SyncTracker.processJetpackUpdate(msg.entityId, null);
+                SyncHandler.processJetpackUpdate(msg.entityId, null);
             }
         }
         return null;

@@ -2,7 +2,7 @@ package tonius.simplyjetpacks.network.message;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import tonius.simplyjetpacks.SyncTracker;
+import tonius.simplyjetpacks.handler.SyncHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -55,7 +55,7 @@ public class MessageKeyboardSync implements IMessage, IMessageHandler<MessageKey
     public IMessage onMessage(MessageKeyboardSync msg, MessageContext ctx) {
         EntityPlayer entityPlayer = ctx.getServerHandler().playerEntity;
         if (entityPlayer != null) {
-            SyncTracker.processKeyUpdate(entityPlayer, msg.flyState, msg.descendState, msg.forwardState, msg.backwardState, msg.leftState, msg.rightState);
+            SyncHandler.processKeyUpdate(entityPlayer, msg.flyState, msg.descendState, msg.forwardState, msg.backwardState, msg.leftState, msg.rightState);
         }
         return null;
     }

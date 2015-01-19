@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import tonius.simplyjetpacks.command.CommandSwitch;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.crafting.UpgradingRecipe;
+import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.setup.Packs;
@@ -34,7 +35,7 @@ public class SimplyJetpacks {
     @SidedProxy(clientSide = "tonius.simplyjetpacks.client.ClientProxy", serverSide = "tonius.simplyjetpacks.CommonProxy")
     public static CommonProxy proxy;
     public static Logger logger;
-    public static SyncTracker keyboard;
+    public static SyncHandler keyboard;
     
     @EventHandler
     public static void preInit(FMLPreInitializationEvent evt) {
@@ -63,7 +64,7 @@ public class SimplyJetpacks {
     
     @EventHandler
     public static void serverStopping(FMLServerStoppingEvent evt) {
-        SyncTracker.clearAll();
+        SyncHandler.clearAll();
     }
     
 }

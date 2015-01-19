@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
 
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.client.audio.SoundJetpack;
 import tonius.simplyjetpacks.config.Config;
+import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.IControllable;
 import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
 import tonius.simplyjetpacks.item.meta.Jetpack;
@@ -93,7 +93,7 @@ public class ClientTickHandler {
                 lastLeftState = leftState;
                 lastRightState = rightState;
                 PacketHandler.instance.sendToServer(new MessageKeyboardSync(flyState, descendState, forwardState, backwardState, leftState, rightState));
-                SyncTracker.processKeyUpdate(mc.thePlayer, flyState, descendState, forwardState, backwardState, leftState, rightState);
+                SyncHandler.processKeyUpdate(mc.thePlayer, flyState, descendState, forwardState, backwardState, leftState, rightState);
             }
             
             ParticleType jetpackState = null;
@@ -107,14 +107,14 @@ public class ClientTickHandler {
             
             if (jetpackState != lastJetpackState) {
                 lastJetpackState = jetpackState;
-                SyncTracker.processJetpackUpdate(mc.thePlayer.getEntityId(), jetpackState);
+                SyncHandler.processJetpackUpdate(mc.thePlayer.getEntityId(), jetpackState);
             }
         }
     }
     
     private static void tickEnd() {
         if (mc.thePlayer != null && mc.theWorld != null && !mc.isGamePaused()) {
-            Iterator<Integer> itr = SyncTracker.getJetpackStates().keySet().iterator();
+            Iterator<Integer> itr = SyncHandler.getJetpackStates().keySet().iterator();
             int currentEntity;
             while (itr.hasNext()) {
                 currentEntity = itr.next();
@@ -122,7 +122,7 @@ public class ClientTickHandler {
                 if (entity == null || !(entity instanceof EntityLivingBase) || entity.dimension != mc.thePlayer.dimension) {
                     itr.remove();
                 } else {
-                    ParticleType particle = SyncTracker.getJetpackStates().get(currentEntity);
+                    ParticleType particle = SyncHandler.getJetpackStates().get(currentEntity);
                     if (particle != null) {
                         SimplyJetpacks.proxy.showJetpackParticles(mc.theWorld, (EntityLivingBase) entity, particle);
                         if (Config.jetpackSounds && !SoundJetpack.isPlayingFor(entity.getEntityId())) {

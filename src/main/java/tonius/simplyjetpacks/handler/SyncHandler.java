@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks;
+package tonius.simplyjetpacks.handler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 
-public class SyncTracker {
+public class SyncHandler {
     
     private static Map<EntityPlayer, Boolean> flyKeyState = new HashMap<EntityPlayer, Boolean>();
     private static Map<EntityPlayer, Boolean> descendKeyState = new HashMap<EntityPlayer, Boolean>();

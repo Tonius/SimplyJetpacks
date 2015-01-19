@@ -11,8 +11,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.client.model.PackModelType;
+import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.FireworkUtils;
@@ -55,7 +55,7 @@ public class JetpackPotato extends Jetpack {
                 }
             }
         } else {
-            if (force || SyncTracker.isFlyKeyDown(user)) {
+            if (force || SyncHandler.isFlyKeyDown(user)) {
                 if (this.isTimerSet(stack)) {
                     this.decrementTimer(stack, user);
                 } else {
@@ -85,7 +85,7 @@ public class JetpackPotato extends Jetpack {
     
     @Override
     public ParticleType getDisplayParticleType(ItemStack itemStack, ItemPack item, EntityLivingBase user) {
-        if (!this.isFired(itemStack) && SyncTracker.isFlyKeyDown(user)) {
+        if (!this.isFired(itemStack) && SyncHandler.isFlyKeyDown(user)) {
             return user.getRNG().nextInt(5) == 0 ? ParticleType.SMOKE : null;
         } else if (this.isFired(itemStack)) {
             return this.getParticleType(itemStack);
