@@ -1,6 +1,7 @@
 package tonius.simplyjetpacks.util;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 import net.minecraft.util.StatCollector;
 
@@ -8,7 +9,8 @@ import org.lwjgl.input.Keyboard;
 
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.setup.FuelType;
+import tonius.simplyjetpacks.setup.ParticleType;
 
 public abstract class StringUtils {
     
@@ -77,11 +79,19 @@ public abstract class StringUtils {
         return String.format(translate("tooltip.tier"), tier);
     }
     
+    @Deprecated
     public static String getChargeText(boolean infinite, int charge, int total) {
         if (infinite) {
             return LIGHT_GRAY + translate("tooltip.charge.infinite");
         }
         return LIGHT_GRAY + getFormattedNumber(charge) + " / " + getFormattedNumber(total) + " RF";
+    }
+    
+    public static String getFuelText(FuelType fuelType, int amount, int max, boolean infinite) {
+        if (infinite) {
+            return LIGHT_GRAY + translate("tooltip.fuel.infinite");
+        }
+        return LIGHT_GRAY + getFormattedNumber(amount) + " / " + getFormattedNumber(max) + fuelType.suffix;
     }
     
     public static String getStateText(boolean state) {
@@ -99,9 +109,9 @@ public abstract class StringUtils {
         return ORANGE + translate("tooltip.chargerState") + ": " + onOrOff;
     }
     
-    public static String getEnergyUsageText(int usage) {
-        String usageText = usage > 0 ? getFormattedNumber(usage) + " RF/t" : translate("tooltip.energy.none");
-        return ORANGE + translate("tooltip.energyUsage") + ": " + LIGHT_GRAY + usageText;
+    public static String getFuelUsageText(FuelType fuelType, int usage) {
+        String usageText = getFormattedNumber(usage) + fuelType.suffix + "/t";
+        return ORANGE + translate("tooltip.fuelUsage") + ": " + LIGHT_GRAY + usageText;
     }
     
     public static String getChargerRateText(int rate) {
@@ -123,22 +133,22 @@ public abstract class StringUtils {
         return ORANGE + translate("tooltip.armored") + ": " + yesOrNo;
     }
     
-    public static String getParticlesText(JetpackParticleType particle) {
+    public static String getParticlesText(ParticleType particle) {
         return ORANGE + translate("tooltip.particles") + ": " + LIGHT_GRAY + translate("tooltip.particles." + particle.ordinal());
     }
     
-    public static String getHUDEnergyText(String prefix, int percent, int energy) {
+    public static String getHUDFuelText(String prefix, int percent, FuelType fuelType, int fuel) {
         String text = "";
         if (!Config.minimalEnergyHUD) {
-            text += translate("gui.hud." + prefix + ".energy") + ": ";
+            text += translate("gui.hud." + prefix + ".fuel") + ": ";
         }
         if (percent > 0) {
             text += getColoredPercent(percent) + "%";
         } else {
-            text += RED + translate("gui.hud.energy.depleted");
+            text += RED + translate("gui.hud.fuel.depleted");
         }
         if (Config.showExactEnergyInHUD) {
-            text += " (" + getFormattedNumber(energy) + " RF)";
+            text += " (" + getFormattedNumber(fuel) + fuelType.suffix + ")";
         }
         return text;
     }
@@ -192,6 +202,19 @@ public abstract class StringUtils {
             return StatCollector.translateToLocal(SimplyJetpacks.PREFIX + unlocalized);
         }
         return StatCollector.translateToLocal(unlocalized);
+    }
+    
+    public static void addDescriptionLines(List<String> list, String base, String color) {
+        int i = 1;
+        while (true) {
+            String unlocalized = SimplyJetpacks.PREFIX + "tooltip." + base + ".description." + i;
+            String localized = StatCollector.translateToLocal(unlocalized);
+            if (unlocalized.equals(localized)) {
+                break;
+            }
+            list.add(color + localized);
+            i++;
+        }
     }
     
 }

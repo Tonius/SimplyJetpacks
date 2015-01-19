@@ -34,9 +34,4 @@ public abstract class Defaults {
     public static final boolean showEnergyHUDWhileChatting = true;
     public static final boolean showExactEnergyInHUD = false;
     
-    // crafting
-    public static final boolean enableCraftingArmorPlating = true;
-    public static final boolean enableCraftingPotatoJetpack = true;
-    public static final boolean enableCraftingJetPlate = true;
-    
 }

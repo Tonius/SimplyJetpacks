@@ -1,5 +1,7 @@
 itemGroup.tabSimplyJetpacks=简易飞行背包
 
+item.simplyjetpacks.jetpack.0.name=土豆喷气背包
+item.simplyjetpacks.jetpack.9001.name=创造模式飞行胸甲
 item.simplyjetpacks.jetpack.1.te.name=铅石飞行背包
 item.simplyjetpacks.jetpack.2.te.name=强化飞行背包
 item.simplyjetpacks.jetpack.3.te.name=红石飞行背包
@@ -18,9 +20,8 @@ item.simplyjetpacks.jetpack.1.armored.eio.name=导电铁飞行胸甲
 item.simplyjetpacks.jetpack.2.armored.eio.name=磁钢飞行胸甲
 item.simplyjetpacks.jetpack.3.armored.eio.name=充能飞行胸甲
 item.simplyjetpacks.jetpack.4.armored.eio.name=脉冲飞行胸甲
-item.simplyjetpacks.jetpack.potato.name=土豆喷气背包
-item.simplyjetpacks.jetpack.creative.name=创造模式飞行胸甲
 
+item.simplyjetpacks.fluxpack.9001.name=创造模式能源胸甲
 item.simplyjetpacks.fluxpack.1.te.name=铅石能源背包
 item.simplyjetpacks.fluxpack.2.te.name=强化能源背包
 item.simplyjetpacks.fluxpack.3.te.name=红石能源背包
@@ -37,7 +38,6 @@ item.simplyjetpacks.fluxpack.1.armored.eio.name=基础电容胸甲
 item.simplyjetpacks.fluxpack.2.armored.eio.name=双层电容胸甲
 item.simplyjetpacks.fluxpack.3.armored.eio.name=四层电容胸甲
 item.simplyjetpacks.fluxpack.4.armored.eio.name=八位电容胸甲
-item.simplyjetpacks.fluxpack.creative.name=创造模式能源胸甲
 
 item.simplyjetpacks.leatherStrap.name=皮带
 item.simplyjetpacks.thruster.te.1.name=铅石推进器

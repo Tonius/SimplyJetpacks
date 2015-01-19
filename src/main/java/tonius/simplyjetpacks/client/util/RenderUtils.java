@@ -3,9 +3,6 @@ package tonius.simplyjetpacks.client.util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 
 public abstract class RenderUtils {
     
@@ -70,17 +67,6 @@ public abstract class RenderUtils {
         RIGHT,
         BOTTOM_LEFT,
         BOTTOM_RIGHT
-    }
-    
-    public static ModelBiped getChestplateModel(EntityLivingBase entity, ModelBiped model) {
-        model.isSneak = entity.isSneaking();
-        model.isRiding = entity.isRiding();
-        model.isChild = entity.isChild();
-        model.heldItemRight = entity.getEquipmentInSlot(0) != null ? 1 : 0;
-        if (entity instanceof EntityPlayer) {
-            model.aimedBow = ((EntityPlayer) entity).getItemInUseDuration() > 2;
-        }
-        return model;
     }
     
 }

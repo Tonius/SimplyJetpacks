@@ -11,18 +11,17 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
 
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.SyncTracker;
 import tonius.simplyjetpacks.client.audio.SoundJetpack;
 import tonius.simplyjetpacks.config.Config;
-import tonius.simplyjetpacks.item.IModeSwitchable;
-import tonius.simplyjetpacks.item.IToggleable;
-import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.item.jetpack.Jetpack;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.handler.SyncHandler;
+import tonius.simplyjetpacks.item.IControllable;
+import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
+import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
 import tonius.simplyjetpacks.network.message.MessageModKey;
 import tonius.simplyjetpacks.setup.ModControls;
+import tonius.simplyjetpacks.setup.ParticleType;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -44,7 +43,7 @@ public class ClientTickHandler {
     private static boolean lastLeftState = false;
     private static boolean lastRightState = false;
     
-    private static JetpackParticleType lastJetpackState = null;
+    private static ParticleType lastJetpackState = null;
     
     private static KeyBinding keyToggle = new KeyBinding(SimplyJetpacks.PREFIX + "keybind.toggle", Keyboard.KEY_F, "Simply Jetpacks");
     private static KeyBinding keyMode = new KeyBinding(SimplyJetpacks.PREFIX + "keybind.mode", Keyboard.KEY_C, "Simply Jetpacks");
@@ -94,28 +93,28 @@ public class ClientTickHandler {
                 lastLeftState = leftState;
                 lastRightState = rightState;
                 PacketHandler.instance.sendToServer(new MessageKeyboardSync(flyState, descendState, forwardState, backwardState, leftState, rightState));
-                SyncTracker.processKeyUpdate(mc.thePlayer, flyState, descendState, forwardState, backwardState, leftState, rightState);
+                SyncHandler.processKeyUpdate(mc.thePlayer, flyState, descendState, forwardState, backwardState, leftState, rightState);
             }
             
-            JetpackParticleType jetpackState = null;
+            ParticleType jetpackState = null;
             ItemStack armor = mc.thePlayer.getEquipmentInSlot(3);
             if (armor != null && armor.getItem() instanceof ItemJetpack) {
-                Jetpack jetpack = ((ItemJetpack) armor.getItem()).getJetpack(armor);
+                Jetpack jetpack = ((ItemJetpack) armor.getItem()).getPack(armor);
                 if (jetpack != null) {
-                    jetpackState = jetpack.particleToShow(armor, (ItemJetpack) armor.getItem(), mc.thePlayer);
+                    jetpackState = jetpack.getDisplayParticleType(armor, (ItemJetpack) armor.getItem(), mc.thePlayer);
                 }
             }
             
             if (jetpackState != lastJetpackState) {
                 lastJetpackState = jetpackState;
-                SyncTracker.processJetpackUpdate(mc.thePlayer.getEntityId(), jetpackState);
+                SyncHandler.processJetpackUpdate(mc.thePlayer.getEntityId(), jetpackState);
             }
         }
     }
     
     private static void tickEnd() {
         if (mc.thePlayer != null && mc.theWorld != null && !mc.isGamePaused()) {
-            Iterator<Integer> itr = SyncTracker.getJetpackStates().keySet().iterator();
+            Iterator<Integer> itr = SyncHandler.getJetpackStates().keySet().iterator();
             int currentEntity;
             while (itr.hasNext()) {
                 currentEntity = itr.next();
@@ -123,7 +122,7 @@ public class ClientTickHandler {
                 if (entity == null || !(entity instanceof EntityLivingBase) || entity.dimension != mc.thePlayer.dimension) {
                     itr.remove();
                 } else {
-                    JetpackParticleType particle = SyncTracker.getJetpackStates().get(currentEntity);
+                    ParticleType particle = SyncHandler.getJetpackStates().get(currentEntity);
                     if (particle != null) {
                         SimplyJetpacks.proxy.showJetpackParticles(mc.theWorld, (EntityLivingBase) entity, particle);
                         if (Config.jetpackSounds && !SoundJetpack.isPlayingFor(entity.getEntityId())) {
@@ -144,10 +143,10 @@ public class ClientTickHandler {
         if (toggle || mode) {
             if (mc.inGameHasFocus) {
                 ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
-                if (itemStack != null) {
-                    if (toggle && itemStack.getItem() instanceof IToggleable) {
+                if (itemStack != null && itemStack.getItem() instanceof IControllable) {
+                    if (toggle) {
                         PacketHandler.instance.sendToServer(new MessageModKey(ModControls.TOGGLE, Config.sneakChangesToggleBehavior, Config.enableStateChatMessages));
-                    } else if (mode && itemStack.getItem() instanceof IModeSwitchable) {
+                    } else if (mode) {
                         PacketHandler.instance.sendToServer(new MessageModKey(ModControls.MODE, Config.sneakChangesToggleBehavior, Config.enableStateChatMessages));
                     }
                 }

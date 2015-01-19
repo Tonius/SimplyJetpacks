@@ -10,7 +10,7 @@ import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
+import tonius.simplyjetpacks.setup.ParticleType;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientProxy extends CommonProxy {
@@ -27,7 +27,7 @@ public class ClientProxy extends CommonProxy {
     }
     
     @Override
-    public void showJetpackParticles(World world, EntityLivingBase wearer, JetpackParticleType particle) {
+    public void showJetpackParticles(World world, EntityLivingBase wearer, ParticleType particle) {
         if (mc.gameSettings.particleSetting == 2) {
             return;
         } else if (mc.gameSettings.particleSetting == 0 || mc.gameSettings.particleSetting == 1 && mc.theWorld.getTotalWorldTime() % 4L == 0) {
@@ -51,13 +51,13 @@ public class ClientProxy extends CommonProxy {
             vCenter = vCenter.addVector(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D);
             
             Vec3 v = userPos.addVector(vLeft.xCoord, vLeft.yCoord, vLeft.zCoord);
-            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, rand.nextDouble() * 0.05D - 0.025D, -0.2D, rand.nextDouble() * 0.05D - 0.025D);
             
             v = userPos.addVector(vRight.xCoord, vRight.yCoord, vRight.zCoord);
-            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, rand.nextDouble() * 0.05D - 0.025D, -0.2D, rand.nextDouble() * 0.05D - 0.025D);
             
             v = userPos.addVector(vCenter.xCoord, vCenter.yCoord, vCenter.zCoord);
-            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, rand.nextDouble() * 0.05D - 0.025D, -0.2D, rand.nextDouble() * 0.05D - 0.025D);
         }
     }
     

@@ -5,15 +5,15 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class StackUtils {
     
-    public static NBTTagCompound getNBT(ItemStack itemStack) {
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
+    public static NBTTagCompound getNBT(ItemStack stack) {
+        if (stack.stackTagCompound == null) {
+            stack.stackTagCompound = new NBTTagCompound();
         }
-        return itemStack.stackTagCompound;
+        return stack.stackTagCompound;
     }
     
-    public static boolean getNBTBoolean(ItemStack itemStack, String tag, boolean fallback) {
-        NBTTagCompound tagCompound = getNBT(itemStack);
+    public static boolean getNBTBoolean(ItemStack stack, String tag, boolean fallback) {
+        NBTTagCompound tagCompound = getNBT(stack);
         if (!tagCompound.hasKey(tag)) {
             tagCompound.setBoolean(tag, fallback);
         }

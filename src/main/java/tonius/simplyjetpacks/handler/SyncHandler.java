@@ -1,4 +1,4 @@
-package tonius.simplyjetpacks;
+package tonius.simplyjetpacks.handler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,16 +8,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import tonius.simplyjetpacks.client.audio.SoundJetpack;
 import tonius.simplyjetpacks.config.Config;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageConfigSync;
+import tonius.simplyjetpacks.setup.ParticleType;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 
-public class SyncTracker {
+public class SyncHandler {
     
     private static Map<EntityPlayer, Boolean> flyKeyState = new HashMap<EntityPlayer, Boolean>();
     private static Map<EntityPlayer, Boolean> descendKeyState = new HashMap<EntityPlayer, Boolean>();
@@ -27,7 +27,7 @@ public class SyncTracker {
     private static Map<EntityPlayer, Boolean> leftKeyState = new HashMap<EntityPlayer, Boolean>();
     private static Map<EntityPlayer, Boolean> rightKeyState = new HashMap<EntityPlayer, Boolean>();
     
-    private static Map<Integer, JetpackParticleType> jetpackState = new HashMap<Integer, JetpackParticleType>();
+    private static Map<Integer, ParticleType> jetpackState = new HashMap<Integer, ParticleType>();
     
     public static boolean isFlyKeyDown(EntityLivingBase user) {
         if (user instanceof EntityPlayer) {
@@ -81,7 +81,7 @@ public class SyncTracker {
         rightKeyState.put(player, keyRight);
     }
     
-    public static void processJetpackUpdate(int entityId, JetpackParticleType particleType) {
+    public static void processJetpackUpdate(int entityId, ParticleType particleType) {
         if (particleType != null) {
             jetpackState.put(entityId, particleType);
         } else {
@@ -89,7 +89,7 @@ public class SyncTracker {
         }
     }
     
-    public static Map<Integer, JetpackParticleType> getJetpackStates() {
+    public static Map<Integer, ParticleType> getJetpackStates() {
         return jetpackState;
     }
     

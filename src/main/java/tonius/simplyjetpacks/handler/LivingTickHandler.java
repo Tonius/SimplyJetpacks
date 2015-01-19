@@ -9,30 +9,30 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.item.jetpack.Jetpack;
-import tonius.simplyjetpacks.item.jetpack.JetpackParticleType;
-import tonius.simplyjetpacks.item.jetpack.JetpackPotato;
+import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
+import tonius.simplyjetpacks.item.meta.Jetpack;
+import tonius.simplyjetpacks.item.meta.JetpackPotato;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageJetpackSync;
+import tonius.simplyjetpacks.setup.ParticleType;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class LivingTickHandler {
     
-    private static Map<Integer, JetpackParticleType> lastJetpackState = new ConcurrentHashMap<Integer, JetpackParticleType>();
+    private static Map<Integer, ParticleType> lastJetpackState = new ConcurrentHashMap<Integer, ParticleType>();
     private static Random rand = new Random();
     
     @SubscribeEvent
     public void onLivingTick(LivingUpdateEvent evt) {
         if (!evt.entityLiving.worldObj.isRemote) {
-            JetpackParticleType jetpackState = null;
+            ParticleType jetpackState = null;
             ItemStack armor = evt.entityLiving.getEquipmentInSlot(3);
             Jetpack jetpack = null;
             if (armor != null && armor.getItem() instanceof ItemJetpack) {
-                jetpack = ((ItemJetpack) armor.getItem()).getJetpack(armor);
+                jetpack = ((ItemJetpack) armor.getItem()).getPack(armor);
                 if (jetpack != null) {
-                    jetpackState = jetpack.particleToShow(armor, (ItemJetpack) armor.getItem(), evt.entityLiving);
+                    jetpackState = jetpack.getDisplayParticleType(armor, (ItemJetpack) armor.getItem(), evt.entityLiving);
                 }
             }
             
@@ -65,11 +65,11 @@ public class LivingTickHandler {
             ItemStack armor = evt.entityLiving.getEquipmentInSlot(3);
             if (armor != null && armor.getItem() instanceof ItemJetpack) {
                 ItemJetpack jetpackItem = (ItemJetpack) armor.getItem();
-                Jetpack jetpack = jetpackItem.getJetpack(armor);
+                Jetpack jetpack = jetpackItem.getPack(armor);
                 if (jetpack != null) {
                     if (jetpack instanceof JetpackPotato || rand.nextInt(3) == 0) {
                         jetpack.setMobMode(armor);
-                        jetpack.useJetpack(evt.entityLiving, armor, jetpackItem, false);
+                        jetpack.flyUser(evt.entityLiving, armor, jetpackItem, false);
                     }
                 }
                 if (evt.entityLiving.posY > evt.entityLiving.worldObj.getActualHeight() + 10) {

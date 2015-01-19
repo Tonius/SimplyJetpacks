@@ -9,11 +9,11 @@ import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
-import tonius.simplyjetpacks.item.ItemFluxPack;
-import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.item.fluxpack.FluxPack;
-import tonius.simplyjetpacks.item.jetpack.Jetpack;
-import tonius.simplyjetpacks.item.jetpack.JetpackJetPlate;
+import tonius.simplyjetpacks.item.ItemPack;
+import tonius.simplyjetpacks.item.meta.FluxPack;
+import tonius.simplyjetpacks.item.meta.JetPlate;
+import tonius.simplyjetpacks.item.meta.Jetpack;
+import tonius.simplyjetpacks.item.meta.PackBase;
 import tonius.simplyjetpacks.util.StringUtils;
 
 public class CommandSwitch extends CommandBase {
@@ -43,35 +43,31 @@ public class CommandSwitch extends CommandBase {
         if (sender instanceof EntityPlayer) {
             if (args.length == 1) {
                 ItemStack armor = ((EntityPlayer) sender).getEquipmentInSlot(3);
-                if (armor != null) {
+                nopack: if (armor != null && armor.getItem() instanceof ItemPack) {
+                    PackBase pack = ((ItemPack) armor.getItem()).getPack(armor);
+                    if (pack == null) {
+                        break nopack;
+                    }
                     if (args[0].equals("charger")) {
-                        if (armor.getItem() instanceof ItemJetpack) {
-                            Jetpack jetpack = ((ItemJetpack) armor.getItem()).getJetpack(armor);
-                            if (jetpack != null && jetpack instanceof JetpackJetPlate) {
-                                ((JetpackJetPlate) jetpack).toggleCharger(armor, (EntityPlayer) sender, true);
-                                return;
-                            }
-                            sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noCharger")));
+                        if (pack instanceof JetPlate) {
+                            ((JetPlate) pack).toggleCharger(armor, (EntityPlayer) sender, true);
                             return;
-                        } else if (armor.getItem() instanceof ItemFluxPack) {
-                            FluxPack fluxpack = ((ItemFluxPack) armor.getItem()).getFluxPack(armor);
-                            if (fluxpack != null) {
-                                fluxpack.toggle(armor, (EntityPlayer) sender, true);
-                                return;
-                            }
-                            sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noCharger")));
+                        } else if (pack instanceof FluxPack) {
+                            ((FluxPack) pack).toggleOn(armor, (EntityPlayer) sender, false, true);
                             return;
                         }
+                        sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noCharger")));
+                        return;
                     }
                     if (args[0].equals("ehover")) {
-                        if (armor.getItem() instanceof ItemJetpack) {
-                            Jetpack jetpack = ((ItemJetpack) armor.getItem()).getJetpack(armor);
-                            if (jetpack != null) {
-                                if (!jetpack.switchEmergencyHoverMode(armor, (EntityPlayer) sender)) {
-                                    sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noEmergencyHover")));
-                                }
-                                return;
+                        if (pack instanceof Jetpack) {
+                            Jetpack jetpack = (Jetpack) pack;
+                            if (!jetpack.emergencyHoverMode) {
+                                sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noEmergencyHover")));
+                            } else {
+                                jetpack.switchEHover(armor, (EntityPlayer) sender);
                             }
+                            return;
                         }
                         sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noJetpack")));
                         return;
