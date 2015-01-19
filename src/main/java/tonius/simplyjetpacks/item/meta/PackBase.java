@@ -54,7 +54,6 @@ public class PackBase {
     public boolean showArmored = true;
     public Integer platingMeta = null;
     public boolean isFluxBased = false;
-    public boolean outputIsUsage = false;
     
     public PackBase(String name, int tier, EnumRarity rarity, String defaultConfigKey) {
         this.name = name;
@@ -129,11 +128,6 @@ public class PackBase {
     
     public PackBase setFluxBased(boolean fluxBased) {
         this.isFluxBased = fluxBased;
-        return this;
-    }
-    
-    public PackBase setOutputIsUsage(boolean outputIsUsage) {
-        this.outputIsUsage = outputIsUsage;
         return this;
     }
     

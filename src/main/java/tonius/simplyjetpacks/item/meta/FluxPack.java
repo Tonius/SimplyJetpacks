@@ -18,7 +18,6 @@ public class FluxPack extends PackBase {
     public FluxPack(int tier, EnumRarity rarity, String defaultConfigKey) {
         super("fluxpack", tier, rarity, defaultConfigKey);
         this.setFuelType(FuelType.ENERGY);
-        this.setOutputIsUsage(true);
         this.setArmorModel(PackModelType.FLUX_PACK);
     }
     

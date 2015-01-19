@@ -337,7 +337,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         case ENERGY:
         default:
             int energy = this.getEnergyStored(stack);
-            int energyExtracted = Math.min(energy, Math.min(maxUse, pack.outputIsUsage ? pack.fuelPerTickOut : pack.fuelUsage));
+            int energyExtracted = Math.min(energy, maxUse);
             if (!simulate) {
                 energy -= energyExtracted;
                 StackUtils.getNBT(stack).setInteger(TAG_ENERGY, energy);
@@ -349,7 +349,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
             }
             FluidStack fluid = this.getFluid(stack);
             int amount = fluid != null ? fluid.amount : 0;
-            int fluidExtracted = Math.min(amount, Math.min(maxUse, pack.outputIsUsage ? pack.fuelPerTickOut : pack.fuelUsage));
+            int fluidExtracted = Math.min(amount, maxUse);
             if (!simulate) {
                 amount -= fluidExtracted;
                 StackUtils.getNBT(stack).setInteger(TAG_FLUID, amount);
