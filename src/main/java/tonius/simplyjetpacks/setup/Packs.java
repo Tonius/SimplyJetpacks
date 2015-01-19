@@ -48,7 +48,7 @@ public class Packs {
     
     public static void preInit() {
         jetpackPotato = new JetpackPotato(0, EnumRarity.common, "jetpackPotato");
-        jetpackCreative = (Jetpack) new JetPlate(9001, EnumRarity.epic, "jetpackCreative").setUsesFuel(false).setHasFuelIndicator(false).setShowEmptyInCreativeTab(false);
+        jetpackCreative = (Jetpack) new JetPlate(9001, EnumRarity.epic, "jetpackCreative").setDefaultParticleType(ParticleType.RAINBOW_SMOKE).setUsesFuel(false).setHasFuelIndicator(false).setShowEmptyInCreativeTab(false);
         fluxPackCreative = (FluxPack) new FluxPack(9001, EnumRarity.epic, "fluxPackCreative").setUsesFuel(false).setHasFuelIndicator(false).setShowEmptyInCreativeTab(false).setIsArmored(true).setShowArmored(false);
         
         if (ModType.THERMAL_EXPANSION.isLoaded()) {

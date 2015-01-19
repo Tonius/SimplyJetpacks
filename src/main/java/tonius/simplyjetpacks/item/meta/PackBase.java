@@ -182,14 +182,27 @@ public class PackBase {
     }
     
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, int fuelStored) {
+    public void addInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getTierText(this.tier));
-        list.add(StringUtils.getFuelText(this.fuelType, fuelStored, this.fuelCapacity, !this.usesFuel));
+        list.add(StringUtils.getFuelText(this.fuelType, item.getFuelStored(stack), this.fuelCapacity, !this.usesFuel));
     }
     
     @SideOnly(Side.CLIENT)
-    public void addShiftInformation(ItemStack stack, EntityPlayer player, List list) {
+    public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public String getHUDFuelInfo(ItemStack stack, ItemPack item) {
+        int fuel = item.getFuelStored(stack);
+        int maxFuel = item.getMaxFuelStored(stack);
+        int percent = (int) Math.ceil((double) fuel / (double) maxFuel * 100D);
+        return StringUtils.getHUDFuelText(this.name, percent, this.fuelType, fuel);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public String getHUDStatesInfo(ItemStack stack, ItemPack item) {
+        return null;
     }
     
     // start configuration

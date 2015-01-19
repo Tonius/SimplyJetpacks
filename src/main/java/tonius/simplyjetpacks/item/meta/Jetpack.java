@@ -188,7 +188,7 @@ public class Jetpack extends PackBase {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void addShiftInformation(ItemStack stack, EntityPlayer player, List list) {
+    public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
         list.add(StringUtils.getHoverModeText(this.isHoverModeOn(stack)));
         if (this.fuelUsage > 0) {
@@ -197,6 +197,14 @@ public class Jetpack extends PackBase {
         list.add(StringUtils.getArmoredText(this.isArmored));
         list.add(StringUtils.getParticlesText(this.getParticleType(stack)));
         StringUtils.addDescriptionLines(list, "jetpack", StringUtils.BRIGHT_GREEN);
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getHUDStatesInfo(ItemStack stack, ItemPack item) {
+        Boolean engine = this.isOn(stack);
+        Boolean hover = this.isHoverModeOn(stack);
+        return StringUtils.getHUDStateText(engine, hover, null);
     }
     
     // start configuration

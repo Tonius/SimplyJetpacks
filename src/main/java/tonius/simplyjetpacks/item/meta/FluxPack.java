@@ -30,7 +30,7 @@ public class FluxPack extends PackBase {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void addShiftInformation(ItemStack stack, EntityPlayer player, List list) {
+    public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
         list.add(StringUtils.getEnergySendText(this.fuelPerTickOut));
         if (this.fuelPerTickIn > 0) {
@@ -38,6 +38,12 @@ public class FluxPack extends PackBase {
         }
         list.add(StringUtils.getArmoredText(this.isArmored));
         StringUtils.addDescriptionLines(list, "fluxpack", StringUtils.BRIGHT_GREEN);
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getHUDStatesInfo(ItemStack stack, ItemPack item) {
+        return StringUtils.getHUDStateText(null, null, this.isOn(stack));
     }
     
 }

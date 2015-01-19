@@ -137,18 +137,18 @@ public abstract class StringUtils {
         return ORANGE + translate("tooltip.particles") + ": " + LIGHT_GRAY + translate("tooltip.particles." + particle.ordinal());
     }
     
-    public static String getHUDEnergyText(String prefix, int percent, int energy) {
+    public static String getHUDFuelText(String prefix, int percent, FuelType fuelType, int fuel) {
         String text = "";
         if (!Config.minimalEnergyHUD) {
-            text += translate("gui.hud." + prefix + ".energy") + ": ";
+            text += translate("gui.hud." + prefix + ".fuel") + ": ";
         }
         if (percent > 0) {
             text += getColoredPercent(percent) + "%";
         } else {
-            text += RED + translate("gui.hud.energy.depleted");
+            text += RED + translate("gui.hud.fuel.depleted");
         }
         if (Config.showExactEnergyInHUD) {
-            text += " (" + getFormattedNumber(energy) + " RF)";
+            text += " (" + getFormattedNumber(fuel) + fuelType.suffix + ")";
         }
         return text;
     }

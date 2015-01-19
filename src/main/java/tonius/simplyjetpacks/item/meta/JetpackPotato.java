@@ -95,8 +95,8 @@ public class JetpackPotato extends Jetpack {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void addShiftInformation(ItemStack stack, EntityPlayer player, List list) {
-        super.addShiftInformation(stack, player, list);
+    public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
+        super.addShiftInformation(stack, item, player, list);
         list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
     }
     

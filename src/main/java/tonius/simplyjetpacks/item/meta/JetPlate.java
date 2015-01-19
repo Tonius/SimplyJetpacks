@@ -50,7 +50,7 @@ public class JetPlate extends Jetpack {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void addShiftInformation(ItemStack stack, EntityPlayer player, List list) {
+    public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
         list.add(StringUtils.getHoverModeText(this.isHoverModeOn(stack)));
         list.add(StringUtils.getChargerStateText(this.isChargerOn(stack)));
@@ -61,6 +61,15 @@ public class JetPlate extends Jetpack {
         list.add(StringUtils.getParticlesText(this.getParticleType(stack)));
         StringUtils.addDescriptionLines(list, "jetplate", StringUtils.BRIGHT_GREEN);
         list.add(StringUtils.BRIGHT_BLUE + StringUtils.ITALIC + StringUtils.translate("tooltip.jetplate.controls" + (Config.sneakChangesToggleBehavior ? "" : ".command")));
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getHUDStatesInfo(ItemStack stack, ItemPack item) {
+        Boolean engine = this.isOn(stack);
+        Boolean hover = this.isHoverModeOn(stack);
+        Boolean charger = this.isChargerOn(stack);
+        return StringUtils.getHUDStateText(engine, hover, charger);
     }
     
 }

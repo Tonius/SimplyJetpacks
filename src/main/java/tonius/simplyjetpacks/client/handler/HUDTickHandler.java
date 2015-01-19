@@ -1,5 +1,6 @@
 package tonius.simplyjetpacks.client.handler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
@@ -36,8 +37,9 @@ public class HUDTickHandler {
                 if (chestplate != null && chestplate.getItem() instanceof IHUDInfoProvider) {
                     IHUDInfoProvider provider = (IHUDInfoProvider) chestplate.getItem();
                     
-                    List<String> info = provider.getHUDInfo(chestplate);
-                    if (info == null) {
+                    List<String> info = new ArrayList<String>();
+                    provider.addHUDInfo(chestplate, info);
+                    if (info.isEmpty()) {
                         return;
                     }
                     

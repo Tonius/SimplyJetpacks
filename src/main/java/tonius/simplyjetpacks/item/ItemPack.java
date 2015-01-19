@@ -152,9 +152,9 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
         T pack = this.getPack(stack);
         if (pack != null) {
-            pack.addInformation(stack, player, list, this.getFuelStored(stack));
+            pack.addInformation(stack, this, player, list);
             if (StringUtils.canShowDetails()) {
-                pack.addShiftInformation(stack, player, list);
+                pack.addShiftInformation(stack, this, player, list);
             } else {
                 list.add(StringUtils.getShiftText());
             }
@@ -463,8 +463,16 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     // HUD info
     @Override
     @SideOnly(Side.CLIENT)
-    public List<String> getHUDInfo(ItemStack stack) {
-        return null;
+    public void addHUDInfo(ItemStack stack, List<String> list) {
+        T pack = this.getPack(stack);
+        if (pack != null) {
+            if (pack.hasFuelIndicator) {
+                list.add(pack.getHUDFuelInfo(stack, this));
+            }
+            if (pack.hasStateIndicators) {
+                list.add(pack.getHUDStatesInfo(stack, this));
+            }
+        }
     }
     
     public static class ItemJetpack extends ItemPack<Jetpack> {

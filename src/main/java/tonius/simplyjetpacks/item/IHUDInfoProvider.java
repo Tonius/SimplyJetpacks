@@ -9,6 +9,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public interface IHUDInfoProvider {
     
     @SideOnly(Side.CLIENT)
-    public List<String> getHUDInfo(ItemStack stack);
+    public void addHUDInfo(ItemStack stack, List<String> list);
     
 }
