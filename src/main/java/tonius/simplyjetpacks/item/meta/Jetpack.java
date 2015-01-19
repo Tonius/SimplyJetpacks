@@ -133,8 +133,8 @@ public class Jetpack extends PackBase {
     }
     
     public void setMobMode(ItemStack itemStack) {
-        itemStack.stackTagCompound.setBoolean("JetpackOn", true);
-        itemStack.stackTagCompound.setBoolean("JetpackHoverModeOn", false);
+        itemStack.stackTagCompound.setBoolean(TAG_ON, true);
+        itemStack.stackTagCompound.setBoolean(TAG_HOVERMODE_ON, false);
     }
     
     public boolean isHoverModeOn(ItemStack stack) {

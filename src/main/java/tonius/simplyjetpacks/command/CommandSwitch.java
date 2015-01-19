@@ -57,6 +57,7 @@ public class CommandSwitch extends CommandBase {
                             return;
                         }
                         sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noCharger")));
+                        return;
                     }
                     if (args[0].equals("ehover")) {
                         if (pack instanceof Jetpack) {

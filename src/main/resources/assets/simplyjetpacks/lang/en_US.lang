@@ -77,11 +77,12 @@ item.simplyjetpacks.mysteriousPotato.name=Mysterious Potato
 
 simplyjetpacks.chat.enabled=enabled
 simplyjetpacks.chat.disabled=disabled
-simplyjetpacks.chat.jetpack.engine=Jetpack engine
-simplyjetpacks.chat.jetpack.hoverMode=Hover Mode
-simplyjetpacks.chat.jetpack.hoverMode.emergency=Emergency Hover Mode
-simplyjetpacks.chat.jetpack.emergencyHoverMode=User is about to die! Activating hover mode
-simplyjetpacks.chat.fluxpack.charger=Flux Pack charger
+simplyjetpacks.chat.jetpack.on=Jetpack engine
+simplyjetpacks.chat.jetpack.hoverMode.on=Hover Mode
+simplyjetpacks.chat.jetpack.emergencyHoverMode.on=Emergency Hover Mode
+simplyjetpacks.chat.jetpack.emergencyHoverMode.msg=User is about to die! Activating hover mode
+simplyjetpacks.chat.jetpack.jetplate.charger.on=JetPlate charger
+simplyjetpacks.chat.fluxpack.on=Flux Pack charger
 
 simplyjetpacks.tooltip.holdShift=Hold %s for Details
 simplyjetpacks.tooltip.holdShift.shift=Shift
