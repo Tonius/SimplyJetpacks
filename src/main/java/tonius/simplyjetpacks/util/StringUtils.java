@@ -110,7 +110,7 @@ public abstract class StringUtils {
     }
     
     public static String getFuelUsageText(FuelType fuelType, int usage) {
-        String usageText = usage > 0 ? getFormattedNumber(usage) + fuelType.suffix + "/t" : translate("tooltip.fuel.none");
+        String usageText = getFormattedNumber(usage) + fuelType.suffix + "/t";
         return ORANGE + translate("tooltip.fuelUsage") + ": " + LIGHT_GRAY + usageText;
     }
     
@@ -207,7 +207,7 @@ public abstract class StringUtils {
     public static void addDescriptionLines(List<String> list, String base, String color) {
         int i = 1;
         while (true) {
-            String unlocalized = SimplyJetpacks.PREFIX + "tooltip.jetpack.description." + i;
+            String unlocalized = SimplyJetpacks.PREFIX + "tooltip." + base + ".description." + i;
             String localized = StatCollector.translateToLocal(unlocalized);
             if (unlocalized.equals(localized)) {
                 break;

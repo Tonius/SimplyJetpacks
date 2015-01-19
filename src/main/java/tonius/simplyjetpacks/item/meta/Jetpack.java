@@ -49,7 +49,7 @@ public class Jetpack extends PackBase {
     public void flyUser(EntityLivingBase user, ItemStack stack, ItemPack item, boolean force) {
         if (this.isOn(stack)) {
             boolean hoverMode = this.isHoverModeOn(stack);
-            double hoverSpeed = Config.invertHoverSneakingBehavior == SyncTracker.isDescendKeyDown(user) ? speedVerticalHoverSlow : speedVerticalHover;
+            double hoverSpeed = Config.invertHoverSneakingBehavior == SyncTracker.isDescendKeyDown(user) ? this.speedVerticalHoverSlow : this.speedVerticalHover;
             boolean flyKeyDown = force || SyncTracker.isFlyKeyDown(user);
             boolean descendKeyDown = SyncTracker.isDescendKeyDown(user);
             double currentAccel = user.motionY < 0.3D ? this.accelVertical * 2.5 : this.accelVertical;
@@ -181,7 +181,9 @@ public class Jetpack extends PackBase {
     public void addShiftInformation(ItemStack stack, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
         list.add(StringUtils.getHoverModeText(this.isHoverModeOn(stack)));
-        list.add(StringUtils.getFuelUsageText(this.fuelType, this.fuelUsage));
+        if (this.fuelUsage > 0) {
+            list.add(StringUtils.getFuelUsageText(this.fuelType, this.fuelUsage));
+        }
         list.add(StringUtils.getArmoredText(this.isArmored));
         list.add(StringUtils.getParticlesText(this.getParticleType(stack)));
         StringUtils.addDescriptionLines(list, "jetpack", StringUtils.BRIGHT_GREEN);
@@ -248,25 +250,25 @@ public class Jetpack extends PackBase {
         super.readConfigFromNBT(tag);
         
         if (this.defaults.speedVertical != null) {
-            this.speedVertical = tag.getInteger("SpeedVertical");
+            this.speedVertical = tag.getDouble("SpeedVertical");
         }
         if (this.defaults.accelVertical != null) {
-            this.accelVertical = tag.getInteger("AccelVertical");
+            this.accelVertical = tag.getDouble("AccelVertical");
         }
         if (this.defaults.speedVerticalHover != null) {
-            this.speedVerticalHover = tag.getInteger("SpeedVerticalHover");
+            this.speedVerticalHover = tag.getDouble("SpeedVerticalHover");
         }
         if (this.defaults.speedVerticalHoverSlow != null) {
-            this.speedVerticalHoverSlow = tag.getInteger("SpeedVerticalHoverSlow");
+            this.speedVerticalHoverSlow = tag.getDouble("SpeedVerticalHoverSlow");
         }
         if (this.defaults.speedSideways != null) {
-            this.speedSideways = tag.getInteger("SpeedSideways");
+            this.speedSideways = tag.getDouble("SpeedSideways");
         }
         if (this.defaults.sprintSpeedModifier != null) {
-            this.sprintSpeedModifier = tag.getInteger("SprintSpeedModifier");
+            this.sprintSpeedModifier = tag.getDouble("SprintSpeedModifier");
         }
         if (this.defaults.sprintFuelModifier != null) {
-            this.sprintFuelModifier = tag.getInteger("SprintFuelModifier");
+            this.sprintFuelModifier = tag.getDouble("SprintFuelModifier");
         }
     }
     

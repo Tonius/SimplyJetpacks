@@ -1,5 +1,7 @@
 itemGroup.tabSimplyJetpacks=Simply Jetpacks
 
+item.simplyjetpacks.jetpack.0.name=Aardappel-jetpack
+item.simplyjetpacks.jetpack.9001.name=Creative-jetpack
 item.simplyjetpacks.jetpack.1.te.name=Leadstone-jetpack
 item.simplyjetpacks.jetpack.2.te.name=Geharde jetpack
 item.simplyjetpacks.jetpack.3.te.name=Versterkte jetpack
@@ -9,9 +11,8 @@ item.simplyjetpacks.jetpack.1.armored.te.name=Leadstone-jetpack (Gepantserd)
 item.simplyjetpacks.jetpack.2.armored.te.name=Geharde jetpack (Gepantserd)
 item.simplyjetpacks.jetpack.3.armored.te.name=Versterkte jetpack (Gepantserd)
 item.simplyjetpacks.jetpack.4.armored.te.name=Resonante jetpack (Gepantserd)
-item.simplyjetpacks.jetpack.potato.name=Aardappel-jetpack
-item.simplyjetpacks.jetpack.creative.name=Creative-jetpack
 
+item.simplyjetpacks.fluxpack.9001.name=Creative-fluxpack
 item.simplyjetpacks.fluxpack.1.te.name=Leadstone-fluxpack
 item.simplyjetpacks.fluxpack.2.te.name=Geharde fluxpack
 item.simplyjetpacks.fluxpack.3.te.name=Redstone-fluxpack
@@ -20,7 +21,6 @@ item.simplyjetpacks.fluxpack.1.armored.te.name=Leadstone-fluxpack (Gepantserd)
 item.simplyjetpacks.fluxpack.2.armored.te.name=Geharde fluxpack (Gepantserd)
 item.simplyjetpacks.fluxpack.3.armored.te.name=Redstone-fluxpack (Gepantserd)
 item.simplyjetpacks.fluxpack.4.armored.te.name=Resonante fluxpack (Gepantserd)
-item.simplyjetpacks.fluxpack.creative.name=Creative-fluxpack
 
 item.simplyjetpacks.leatherStrap.name=Leren riem
 item.simplyjetpacks.thruster.te.1.name=Leadstone-thruster

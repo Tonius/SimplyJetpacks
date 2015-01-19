@@ -18,6 +18,7 @@ public class FluxPack extends PackBase {
     public FluxPack(int tier, EnumRarity rarity, String defaultConfigKey) {
         super("fluxpack", tier, rarity, defaultConfigKey);
         this.setFuelType(FuelType.ENERGY);
+        this.setOutputIsUsage(true);
         this.setArmorModel(PackModelType.FLUX_PACK);
     }
     
@@ -33,7 +34,9 @@ public class FluxPack extends PackBase {
     public void addShiftInformation(ItemStack stack, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
         list.add(StringUtils.getEnergySendText(this.fuelPerTickOut));
-        list.add(StringUtils.getEnergyReceiveText(this.fuelPerTickIn));
+        if (this.fuelPerTickIn > 0) {
+            list.add(StringUtils.getEnergyReceiveText(this.fuelPerTickIn));
+        }
         list.add(StringUtils.getArmoredText(this.isArmored));
         StringUtils.addDescriptionLines(list, "fluxpack", StringUtils.BRIGHT_GREEN);
     }

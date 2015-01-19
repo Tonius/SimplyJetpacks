@@ -1,6 +1,6 @@
 package tonius.simplyjetpacks.item.meta;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +25,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PackBase {
     
-    protected static final Set<PackBase> ALL_PACKS = new HashSet<PackBase>();
+    protected static final Set<PackBase> ALL_PACKS = new LinkedHashSet<PackBase>();
     protected static final String TAG_ON = "PackOn";
     
     public final String name;
@@ -51,8 +51,10 @@ public class PackBase {
     public boolean hasFuelIndicator = true;
     public boolean hasStateIndicators = true;
     public boolean isArmored = false;
+    public boolean showArmored = true;
     public Integer platingMeta = null;
     public boolean isFluxBased = false;
+    public boolean outputIsUsage = false;
     
     public PackBase(String name, int tier, EnumRarity rarity, String defaultConfigKey) {
         this.name = name;
@@ -115,6 +117,11 @@ public class PackBase {
         return this;
     }
     
+    public PackBase setShowArmored(boolean showArmored) {
+        this.showArmored = showArmored;
+        return this;
+    }
+    
     public PackBase setPlatingMeta(int platingMeta) {
         this.platingMeta = platingMeta;
         return this;
@@ -122,6 +129,11 @@ public class PackBase {
     
     public PackBase setFluxBased(boolean fluxBased) {
         this.isFluxBased = fluxBased;
+        return this;
+    }
+    
+    public PackBase setOutputIsUsage(boolean outputIsUsage) {
+        this.outputIsUsage = outputIsUsage;
         return this;
     }
     
@@ -150,7 +162,7 @@ public class PackBase {
     }
     
     public String getBaseName() {
-        return this.name + "." + this.tier;
+        return this.name + "." + this.tier + (this.isArmored && this.showArmored ? ".armored" : "");
     }
     
     protected void toggleState(boolean on, ItemStack stack, String type, String tag, EntityPlayer player, boolean showInChat) {
@@ -158,7 +170,7 @@ public class PackBase {
         
         if (player != null && showInChat) {
             String color = on ? StringUtils.LIGHT_RED : StringUtils.BRIGHT_GREEN;
-            type = (type != null && type != "") ? ("chat." + this.name + "." + type + ".on") : ("chat." + this.name + ".on");
+            type = type != null && type != "" ? "chat." + this.name + "." + type + ".on" : "chat." + this.name + ".on";
             String msg = StringUtils.translate(type) + " " + color + StringUtils.translate("chat." + (on ? "disabled" : "enabled"));
             player.addChatMessage(new ChatComponentText(msg));
         }
@@ -178,7 +190,7 @@ public class PackBase {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, int fuelStored) {
         list.add(StringUtils.getTierText(this.tier));
-        list.add(StringUtils.getFuelText(this.fuelType, fuelStored, this.fuelCapacity, this.fuelUsage == 0));
+        list.add(StringUtils.getFuelText(this.fuelType, fuelStored, this.fuelCapacity, !this.usesFuel));
     }
     
     @SideOnly(Side.CLIENT)

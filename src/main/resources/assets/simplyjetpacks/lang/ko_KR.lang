@@ -2,6 +2,8 @@
 
 itemGroup.tabSimplyJetpacks=심플리 제트팩[Simply Jetpacks]
 
+item.simplyjetpacks.jetpack.0.name=결절된 제트팩
+item.simplyjetpacks.jetpack.9001.name=크리에이티브 제트팩
 item.simplyjetpacks.jetpack.1.te.name=납 제트팩
 item.simplyjetpacks.jetpack.2.te.name=경화 제트팩
 item.simplyjetpacks.jetpack.3.te.name=강화 제트팩
@@ -11,9 +13,8 @@ item.simplyjetpacks.jetpack.1.armored.te.name=납 제트팩 (장갑)
 item.simplyjetpacks.jetpack.2.armored.te.name=경화 제트팩 (장갑)
 item.simplyjetpacks.jetpack.3.armored.te.name=강화 제트팩 (장갑)
 item.simplyjetpacks.jetpack.4.armored.te.name=공진 제트팩 (장갑)
-item.simplyjetpacks.jetpack.potato.name=결절된 제트팩
-item.simplyjetpacks.jetpack.creative.name=크리에이티브 제트팩
 
+item.simplyjetpacks.fluxpack.9001.name=크리에이티브 플럭스 팩
 item.simplyjetpacks.fluxpack.1.te.name=납 플럭스 팩
 item.simplyjetpacks.fluxpack.2.te.name=경화 플럭스 팩
 item.simplyjetpacks.fluxpack.3.te.name=레드스톤 플럭스 팩
@@ -22,7 +23,6 @@ item.simplyjetpacks.fluxpack.1.armored.te.name=납 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.2.armored.te.name=경화 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.3.armored.te.name=레드스톤 플럭스 팩 (장갑)
 item.simplyjetpacks.fluxpack.4.armored.te.name=공진 플럭스 팩 (장갑)
-item.simplyjetpacks.fluxpack.creative.name=크리에이티브 플럭스 팩
 
 item.simplyjetpacks.leatherStrap.name=가죽 끝
 item.simplyjetpacks.thruster.te.1.name=납으로 만든 쓰러스터

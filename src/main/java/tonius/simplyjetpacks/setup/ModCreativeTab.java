@@ -8,7 +8,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModCreativeTab extends CreativeTabs {
     
-    private static ItemStack display;
     public static final ModCreativeTab tab = new ModCreativeTab();
     
     private ModCreativeTab() {
@@ -18,16 +17,13 @@ public class ModCreativeTab extends CreativeTabs {
     @Override
     @SideOnly(Side.CLIENT)
     public Item getTabIconItem() {
-        return ModItems.jetpacksCommon;
+        return ModItems.components;
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getIconItemStack() {
-        if (display == null) {
-            display = new ItemStack(this.getTabIconItem(), 1, 1);
-        }
-        return display;
+        return ModItems.jetpackIcon;
     }
     
 }

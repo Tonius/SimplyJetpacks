@@ -1,6 +1,7 @@
 package tonius.simplyjetpacks.item;
 
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -43,7 +44,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     private static final String TAG_ENERGY = "Energy";
     private static final String TAG_FLUID = "Fluid";
     
-    private Map<Integer, T> packs = new HashMap<Integer, T>();
+    private Map<Integer, T> packs = new LinkedHashMap<Integer, T>();
     
     public final ModType modType;
     
@@ -57,7 +58,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     }
     
     public ItemStack putPack(int meta, T pack, boolean returnFull) {
-        packs.put(meta, pack);
+        this.packs.put(meta, pack);
         ItemStack stack = new ItemStack(this, 1, meta);
         if (returnFull) {
             this.addFuel(stack, this.getMaxFuelStored(stack), false);
@@ -70,7 +71,11 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     }
     
     public T getPack(ItemStack stack) {
-        return packs.get(stack.getItemDamage());
+        return this.packs.get(stack.getItemDamage());
+    }
+    
+    public Collection<T> getPacks() {
+        return this.packs.values();
     }
     
     @Override
@@ -182,7 +187,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int damage) {
-        T pack = packs.get(damage);
+        T pack = this.packs.get(damage);
         if (pack != null && pack.icon != null) {
             return pack.icon;
         }
@@ -332,7 +337,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         case ENERGY:
         default:
             int energy = this.getEnergyStored(stack);
-            int energyExtracted = Math.min(energy, Math.min(maxUse, pack.fuelPerTickOut));
+            int energyExtracted = Math.min(energy, Math.min(maxUse, pack.outputIsUsage ? pack.fuelPerTickOut : pack.fuelUsage));
             if (!simulate) {
                 energy -= energyExtracted;
                 StackUtils.getNBT(stack).setInteger(TAG_ENERGY, energy);
@@ -344,7 +349,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
             }
             FluidStack fluid = this.getFluid(stack);
             int amount = fluid != null ? fluid.amount : 0;
-            int fluidExtracted = Math.min(amount, Math.min(maxUse, pack.fuelPerTickOut));
+            int fluidExtracted = Math.min(amount, Math.min(maxUse, pack.outputIsUsage ? pack.fuelPerTickOut : pack.fuelUsage));
             if (!simulate) {
                 amount -= fluidExtracted;
                 StackUtils.getNBT(stack).setInteger(TAG_FLUID, amount);

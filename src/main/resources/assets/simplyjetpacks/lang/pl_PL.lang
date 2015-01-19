@@ -1,3 +1,5 @@
+item.simplyjetpacks.jetpack.0.name=Bulwiasty plecak odrzutowy
+item.simplyjetpacks.jetpack.9001.name=Kreatywny plecak odrzutowy
 item.simplyjetpacks.jetpack.1.te.name=Ołowiany plecak odrzutowy
 item.simplyjetpacks.jetpack.2.te.name=Utwardzony plecak odrzutowy
 item.simplyjetpacks.jetpack.3.te.name=Wzmocniony plecak odrzutowy
@@ -16,9 +18,8 @@ item.simplyjetpacks.jetpack.1.armored.eio.name=Plecak odrzutowy z przewodzącego
 item.simplyjetpacks.jetpack.2.armored.eio.name=Plecak odrzutowy z elektrycznej stali
 item.simplyjetpacks.jetpack.3.armored.eio.name=Energetyczny plecak odrzutowy
 item.simplyjetpacks.jetpack.4.armored.eio.name=Dygoczący plecak odrzutowy
-item.simplyjetpacks.jetpack.potato.name=Bulwiasty plecak odrzutowy
-item.simplyjetpacks.jetpack.creative.name=kreatywny plecak odrzutowy
 
+item.simplyjetpacks.fluxpack.9001.name=Kreatywny Flux'owy plecak
 item.simplyjetpacks.fluxpack.1.te.name=Ołowiany Flux'owy plecak
 item.simplyjetpacks.fluxpack.2.te.name=Utwardzony Flux'owy plecak
 item.simplyjetpacks.fluxpack.3.te.name=Redstone Flux'owy plecak
@@ -35,7 +36,6 @@ item.simplyjetpacks.fluxpack.1.armored.eio.name=Basic plecak kondensatorowy
 item.simplyjetpacks.fluxpack.2.armored.eio.name=Double-Layer plecak kondensatorowy
 item.simplyjetpacks.fluxpack.3.armored.eio.name=Quadruple-Layer plecak kondensatorowy
 item.simplyjetpacks.fluxpack.4.armored.eio.name=Octadic plecak kondensatorowy
-item.simplyjetpacks.fluxpack.creative.name=Kreatywny Flux'owy plecak
 
 item.simplyjetpacks.leatherStrap.name=Leather Strap
 item.simplyjetpacks.thruster.te.1.name=Ołowiany przyspieszacz

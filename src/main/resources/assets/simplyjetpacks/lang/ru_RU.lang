@@ -1,5 +1,7 @@
 itemGroup.tabSimplyJetpacks=Simply Jetpacks
 
+item.simplyjetpacks.jetpack.0.name=Неровный реактивный ранец
+item.simplyjetpacks.jetpack.9001.name=Творческий реактивный ранец
 item.simplyjetpacks.jetpack.1.te.name=Свинцовый реактивный ранец
 item.simplyjetpacks.jetpack.2.te.name=Усиленный реактивный ранец
 item.simplyjetpacks.jetpack.3.te.name=Укреплённый реактивный ранец
@@ -18,9 +20,8 @@ item.simplyjetpacks.jetpack.1.armored.eio.name=Реактивный ранец �
 item.simplyjetpacks.jetpack.2.armored.eio.name=Реактивный ранец из наэлектризованной стали
 item.simplyjetpacks.jetpack.3.armored.eio.name=Энергетический реактивный ранец
 item.simplyjetpacks.jetpack.4.armored.eio.name=Вибрирующий реактивный ранец
-item.simplyjetpacks.jetpack.potato.name=Неровный реактивный ранец
-item.simplyjetpacks.jetpack.creative.name=Творческий реактивный ранец
 
+item.simplyjetpacks.fluxpack.9001.name=Творческий флакс-ранец
 item.simplyjetpacks.fluxpack.1.te.name=Свинцовый флакс-ранец
 item.simplyjetpacks.fluxpack.2.te.name=Усиленный флакс-ранец
 item.simplyjetpacks.fluxpack.3.te.name=Красный флакс-ранец
@@ -37,7 +38,6 @@ item.simplyjetpacks.fluxpack.1.armored.eio.name=Основной ранец-ко
 item.simplyjetpacks.fluxpack.2.armored.eio.name=Двухслойный ранец-конденсатор
 item.simplyjetpacks.fluxpack.3.armored.eio.name=Четырёхслойный ранец-конденсатор
 item.simplyjetpacks.fluxpack.4.armored.eio.name=Восьмислойный ранец-конденсатор
-item.simplyjetpacks.fluxpack.creative.name=Творческий флакс-ранец
 
 item.simplyjetpacks.leatherStrap.name=Кожаный ремень
 item.simplyjetpacks.thruster.te.1.name=Свинцовый реактивный двигатель

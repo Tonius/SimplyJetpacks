@@ -1,5 +1,6 @@
 package tonius.simplyjetpacks.item.meta;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -16,6 +17,9 @@ import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.FireworkUtils;
 import tonius.simplyjetpacks.util.StackUtils;
+import tonius.simplyjetpacks.util.StringUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class JetpackPotato extends Jetpack {
     
@@ -25,7 +29,6 @@ public class JetpackPotato extends Jetpack {
     
     public JetpackPotato(int tier, EnumRarity rarity, String defaultConfigKey) {
         super(tier, rarity, defaultConfigKey);
-        this.setHasFuelIndicator(false);
         this.setHasStateIndicators(false);
         this.setShowEmptyInCreativeTab(false);
         this.setArmorModel(PackModelType.FLAT);
@@ -36,7 +39,7 @@ public class JetpackPotato extends Jetpack {
         if (this.isFired(stack)) {
             super.flyUser(user, stack, item, true);
             user.rotationYawHead += 37.5F;
-            if (item.getFuelStored(stack) == 0) {
+            if (item.getFuelStored(stack) <= 0) {
                 user.setCurrentItemOrArmor(3, null);
                 if (!user.worldObj.isRemote) {
                     Random rand = new Random();
@@ -88,6 +91,13 @@ public class JetpackPotato extends Jetpack {
             return this.getParticleType(itemStack);
         }
         return null;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addShiftInformation(ItemStack stack, EntityPlayer player, List list) {
+        super.addShiftInformation(stack, player, list);
+        list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
     }
     
     protected boolean isFired(ItemStack itemStack) {

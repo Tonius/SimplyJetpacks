@@ -20,6 +20,7 @@ public class JetPlate extends Jetpack {
     public JetPlate(int tier, EnumRarity rarity, String defaultConfigKey) {
         super(tier, rarity, defaultConfigKey);
         this.setIsArmored(true);
+        this.setShowArmored(false);
         this.setFluxBased(true);
     }
     
@@ -54,7 +55,9 @@ public class JetPlate extends Jetpack {
         list.add(StringUtils.getStateText(this.isOn(stack)));
         list.add(StringUtils.getHoverModeText(this.isHoverModeOn(stack)));
         list.add(StringUtils.getChargerStateText(this.isChargerOn(stack)));
-        list.add(StringUtils.getFuelUsageText(this.fuelType, this.fuelUsage));
+        if (this.fuelUsage > 0) {
+            list.add(StringUtils.getFuelUsageText(this.fuelType, this.fuelUsage));
+        }
         list.add(StringUtils.getChargerRateText(this.fuelPerTickOut));
         list.add(StringUtils.getParticlesText(this.getParticleType(stack)));
         StringUtils.addDescriptionLines(list, "jetplate", StringUtils.BRIGHT_GREEN);
