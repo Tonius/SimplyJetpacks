@@ -60,7 +60,7 @@ public class Packs {
             jetpackTE3Armored = (Jetpack) new Jetpack(3, EnumRarity.uncommon, "jetpackTE3").setIsArmored(true).setPlatingMeta(3);
             jetpackTE4 = new Jetpack(4, EnumRarity.rare, "jetpackTE4");
             jetpackTE4Armored = (Jetpack) new Jetpack(4, EnumRarity.rare, "jetpackTE4").setIsArmored(true).setPlatingMeta(4);
-            jetpackTE5 = new JetPlate(5, EnumRarity.epic, "jetpackTE5");
+            jetpackTE5 = (Jetpack) new JetPlate(5, EnumRarity.epic, "jetpackTE5").setFluxBased(true);
             fluxPackTE1 = new FluxPack(1, EnumRarity.common, "fluxPackTE1");
             fluxPackTE2 = new FluxPack(2, EnumRarity.common, "fluxPackTE2");
             fluxPackTE2Armored = (FluxPack) new FluxPack(2, EnumRarity.common, "fluxPackTE2").setIsArmored(true).setPlatingMeta(1);

@@ -21,7 +21,6 @@ public class JetPlate extends Jetpack {
         super(tier, rarity, defaultConfigKey);
         this.setIsArmored(true);
         this.setShowArmored(false);
-        this.setFluxBased(true);
     }
     
     @Override
