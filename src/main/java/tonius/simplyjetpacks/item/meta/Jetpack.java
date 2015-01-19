@@ -142,7 +142,7 @@ public class Jetpack extends PackBase {
     }
     
     public boolean isEHoverOn(ItemStack stack) {
-        return StackUtils.getNBTBoolean(stack, TAG_EHOVER_ON, false);
+        return StackUtils.getNBTBoolean(stack, TAG_EHOVER_ON, true);
     }
     
     @Override
