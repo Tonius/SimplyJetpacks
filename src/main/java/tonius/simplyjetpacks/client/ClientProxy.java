@@ -51,13 +51,13 @@ public class ClientProxy extends CommonProxy {
             vCenter = vCenter.addVector(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D);
             
             Vec3 v = userPos.addVector(vLeft.xCoord, vLeft.yCoord, vLeft.zCoord);
-            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, rand.nextDouble() * 0.1D - 0.05D, -0.2D, rand.nextDouble() * 0.1D - 0.05D);
             
             v = userPos.addVector(vRight.xCoord, vRight.yCoord, vRight.zCoord);
-            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, rand.nextDouble() * 0.1D - 0.05D, -0.2D, rand.nextDouble() * 0.1D - 0.05D);
             
             v = userPos.addVector(vCenter.xCoord, vCenter.yCoord, vCenter.zCoord);
-            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, 0, -0.2, 0);
+            ParticleUtils.spawnParticle(particle, world, v.xCoord, v.yCoord, v.zCoord, rand.nextDouble() * 0.1D - 0.05D, -0.2D, rand.nextDouble() * 0.1D - 0.05D);
         }
     }
     
