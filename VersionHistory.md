@@ -1,6 +1,4 @@
-----------------------------------
-Version 1.4.0
-(unreleased)
+##1.4.0 - (unreleased)
 ----------------------------------
 - Added jetpack sounds. Many thanks to nabijaczleweli for help with this one. The volume for these sounds can be set with the volume slider for the 'Players' sound category. They can also be disabled as a whole in the config (clientside).
 - All jetpack/flux pack types can now actually be tuned individually (instead of being bound to a list of tiers).
@@ -12,28 +10,19 @@ Version 1.4.0
 - Added a small limit on how quickly jetpacks can be charged by external sources.
 
 
-
-----------------------------------
-Version 1.3.2
-2014-12-27
+##1.3.2 - 2014-12-27
 ----------------------------------
 - Armor is now properly configurable by reduction amounts
 - Fixed major bug in armor that could negate armor values
 - Fixed energy HUD scale affecting other mod HUDs
 
 
-
-----------------------------------
-Version 1.3.1
-2014-12-16
+##1.3.1 - 2014-12-16
 ----------------------------------
 - Updated Capacitor Pack recipes for the new version of Ender IO
 
 
-
-----------------------------------
-Version 1.3.0
-2014-12-06
+##1.3.0 - 2014-12-06
 ----------------------------------
 - Added 3D armor models for the jetpacks. Many thanks to Cybercat and dand0 for providing a model. (There is a config option to switch back to the boring old flat jetpacks.)
 - Added a configurable speed boost when sprinting while flying forward
@@ -50,10 +39,7 @@ Version 1.3.0
 - RIP, resource pack authors
 
 
-
-----------------------------------
-Version 1.2.0
-2014-10-18
+##1.2.0 - 2014-10-18
 ----------------------------------
 - Added full EnderIO support! This includes EnderIO versions of the jetpacks, flux packs and components.
 - Integration with TE or EIO can be disabled/enabled in the config
@@ -63,36 +49,24 @@ Version 1.2.0
 - Note: the item IDs of Creative Jetpack/Flux Packs, Tuberous Jetpacks and Armor Platings have changed. Shouldn't cause any problems, they will just disappear or change into missing textures which you can just delete.
 
 
-
-----------------------------------
-Version 1.1.4
-2014-10-02
+##1.1.4 - 2014-10-02
 ----------------------------------
 - Removed potentially infinite loop when upgrading jetpacks
 - Fixed Leadstone Jetpack recipe not taking power from used Leadstone Flux Capacitors
 - Recipes that use glass blocks now use Ore Dictionary glass
 
 
-
-----------------------------------
-Version 1.1.3
-2014-09-25
+##1.1.3 - 2014-09-25
 ----------------------------------
 - Fixed the Flux-Infused JetPlate not being craftable with a (partially) charged Flux-Infused Chestplate
 
 
-
-----------------------------------
-Version 1.1.2
-2014-09-24
+##1.1.2 - 2014-09-24
 ----------------------------------
 - Fixed spamming isue in the client console
 
 
-
-----------------------------------
-Version 1.1.1
-2014-09-14
+##1.1.1 - 2014-09-14
 ----------------------------------
 - Added the Mysterious Potato (creative-only). It can do the thing. The thing involves spawners.
 - Mobs can use jetpacks again. Should be less crashy than last time.
@@ -104,10 +78,7 @@ Version 1.1.1
 - Various code cleanups
 
 
-
-----------------------------------
-Version 1.1.0
-2014-08-16
+##1.1.0 - 2014-08-16
 ----------------------------------
 - Added Flux Packs. These items are worn as chestplates and can charge held items and other worn armor.
 - Added the Flux-Infused JetPlate. Only available when Redstone Arsenal is installed, this is the new final tier of jetpacks. It is basically the Flux-Infused Chestplate, the Resonant Jetpack and the Resonant Flux Pack in one.
@@ -118,18 +89,12 @@ Version 1.1.0
 - Updated CoFH API
 
 
-
-----------------------------------
-Version 1.0.1
-2014-08-02
+##1.0.1 - 2014-08-02
 ----------------------------------
 - Fixed a bug in jetpack upgrading recipes
 
 
-
-----------------------------------
-Version 1.0.0
-2014-07-30
+##1.0.0 - 2014-07-30
 ----------------------------------
 - Ported to Minecraft 1.7.10 and Thermal Expansion 4
 - NOT compatible with any previous versions. Pretty much everything changed internally.
@@ -148,18 +113,12 @@ Version 1.0.0
 - Also a lot of changes to what the texture file names are called. Sorry, texture pack users!
 
 
-
-----------------------------------
-Version 0.3.1.1
-2014-06-30
+##0.3.1.1 - 2014-06-30
 ----------------------------------
 - Fixed a crash when using a Creative Jetpack and taking damage
 
 
-
-----------------------------------
-Version 0.3.1
-2014-06-27
+##0.3.1 - 2014-06-27
 ----------------------------------
 - Hopefully fixed armored jetpacks sometimes breaking when on low power
 - Fixed possible item dupes with Tinkers' Construct
@@ -168,10 +127,7 @@ Version 0.3.1
 - Fixed a crash when attempting to 'remove' armor from a creative jetpack
 
 
-
-----------------------------------
-Version 0.3.0.0
-2014-05-29
+##0.3.0.0 - 2014-05-29
 ----------------------------------
 - Added Creative Jetpack. Not Creative as in creative-flight, but as in infinite charge, like the Creative TE items.
 - Added Particle Customizers. They can be used to disable or change the type of particles on specific jetpacks.
@@ -184,18 +140,12 @@ Version 0.3.0.0
 - I would call this 0.2.1.0, but it would probably get confused with 0.2.0.1. :V
 
 
-
-----------------------------------
-Version 0.2.0.1
-2014-05-24
+##0.2.0.1 - 2014-05-24
 ----------------------------------
 - Fixed a small yet annoying bug with the energy HUD
 
 
-
-----------------------------------
-Version 0.2
-2014-05-24
+##0.2 - 2014-05-24
 ----------------------------------
 - Added a way to put armor on jetpacks. Refer to the jetpacks' tooltips for more info
 - Added a basic ingame jetpack energy HUD. The HUD's position cannot be changed yet, if this bothers you the HUD can be disabled in the config
@@ -210,18 +160,12 @@ Version 0.2
 - Various cleanups in the code
 
 
-
-----------------------------------
-Version 0.1.4.1
-2014-05-03
+##0.1.4.1 - 2014-05-03
 ----------------------------------
 - Attempt to fix crashes with jetpack upgrading recipes in mod workbenches
 
 
-
-----------------------------------
-Version 0.1.4
-2014-05-02
+##0.1.4 - 2014-05-02
 ----------------------------------
 - Mobs are now able to 'use' jetpacks when picking them up
 - Mobs wearing jetpacks will die when flying past the world height limit
