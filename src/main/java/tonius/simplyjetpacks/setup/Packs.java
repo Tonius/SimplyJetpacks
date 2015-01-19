@@ -1,11 +1,13 @@
 package tonius.simplyjetpacks.setup;
 
 import net.minecraft.item.EnumRarity;
+import tonius.simplyjetpacks.config.PackDefaults;
 import tonius.simplyjetpacks.item.meta.FluxPack;
 import tonius.simplyjetpacks.item.meta.JetPlate;
 import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.item.meta.JetpackPotato;
 
+/** for default pack tuning refer to {@link PackDefaults} */
 public class Packs {
     
     public static Jetpack jetpackPotato;
