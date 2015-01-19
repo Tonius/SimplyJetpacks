@@ -226,13 +226,16 @@ public class Jetpack extends PackBase {
             this.speedVerticalHoverSlow = config.get(this.defaults.section.name, "Vertical Speed (Hover Mode / Slow Descent)", this.defaults.speedVerticalHoverSlow, "The maximum vertical speed of this jetpack when slowly descending in hover mode.").setMinValue(0.0D).getDouble(this.defaults.speedVerticalHoverSlow);
         }
         if (this.defaults.speedSideways != null) {
-            this.speedSideways = config.get(this.defaults.section.name, "Sideways Speed", this.defaults.speedSideways, "The speed of the jetpack when flying sideways. This is mostly noticeable in hover mode.").setMinValue(0.0D).getDouble(this.defaults.speedSideways);
+            this.speedSideways = config.get(this.defaults.section.name, "Sideways Speed", this.defaults.speedSideways, "The speed of this jetpack when flying sideways. This is mostly noticeable in hover mode.").setMinValue(0.0D).getDouble(this.defaults.speedSideways);
         }
         if (this.defaults.sprintSpeedModifier != null) {
-            this.sprintSpeedModifier = config.get(this.defaults.section.name, "Sprint Speed Multiplier", this.defaults.sprintSpeedModifier, "How much faster the jetpack will fly forward when sprinting. Setting this to 1.0 will make sprinting have no effect apart from the added speed from vanilla.").setMinValue(0.0D).getDouble(this.defaults.sprintSpeedModifier);
+            this.sprintSpeedModifier = config.get(this.defaults.section.name, "Sprint Speed Multiplier", this.defaults.sprintSpeedModifier, "How much faster this jetpack will fly forward when sprinting. Setting this to 1.0 will make sprinting have no effect apart from the added speed from vanilla.").setMinValue(0.0D).getDouble(this.defaults.sprintSpeedModifier);
         }
         if (this.defaults.sprintFuelModifier != null) {
-            this.sprintFuelModifier = config.get(this.defaults.section.name, "Sprint Fuel Usage Multiplier", this.defaults.sprintFuelModifier, "How much more energy the jetpack will use when sprinting. Setting this to 1.0 will make sprinting have no effect on energy usage.").setMinValue(0.0D).getDouble(this.defaults.sprintFuelModifier);
+            this.sprintFuelModifier = config.get(this.defaults.section.name, "Sprint Fuel Usage Multiplier", this.defaults.sprintFuelModifier, "How much more energy this jetpack will use when sprinting. Setting this to 1.0 will make sprinting have no effect on energy usage.").setMinValue(0.0D).getDouble(this.defaults.sprintFuelModifier);
+        }
+        if (this.defaults.emergencyHoverMode != null) {
+            this.emergencyHoverMode = config.get(this.defaults.section.name, "Emergency Hover Mode", this.defaults.emergencyHoverMode, "When enabled, this jetpack will activate hover mode automatically when the wearer is about to die from a fall.").getBoolean(this.defaults.emergencyHoverMode);
         }
     }
     
@@ -261,6 +264,9 @@ public class Jetpack extends PackBase {
         if (this.defaults.sprintFuelModifier != null) {
             tag.setDouble("SprintFuelModifier", this.sprintFuelModifier);
         }
+        if (this.defaults.emergencyHoverMode != null) {
+            tag.setBoolean("EmergencyHoverMode", this.emergencyHoverMode);
+        }
     }
     
     @Override
@@ -287,6 +293,9 @@ public class Jetpack extends PackBase {
         }
         if (this.defaults.sprintFuelModifier != null) {
             this.sprintFuelModifier = tag.getDouble("SprintFuelModifier");
+        }
+        if (this.defaults.emergencyHoverMode != null) {
+            this.emergencyHoverMode = tag.getBoolean("EmergencyHoverMode");
         }
     }
     
