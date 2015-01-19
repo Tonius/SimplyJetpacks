@@ -36,9 +36,6 @@ public class Config {
     public static boolean invertHoverSneakingBehavior = Defaults.invertHoverSneakingBehavior;
     public static boolean sneakChangesToggleBehavior = Defaults.sneakChangesToggleBehavior;
     
-    // aesthetics
-    public static boolean enableJetpackModel = Defaults.enableJetpackModel;
-    
     // sounds
     public static boolean jetpackSounds = Defaults.jetpackSounds;
     

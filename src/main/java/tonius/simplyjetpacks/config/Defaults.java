@@ -15,9 +15,6 @@ public abstract class Defaults {
     public static final boolean invertHoverSneakingBehavior = false;
     public static final boolean sneakChangesToggleBehavior = true;
     
-    // aesthetics
-    public static final boolean enableJetpackModel = true;
-    
     // sounds
     public static final boolean jetpackSounds = true;
     
