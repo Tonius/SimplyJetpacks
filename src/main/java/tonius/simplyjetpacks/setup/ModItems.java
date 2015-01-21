@@ -36,6 +36,8 @@ public abstract class ModItems {
     public static ItemJetpack jetpacksEIO = null;
     public static ItemFluxPack fluxPacksEIO = null;
     
+    public static ItemJetpack jetpacksBC = null;
+    
     public static ItemMeta components = null;
     public static ItemMeta armorPlatings = null;
     public static ItemMeta particleCustomizers = null;
@@ -79,6 +81,11 @@ public abstract class ModItems {
     public static ItemStack fluxPackEIO4 = null;
     public static ItemStack fluxPackEIO4Armored = null;
     
+    public static ItemStack jetpackBC1 = null;
+    public static ItemStack jetpackBC1Armored = null;
+    public static ItemStack jetpackBC2 = null;
+    public static ItemStack jetpackBC2Armored = null;
+    
     public static ItemStack leatherStrap = null;
     public static ItemStack jetpackIcon = null;
     public static ItemStack thrusterTE1 = null;
@@ -91,6 +98,8 @@ public abstract class ModItems {
     public static ItemStack thrusterEIO3 = null;
     public static ItemStack thrusterEIO4 = null;
     public static ItemStack thrusterEIO5 = null;
+    public static ItemStack thrusterBC1 = null;
+    public static ItemStack thrusterBC2 = null;
     public static ItemStack unitGlowstoneEmpty = null;
     public static ItemStack unitGlowstone = null;
     public static ItemStack unitCryotheumEmpty = null;
@@ -108,6 +117,8 @@ public abstract class ModItems {
     public static ItemStack armorPlatingEIO2 = null;
     public static ItemStack armorPlatingEIO3 = null;
     public static ItemStack armorPlatingEIO4 = null;
+    public static ItemStack armorPlatingBC1 = null;
+    public static ItemStack armorPlatingBC2 = null;
     
     public static ItemStack particleDefault = null;
     public static ItemStack particleNone = null;
@@ -117,11 +128,13 @@ public abstract class ModItems {
     private static boolean teAvailable = false;
     private static boolean raAvailable = false;
     private static boolean eioAvailable = false;
+    private static boolean bcAvailable = false;
     
     public static void preInit() {
         teAvailable = ModType.THERMAL_EXPANSION.isLoaded() && Config.enableIntegrationTE;
         raAvailable = Loader.isModLoaded("RedstoneArsenal");
         eioAvailable = ModType.ENDER_IO.isLoaded() && Config.enableIntegrationEIO;
+        bcAvailable = ModType.BUILDCRAFT.isLoaded() && Config.enableIntegrationBC;
         
         constructItems();
         registerItems();
@@ -191,6 +204,13 @@ public abstract class ModItems {
             fluxPackEIO4 = fluxPacksEIO.putPack(4, Packs.fluxPackEIO4);
             fluxPackEIO4Armored = fluxPacksEIO.putPack(104, Packs.fluxPackEIO4Armored);
         }
+        if (bcAvailable) {
+            jetpacksBC = new ItemJetpack(ModType.BUILDCRAFT);
+            jetpackBC1 = jetpacksBC.putPack(1, Packs.jetpackBC1);
+            jetpackBC1Armored = jetpacksBC.putPack(101, Packs.jetpackBC1Armored);
+            jetpackBC2 = jetpacksBC.putPack(2, Packs.jetpackBC2);
+            jetpackBC2Armored = jetpacksBC.putPack(102, Packs.jetpackBC2Armored);
+        }
         
         components = new ItemMeta("components");
         armorPlatings = new ItemMeta("armorPlatings");
@@ -210,6 +230,11 @@ public abstract class ModItems {
             unitGlowstone = components.addMetaItem(61, new MetaItem("unitGlowstone", null, EnumRarity.uncommon), true, false);
             unitCryotheumEmpty = components.addMetaItem(62, new MetaItem("unitCryotheum.empty", null, EnumRarity.common), true, false);
             unitCryotheum = components.addMetaItem(63, new MetaItem("unitCryotheum", null, EnumRarity.rare), true, false);
+            
+            armorPlatingTE1 = armorPlatings.addMetaItem(1, new MetaItem("armorPlating.te.1", null, EnumRarity.common), true, false);
+            armorPlatingTE2 = armorPlatings.addMetaItem(2, new MetaItem("armorPlating.te.2", null, EnumRarity.common), true, false);
+            armorPlatingTE3 = armorPlatings.addMetaItem(3, new MetaItem("armorPlating.te.3", null, EnumRarity.common), true, false);
+            armorPlatingTE4 = armorPlatings.addMetaItem(4, new MetaItem("armorPlating.te.4", null, EnumRarity.rare), true, false);
         }
         if (eioAvailable) {
             thrusterEIO1 = components.addMetaItem(21, new MetaItem("thruster.eio.1", null, EnumRarity.common), true, false);
@@ -221,19 +246,18 @@ public abstract class ModItems {
             reinforcedGliderWing = components.addMetaItem(71, new MetaItem("reinforcedGliderWing", null, EnumRarity.uncommon), true, false);
             unitFlightControlEmpty = components.addMetaItem(72, new MetaItem("unitFlightControl.empty", null, EnumRarity.common), true, false);
             unitFlightControl = components.addMetaItem(73, new MetaItem("unitFlightControl", null, EnumRarity.uncommon), true, false);
-        }
-        
-        if (teAvailable) {
-            armorPlatingTE1 = armorPlatings.addMetaItem(1, new MetaItem("armorPlating.te.1", null, EnumRarity.common), true, false);
-            armorPlatingTE2 = armorPlatings.addMetaItem(2, new MetaItem("armorPlating.te.2", null, EnumRarity.common), true, false);
-            armorPlatingTE3 = armorPlatings.addMetaItem(3, new MetaItem("armorPlating.te.3", null, EnumRarity.common), true, false);
-            armorPlatingTE4 = armorPlatings.addMetaItem(4, new MetaItem("armorPlating.te.4", null, EnumRarity.rare), true, false);
-        }
-        if (eioAvailable) {
+            
             armorPlatingEIO1 = armorPlatings.addMetaItem(11, new MetaItem("armorPlating.eio.1", null, EnumRarity.common), true, false);
             armorPlatingEIO2 = armorPlatings.addMetaItem(12, new MetaItem("armorPlating.eio.2", null, EnumRarity.common), true, false);
             armorPlatingEIO3 = armorPlatings.addMetaItem(13, new MetaItem("armorPlating.eio.3", null, EnumRarity.common), true, false);
             armorPlatingEIO4 = armorPlatings.addMetaItem(14, new MetaItem("armorPlating.eio.4", null, EnumRarity.common), true, false);
+        }
+        if (bcAvailable) {
+            thrusterBC1 = components.addMetaItem(31, new MetaItem("thruster.bc.1", null, EnumRarity.common), true, false);
+            thrusterBC2 = components.addMetaItem(32, new MetaItem("thruster.bc.2", null, EnumRarity.uncommon), true, false);
+            
+            armorPlatingBC1 = armorPlatings.addMetaItem(21, new MetaItem("armorPlating.bc.1", null, EnumRarity.common), true, false);
+            armorPlatingBC2 = armorPlatings.addMetaItem(22, new MetaItem("armorPlating.bc.2", null, EnumRarity.uncommon), true, false);
         }
         
         particleDefault = particleCustomizers.addMetaItem(0, new MetaItem("particle.0", "particleCustomizers", EnumRarity.common), true, false);
@@ -256,6 +280,8 @@ public abstract class ModItems {
         registerItem(jetpacksEIO, "jetpacksEIO");
         registerItem(fluxPacksEIO, "fluxpacksEIO");
         
+        registerItem(jetpacksBC, "jetpacksBC");
+        
         registerItem(components, "components");
         registerItem(armorPlatings, "armorPlatings");
         registerItem(particleCustomizers, "particleCustomizers");
@@ -265,6 +291,7 @@ public abstract class ModItems {
     private static void registerRecipes() {
         SimplyJetpacks.logger.info("Registering recipes");
         
+        GameRegistry.addRecipe(new ShapedOreRecipe(jetpackPotato.copy(), new Object[] { "S S", "NPN", "R R", 'S', Items.string, 'N', "nuggetGold", 'P', Items.potato, 'R', "dustRedstone" }));
         GameRegistry.addRecipe(new ShapedOreRecipe(jetpackPotato.copy(), new Object[] { "S S", "NPN", "R R", 'S', Items.string, 'N', "nuggetGold", 'P', Items.poisonous_potato, 'R', "dustRedstone" }));
         GameRegistry.addRecipe(new UpgradingRecipe(jetpackCreative.copy(), new Object[] { "J", "P", 'J', jetpackCreative.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
         

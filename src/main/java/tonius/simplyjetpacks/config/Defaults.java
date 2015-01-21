@@ -7,6 +7,7 @@ public abstract class Defaults {
     // integration
     public static final boolean enableIntegrationTE = true;
     public static final boolean enableIntegrationEIO = true;
+    public static final boolean enableIntegrationBC = true;
     
     // controls
     public static final boolean customControls = false;

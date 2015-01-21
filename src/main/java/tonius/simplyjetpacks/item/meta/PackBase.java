@@ -77,6 +77,7 @@ public class PackBase {
     }
     
     public PackBase setFuelFluid(String fuelFluid) {
+        this.setFuelType(FuelType.FLUID);
         this.fuelFluid = fuelFluid;
         return this;
     }

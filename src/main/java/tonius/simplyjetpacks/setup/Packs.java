@@ -48,6 +48,11 @@ public class Packs {
     public static FluxPack fluxPackEIO4;
     public static FluxPack fluxPackEIO4Armored;
     
+    public static Jetpack jetpackBC1;
+    public static Jetpack jetpackBC1Armored;
+    public static Jetpack jetpackBC2;
+    public static Jetpack jetpackBC2Armored;
+    
     public static void preInit() {
         jetpackPotato = new JetpackPotato(0, EnumRarity.common, "jetpackPotato");
         jetpackCreative = (Jetpack) new JetPlate(9001, EnumRarity.epic, "jetpackCreative").setDefaultParticleType(ParticleType.RAINBOW_SMOKE).setUsesFuel(false).setHasFuelIndicator(false).setShowEmptyInCreativeTab(false);
@@ -89,6 +94,13 @@ public class Packs {
             fluxPackEIO3Armored = (FluxPack) new FluxPack(3, EnumRarity.uncommon, "fluxPackEIO3").setIsArmored(true).setPlatingMeta(12);
             fluxPackEIO4 = new FluxPack(4, EnumRarity.rare, "fluxPackEIO4");
             fluxPackEIO4Armored = (FluxPack) new FluxPack(4, EnumRarity.rare, "fluxPackEIO4").setIsArmored(true).setPlatingMeta(13);
+        }
+        
+        if (ModType.BUILDCRAFT.isLoaded()) {
+            jetpackBC1 = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel");
+            jetpackBC1Armored = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel").setIsArmored(true).setPlatingMeta(21);
+            jetpackBC2 = new Jetpack(2, EnumRarity.uncommon, "jetpackBC2");
+            jetpackBC2Armored = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setIsArmored(true).setPlatingMeta(22);
         }
     }
     

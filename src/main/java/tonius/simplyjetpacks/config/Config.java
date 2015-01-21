@@ -28,6 +28,7 @@ public class Config {
     // integration
     public static boolean enableIntegrationTE = Defaults.enableIntegrationTE;
     public static boolean enableIntegrationEIO = Defaults.enableIntegrationEIO;
+    public static boolean enableIntegrationBC = Defaults.enableIntegrationBC;
     
     // controls
     public static boolean customControls = Defaults.customControls;
@@ -82,9 +83,6 @@ public class Config {
     public static void onConfigChanged(String modid) {
         if (modid.equals(SimplyJetpacks.MODID)) {
             syncConfig();
-            
-            // Jetpack.reconstructJetpacks();
-            // FluxPack.reconstructFluxPacks();
             SimplyJetpacks.proxy.updateCustomKeybinds();
         }
     }
@@ -92,6 +90,7 @@ public class Config {
     public static void processConfig() {
         enableIntegrationTE = config.get(sectionIntegration.name, "Thermal Expansion integration", Defaults.enableIntegrationTE, "When enabled, Simply Jetpacks will register its Thermal Expansion-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationTE);
         enableIntegrationEIO = config.get(sectionIntegration.name, "Ender IO integration", Defaults.enableIntegrationEIO, "When enabled, Simply Jetpacks will register its Ender IO-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationEIO);
+        enableIntegrationBC = config.get(sectionIntegration.name, "BuildCraft integration", Defaults.enableIntegrationBC, "When enabled, Simply Jetpacks will register its BuildCraft-based jetpacks.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationBC);
         
         customControls = configClient.get(sectionControls.name, "Custom controls", Defaults.customControls, "When enabled, the key codes specified here will be used for the fly and descend keys. Otherwise, the vanilla jump and sneak keys will be used.").getBoolean(Defaults.customControls);
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", Defaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();

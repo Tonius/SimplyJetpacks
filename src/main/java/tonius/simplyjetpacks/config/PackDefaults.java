@@ -286,6 +286,38 @@ public class PackDefaults {
         d.armorReduction = 7;
         d.armorFuelPerHit = 160;
         d.enchantability = 10;
+        
+        d = new PackDefaults("jetpackBC1", "Combustion Jetpack (BC 1)");
+        d.fuelCapacity = 40000;
+        d.fuelUsage = 2;
+        d.fuelPerTickIn = 2000;
+        d.armorReduction = 5;
+        d.armorFuelPerHit = 60;
+        d.enchantability = 8;
+        d.speedVertical = 0.3D;
+        d.accelVertical = 0.12D;
+        d.speedVerticalHover = 0.18D;
+        d.speedVerticalHoverSlow = 0.1D;
+        d.speedSideways = 0.08D;
+        d.sprintSpeedModifier = 1.0D;
+        d.sprintFuelModifier = 1.0D;
+        d.emergencyHoverMode = false;
+        
+        d = new PackDefaults("jetpackBC2", "Kinetic Jetpack (BC 2)");
+        d.fuelCapacity = 2000000;
+        d.fuelUsage = 100;
+        d.fuelPerTickIn = 10000;
+        d.armorReduction = 8;
+        d.armorFuelPerHit = 120;
+        d.enchantability = 13;
+        d.speedVertical = 0.48D;
+        d.accelVertical = 0.13D;
+        d.speedVerticalHover = 0.34D;
+        d.speedVerticalHoverSlow = 0.03D;
+        d.speedSideways = 0.14D;
+        d.sprintSpeedModifier = 1.3D;
+        d.sprintFuelModifier = 2.5D;
+        d.emergencyHoverMode = true;
     }
     
 }
