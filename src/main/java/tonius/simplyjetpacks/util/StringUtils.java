@@ -2,19 +2,14 @@ package tonius.simplyjetpacks.util;
 
 import java.text.DecimalFormat;
 import java.util.List;
-
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.input.Keyboard;
-
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.setup.ParticleType;
 
 public abstract class StringUtils {
-    
-    private static DecimalFormat formatter = new DecimalFormat("###,###");
     
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";
@@ -32,13 +27,13 @@ public abstract class StringUtils {
     public static final String PINK = (char) 167 + "d";
     public static final String YELLOW = (char) 167 + "e";
     public static final String WHITE = (char) 167 + "f";
-    
     public static final String OBFUSCATED = (char) 167 + "k";
     public static final String BOLD = (char) 167 + "l";
     public static final String STRIKETHROUGH = (char) 167 + "m";
     public static final String UNDERLINE = (char) 167 + "n";
     public static final String ITALIC = (char) 167 + "o";
     public static final String END = (char) 167 + "r";
+    private static final DecimalFormat formatter = new DecimalFormat("###,###");
     
     public static boolean isAltKeyDown() {
         return Keyboard.isKeyDown(Keyboard.KEY_LMENU) || Keyboard.isKeyDown(Keyboard.KEY_RMENU);
@@ -77,14 +72,6 @@ public abstract class StringUtils {
     
     public static String getTierText(int tier) {
         return String.format(translate("tooltip.tier"), tier);
-    }
-    
-    @Deprecated
-    public static String getChargeText(boolean infinite, int charge, int total) {
-        if (infinite) {
-            return LIGHT_GRAY + translate("tooltip.charge.infinite");
-        }
-        return LIGHT_GRAY + getFormattedNumber(charge) + " / " + getFormattedNumber(total) + " RF";
     }
     
     public static String getFuelText(FuelType fuelType, int amount, int max, boolean infinite) {
@@ -190,7 +177,7 @@ public abstract class StringUtils {
     }
     
     public static boolean canShowDetails() {
-        return Config.holdShiftForDetails ? isShiftKeyDown() : true;
+        return !Config.holdShiftForDetails || isShiftKeyDown();
     }
     
     public static String translate(String unlocalized) {

@@ -1,8 +1,9 @@
 package tonius.simplyjetpacks.item.meta;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,8 +19,6 @@ import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.FireworkUtils;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class JetpackPotato extends Jetpack {
     
@@ -95,6 +94,7 @@ public class JetpackPotato extends Jetpack {
     
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         super.addShiftInformation(stack, item, player, list);
         list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));

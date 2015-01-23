@@ -1,9 +1,11 @@
 package tonius.simplyjetpacks.item.meta;
 
+import cofh.api.energy.IEnergyContainerItem;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -19,9 +21,6 @@ import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cofh.api.energy.IEnergyContainerItem;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class PackBase {
     
@@ -69,6 +68,27 @@ public class PackBase {
     
     public PackBase(int tier, EnumRarity rarity, String defaultConfigKey) {
         this("pack", tier, rarity, defaultConfigKey);
+    }
+    
+    public static void loadAllConfigs(Configuration config) {
+        for (PackBase pack : ALL_PACKS) {
+            pack.loadConfig(config);
+        }
+    }
+    
+    public static void writeAllConfigsToNBT(NBTTagCompound tag) {
+        for (PackBase pack : ALL_PACKS) {
+            NBTTagCompound packTag = new NBTTagCompound();
+            pack.writeConfigToNBT(packTag);
+            tag.setTag(pack.defaults.section.id, packTag);
+        }
+    }
+    
+    public static void readAllConfigsFromNBT(NBTTagCompound tag) {
+        for (PackBase pack : ALL_PACKS) {
+            NBTTagCompound packTag = tag.getCompoundTag(pack.defaults.section.id);
+            pack.readConfigFromNBT(packTag);
+        }
     }
     
     public PackBase setFuelType(FuelType fuelType) {
@@ -162,10 +182,10 @@ public class PackBase {
     
     protected void toggleState(boolean on, ItemStack stack, String type, String tag, EntityPlayer player, boolean showInChat) {
         stack.stackTagCompound.setBoolean(tag, !on);
-        
+
         if (player != null && showInChat) {
             String color = on ? StringUtils.LIGHT_RED : StringUtils.BRIGHT_GREEN;
-            type = type != null && type != "" ? "chat." + this.name + "." + type + ".on" : "chat." + this.name + ".on";
+            type = type != null && !type.equals("") ? "chat." + this.name + "." + type + ".on" : "chat." + this.name + ".on";
             String msg = StringUtils.translate(type) + " " + color + StringUtils.translate("chat." + (on ? "disabled" : "enabled"));
             player.addChatMessage(new ChatComponentText(msg));
         }
@@ -183,12 +203,14 @@ public class PackBase {
     }
     
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getTierText(this.tier));
         list.add(StringUtils.getFuelText(this.fuelType, item.getFuelStored(stack), this.fuelCapacity, !this.usesFuel));
     }
     
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
     }
@@ -204,29 +226,6 @@ public class PackBase {
     @SideOnly(Side.CLIENT)
     public String getHUDStatesInfo(ItemStack stack, ItemPack item) {
         return null;
-    }
-    
-    // start configuration
-    
-    public static void loadAllConfigs(Configuration config) {
-        for (PackBase pack : ALL_PACKS) {
-            pack.loadConfig(config);
-        }
-    }
-    
-    public static void writeAllConfigsToNBT(NBTTagCompound tag) {
-        for (PackBase pack : ALL_PACKS) {
-            NBTTagCompound packTag = new NBTTagCompound();
-            pack.writeConfigToNBT(packTag);
-            tag.setTag(pack.defaults.section.id, packTag);
-        }
-    }
-    
-    public static void readAllConfigsFromNBT(NBTTagCompound tag) {
-        for (PackBase pack : ALL_PACKS) {
-            NBTTagCompound packTag = tag.getCompoundTag(pack.defaults.section.id);
-            pack.readConfigFromNBT(packTag);
-        }
     }
     
     protected void loadConfig(Configuration config) {

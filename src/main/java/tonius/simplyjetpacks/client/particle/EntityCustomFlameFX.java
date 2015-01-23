@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class EntityCustomFlameFX extends EntityFlameFX {
     
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
     
     public EntityCustomFlameFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
         super(world, posX, posY, posZ, velX, velY, velZ);

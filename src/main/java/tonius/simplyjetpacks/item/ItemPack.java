@@ -1,11 +1,13 @@
 package tonius.simplyjetpacks.item;
 
+import cofh.api.energy.IEnergyContainerItem;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -35,18 +37,13 @@ import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.setup.ModType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cofh.api.energy.IEnergyContainerItem;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemPack<T extends PackBase> extends ItemArmor implements IControllable, ISpecialArmor, IEnergyContainerItem, IFluidContainerItem, IHUDInfoProvider {
     
     private static final String TAG_ENERGY = "Energy";
     private static final String TAG_FLUID = "Fluid";
-    
-    private Map<Integer, T> packs = new LinkedHashMap<Integer, T>();
-    
     public final ModType modType;
+    private final Map<Integer, T> packs = new LinkedHashMap<Integer, T>();
     
     public ItemPack(ModType modType) {
         super(ArmorMaterial.IRON, 2, 1);
@@ -149,6 +146,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
         T pack = this.getPack(stack);
         if (pack != null) {
@@ -163,6 +161,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void getSubItems(Item item, CreativeTabs tab, List list) {
         for (Entry<Integer, T> e : this.packs.entrySet()) {
             if (e.getValue().showInCreativeTab) {

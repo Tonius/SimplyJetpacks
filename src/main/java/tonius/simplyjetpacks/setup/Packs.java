@@ -7,7 +7,9 @@ import tonius.simplyjetpacks.item.meta.JetPlate;
 import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.item.meta.JetpackPotato;
 
-/** for default pack tuning refer to {@link PackDefaults} */
+/**
+ * for default pack tuning refer to {@link PackDefaults}
+ */
 public class Packs {
     
     public static Jetpack jetpackPotato;

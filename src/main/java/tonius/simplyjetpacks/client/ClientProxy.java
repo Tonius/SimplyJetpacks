@@ -1,7 +1,7 @@
 package tonius.simplyjetpacks.client;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import java.util.Random;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.Vec3;
@@ -11,12 +11,11 @@ import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.setup.ParticleType;
-import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientProxy extends CommonProxy {
     
-    private static Minecraft mc = Minecraft.getMinecraft();
-    private static Random rand = new Random();
+    private static final Minecraft mc = Minecraft.getMinecraft();
+    private static final Random rand = new Random();
     
     @Override
     public void registerHandlers() {
@@ -28,9 +27,7 @@ public class ClientProxy extends CommonProxy {
     
     @Override
     public void showJetpackParticles(World world, EntityLivingBase wearer, ParticleType particle) {
-        if (mc.gameSettings.particleSetting == 2) {
-            return;
-        } else if (mc.gameSettings.particleSetting == 0 || mc.gameSettings.particleSetting == 1 && mc.theWorld.getTotalWorldTime() % 4L == 0) {
+        if (mc.gameSettings.particleSetting == 0 || mc.gameSettings.particleSetting == 1 && mc.theWorld.getTotalWorldTime() % 4L == 0) {
             Vec3 userPos = Vec3.createVectorHelper(wearer.posX, wearer.posY, wearer.posZ);
             
             if (!wearer.equals(mc.thePlayer)) {

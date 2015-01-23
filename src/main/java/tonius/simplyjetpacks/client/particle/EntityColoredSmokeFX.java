@@ -2,12 +2,11 @@ package tonius.simplyjetpacks.client.particle;
 
 import java.awt.Color;
 import java.util.Random;
-
 import net.minecraft.world.World;
 
 public class EntityColoredSmokeFX extends EntityCustomSmokeFX {
     
-    private static Random rand = new Random();
+    private static final Random rand = new Random();
     
     public EntityColoredSmokeFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ, float red, float green, float blue) {
         super(world, posX, posY, posZ, velX, velY, velZ);

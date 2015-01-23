@@ -1,7 +1,8 @@
 package tonius.simplyjetpacks.item.meta;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -18,8 +19,6 @@ import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class Jetpack extends PackBase {
     
@@ -188,6 +187,7 @@ public class Jetpack extends PackBase {
     
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
         list.add(StringUtils.getHoverModeText(this.isHoverModeOn(stack)));
@@ -206,8 +206,6 @@ public class Jetpack extends PackBase {
         Boolean hover = this.isHoverModeOn(stack);
         return StringUtils.getHUDStateText(engine, hover, null);
     }
-    
-    // start configuration
     
     @Override
     protected void loadConfig(Configuration config) {

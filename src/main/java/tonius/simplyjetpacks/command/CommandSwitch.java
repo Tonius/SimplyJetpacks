@@ -2,7 +2,6 @@ package tonius.simplyjetpacks.command;
 
 import java.util.Collections;
 import java.util.List;
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
@@ -43,7 +42,8 @@ public class CommandSwitch extends CommandBase {
         if (sender instanceof EntityPlayer) {
             if (args.length == 1) {
                 ItemStack armor = ((EntityPlayer) sender).getEquipmentInSlot(3);
-                nopack: if (armor != null && armor.getItem() instanceof ItemPack) {
+                nopack:
+                if (armor != null && armor.getItem() instanceof ItemPack) {
                     PackBase pack = ((ItemPack) armor.getItem()).getPack(armor);
                     if (pack == null) {
                         break nopack;
@@ -53,7 +53,7 @@ public class CommandSwitch extends CommandBase {
                             ((JetPlate) pack).toggleCharger(armor, (EntityPlayer) sender, true);
                             return;
                         } else if (pack instanceof FluxPack) {
-                            ((FluxPack) pack).toggleOn(armor, (EntityPlayer) sender, false, true);
+                            pack.toggleOn(armor, (EntityPlayer) sender, false, true);
                             return;
                         }
                         sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noCharger")));

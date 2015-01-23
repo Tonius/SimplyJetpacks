@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class EntityCustomSmokeFX extends EntitySmokeFX {
     
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
     
     public EntityCustomSmokeFX(World world, double posX, double posY, double posZ, double velX, double velY, double velZ) {
         super(world, posX, posY, posZ, velX, velY, velZ);

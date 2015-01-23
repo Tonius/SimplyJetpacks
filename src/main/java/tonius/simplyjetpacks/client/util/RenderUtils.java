@@ -6,7 +6,7 @@ import net.minecraft.client.gui.ScaledResolution;
 
 public abstract class RenderUtils {
     
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
     
     public static void drawStringLeft(String string, FontRenderer fontRenderer, int x, int y, int color, boolean shadow) {
         fontRenderer.drawString(string, x, y, color, shadow);

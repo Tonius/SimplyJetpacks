@@ -1,30 +1,26 @@
 package tonius.simplyjetpacks.config;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraftforge.common.config.Configuration;
-import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
-import tonius.simplyjetpacks.item.meta.PackBase;
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraftforge.common.config.Configuration;
+import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
+import tonius.simplyjetpacks.item.meta.PackBase;
 
 public class Config {
     
+    public static final List<Section> configSections = new ArrayList<Section>();
+    private static final Section sectionIntegration = new Section(false, "Integration Settings", "integration");
+    private static final Section sectionControls = new Section(true, "Controls Settings", "controls");
+    private static final Section sectionSounds = new Section(true, "Sound Settings", "sounds");
+    private static final Section sectionGui = new Section(true, "GUI Settings", "gui");
     public static Configuration config;
     public static Configuration configClient;
-    public static List<Section> configSections = new ArrayList<Section>();
-    
-    public static final Section sectionIntegration = new Section(false, "Integration Settings", "integration");
-    public static final Section sectionControls = new Section(true, "Controls Settings", "controls");
-    public static final Section sectionSounds = new Section(true, "Sound Settings", "sounds");
-    public static final Section sectionGui = new Section(true, "GUI Settings", "gui");
-    public static final Section sectionCrafting = new Section(false, "Crafting Settings", "crafting");
-    
     // integration
     public static boolean enableIntegrationTE = Defaults.enableIntegrationTE;
     public static boolean enableIntegrationEIO = Defaults.enableIntegrationEIO;
@@ -63,7 +59,7 @@ public class Config {
         SimplyJetpacks.proxy.updateCustomKeybinds();
     }
     
-    public static void syncConfig() {
+    private static void syncConfig() {
         SimplyJetpacks.logger.info("Loading configuration files");
         try {
             processConfig();
@@ -75,11 +71,6 @@ public class Config {
         }
     }
     
-    @SubscribeEvent
-    public void onConfigChanged(OnConfigChangedEvent evt) {
-        onConfigChanged(evt.modID);
-    }
-    
     public static void onConfigChanged(String modid) {
         if (modid.equals(SimplyJetpacks.MODID)) {
             syncConfig();
@@ -87,19 +78,19 @@ public class Config {
         }
     }
     
-    public static void processConfig() {
+    private static void processConfig() {
         enableIntegrationTE = config.get(sectionIntegration.name, "Thermal Expansion integration", Defaults.enableIntegrationTE, "When enabled, Simply Jetpacks will register its Thermal Expansion-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationTE);
         enableIntegrationEIO = config.get(sectionIntegration.name, "Ender IO integration", Defaults.enableIntegrationEIO, "When enabled, Simply Jetpacks will register its Ender IO-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationEIO);
         enableIntegrationBC = config.get(sectionIntegration.name, "BuildCraft integration", Defaults.enableIntegrationBC, "When enabled, Simply Jetpacks will register its BuildCraft-based jetpacks.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationBC);
-        
+
         customControls = configClient.get(sectionControls.name, "Custom controls", Defaults.customControls, "When enabled, the key codes specified here will be used for the fly and descend keys. Otherwise, the vanilla jump and sneak keys will be used.").getBoolean(Defaults.customControls);
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", Defaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", Defaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
         invertHoverSneakingBehavior = configClient.get(sectionControls.name, "Invert Hover Mode sneaking behavior", Defaults.invertHoverSneakingBehavior, "Invert Hover Mode sneaking behavior").getBoolean(Defaults.invertHoverSneakingBehavior);
         sneakChangesToggleBehavior = configClient.get(sectionControls.name, "Sneak Changes Toggle Behavior", Defaults.sneakChangesToggleBehavior, "If enabled, when sneaking, the Turn on/off and Switch mode keys will respectively toggle JetPlate chargers and emergency hover mode. If not, use /simplyjetpacks_switch or /sjs to toggle these features.").getBoolean(Defaults.sneakChangesToggleBehavior);
-        
+
         jetpackSounds = configClient.get(sectionSounds.name, "Jetpack Sounds", Defaults.jetpackSounds, "When enabled, jetpacks will make sounds when used.").getBoolean(Defaults.jetpackSounds);
-        
+
         enableStateChatMessages = configClient.get(sectionGui.name, "Enable State Chat Messages", Defaults.enableStateChatMessages, "When enabled, switching jetpacks on or off will display chat messages.").getBoolean(Defaults.enableStateChatMessages);
         enableEnergyHUD = configClient.get(sectionGui.name, "Enable Energy HUD", Defaults.enableEnergyHUD, "When enabled, a HUD that displays your current jetpack's energy level will show.").getBoolean(Defaults.enableEnergyHUD);
         enableStateHUD = configClient.get(sectionGui.name, "Enable State HUD", Defaults.enableStateHUD, "When enabled, a HUD that displays your current jetpack's engine and hover mode state will show.").getBoolean(Defaults.enableStateHUD);
@@ -111,8 +102,13 @@ public class Config {
         minimalEnergyHUD = configClient.get(sectionGui.name, "Minimal Energy HUD", Defaults.minimalEnergyHUD, "When enabled, only the actual power amounts will be rendered on the energy HUD.").getBoolean(Defaults.minimalEnergyHUD);
         showEnergyHUDWhileChatting = configClient.get(sectionGui.name, "Show Energy HUD while chatting", Defaults.showEnergyHUDWhileChatting, "When enabled, the energy HUD will display even when the chat window is opened.").getBoolean(Defaults.showEnergyHUDWhileChatting);
         showExactEnergyInHUD = configClient.get(sectionGui.name, "Exact energy amounts in Energy HUD", Defaults.showExactEnergyInHUD, "When enabled, the energy HUD will display the exact amount of RF other than just a percentage.").getBoolean(Defaults.showExactEnergyInHUD);
-        
+
         PackBase.loadAllConfigs(config);
+    }
+    
+    @SubscribeEvent
+    public void onConfigChanged(OnConfigChangedEvent evt) {
+        onConfigChanged(evt.modID);
     }
     
 }

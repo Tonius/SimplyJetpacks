@@ -1,9 +1,11 @@
 package tonius.simplyjetpacks.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,20 +17,14 @@ import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMeta extends Item {
     
-    protected Map<Integer, MetaItem> metaItems = new HashMap<Integer, MetaItem>();
+    protected final Map<Integer, MetaItem> metaItems = new HashMap<Integer, MetaItem>();
+    protected final Map<Integer, IIcon> icons = new HashMap<Integer, IIcon>();
     protected int highestMeta = 0;
-    protected final String fallbackName;
-    protected Map<Integer, IIcon> icons = new HashMap<Integer, IIcon>();
     
     public ItemMeta(String fallbackName) {
-        this.fallbackName = fallbackName;
-        
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + fallbackName);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
@@ -78,9 +74,10 @@ public class ItemMeta extends Item {
         }
         return super.getRarity(itemStack);
     }
-    
-    @SideOnly(Side.CLIENT)
+
     @Override
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
         MetaItem metaItem = this.getMetaItem(itemStack);
         if (metaItem != null && metaItem.tooltipKey != null) {
@@ -94,6 +91,7 @@ public class ItemMeta extends Item {
     
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void getSubItems(Item item, CreativeTabs tab, List list) {
         for (int i = 0; i <= this.highestMeta; i++) {
             MetaItem metaItem = this.metaItems.get(i);
@@ -134,11 +132,11 @@ public class ItemMeta extends Item {
     
     public static class MetaItem {
         
-        public String name;
-        public String tooltipKey;
-        public EnumRarity rarity;
-        public boolean glow;
-        public boolean hidden;
+        public final String name;
+        public final String tooltipKey;
+        public final EnumRarity rarity;
+        public final boolean glow;
+        public final boolean hidden;
         
         public MetaItem(String name, String tooltipKey, EnumRarity rarity, boolean glow, boolean hidden) {
             this.name = name;

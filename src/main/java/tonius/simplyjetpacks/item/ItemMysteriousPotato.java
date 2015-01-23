@@ -1,7 +1,8 @@
 package tonius.simplyjetpacks.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -16,8 +17,6 @@ import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMysteriousPotato extends Item {
     
@@ -29,6 +28,7 @@ public class ItemMysteriousPotato extends Item {
     
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean bool) {
         list.add(StringUtils.translate("tooltip.mysteriousPotato.description"));
     }
@@ -50,7 +50,7 @@ public class ItemMysteriousPotato extends Item {
             TileEntity tile = world.getTileEntity(x, y, z);
             if (tile instanceof TileEntityMobSpawner) {
                 NBTTagCompound tag = new NBTTagCompound();
-                ((TileEntityMobSpawner) tile).writeToNBT(tag);
+                tile.writeToNBT(tag);
                 
                 tag.setString("EntityId", "Zombie");
                 
@@ -88,7 +88,7 @@ public class ItemMysteriousPotato extends Item {
                 tag.setShort("MaxSpawnDelay", (short) 60);
                 tag.setShort("MaxNearbyEntities", (short) 10);
                 tag.setShort("RequiredPlayerRange", (short) 96);
-                ((TileEntityMobSpawner) tile).readFromNBT(tag);
+                tile.readFromNBT(tag);
             }
         }
         return true;

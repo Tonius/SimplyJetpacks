@@ -1,5 +1,7 @@
 package tonius.simplyjetpacks.setup;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -12,18 +14,12 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.crafting.UpgradingRecipe;
-import tonius.simplyjetpacks.integration.EIOItems;
-import tonius.simplyjetpacks.integration.EIORecipes;
-import tonius.simplyjetpacks.integration.RAItems;
-import tonius.simplyjetpacks.integration.TEItems;
-import tonius.simplyjetpacks.integration.TERecipes;
+import tonius.simplyjetpacks.integration.*;
 import tonius.simplyjetpacks.item.ItemMeta;
 import tonius.simplyjetpacks.item.ItemMeta.MetaItem;
 import tonius.simplyjetpacks.item.ItemMysteriousPotato;
 import tonius.simplyjetpacks.item.ItemPack.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class ModItems {
     
@@ -291,117 +287,117 @@ public abstract class ModItems {
     private static void registerRecipes() {
         SimplyJetpacks.logger.info("Registering recipes");
         
-        GameRegistry.addRecipe(new ShapedOreRecipe(jetpackPotato.copy(), new Object[] { "S S", "NPN", "R R", 'S', Items.string, 'N', "nuggetGold", 'P', Items.potato, 'R', "dustRedstone" }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(jetpackPotato.copy(), new Object[] { "S S", "NPN", "R R", 'S', Items.string, 'N', "nuggetGold", 'P', Items.poisonous_potato, 'R', "dustRedstone" }));
-        GameRegistry.addRecipe(new UpgradingRecipe(jetpackCreative.copy(), new Object[] { "J", "P", 'J', jetpackCreative.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(jetpackPotato.copy(), "S S", "NPN", "R R", 'S', Items.string, 'N', "nuggetGold", 'P', Items.potato, 'R', "dustRedstone"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(jetpackPotato.copy(), "S S", "NPN", "R R", 'S', Items.string, 'N', "nuggetGold", 'P', Items.poisonous_potato, 'R', "dustRedstone"));
+        GameRegistry.addRecipe(new UpgradingRecipe(jetpackCreative.copy(), "J", "P", 'J', jetpackCreative.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
         
-        GameRegistry.addRecipe(new ShapedOreRecipe(leatherStrap.copy(), new Object[] { "LIL", "LIL", 'L', Items.leather, 'I', "ingotIron" }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(leatherStrap.copy(), "LIL", "LIL", 'L', Items.leather, 'I', "ingotIron"));
         
         Object dustCoal = OreDictionary.getOres("dustCoal").size() > 0 ? "dustCoal" : new ItemStack(Items.coal);
-        GameRegistry.addRecipe(new ShapedOreRecipe(particleDefault.copy(), new Object[] { " D ", "DCD", " D ", 'C', dustCoal, 'D', Blocks.torch }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(particleNone.copy(), new Object[] { " D ", "DCD", " D ", 'C', dustCoal, 'D', "blockGlass" }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(particleSmoke.copy(), new Object[] { " C ", "CCC", " C ", 'C', dustCoal }));
-        GameRegistry.addRecipe(new ShapedOreRecipe(particleRainbowSmoke.copy(), new Object[] { " R ", " C ", "G B", 'C', dustCoal, 'R', "dyeRed", 'G', "dyeLime", 'B', "dyeBlue" }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(particleDefault.copy(), " D ", "DCD", " D ", 'C', dustCoal, 'D', Blocks.torch));
+        GameRegistry.addRecipe(new ShapedOreRecipe(particleNone.copy(), " D ", "DCD", " D ", 'C', dustCoal, 'D', "blockGlass"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(particleSmoke.copy(), " C ", "CCC", " C ", 'C', dustCoal));
+        GameRegistry.addRecipe(new ShapedOreRecipe(particleRainbowSmoke.copy(), " R ", " C ", "G B", 'C', dustCoal, 'R', "dyeRed", 'G', "dyeLime", 'B', "dyeBlue"));
         
         if (teAvailable) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE1.copy(), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotLead", 'P', "blockGlass", 'C', TEItems.powerCoilGold.copy(), 'G', "gearCopper", 'D', TEItems.dynamoSteam.copy(), 'S', TEItems.pneumaticServo.copy() }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE2.copy(), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotInvar", 'P', Blocks.redstone_block, 'C', TEItems.powerCoilGold.copy(), 'G', "gearBronze", 'D', TEItems.dynamoReactant.copy(), 'S', TEItems.pneumaticServo.copy() }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE3.copy(), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotElectrum", 'P', "ingotSignalum", 'C', TEItems.powerCoilGold.copy(), 'G', "gearInvar", 'D', TEItems.dynamoMagmatic.copy(), 'S', TEItems.pneumaticServo.copy() }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE4.copy(), new Object[] { "ICI", "PGP", "DSD", 'I', "ingotEnderium", 'P', "ingotLumium", 'C', TEItems.powerCoilGold.copy(), 'G', "gearElectrum", 'D', TEItems.dynamoEnervation.copy(), 'S', TEItems.pneumaticServo.copy() }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE1.copy(), "ICI", "PGP", "DSD", 'I', "ingotLead", 'P', "blockGlass", 'C', TEItems.powerCoilGold.copy(), 'G', "gearCopper", 'D', TEItems.dynamoSteam.copy(), 'S', TEItems.pneumaticServo.copy()));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE2.copy(), "ICI", "PGP", "DSD", 'I', "ingotInvar", 'P', Blocks.redstone_block, 'C', TEItems.powerCoilGold.copy(), 'G', "gearBronze", 'D', TEItems.dynamoReactant.copy(), 'S', TEItems.pneumaticServo.copy()));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE3.copy(), "ICI", "PGP", "DSD", 'I', "ingotElectrum", 'P', "ingotSignalum", 'C', TEItems.powerCoilGold.copy(), 'G', "gearInvar", 'D', TEItems.dynamoMagmatic.copy(), 'S', TEItems.pneumaticServo.copy()));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE4.copy(), "ICI", "PGP", "DSD", 'I', "ingotEnderium", 'P', "ingotLumium", 'C', TEItems.powerCoilGold.copy(), 'G', "gearElectrum", 'D', TEItems.dynamoEnervation.copy(), 'S', TEItems.pneumaticServo.copy()));
             
-            GameRegistry.addRecipe(new ShapedOreRecipe(armorPlatingTE1.copy(), new Object[] { "TIT", "III", "TIT", 'I', "ingotIron", 'T', "ingotTin" }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(armorPlatingTE1.copy(), "TIT", "III", "TIT", 'I', "ingotIron", 'T', "ingotTin"));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE1.copy(), new Object[] { "ICI", "ISI", 'I', "ingotLead", 'C', TEItems.cellBasic.copy(), 'S', leatherStrap.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE2.copy(), new Object[] { " I ", "ISI", " I ", 'I', "ingotInvar", 'S', fluxPackTE1.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE3.copy(), new Object[] { " C ", "ISI", "LOL", 'I', "ingotElectrum", 'L', "ingotLead", 'C', TEItems.frameCellReinforcedFull.copy(), 'S', fluxPackTE2.copy(), 'O', TEItems.powerCoilElectrum }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE4.copy(), new Object[] { " I ", "ISI", " I ", 'I', "ingotEnderium", 'S', fluxPackTE3.copy() }));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE1.copy(), "ICI", "ISI", 'I', "ingotLead", 'C', TEItems.cellBasic.copy(), 'S', leatherStrap.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE2.copy(), " I ", "ISI", " I ", 'I', "ingotInvar", 'S', fluxPackTE1.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE3.copy(), " C ", "ISI", "LOL", 'I', "ingotElectrum", 'L', "ingotLead", 'C', TEItems.frameCellReinforcedFull.copy(), 'S', fluxPackTE2.copy(), 'O', TEItems.powerCoilElectrum));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE4.copy(), " I ", "ISI", " I ", 'I', "ingotEnderium", 'S', fluxPackTE3.copy()));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE2Armored.copy(), new Object[] { "P", "J", 'J', fluxPackTE2.copy(), 'P', armorPlatingTE1.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE2.copy(), new Object[] { "J", 'J', fluxPackTE2Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE3Armored.copy(), new Object[] { "P", "J", 'J', fluxPackTE3.copy(), 'P', armorPlatingTE2.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE3.copy(), new Object[] { "J", 'J', fluxPackTE3Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE4Armored.copy(), new Object[] { "P", "J", 'J', fluxPackTE4.copy(), 'P', armorPlatingTE3.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE4.copy(), new Object[] { "J", 'J', fluxPackTE4Armored.copy() }));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE2Armored.copy(), "P", "J", 'J', fluxPackTE2.copy(), 'P', armorPlatingTE1.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE2.copy(), "J", 'J', fluxPackTE2Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE3Armored.copy(), "P", "J", 'J', fluxPackTE3.copy(), 'P', armorPlatingTE2.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE3.copy(), "J", 'J', fluxPackTE3Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE4Armored.copy(), "P", "J", 'J', fluxPackTE4.copy(), 'P', armorPlatingTE3.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackTE4.copy(), "J", 'J', fluxPackTE4Armored.copy()));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE1.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotLead", 'B', TEItems.capacitorBasic.copy(), 'T', thrusterTE1.copy(), 'J', leatherStrap.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE2.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened.copy(), 'T', thrusterTE2.copy(), 'J', jetpackTE1.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced.copy(), 'T', thrusterTE3.copy(), 'J', jetpackTE2.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant.copy(), 'T', thrusterTE4.copy(), 'J', jetpackTE3.copy() }));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE1.copy(), "IBI", "IJI", "T T", 'I', "ingotLead", 'B', TEItems.capacitorBasic.copy(), 'T', thrusterTE1.copy(), 'J', leatherStrap.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE2.copy(), "IBI", "IJI", "T T", 'I', "ingotInvar", 'B', TEItems.capacitorHardened.copy(), 'T', thrusterTE2.copy(), 'J', jetpackTE1.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3.copy(), "IBI", "IJI", "T T", 'I', "ingotElectrum", 'B', TEItems.capacitorReinforced.copy(), 'T', thrusterTE3.copy(), 'J', jetpackTE2.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4.copy(), "IBI", "IJI", "T T", 'I', "ingotEnderium", 'B', TEItems.capacitorResonant.copy(), 'T', thrusterTE4.copy(), 'J', jetpackTE3.copy()));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE1Armored.copy(), new Object[] { "P", "J", 'J', jetpackTE1.copy(), 'P', armorPlatingTE1.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE1.copy(), new Object[] { "J", 'J', jetpackTE1Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE2Armored.copy(), new Object[] { "P", "J", 'J', jetpackTE2.copy(), 'P', armorPlatingTE2.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE2.copy(), new Object[] { "J", 'J', jetpackTE2Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3Armored.copy(), new Object[] { "P", "J", 'J', jetpackTE3.copy(), 'P', armorPlatingTE3.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3.copy(), new Object[] { "J", 'J', jetpackTE3Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4Armored.copy(), new Object[] { "P", "J", 'J', jetpackTE4.copy(), 'P', armorPlatingTE4.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4.copy(), new Object[] { "J", 'J', jetpackTE4Armored.copy() }));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE1Armored.copy(), "P", "J", 'J', jetpackTE1.copy(), 'P', armorPlatingTE1.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE1.copy(), "J", 'J', jetpackTE1Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE2Armored.copy(), "P", "J", 'J', jetpackTE2.copy(), 'P', armorPlatingTE2.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE2.copy(), "J", 'J', jetpackTE2Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3Armored.copy(), "P", "J", 'J', jetpackTE3.copy(), 'P', armorPlatingTE3.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3.copy(), "J", 'J', jetpackTE3Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4Armored.copy(), "P", "J", 'J', jetpackTE4.copy(), 'P', armorPlatingTE4.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4.copy(), "J", 'J', jetpackTE4Armored.copy()));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE1.copy(), new Object[] { "J", "P", 'J', jetpackTE1.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE2.copy(), new Object[] { "J", "P", 'J', jetpackTE2.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3.copy(), new Object[] { "J", "P", 'J', jetpackTE3.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4.copy(), new Object[] { "J", "P", 'J', jetpackTE4.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE1.copy(), "J", "P", 'J', jetpackTE1.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE2.copy(), "J", "P", 'J', jetpackTE2.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3.copy(), "J", "P", 'J', jetpackTE3.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4.copy(), "J", "P", 'J', jetpackTE4.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
             
             if (raAvailable) {
-                GameRegistry.addRecipe(new ShapedOreRecipe(unitGlowstoneEmpty.copy(), new Object[] { "FLF", "LHL", "FLF", 'L', "ingotLumium", 'F', "ingotElectrumFlux", 'H', TEItems.frameIlluminator.copy() }));
-                GameRegistry.addRecipe(new ShapedOreRecipe(unitCryotheumEmpty.copy(), new Object[] { "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', "blockGlassHardened" }));
-                GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE5.copy(), new Object[] { "FPF", "GRG", 'G', unitGlowstone.copy(), 'P', RAItems.plateFlux.copy(), 'R', thrusterTE4.copy(), 'F', "ingotElectrumFlux" }));
-                GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5.copy(), new Object[] { "PAP", "OJO", "TCT", 'A', new ItemStack(RAItems.armorFluxPlate.getItem(), 1, OreDictionary.WILDCARD_VALUE), 'J', jetpackTE4Armored.copy(), 'O', unitCryotheum.copy(), 'C', fluxPackTE4Armored.copy(), 'T', thrusterTE5.copy(), 'P', RAItems.plateFlux.copy() }));
+                GameRegistry.addRecipe(new ShapedOreRecipe(unitGlowstoneEmpty.copy(), "FLF", "LHL", "FLF", 'L', "ingotLumium", 'F', "ingotElectrumFlux", 'H', TEItems.frameIlluminator.copy()));
+                GameRegistry.addRecipe(new ShapedOreRecipe(unitCryotheumEmpty.copy(), "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', "blockGlassHardened"));
+                GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE5.copy(), "FPF", "GRG", 'G', unitGlowstone.copy(), 'P', RAItems.plateFlux.copy(), 'R', thrusterTE4.copy(), 'F', "ingotElectrumFlux"));
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5.copy(), "PAP", "OJO", "TCT", 'A', new ItemStack(RAItems.armorFluxPlate.getItem(), 1, OreDictionary.WILDCARD_VALUE), 'J', jetpackTE4Armored.copy(), 'O', unitCryotheum.copy(), 'C', fluxPackTE4Armored.copy(), 'T', thrusterTE5.copy(), 'P', RAItems.plateFlux.copy()));
                 
-                GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5.copy(), new Object[] { "J", "P", 'J', jetpackTE5.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5.copy(), "J", "P", 'J', jetpackTE5.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
             }
         }
         
         if (eioAvailable) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO1.copy(), new Object[] { "ICI", "PCP", "DSD", 'I', "ingotConductiveIron", 'P', EIOItems.redstoneConduit.copy(), 'C', EIOItems.basicCapacitor.copy(), 'D', EIOItems.basicGear.copy(), 'S', "dustRedstone" }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO2.copy(), new Object[] { "ICI", "PCP", "DSD", 'I', "ingotElectricalSteel", 'P', EIOItems.energyConduit1.copy(), 'C', EIOItems.basicCapacitor.copy(), 'D', EIOItems.machineChassis.copy(), 'S', "dustRedstone" }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO3.copy(), new Object[] { "ICI", "PCP", "DSD", 'I', "ingotEnergeticAlloy", 'P', EIOItems.energyConduit2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'D', EIOItems.pulsatingCrystal.copy(), 'S', "ingotRedstoneAlloy" }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO4.copy(), new Object[] { "ICI", "PCP", "DSD", 'I', "ingotPhasedGold", 'P', EIOItems.energyConduit3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'D', EIOItems.vibrantCrystal.copy(), 'S', "ingotRedstoneAlloy" }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO1.copy(), "ICI", "PCP", "DSD", 'I', "ingotConductiveIron", 'P', EIOItems.redstoneConduit.copy(), 'C', EIOItems.basicCapacitor.copy(), 'D', EIOItems.basicGear.copy(), 'S', "dustRedstone"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO2.copy(), "ICI", "PCP", "DSD", 'I', "ingotElectricalSteel", 'P', EIOItems.energyConduit1.copy(), 'C', EIOItems.basicCapacitor.copy(), 'D', EIOItems.machineChassis.copy(), 'S', "dustRedstone"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO3.copy(), "ICI", "PCP", "DSD", 'I', "ingotEnergeticAlloy", 'P', EIOItems.energyConduit2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'D', EIOItems.pulsatingCrystal.copy(), 'S', "ingotRedstoneAlloy"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO4.copy(), "ICI", "PCP", "DSD", 'I', "ingotPhasedGold", 'P', EIOItems.energyConduit3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'D', EIOItems.vibrantCrystal.copy(), 'S', "ingotRedstoneAlloy"));
             
-            GameRegistry.addRecipe(new ShapedOreRecipe(armorPlatingEIO1.copy(), new Object[] { "SIS", "ISI", "SIS", 'I', "ingotIron", 'S', "itemSilicon" }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(armorPlatingEIO1.copy(), "SIS", "ISI", "SIS", 'I', "ingotIron", 'S', "itemSilicon"));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO1.copy(), new Object[] { "CIC", "ISI", "IPI", 'S', leatherStrap.copy(), 'C', EIOItems.basicCapacitor.copy(), 'I', "ingotConductiveIron", 'P', "dustCoal" }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO2.copy(), new Object[] { "DCD", "ISI", "IPI", 'S', fluxPackEIO1.copy(), 'C', EIOItems.basicCapacitor.copy(), 'D', EIOItems.doubleCapacitor.copy(), 'I', "ingotElectricalSteel", 'P', "dustGold" }));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO1.copy(), "CIC", "ISI", "IPI", 'S', leatherStrap.copy(), 'C', EIOItems.basicCapacitor.copy(), 'I', "ingotConductiveIron", 'P', "dustCoal"));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO2.copy(), "DCD", "ISI", "IPI", 'S', fluxPackEIO1.copy(), 'C', EIOItems.basicCapacitor.copy(), 'D', EIOItems.doubleCapacitor.copy(), 'I', "ingotElectricalSteel", 'P', "dustGold"));
             if (EIOItems.capacitorBank != null && EIOItems.capacitorBank.getItem() != null) {
-                GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO3.copy(), new Object[] { "CBC", "ISI", "IPI", 'S', fluxPackEIO2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'B', EIOItems.capacitorBank.copy(), 'I', "ingotEnergeticAlloy", 'P', EIOItems.pulsatingCrystal.copy() }));
-                GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO4.copy(), new Object[] { "BCB", "ISI", "CPC", 'S', fluxPackEIO3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'B', EIOItems.capacitorBankVibrant.copy(), 'I', "ingotPhasedGold", 'P', EIOItems.vibrantCrystal.copy() }));
+                GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO3.copy(), "CBC", "ISI", "IPI", 'S', fluxPackEIO2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'B', EIOItems.capacitorBank.copy(), 'I', "ingotEnergeticAlloy", 'P', EIOItems.pulsatingCrystal.copy()));
+                GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO4.copy(), "BCB", "ISI", "CPC", 'S', fluxPackEIO3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'B', EIOItems.capacitorBankVibrant.copy(), 'I', "ingotPhasedGold", 'P', EIOItems.vibrantCrystal.copy()));
             } else {
-                GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO3.copy(), new Object[] { "CBC", "ISI", "IPI", 'S', fluxPackEIO2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'B', EIOItems.capacitorBankOld.copy(), 'I', "ingotEnergeticAlloy", 'P', EIOItems.pulsatingCrystal.copy() }));
-                GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO4.copy(), new Object[] { "CBC", "ISI", "BPB", 'S', fluxPackEIO3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'B', EIOItems.capacitorBankOld.copy(), 'I', "ingotPhasedGold", 'P', EIOItems.vibrantCrystal.copy() }));
+                GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO3.copy(), "CBC", "ISI", "IPI", 'S', fluxPackEIO2.copy(), 'C', EIOItems.doubleCapacitor.copy(), 'B', EIOItems.capacitorBankOld.copy(), 'I', "ingotEnergeticAlloy", 'P', EIOItems.pulsatingCrystal.copy()));
+                GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO4.copy(), "CBC", "ISI", "BPB", 'S', fluxPackEIO3.copy(), 'C', EIOItems.octadicCapacitor.copy(), 'B', EIOItems.capacitorBankOld.copy(), 'I', "ingotPhasedGold", 'P', EIOItems.vibrantCrystal.copy()));
             }
             
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO2Armored.copy(), new Object[] { "P", "J", 'J', fluxPackEIO2.copy(), 'P', armorPlatingEIO1.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO2.copy(), new Object[] { "J", 'J', fluxPackEIO2Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO3Armored.copy(), new Object[] { "P", "J", 'J', fluxPackEIO3.copy(), 'P', armorPlatingEIO2.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO3.copy(), new Object[] { "J", 'J', fluxPackEIO3Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO4Armored.copy(), new Object[] { "P", "J", 'J', fluxPackEIO4.copy(), 'P', armorPlatingEIO3.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO4.copy(), new Object[] { "J", 'J', fluxPackEIO4Armored.copy() }));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO2Armored.copy(), "P", "J", 'J', fluxPackEIO2.copy(), 'P', armorPlatingEIO1.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO2.copy(), "J", 'J', fluxPackEIO2Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO3Armored.copy(), "P", "J", 'J', fluxPackEIO3.copy(), 'P', armorPlatingEIO2.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO3.copy(), "J", 'J', fluxPackEIO3Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO4Armored.copy(), "P", "J", 'J', fluxPackEIO4.copy(), 'P', armorPlatingEIO3.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(fluxPackEIO4.copy(), "J", 'J', fluxPackEIO4Armored.copy()));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO1.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotConductiveIron", 'B', EIOItems.basicCapacitor.copy(), 'T', thrusterEIO1.copy(), 'J', leatherStrap.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO2.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotElectricalSteel", 'B', EIOItems.basicCapacitor.copy(), 'T', thrusterEIO2.copy(), 'J', jetpackEIO1.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO3.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotEnergeticAlloy", 'B', EIOItems.doubleCapacitor.copy(), 'T', thrusterEIO3.copy(), 'J', jetpackEIO2.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO4.copy(), new Object[] { "IBI", "IJI", "T T", 'I', "ingotPhasedGold", 'B', EIOItems.octadicCapacitor.copy(), 'T', thrusterEIO4.copy(), 'J', jetpackEIO3.copy() }));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO1.copy(), "IBI", "IJI", "T T", 'I', "ingotConductiveIron", 'B', EIOItems.basicCapacitor.copy(), 'T', thrusterEIO1.copy(), 'J', leatherStrap.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO2.copy(), "IBI", "IJI", "T T", 'I', "ingotElectricalSteel", 'B', EIOItems.basicCapacitor.copy(), 'T', thrusterEIO2.copy(), 'J', jetpackEIO1.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO3.copy(), "IBI", "IJI", "T T", 'I', "ingotEnergeticAlloy", 'B', EIOItems.doubleCapacitor.copy(), 'T', thrusterEIO3.copy(), 'J', jetpackEIO2.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO4.copy(), "IBI", "IJI", "T T", 'I', "ingotPhasedGold", 'B', EIOItems.octadicCapacitor.copy(), 'T', thrusterEIO4.copy(), 'J', jetpackEIO3.copy()));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO1Armored.copy(), new Object[] { "P", "J", 'J', jetpackEIO1.copy(), 'P', armorPlatingEIO1.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO1.copy(), new Object[] { "J", 'J', jetpackEIO1Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO2Armored.copy(), new Object[] { "P", "J", 'J', jetpackEIO2.copy(), 'P', armorPlatingEIO2.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO2.copy(), new Object[] { "J", 'J', jetpackEIO2Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO3Armored.copy(), new Object[] { "P", "J", 'J', jetpackEIO3.copy(), 'P', armorPlatingEIO3.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO3.copy(), new Object[] { "J", 'J', jetpackEIO3Armored.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO4Armored.copy(), new Object[] { "P", "J", 'J', jetpackEIO4.copy(), 'P', armorPlatingEIO4.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO4.copy(), new Object[] { "J", 'J', jetpackEIO4Armored.copy() }));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO1Armored.copy(), "P", "J", 'J', jetpackEIO1.copy(), 'P', armorPlatingEIO1.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO1.copy(), "J", 'J', jetpackEIO1Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO2Armored.copy(), "P", "J", 'J', jetpackEIO2.copy(), 'P', armorPlatingEIO2.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO2.copy(), "J", 'J', jetpackEIO2Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO3Armored.copy(), "P", "J", 'J', jetpackEIO3.copy(), 'P', armorPlatingEIO3.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO3.copy(), "J", 'J', jetpackEIO3Armored.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO4Armored.copy(), "P", "J", 'J', jetpackEIO4.copy(), 'P', armorPlatingEIO4.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO4.copy(), "J", 'J', jetpackEIO4Armored.copy()));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO1.copy(), new Object[] { "J", "P", 'J', jetpackEIO1.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO2.copy(), new Object[] { "J", "P", 'J', jetpackEIO2.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO3.copy(), new Object[] { "J", "P", 'J', jetpackEIO3.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO4.copy(), new Object[] { "J", "P", 'J', jetpackEIO4.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO1.copy(), "J", "P", 'J', jetpackEIO1.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO2.copy(), "J", "P", 'J', jetpackEIO2.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO3.copy(), "J", "P", 'J', jetpackEIO3.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO4.copy(), "J", "P", 'J', jetpackEIO4.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
             
-            GameRegistry.addRecipe(new ShapedOreRecipe(unitFlightControlEmpty.copy(), new Object[] { "FLF", "LHL", "FLF", 'L', "ingotElectricalSteel", 'F', richSoularium.copy(), 'H', "blockGlassHardened" }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO5.copy(), new Object[] { "SES", "CTC", 'T', thrusterEIO4.copy(), 'S', richSoularium.copy(), 'E', unitFlightControl.copy(), 'C', EIOItems.octadicCapacitor.copy() }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(reinforcedGliderWing.copy(), new Object[] { "  S", " SP", "SPP", 'S', richSoularium.copy(), 'P', armorPlatingEIO2.copy() }));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO5.copy(), new Object[] { "OAO", "PJP", "TCT", 'A', EIOItems.enderCrystal.copy(), 'J', jetpackEIO4Armored.copy(), 'O', richSoularium.copy(), 'C', fluxPackEIO4Armored.copy(), 'T', thrusterEIO5.copy(), 'P', reinforcedGliderWing.copy() }));
+            GameRegistry.addRecipe(new ShapedOreRecipe(unitFlightControlEmpty.copy(), "FLF", "LHL", "FLF", 'L', "ingotElectricalSteel", 'F', richSoularium.copy(), 'H', "blockGlassHardened"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterEIO5.copy(), "SES", "CTC", 'T', thrusterEIO4.copy(), 'S', richSoularium.copy(), 'E', unitFlightControl.copy(), 'C', EIOItems.octadicCapacitor.copy()));
+            GameRegistry.addRecipe(new ShapedOreRecipe(reinforcedGliderWing.copy(), "  S", " SP", "SPP", 'S', richSoularium.copy(), 'P', armorPlatingEIO2.copy()));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO5.copy(), "OAO", "PJP", "TCT", 'A', EIOItems.enderCrystal.copy(), 'J', jetpackEIO4Armored.copy(), 'O', richSoularium.copy(), 'C', fluxPackEIO4Armored.copy(), 'T', thrusterEIO5.copy(), 'P', reinforcedGliderWing.copy()));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO5.copy(), new Object[] { "J", "P", 'J', jetpackEIO5.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE) }));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO5.copy(), "J", "P", 'J', jetpackEIO5.copy(), 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
         }
     }
     

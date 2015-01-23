@@ -2,9 +2,9 @@ package tonius.simplyjetpacks.config;
 
 public class Section {
     
-    public boolean client;
-    public String name;
-    public String id;
+    public final boolean client;
+    public final String name;
+    public final String id;
     
     public Section(boolean client, String name, String id) {
         this.client = client;

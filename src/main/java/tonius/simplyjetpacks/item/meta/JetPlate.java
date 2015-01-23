@@ -1,7 +1,8 @@
 package tonius.simplyjetpacks.item.meta;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -10,8 +11,6 @@ import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class JetPlate extends Jetpack {
     
@@ -50,6 +49,7 @@ public class JetPlate extends Jetpack {
     
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(StringUtils.getStateText(this.isOn(stack)));
         list.add(StringUtils.getHoverModeText(this.isHoverModeOn(stack)));

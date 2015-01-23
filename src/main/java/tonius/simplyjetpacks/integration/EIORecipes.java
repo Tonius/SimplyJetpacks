@@ -1,10 +1,10 @@
 package tonius.simplyjetpacks.integration;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import cpw.mods.fml.common.event.FMLInterModComms;
 
 public abstract class EIORecipes {
     
