@@ -132,7 +132,7 @@ public abstract class ModItems {
     
     public static void preInit() {
         teAvailable = ModType.THERMAL_EXPANSION.isLoaded() && Config.enableIntegrationTE;
-        raAvailable = Loader.isModLoaded("RedstoneArsenal");
+        raAvailable = ModType.REDSTONE_ARSENAL.isLoaded() && teAvailable;
         eioAvailable = ModType.ENDER_IO.isLoaded() && Config.enableIntegrationEIO;
         bcAvailable = ModType.BUILDCRAFT.isLoaded() && Config.enableIntegrationBC;
         

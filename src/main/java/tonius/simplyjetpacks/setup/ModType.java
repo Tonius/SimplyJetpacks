@@ -7,6 +7,7 @@ public enum ModType {
     
     SIMPLY_JETPACKS(SimplyJetpacks.MODID, ""),
     THERMAL_EXPANSION("ThermalExpansion", ".te"),
+    REDSTONE_ARSENAL("RedstoneArsenal", null),
     ENDER_IO("EnderIO", ".eio"),
     BUILDCRAFT("BuildCraft|Core", ".bc");
     

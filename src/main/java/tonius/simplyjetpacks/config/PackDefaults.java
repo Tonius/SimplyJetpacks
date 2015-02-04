@@ -131,7 +131,7 @@ public class PackDefaults {
             d.sprintFuelModifier = 4.0D;
             d.emergencyHoverMode = true;
             
-            if (Loader.isModLoaded("RedstoneArsenal")) {
+            if (ModType.REDSTONE_ARSENAL.isLoaded()) {
                 d = new PackDefaults("jetpackTE5", "Flux-Infused JetPlate (TE 5)");
                 d.fuelCapacity = 50000000;
                 d.fuelUsage = 400;
