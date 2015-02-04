@@ -1,6 +1,5 @@
 package tonius.simplyjetpacks;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,6 +8,7 @@ import tonius.simplyjetpacks.handler.EntityInteractHandler;
 import tonius.simplyjetpacks.handler.LivingTickHandler;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.setup.ParticleType;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class CommonProxy {
     

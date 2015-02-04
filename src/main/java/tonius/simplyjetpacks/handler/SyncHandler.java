@@ -1,12 +1,8 @@
 package tonius.simplyjetpacks.handler;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
-import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -15,6 +11,11 @@ import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageConfigSync;
 import tonius.simplyjetpacks.setup.ParticleType;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
+import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 
 public class SyncHandler {
     
@@ -35,11 +36,11 @@ public class SyncHandler {
     public static boolean isDescendKeyDown(EntityLivingBase user) {
         return user instanceof EntityPlayer && descendKeyState.containsKey(user) && descendKeyState.get(user);
     }
-
+    
     public static boolean isForwardKeyDown(EntityLivingBase user) {
         return !(user instanceof EntityPlayer) || forwardKeyState.containsKey(user) && forwardKeyState.get(user);
     }
-
+    
     public static boolean isBackwardKeyDown(EntityLivingBase user) {
         return user instanceof EntityPlayer && backwardKeyState.containsKey(user) && backwardKeyState.get(user);
     }
@@ -81,7 +82,7 @@ public class SyncHandler {
         leftKeyState.clear();
         rightKeyState.clear();
     }
-
+    
     private static void removeFromAll(EntityPlayer player) {
         flyKeyState.remove(player);
         forwardKeyState.remove(player);

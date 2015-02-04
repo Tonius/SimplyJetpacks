@@ -1,8 +1,7 @@
 package tonius.simplyjetpacks.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -17,6 +16,8 @@ import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.util.StringUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMysteriousPotato extends Item {
     

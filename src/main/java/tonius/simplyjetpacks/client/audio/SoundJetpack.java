@@ -1,16 +1,17 @@
 package tonius.simplyjetpacks.client.audio;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.handler.SyncHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class SoundJetpack extends MovingSound {
@@ -44,7 +45,7 @@ public class SoundJetpack extends MovingSound {
         this.xPosF = (float) this.user.posX;
         this.yPosF = (float) this.user.posY;
         this.zPosF = (float) this.user.posZ;
-
+        
         if (this.fadeOut < 0 && !SyncHandler.getJetpackStates().keySet().contains(this.user.getEntityId())) {
             this.fadeOut = 0;
             synchronized (playingFor) {

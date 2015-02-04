@@ -1,11 +1,9 @@
 package tonius.simplyjetpacks.item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +15,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.util.StringUtils;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMeta extends Item {
     
@@ -74,7 +75,7 @@ public class ItemMeta extends Item {
         }
         return super.getRarity(itemStack);
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")

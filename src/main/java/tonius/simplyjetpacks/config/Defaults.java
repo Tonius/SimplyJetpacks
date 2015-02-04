@@ -1,6 +1,6 @@
 package tonius.simplyjetpacks.config;
 
-import tonius.simplyjetpacks.client.util.RenderUtils.HUDPosition;
+import tonius.simplyjetpacks.client.util.RenderUtils.HUDPositions;
 
 public abstract class Defaults {
     
@@ -20,16 +20,16 @@ public abstract class Defaults {
     public static final boolean jetpackSounds = true;
     
     // gui
-    public static final boolean enableStateChatMessages = false;
-    public static final boolean enableEnergyHUD = true;
-    public static final boolean enableStateHUD = true;
-    public static final int energyHUDOffsetX = 0;
-    public static final int energyHUDOffsetY = 0;
-    public static final int energyHUDPosition = HUDPosition.TOP_LEFT.ordinal();
-    public static final double energyHUDScale = 1.0D;
     public static final boolean holdShiftForDetails = true;
-    public static final boolean minimalEnergyHUD = false;
-    public static final boolean showEnergyHUDWhileChatting = true;
-    public static final boolean showExactEnergyInHUD = false;
+    public static final int HUDPosition = HUDPositions.TOP_LEFT.ordinal();
+    public static final int HUDOffsetX = 0;
+    public static final int HUDOffsetY = 0;
+    public static final double HUDScale = 1.0D;
+    public static final boolean showHUDWhileChatting = true;
+    public static final boolean enableFuelHUD = true;
+    public static final boolean minimalFuelHUD = false;
+    public static final boolean showExactFuelInHUD = false;
+    public static final boolean enableStateHUD = true;
+    public static final boolean enableStateChatMessages = false;
     
 }

@@ -1,7 +1,5 @@
 package tonius.simplyjetpacks.setup;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -14,12 +12,18 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.crafting.UpgradingRecipe;
-import tonius.simplyjetpacks.integration.*;
+import tonius.simplyjetpacks.integration.EIOItems;
+import tonius.simplyjetpacks.integration.EIORecipes;
+import tonius.simplyjetpacks.integration.RAItems;
+import tonius.simplyjetpacks.integration.TEItems;
+import tonius.simplyjetpacks.integration.TERecipes;
 import tonius.simplyjetpacks.item.ItemMeta;
 import tonius.simplyjetpacks.item.ItemMeta.MetaItem;
 import tonius.simplyjetpacks.item.ItemMysteriousPotato;
 import tonius.simplyjetpacks.item.ItemPack.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class ModItems {
     
@@ -170,7 +174,9 @@ public abstract class ModItems {
             jetpackTE3Armored = jetpacksTE.putPack(103, Packs.jetpackTE3Armored);
             jetpackTE4 = jetpacksTE.putPack(4, Packs.jetpackTE4);
             jetpackTE4Armored = jetpacksTE.putPack(104, Packs.jetpackTE4Armored);
-            jetpackTE5 = jetpacksTE.putPack(5, Packs.jetpackTE5);
+            if (raAvailable) {
+                jetpackTE5 = jetpacksTE.putPack(5, Packs.jetpackTE5);
+            }
             fluxPacksTE = new ItemFluxPack(ModType.THERMAL_EXPANSION);
             fluxPackTE1 = fluxPacksTE.putPack(1, Packs.fluxPackTE1);
             fluxPackTE2 = fluxPacksTE.putPack(2, Packs.fluxPackTE2);
@@ -221,11 +227,13 @@ public abstract class ModItems {
             thrusterTE2 = components.addMetaItem(12, new MetaItem("thruster.te.2", null, EnumRarity.common), true, false);
             thrusterTE3 = components.addMetaItem(13, new MetaItem("thruster.te.3", null, EnumRarity.uncommon), true, false);
             thrusterTE4 = components.addMetaItem(14, new MetaItem("thruster.te.4", null, EnumRarity.rare), true, false);
-            thrusterTE5 = components.addMetaItem(15, new MetaItem("thruster.te.5", null, EnumRarity.epic), true, false);
-            unitGlowstoneEmpty = components.addMetaItem(60, new MetaItem("unitGlowstone.empty", null, EnumRarity.common), true, false);
-            unitGlowstone = components.addMetaItem(61, new MetaItem("unitGlowstone", null, EnumRarity.uncommon), true, false);
-            unitCryotheumEmpty = components.addMetaItem(62, new MetaItem("unitCryotheum.empty", null, EnumRarity.common), true, false);
-            unitCryotheum = components.addMetaItem(63, new MetaItem("unitCryotheum", null, EnumRarity.rare), true, false);
+            if (raAvailable) {
+                thrusterTE5 = components.addMetaItem(15, new MetaItem("thruster.te.5", null, EnumRarity.epic), true, false);
+                unitGlowstoneEmpty = components.addMetaItem(60, new MetaItem("unitGlowstone.empty", null, EnumRarity.common), true, false);
+                unitGlowstone = components.addMetaItem(61, new MetaItem("unitGlowstone", null, EnumRarity.uncommon), true, false);
+                unitCryotheumEmpty = components.addMetaItem(62, new MetaItem("unitCryotheum.empty", null, EnumRarity.common), true, false);
+                unitCryotheum = components.addMetaItem(63, new MetaItem("unitCryotheum", null, EnumRarity.rare), true, false);
+            }
             
             armorPlatingTE1 = armorPlatings.addMetaItem(1, new MetaItem("armorPlating.te.1", null, EnumRarity.common), true, false);
             armorPlatingTE2 = armorPlatings.addMetaItem(2, new MetaItem("armorPlating.te.2", null, EnumRarity.common), true, false);

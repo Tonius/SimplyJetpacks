@@ -1,17 +1,15 @@
 package tonius.simplyjetpacks.client.handler;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import java.util.Iterator;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+
 import org.lwjgl.input.Keyboard;
+
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.audio.SoundJetpack;
 import tonius.simplyjetpacks.config.Config;
@@ -24,6 +22,11 @@ import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
 import tonius.simplyjetpacks.network.message.MessageModKey;
 import tonius.simplyjetpacks.setup.ModControls;
 import tonius.simplyjetpacks.setup.ParticleType;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 
 public class ClientTickHandler {
     
@@ -61,16 +64,16 @@ public class ClientTickHandler {
                 flyState = mc.gameSettings.keyBindJump.getIsKeyPressed();
                 descendState = mc.gameSettings.keyBindSneak.getIsKeyPressed();
             }
-
+            
             boolean forwardState = mc.gameSettings.keyBindForward.getIsKeyPressed();
             boolean backwardState = mc.gameSettings.keyBindBack.getIsKeyPressed();
             boolean leftState = mc.gameSettings.keyBindLeft.getIsKeyPressed();
             boolean rightState = mc.gameSettings.keyBindRight.getIsKeyPressed();
-
+            
             if (flyState != lastFlyState || descendState != lastDescendState || forwardState != lastForwardState || backwardState != lastBackwardState || leftState != lastLeftState || rightState != lastRightState) {
                 lastFlyState = flyState;
                 lastDescendState = descendState;
-
+                
                 lastForwardState = forwardState;
                 lastBackwardState = backwardState;
                 lastLeftState = leftState;
@@ -78,7 +81,7 @@ public class ClientTickHandler {
                 PacketHandler.instance.sendToServer(new MessageKeyboardSync(flyState, descendState, forwardState, backwardState, leftState, rightState));
                 SyncHandler.processKeyUpdate(mc.thePlayer, flyState, descendState, forwardState, backwardState, leftState, rightState);
             }
-
+            
             ParticleType jetpackState = null;
             ItemStack armor = mc.thePlayer.getEquipmentInSlot(3);
             if (armor != null && armor.getItem() instanceof ItemJetpack) {
@@ -87,7 +90,7 @@ public class ClientTickHandler {
                     jetpackState = jetpack.getDisplayParticleType(armor, (ItemJetpack) armor.getItem(), mc.thePlayer);
                 }
             }
-
+            
             if (jetpackState != lastJetpackState) {
                 lastJetpackState = jetpackState;
                 SyncHandler.processJetpackUpdate(mc.thePlayer.getEntityId(), jetpackState);

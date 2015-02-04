@@ -1,8 +1,7 @@
 package tonius.simplyjetpacks.item.meta;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -19,6 +18,8 @@ import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class Jetpack extends PackBase {
     

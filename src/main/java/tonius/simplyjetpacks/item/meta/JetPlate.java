@@ -1,8 +1,7 @@
 package tonius.simplyjetpacks.item.meta;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -11,6 +10,8 @@ import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class JetPlate extends Jetpack {
     

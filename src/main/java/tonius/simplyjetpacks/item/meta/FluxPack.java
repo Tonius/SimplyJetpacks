@@ -1,8 +1,7 @@
 package tonius.simplyjetpacks.item.meta;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -11,6 +10,8 @@ import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.util.StringUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class FluxPack extends PackBase {
     
@@ -26,7 +27,7 @@ public class FluxPack extends PackBase {
             this.chargeInventory(player, stack, item);
         }
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")

@@ -1,6 +1,5 @@
 package tonius.simplyjetpacks.crafting;
 
-import cofh.api.energy.IEnergyContainerItem;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,6 +10,7 @@ import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
 import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.StackUtils;
+import cofh.api.energy.IEnergyContainerItem;
 
 public class UpgradingRecipe extends ShapedOreRecipe {
     

@@ -1,12 +1,12 @@
 package tonius.simplyjetpacks.crafting;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.item.meta.PackBase;
 import tonius.simplyjetpacks.setup.ModItems;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 
 public class PlatingReturnHandler {
     

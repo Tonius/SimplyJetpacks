@@ -1,7 +1,7 @@
 package tonius.simplyjetpacks.client;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.Vec3;
@@ -11,6 +11,7 @@ import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.setup.ParticleType;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientProxy extends CommonProxy {
     

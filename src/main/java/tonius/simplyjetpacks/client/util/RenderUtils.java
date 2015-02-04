@@ -20,7 +20,7 @@ public abstract class RenderUtils {
         fontRenderer.drawString(string, x - fontRenderer.getStringWidth(string), y, color, shadow);
     }
     
-    public static void drawStringAtHUDPosition(String string, HUDPosition position, FontRenderer fontRenderer, int xOffset, int yOffset, double scale, int color, boolean shadow, int lineOffset) {
+    public static void drawStringAtHUDPosition(String string, HUDPositions position, FontRenderer fontRenderer, int xOffset, int yOffset, double scale, int color, boolean shadow, int lineOffset) {
         ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         
         int screenWidth = res.getScaledWidth();
@@ -59,7 +59,7 @@ public abstract class RenderUtils {
         }
     }
     
-    public enum HUDPosition {
+    public enum HUDPositions {
         TOP_LEFT,
         TOP_CENTER,
         TOP_RIGHT,

@@ -1,11 +1,9 @@
 package tonius.simplyjetpacks.item.meta;
 
-import cofh.api.energy.IEnergyContainerItem;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -21,6 +19,9 @@ import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.util.StackUtils;
 import tonius.simplyjetpacks.util.StringUtils;
+import cofh.api.energy.IEnergyContainerItem;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class PackBase {
     
@@ -182,7 +183,7 @@ public class PackBase {
     
     protected void toggleState(boolean on, ItemStack stack, String type, String tag, EntityPlayer player, boolean showInChat) {
         stack.stackTagCompound.setBoolean(tag, !on);
-
+        
         if (player != null && showInChat) {
             String color = on ? StringUtils.LIGHT_RED : StringUtils.BRIGHT_GREEN;
             type = type != null && !type.equals("") ? "chat." + this.name + "." + type + ".on" : "chat." + this.name + ".on";

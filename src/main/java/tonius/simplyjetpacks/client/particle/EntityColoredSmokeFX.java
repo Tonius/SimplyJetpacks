@@ -2,6 +2,7 @@ package tonius.simplyjetpacks.client.particle;
 
 import java.awt.Color;
 import java.util.Random;
+
 import net.minecraft.world.World;
 
 public class EntityColoredSmokeFX extends EntityCustomSmokeFX {

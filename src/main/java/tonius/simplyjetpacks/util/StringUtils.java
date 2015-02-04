@@ -2,8 +2,11 @@ package tonius.simplyjetpacks.util;
 
 import java.text.DecimalFormat;
 import java.util.List;
+
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.input.Keyboard;
+
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.setup.FuelType;
@@ -126,7 +129,7 @@ public abstract class StringUtils {
     
     public static String getHUDFuelText(String prefix, int percent, FuelType fuelType, int fuel) {
         String text = "";
-        if (!Config.minimalEnergyHUD) {
+        if (!Config.minimalFuelHUD) {
             text += translate("gui.hud." + prefix + ".fuel") + ": ";
         }
         if (percent > 0) {
@@ -134,7 +137,7 @@ public abstract class StringUtils {
         } else {
             text += RED + translate("gui.hud.fuel.depleted");
         }
-        if (Config.showExactEnergyInHUD) {
+        if (Config.showExactFuelInHUD) {
             text += " (" + getFormattedNumber(fuel) + fuelType.suffix + ")";
         }
         return text;

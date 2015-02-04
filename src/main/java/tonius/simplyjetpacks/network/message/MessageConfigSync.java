@@ -1,13 +1,13 @@
 package tonius.simplyjetpacks.network.message;
 
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.item.meta.PackBase;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageConfigSync implements IMessage, IMessageHandler<MessageConfigSync, IMessage> {
     

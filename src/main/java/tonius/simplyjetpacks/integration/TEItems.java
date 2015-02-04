@@ -1,11 +1,11 @@
 package tonius.simplyjetpacks.integration;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class TEItems {
-
+    
     public static ItemStack capacitorBasic = null;
     public static ItemStack capacitorHardened = null;
     public static ItemStack capacitorReinforced = null;
@@ -23,7 +23,7 @@ public abstract class TEItems {
     
     public static void init() {
         SimplyJetpacks.logger.info("Stealing Thermal Expansion's items");
-
+        
         capacitorBasic = GameRegistry.findItemStack("ThermalExpansion", "capacitorBasic", 1);
         capacitorHardened = GameRegistry.findItemStack("ThermalExpansion", "capacitorHardened", 1);
         capacitorReinforced = GameRegistry.findItemStack("ThermalExpansion", "capacitorReinforced", 1);
