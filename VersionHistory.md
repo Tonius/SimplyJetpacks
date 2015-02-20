@@ -1,11 +1,11 @@
-1.4.0 - (unreleased)
+1.4.0 - 2015-02-20
 ----------------------------------
 - Added jetpack sounds. Many thanks to nabijaczleweli for their help with this one. The volume for these sounds can be set with the volume slider for the 'Players' sound category. They can also be disabled as a whole in the config (clientside).
 - Refactored code to be cleaner, less redundant and more flexible.
 - All jetpack/flux pack types can now be tuned individually (instead of being bound to a list of tiers).
 - The Flux-Infused JetPlate is now craftable even if Redstone Arsenal is not installed.
 - Localized keybind names. The mod's keybinds will likely be reset when updating to this version.
-- Jetpack particles now spread out a tiny little bit, instead of going straight down.
+- Jetpack particles now spread out a little bit instead of going straight down.
 - Creative Jetpacks now have rainbow smoke particles by default.
 - Added a small limit on how quickly jetpacks can be charged by external sources. (Configurable)
 - Removed 'flat' jetpack armor models.
