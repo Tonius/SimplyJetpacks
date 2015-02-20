@@ -48,4 +48,10 @@ public abstract class TERecipes {
         FMLInterModComms.sendMessage("ThermalExpansion", "TransposerFillRecipe", toSend);
     }
     
+    public static void addSmelterBlastOre(String oreType) {
+        NBTTagCompound toSend = new NBTTagCompound();
+        toSend.setString("oreType", oreType);
+        FMLInterModComms.sendMessage("ThermalExpansion", "SmelterBlastOreType", toSend);
+    }
+    
 }

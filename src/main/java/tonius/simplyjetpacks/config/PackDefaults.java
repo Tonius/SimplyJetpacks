@@ -131,24 +131,22 @@ public class PackDefaults {
             d.sprintFuelModifier = 4.0D;
             d.emergencyHoverMode = true;
             
-            if (ModType.REDSTONE_ARSENAL.isLoaded()) {
-                d = new PackDefaults("jetpackTE5", "Flux-Infused JetPlate (TE 5)");
-                d.fuelCapacity = 50000000;
-                d.fuelUsage = 400;
-                d.fuelPerTickIn = 125000;
-                d.fuelPerTickOut = 20000;
-                d.armorReduction = 12;
-                d.armorFuelPerHit = 240;
-                d.enchantability = 20;
-                d.speedVertical = 0.9D;
-                d.accelVertical = 0.15D;
-                d.speedVerticalHover = 0.45D;
-                d.speedVerticalHoverSlow = 0.0D;
-                d.speedSideways = 0.21D;
-                d.sprintSpeedModifier = 2.4D;
-                d.sprintFuelModifier = 6.0D;
-                d.emergencyHoverMode = true;
-            }
+            d = new PackDefaults("jetpackTE5", "Flux-Infused JetPlate (TE 5)");
+            d.fuelCapacity = 50000000;
+            d.fuelUsage = 400;
+            d.fuelPerTickIn = 125000;
+            d.fuelPerTickOut = 20000;
+            d.armorReduction = 12;
+            d.armorFuelPerHit = 240;
+            d.enchantability = 20;
+            d.speedVertical = 0.9D;
+            d.accelVertical = 0.15D;
+            d.speedVerticalHover = 0.45D;
+            d.speedVerticalHoverSlow = 0.0D;
+            d.speedSideways = 0.21D;
+            d.sprintSpeedModifier = 2.4D;
+            d.sprintFuelModifier = 6.0D;
+            d.emergencyHoverMode = true;
             
             d = new PackDefaults("fluxPackTE1", "Leadstone Flux Pack (TE 1)");
             d.fuelCapacity = 400000;

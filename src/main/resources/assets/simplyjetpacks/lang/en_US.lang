@@ -65,6 +65,13 @@ item.simplyjetpacks.reinforcedGliderWing.name=Reinforced Glider Wing
 item.simplyjetpacks.unitFlightControl.empty.name=Flight Control Unit (Empty)
 item.simplyjetpacks.unitFlightControl.name=Flight Control Unit
 
+item.simplyjetpacks.dustElectrumFlux.name=Fluxed Electrum Blend
+item.simplyjetpacks.ingotElectrumFlux.name=Fluxed Electrum Ingot
+item.simplyjetpacks.nuggetElectrumFlux.name=Fluxed Electrum Nugget
+item.simplyjetpacks.gemCrystalFlux.name=Flux Crystal
+item.simplyjetpacks.plateFlux.name=Fluxed Armor Plating
+item.simplyjetpacks.armorFluxPlate.name=Flux-Infused Chestplate Assembly
+
 item.simplyjetpacks.armorPlating.te.1.name=Iron Armor Plating
 item.simplyjetpacks.armorPlating.te.2.name=Tinker's Alloy Armor Plating
 item.simplyjetpacks.armorPlating.te.3.name=Invar Armor Plating
@@ -130,6 +137,9 @@ simplyjetpacks.tooltip.jetplate.controls.command=Use '/sjs charger' to toggle ch
 simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jetpack's particles.
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
 simplyjetpacks.tooltip.mysteriousPotato.description=Can do the thing
+simplyjetpacks.tooltip.raReplacement.description.1=Redstone Arsenal is not installed.
+simplyjetpacks.tooltip.raReplacement.description.2=So instead, have this blatant rip-off
+simplyjetpacks.tooltip.raReplacement.description.3=of one if its items.
 
 simplyjetpacks.gui.hud.jetpack.fuel=Jetpack fuel
 simplyjetpacks.gui.hud.fluxpack.fuel=Flux Pack energy
@@ -159,6 +169,7 @@ simplyjetpacks.keybind.mode=Switch mode
 
 simplyjetpacks.config.title=Simply Jetpacks Configuration
 simplyjetpacks.config.integration=Integration Settings
+simplyjetpacks.config.integration.tooltip=Turn integration with other mods on or off. Note that integrations for different mods are not explicitly balanced around each other!
 simplyjetpacks.config.controls=Controls Settings
 simplyjetpacks.config.crafting=Crafting Settings
 simplyjetpacks.config.aesthetics=Aesthetics Settings
