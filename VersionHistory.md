@@ -1,3 +1,7 @@
+1.4.1 - 2015-02-20
+----------------------------------
+- Fixed crash on dedicated server startup
+
 1.4.0 - 2015-02-20
 ----------------------------------
 - Added jetpack sounds. Many thanks to nabijaczleweli for their help with this one. The volume for these sounds can be set with the volume slider for the 'Players' sound category. They can also be disabled as a whole in the config (clientside).

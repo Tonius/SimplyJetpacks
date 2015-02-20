@@ -27,6 +27,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.client.util.RenderUtils;
 import tonius.simplyjetpacks.item.meta.FluxPack;
 import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.item.meta.PackBase;
@@ -209,7 +210,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
         T pack = this.getPack(stack);
         if (pack != null && pack.armorModel != null) {
-            ModelBiped model = pack.armorModel.get(entityLiving);
+            ModelBiped model = RenderUtils.getArmorModel(pack, entityLiving);
             if (model != null) {
                 return model;
             }
