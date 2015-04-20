@@ -1,13 +1,14 @@
 package tonius.simplyjetpacks.config;
 
 import tonius.simplyjetpacks.client.util.RenderUtils.HUDPositions;
+import tonius.simplyjetpacks.setup.ModType;
 
 public abstract class Defaults {
     
     // integration
-    public static final boolean enableIntegrationTE = true;
-    public static final boolean enableIntegrationEIO = true;
-    public static final boolean enableIntegrationBC = true;
+    public static final boolean enableIntegrationTE = ModType.THERMAL_EXPANSION.isLoaded();
+    public static final boolean enableIntegrationEIO = ModType.ENDER_IO.isLoaded() && !enableIntegrationTE;
+    public static final boolean enableIntegrationBC = ModType.BUILDCRAFT.isLoaded() && !enableIntegrationTE && !enableIntegrationEIO;
     
     // controls
     public static final boolean customControls = false;
