@@ -196,7 +196,6 @@ public class Jetpack extends PackBase {
         if (this.fuelUsage > 0) {
             list.add(StringUtils.getFuelUsageText(this.fuelType, this.fuelUsage));
         }
-        list.add(StringUtils.getArmoredText(this.isArmored));
         list.add(StringUtils.getParticlesText(this.getParticleType(stack)));
         StringUtils.addDescriptionLines(list, "jetpack", StringUtils.BRIGHT_GREEN);
     }

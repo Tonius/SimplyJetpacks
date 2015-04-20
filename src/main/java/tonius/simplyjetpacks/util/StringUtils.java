@@ -118,11 +118,6 @@ public abstract class StringUtils {
         return ORANGE + translate("tooltip.energyReceive") + ": " + LIGHT_GRAY + usageText;
     }
     
-    public static String getArmoredText(boolean armored) {
-        String yesOrNo = armored ? BRIGHT_GREEN + translate("tooltip.yes") : LIGHT_RED + translate("tooltip.no");
-        return ORANGE + translate("tooltip.armored") + ": " + yesOrNo;
-    }
-    
     public static String getParticlesText(ParticleType particle) {
         return ORANGE + translate("tooltip.particles") + ": " + LIGHT_GRAY + translate("tooltip.particles." + particle.ordinal());
     }

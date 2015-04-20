@@ -37,7 +37,6 @@ public class FluxPack extends PackBase {
         if (this.fuelPerTickIn > 0) {
             list.add(StringUtils.getEnergyReceiveText(this.fuelPerTickIn));
         }
-        list.add(StringUtils.getArmoredText(this.isArmored));
         StringUtils.addDescriptionLines(list, "fluxpack", StringUtils.BRIGHT_GREEN);
     }
     
