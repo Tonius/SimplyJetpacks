@@ -99,9 +99,6 @@ simplyjetpacks.chat.jetpack.emergencyHoverMode.msg=User is about to die! Activat
 simplyjetpacks.chat.jetpack.jetplate.charger.on=JetPlate charger
 simplyjetpacks.chat.fluxpack.on=Flux Pack charger
 
-simplyjetpacks.tooltip.holdShift=Hold %s for Details
-simplyjetpacks.tooltip.holdShift.shift=Shift
-
 simplyjetpacks.tooltip.on=On
 simplyjetpacks.tooltip.off=Off
 simplyjetpacks.tooltip.enabled=Enabled

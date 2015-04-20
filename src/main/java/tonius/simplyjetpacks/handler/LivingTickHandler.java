@@ -2,7 +2,6 @@ package tonius.simplyjetpacks.handler;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import net.minecraft.entity.monster.EntityMob;
@@ -15,13 +14,13 @@ import tonius.simplyjetpacks.item.meta.JetpackPotato;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageJetpackSync;
 import tonius.simplyjetpacks.setup.ParticleType;
+import cofh.lib.util.helpers.MathHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class LivingTickHandler {
     
     private static final Map<Integer, ParticleType> lastJetpackState = new ConcurrentHashMap<Integer, ParticleType>();
-    private static final Random rand = new Random();
     
     @SubscribeEvent
     public void onLivingTick(LivingUpdateEvent evt) {
@@ -67,7 +66,7 @@ public class LivingTickHandler {
                 ItemJetpack jetpackItem = (ItemJetpack) armor.getItem();
                 Jetpack jetpack = jetpackItem.getPack(armor);
                 if (jetpack != null) {
-                    if (jetpack instanceof JetpackPotato || rand.nextInt(3) == 0) {
+                    if (jetpack instanceof JetpackPotato || MathHelper.RANDOM.nextInt(3) == 0) {
                         jetpack.setMobMode(armor);
                         jetpack.flyUser(evt.entityLiving, armor, jetpackItem, false);
                     }

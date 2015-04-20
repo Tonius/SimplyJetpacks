@@ -14,7 +14,8 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
-import tonius.simplyjetpacks.util.StringUtils;
+import tonius.simplyjetpacks.util.SJStringHelper;
+import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -82,10 +83,10 @@ public class ItemMeta extends Item {
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
         MetaItem metaItem = this.getMetaItem(itemStack);
         if (metaItem != null && metaItem.tooltipKey != null) {
-            if (StringUtils.canShowDetails()) {
-                StringUtils.addDescriptionLines(list, metaItem.tooltipKey, StringUtils.LIGHT_GRAY);
+            if (SJStringHelper.canShowDetails()) {
+                SJStringHelper.addDescriptionLines(list, metaItem.tooltipKey, StringHelper.LIGHT_GRAY);
             } else {
-                list.add(StringUtils.getShiftText());
+                list.add(StringHelper.shiftForDetails());
             }
         }
     }

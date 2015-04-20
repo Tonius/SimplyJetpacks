@@ -17,9 +17,10 @@ import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.config.PackDefaults;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.FuelType;
-import tonius.simplyjetpacks.util.StackUtils;
-import tonius.simplyjetpacks.util.StringUtils;
+import tonius.simplyjetpacks.util.NBTHelper;
+import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.api.energy.IEnergyContainerItem;
+import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -185,15 +186,15 @@ public class PackBase {
         stack.stackTagCompound.setBoolean(tag, !on);
         
         if (player != null && showInChat) {
-            String color = on ? StringUtils.LIGHT_RED : StringUtils.BRIGHT_GREEN;
+            String color = on ? StringHelper.LIGHT_RED : StringHelper.BRIGHT_GREEN;
             type = type != null && !type.equals("") ? "chat." + this.name + "." + type + ".on" : "chat." + this.name + ".on";
-            String msg = StringUtils.translate(type) + " " + color + StringUtils.translate("chat." + (on ? "disabled" : "enabled"));
+            String msg = SJStringHelper.localize(type) + " " + color + SJStringHelper.localize("chat." + (on ? "disabled" : "enabled"));
             player.addChatMessage(new ChatComponentText(msg));
         }
     }
     
     public boolean isOn(ItemStack stack) {
-        return StackUtils.getNBTBoolean(stack, TAG_ON, true);
+        return NBTHelper.getNBTBoolean(stack, TAG_ON, true);
     }
     
     public void toggleOn(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
@@ -206,14 +207,14 @@ public class PackBase {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
-        list.add(StringUtils.getTierText(this.tier));
-        list.add(StringUtils.getFuelText(this.fuelType, item.getFuelStored(stack), this.fuelCapacity, !this.usesFuel));
+        list.add(SJStringHelper.getTierText(this.tier));
+        list.add(SJStringHelper.getFuelText(this.fuelType, item.getFuelStored(stack), this.fuelCapacity, !this.usesFuel));
     }
     
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
-        list.add(StringUtils.getStateText(this.isOn(stack)));
+        list.add(SJStringHelper.getStateText(this.isOn(stack)));
     }
     
     @SideOnly(Side.CLIENT)
@@ -221,7 +222,7 @@ public class PackBase {
         int fuel = item.getFuelStored(stack);
         int maxFuel = item.getMaxFuelStored(stack);
         int percent = (int) Math.ceil((double) fuel / (double) maxFuel * 100D);
-        return StringUtils.getHUDFuelText(this.name, percent, this.fuelType, fuel);
+        return SJStringHelper.getHUDFuelText(this.name, percent, this.fuelType, fuel);
     }
     
     @SideOnly(Side.CLIENT)

@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.setup.ModItems;
-import tonius.simplyjetpacks.util.StringUtils;
+import tonius.simplyjetpacks.util.SJStringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -31,7 +31,7 @@ public class ItemMysteriousPotato extends Item {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean bool) {
-        list.add(StringUtils.translate("tooltip.mysteriousPotato.description"));
+        list.add(SJStringHelper.localize("tooltip.mysteriousPotato.description"));
     }
     
     @Override

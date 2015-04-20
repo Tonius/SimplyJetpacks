@@ -8,8 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.ItemPack;
-import tonius.simplyjetpacks.util.StackUtils;
-import tonius.simplyjetpacks.util.StringUtils;
+import tonius.simplyjetpacks.util.NBTHelper;
+import tonius.simplyjetpacks.util.SJStringHelper;
+import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -32,7 +33,7 @@ public class JetPlate extends Jetpack {
     }
     
     public boolean isChargerOn(ItemStack stack) {
-        return StackUtils.getNBTBoolean(stack, TAG_CHARGER_ON, true);
+        return NBTHelper.getNBTBoolean(stack, TAG_CHARGER_ON, true);
     }
     
     public void toggleCharger(ItemStack stack, EntityPlayer player, boolean showInChat) {
@@ -52,16 +53,16 @@ public class JetPlate extends Jetpack {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
-        list.add(StringUtils.getStateText(this.isOn(stack)));
-        list.add(StringUtils.getHoverModeText(this.isHoverModeOn(stack)));
-        list.add(StringUtils.getChargerStateText(this.isChargerOn(stack)));
+        list.add(SJStringHelper.getStateText(this.isOn(stack)));
+        list.add(SJStringHelper.getHoverModeText(this.isHoverModeOn(stack)));
+        list.add(SJStringHelper.getChargerStateText(this.isChargerOn(stack)));
         if (this.fuelUsage > 0) {
-            list.add(StringUtils.getFuelUsageText(this.fuelType, this.fuelUsage));
+            list.add(SJStringHelper.getFuelUsageText(this.fuelType, this.fuelUsage));
         }
-        list.add(StringUtils.getChargerRateText(this.fuelPerTickOut));
-        list.add(StringUtils.getParticlesText(this.getParticleType(stack)));
-        StringUtils.addDescriptionLines(list, "jetplate", StringUtils.BRIGHT_GREEN);
-        list.add(StringUtils.BRIGHT_BLUE + StringUtils.ITALIC + StringUtils.translate("tooltip.jetplate.controls" + (Config.sneakChangesToggleBehavior ? "" : ".command")));
+        list.add(SJStringHelper.getChargerRateText(this.fuelPerTickOut));
+        list.add(SJStringHelper.getParticlesText(this.getParticleType(stack)));
+        SJStringHelper.addDescriptionLines(list, "jetplate", StringHelper.BRIGHT_GREEN);
+        list.add(StringHelper.BRIGHT_BLUE + StringHelper.ITALIC + SJStringHelper.localize("tooltip.jetplate.controls" + (Config.sneakChangesToggleBehavior ? "" : ".command")));
     }
     
     @Override
@@ -70,7 +71,7 @@ public class JetPlate extends Jetpack {
         Boolean engine = this.isOn(stack);
         Boolean hover = this.isHoverModeOn(stack);
         Boolean charger = this.isChargerOn(stack);
-        return StringUtils.getHUDStateText(engine, hover, charger);
+        return SJStringHelper.getHUDStateText(engine, hover, charger);
     }
     
 }

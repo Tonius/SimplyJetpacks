@@ -1,7 +1,6 @@
 package tonius.simplyjetpacks.item.meta;
 
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFireworkRocket;
@@ -15,9 +14,11 @@ import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.ParticleType;
-import tonius.simplyjetpacks.util.FireworkUtils;
-import tonius.simplyjetpacks.util.StackUtils;
-import tonius.simplyjetpacks.util.StringUtils;
+import tonius.simplyjetpacks.util.NBTHelper;
+import tonius.simplyjetpacks.util.SJStringHelper;
+import cofh.lib.util.helpers.FireworksHelper;
+import cofh.lib.util.helpers.MathHelper;
+import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -42,11 +43,10 @@ public class JetpackPotato extends Jetpack {
             if (item.getFuelStored(stack) <= 0) {
                 user.setCurrentItemOrArmor(3, null);
                 if (!user.worldObj.isRemote) {
-                    Random rand = new Random();
                     user.worldObj.createExplosion(user, user.posX, user.posY, user.posZ, 4.0F, false);
-                    for (int i = 0; i <= rand.nextInt(3) + 4; i++) {
-                        ItemStack firework = FireworkUtils.getRandomFirework();
-                        user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + rand.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + rand.nextDouble() * 6.0D - 3.0D, firework));
+                    for (int i = 0; i <= MathHelper.RANDOM.nextInt(3) + 4; i++) {
+                        ItemStack firework = FireworksHelper.getRandomFireworks(0, 1, MathHelper.RANDOM.nextInt(6) + 1, 1);
+                        user.worldObj.spawnEntityInWorld(new EntityFireworkRocket(user.worldObj, user.posX + MathHelper.RANDOM.nextDouble() * 6.0D - 3.0D, user.posY, user.posZ + MathHelper.RANDOM.nextDouble() * 6.0D - 3.0D, firework));
                     }
                     user.attackEntityFrom(new EntityDamageSource("jetpackpotato", user), 100.0F);
                     if (user instanceof EntityPlayer) {
@@ -98,30 +98,30 @@ public class JetpackPotato extends Jetpack {
     @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         super.addShiftInformation(stack, item, player, list);
-        list.add(StringUtils.LIGHT_RED + StringUtils.ITALIC + StringUtils.translate("tooltip.jetpackPotato.warning"));
+        list.add(StringHelper.LIGHT_RED + StringHelper.ITALIC + SJStringHelper.localize("tooltip.jetpackPotato.warning"));
     }
     
     protected boolean isFired(ItemStack itemStack) {
-        return StackUtils.getNBT(itemStack).getBoolean(TAG_FIRED);
+        return NBTHelper.getNBT(itemStack).getBoolean(TAG_FIRED);
     }
     
     protected void setFired(ItemStack itemStack) {
-        StackUtils.getNBT(itemStack).setBoolean(TAG_FIRED, true);
+        NBTHelper.getNBT(itemStack).setBoolean(TAG_FIRED, true);
     }
     
     protected void setTimer(ItemStack itemStack, int timer) {
-        StackUtils.getNBT(itemStack).setInteger(TAG_ROCKET_TIMER, timer);
-        StackUtils.getNBT(itemStack).setBoolean(TAG_ROCKET_TIMER_SET, true);
+        NBTHelper.getNBT(itemStack).setInteger(TAG_ROCKET_TIMER, timer);
+        NBTHelper.getNBT(itemStack).setBoolean(TAG_ROCKET_TIMER_SET, true);
     }
     
     protected boolean isTimerSet(ItemStack itemStack) {
-        return StackUtils.getNBT(itemStack).getBoolean(TAG_ROCKET_TIMER_SET);
+        return NBTHelper.getNBT(itemStack).getBoolean(TAG_ROCKET_TIMER_SET);
     }
     
     protected void decrementTimer(ItemStack itemStack, EntityLivingBase user) {
-        int timer = StackUtils.getNBT(itemStack).getInteger(TAG_ROCKET_TIMER);
+        int timer = NBTHelper.getNBT(itemStack).getInteger(TAG_ROCKET_TIMER);
         timer = timer > 0 ? timer - 1 : 0;
-        StackUtils.getNBT(itemStack).setInteger(TAG_ROCKET_TIMER, timer);
+        NBTHelper.getNBT(itemStack).setInteger(TAG_ROCKET_TIMER, timer);
         if (timer == 0) {
             this.setFired(itemStack);
             user.worldObj.playSoundAtEntity(user, SimplyJetpacks.RESOURCE_PREFIX + "rocket", 1.0F, 1.0F);

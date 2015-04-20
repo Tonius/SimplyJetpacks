@@ -16,8 +16,9 @@ import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.ParticleType;
-import tonius.simplyjetpacks.util.StackUtils;
-import tonius.simplyjetpacks.util.StringUtils;
+import tonius.simplyjetpacks.util.NBTHelper;
+import tonius.simplyjetpacks.util.SJStringHelper;
+import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -126,10 +127,10 @@ public class Jetpack extends PackBase {
     }
     
     public void doEHover(ItemStack armor, EntityLivingBase user) {
-        StackUtils.getNBT(armor).setBoolean(TAG_ON, true);
-        StackUtils.getNBT(armor).setBoolean(TAG_HOVERMODE_ON, true);
+        NBTHelper.getNBT(armor).setBoolean(TAG_ON, true);
+        NBTHelper.getNBT(armor).setBoolean(TAG_HOVERMODE_ON, true);
         if (user instanceof EntityPlayer) {
-            ((EntityPlayer) user).addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("chat.jetpack.emergencyHoverMode.msg")));
+            ((EntityPlayer) user).addChatMessage(new ChatComponentText(StringHelper.LIGHT_RED + SJStringHelper.localize("chat.jetpack.emergencyHoverMode.msg")));
         }
     }
     
@@ -139,11 +140,11 @@ public class Jetpack extends PackBase {
     }
     
     public boolean isHoverModeOn(ItemStack stack) {
-        return StackUtils.getNBTBoolean(stack, TAG_HOVERMODE_ON, false);
+        return NBTHelper.getNBTBoolean(stack, TAG_HOVERMODE_ON, false);
     }
     
     public boolean isEHoverOn(ItemStack stack) {
-        return StackUtils.getNBTBoolean(stack, TAG_EHOVER_ON, true);
+        return NBTHelper.getNBTBoolean(stack, TAG_EHOVER_ON, true);
     }
     
     @Override
@@ -164,18 +165,18 @@ public class Jetpack extends PackBase {
     }
     
     public void setParticleType(ItemStack stack, ParticleType particle) {
-        StackUtils.getNBT(stack).setInteger(TAG_PARTICLE, particle.ordinal());
+        NBTHelper.getNBT(stack).setInteger(TAG_PARTICLE, particle.ordinal());
     }
     
     protected ParticleType getParticleType(ItemStack stack) {
         if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(TAG_PARTICLE)) {
-            int particle = StackUtils.getNBT(stack).getInteger(TAG_PARTICLE);
+            int particle = NBTHelper.getNBT(stack).getInteger(TAG_PARTICLE);
             ParticleType particleType = ParticleType.values()[particle];
             if (particleType != null) {
                 return particleType;
             }
         }
-        StackUtils.getNBT(stack).setInteger(TAG_PARTICLE, this.defaultParticleType.ordinal());
+        NBTHelper.getNBT(stack).setInteger(TAG_PARTICLE, this.defaultParticleType.ordinal());
         return this.defaultParticleType;
     }
     
@@ -191,13 +192,13 @@ public class Jetpack extends PackBase {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
-        list.add(StringUtils.getStateText(this.isOn(stack)));
-        list.add(StringUtils.getHoverModeText(this.isHoverModeOn(stack)));
+        list.add(SJStringHelper.getStateText(this.isOn(stack)));
+        list.add(SJStringHelper.getHoverModeText(this.isHoverModeOn(stack)));
         if (this.fuelUsage > 0) {
-            list.add(StringUtils.getFuelUsageText(this.fuelType, this.fuelUsage));
+            list.add(SJStringHelper.getFuelUsageText(this.fuelType, this.fuelUsage));
         }
-        list.add(StringUtils.getParticlesText(this.getParticleType(stack)));
-        StringUtils.addDescriptionLines(list, "jetpack", StringUtils.BRIGHT_GREEN);
+        list.add(SJStringHelper.getParticlesText(this.getParticleType(stack)));
+        SJStringHelper.addDescriptionLines(list, "jetpack", StringHelper.BRIGHT_GREEN);
     }
     
     @Override
@@ -205,7 +206,7 @@ public class Jetpack extends PackBase {
     public String getHUDStatesInfo(ItemStack stack, ItemPack item) {
         Boolean engine = this.isOn(stack);
         Boolean hover = this.isHoverModeOn(stack);
-        return StringUtils.getHUDStateText(engine, hover, null);
+        return SJStringHelper.getHUDStateText(engine, hover, null);
     }
     
     @Override

@@ -3,7 +3,7 @@ package tonius.simplyjetpacks.util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public abstract class StackUtils {
+public abstract class NBTHelper {
     
     public static NBTTagCompound getNBT(ItemStack stack) {
         if (stack.stackTagCompound == null) {

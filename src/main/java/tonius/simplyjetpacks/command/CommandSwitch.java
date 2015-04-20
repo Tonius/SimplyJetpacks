@@ -14,7 +14,8 @@ import tonius.simplyjetpacks.item.meta.FluxPack;
 import tonius.simplyjetpacks.item.meta.JetPlate;
 import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.item.meta.PackBase;
-import tonius.simplyjetpacks.util.StringUtils;
+import tonius.simplyjetpacks.util.SJStringHelper;
+import cofh.lib.util.helpers.StringHelper;
 
 public class CommandSwitch extends CommandBase {
     
@@ -56,24 +57,24 @@ public class CommandSwitch extends CommandBase {
                             pack.toggleOn(armor, (EntityPlayer) sender, false, true);
                             return;
                         }
-                        sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noCharger")));
+                        sender.addChatMessage(new ChatComponentText(StringHelper.LIGHT_RED + SJStringHelper.localize("command.switch.noCharger")));
                         return;
                     }
                     if (args[0].equals("ehover")) {
                         if (pack instanceof Jetpack) {
                             Jetpack jetpack = (Jetpack) pack;
                             if (!jetpack.emergencyHoverMode) {
-                                sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noEmergencyHover")));
+                                sender.addChatMessage(new ChatComponentText(StringHelper.LIGHT_RED + SJStringHelper.localize("command.switch.noEmergencyHover")));
                             } else {
                                 jetpack.switchEHover(armor, (EntityPlayer) sender);
                             }
                             return;
                         }
-                        sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.noJetpack")));
+                        sender.addChatMessage(new ChatComponentText(StringHelper.LIGHT_RED + SJStringHelper.localize("command.switch.noJetpack")));
                         return;
                     }
                 }
-                sender.addChatMessage(new ChatComponentText(StringUtils.LIGHT_RED + StringUtils.translate("command.switch.neither")));
+                sender.addChatMessage(new ChatComponentText(StringHelper.LIGHT_RED + SJStringHelper.localize("command.switch.neither")));
             } else {
                 throw new WrongUsageException(this.getCommandUsage(sender));
             }

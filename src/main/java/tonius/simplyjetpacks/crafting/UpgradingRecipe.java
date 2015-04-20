@@ -9,7 +9,7 @@ import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
 import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.setup.ParticleType;
-import tonius.simplyjetpacks.util.StackUtils;
+import tonius.simplyjetpacks.util.NBTHelper;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class UpgradingRecipe extends ShapedOreRecipe {
@@ -35,7 +35,7 @@ public class UpgradingRecipe extends ShapedOreRecipe {
             slotStack = inventoryCrafting.getStackInSlot(i);
             if (slotStack != null) {
                 if (slotStack.getItem() instanceof ItemPack) {
-                    tags = (NBTTagCompound) StackUtils.getNBT(slotStack).copy();
+                    tags = (NBTTagCompound) NBTHelper.getNBT(slotStack).copy();
                 }
                 if (slotStack.getItem() instanceof IEnergyContainerItem) {
                     addedEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
@@ -51,7 +51,7 @@ public class UpgradingRecipe extends ShapedOreRecipe {
             result.setTagCompound(tags);
         }
         
-        StackUtils.getNBT(result).setInteger("Energy", Math.min(addedEnergy, this.resultItem.getMaxEnergyStored(result)));
+        NBTHelper.getNBT(result).setInteger("Energy", Math.min(addedEnergy, this.resultItem.getMaxEnergyStored(result)));
         
         if (this.resultItem instanceof ItemJetpack && particleType != null) {
             ((ItemJetpack) this.resultItem).getPack(result).setParticleType(result, particleType);

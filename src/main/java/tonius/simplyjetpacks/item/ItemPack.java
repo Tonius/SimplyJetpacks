@@ -34,9 +34,10 @@ import tonius.simplyjetpacks.item.meta.PackBase;
 import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.setup.ModType;
-import tonius.simplyjetpacks.util.StackUtils;
-import tonius.simplyjetpacks.util.StringUtils;
+import tonius.simplyjetpacks.util.NBTHelper;
+import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.api.energy.IEnergyContainerItem;
+import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -153,10 +154,10 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         T pack = this.getPack(stack);
         if (pack != null) {
             pack.addInformation(stack, this, player, list);
-            if (StringUtils.canShowDetails()) {
+            if (SJStringHelper.canShowDetails()) {
                 pack.addShiftInformation(stack, this, player, list);
             } else {
-                list.add(StringUtils.getShiftText());
+                list.add(StringHelper.shiftForDetails());
             }
         }
     }
@@ -314,7 +315,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
             int energyReceived = Math.min(this.getMaxEnergyStored(stack) - energy, maxAdd);
             if (!simulate) {
                 energy += energyReceived;
-                StackUtils.getNBT(stack).setInteger(TAG_ENERGY, energy);
+                NBTHelper.getNBT(stack).setInteger(TAG_ENERGY, energy);
             }
             return energyReceived;
         case FLUID:
@@ -326,7 +327,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
             int fluidReceived = Math.min(this.getCapacity(stack) - amount, maxAdd);
             if (!simulate) {
                 amount += fluidReceived;
-                StackUtils.getNBT(stack).setInteger(TAG_FLUID, amount);
+                NBTHelper.getNBT(stack).setInteger(TAG_FLUID, amount);
             }
             return fluidReceived;
         }
@@ -341,7 +342,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
             int energyExtracted = Math.min(energy, maxUse);
             if (!simulate) {
                 energy -= energyExtracted;
-                StackUtils.getNBT(stack).setInteger(TAG_ENERGY, energy);
+                NBTHelper.getNBT(stack).setInteger(TAG_ENERGY, energy);
             }
             return energyExtracted;
         case FLUID:
@@ -353,7 +354,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
             int fluidExtracted = Math.min(amount, maxUse);
             if (!simulate) {
                 amount -= fluidExtracted;
-                StackUtils.getNBT(stack).setInteger(TAG_FLUID, amount);
+                NBTHelper.getNBT(stack).setInteger(TAG_FLUID, amount);
             }
             return fluidExtracted;
         }
@@ -369,7 +370,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         int energyReceived = Math.min(this.getMaxEnergyStored(container) - energy, Math.min(maxReceive, pack.fuelPerTickIn));
         if (!simulate) {
             energy += energyReceived;
-            StackUtils.getNBT(container).setInteger(TAG_ENERGY, energy);
+            NBTHelper.getNBT(container).setInteger(TAG_ENERGY, energy);
         }
         return energyReceived;
     }
@@ -384,7 +385,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         int energyExtracted = Math.min(energy, Math.min(maxExtract, pack.fuelPerTickOut));
         if (!simulate) {
             energy -= energyExtracted;
-            StackUtils.getNBT(container).setInteger(TAG_ENERGY, energy);
+            NBTHelper.getNBT(container).setInteger(TAG_ENERGY, energy);
         }
         return energyExtracted;
     }
@@ -395,7 +396,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         if (pack == null || pack.fuelType != FuelType.ENERGY) {
             return 0;
         }
-        return StackUtils.getNBT(container).getInteger(TAG_ENERGY);
+        return NBTHelper.getNBT(container).getInteger(TAG_ENERGY);
     }
     
     @Override
@@ -413,7 +414,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         if (pack == null || pack.fuelType != FuelType.FLUID || pack.fuelFluid == null) {
             return null;
         }
-        int amount = StackUtils.getNBT(container).getInteger(TAG_FLUID);
+        int amount = NBTHelper.getNBT(container).getInteger(TAG_FLUID);
         return amount > 0 ? new FluidStack(FluidRegistry.getFluid(pack.fuelFluid), amount) : null;
     }
     
@@ -440,7 +441,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         int fluidReceived = Math.min(this.getCapacity(container) - amount, Math.min(resource.amount, pack.fuelPerTickIn));
         if (doFill) {
             amount += fluidReceived;
-            StackUtils.getNBT(container).setInteger(TAG_FLUID, amount);
+            NBTHelper.getNBT(container).setInteger(TAG_FLUID, amount);
         }
         return fluidReceived;
     }
@@ -456,7 +457,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         int fluidExtracted = Math.min(amount, Math.min(maxDrain, pack.fuelPerTickOut));
         if (doDrain) {
             amount -= fluidExtracted;
-            StackUtils.getNBT(container).setInteger(TAG_FLUID, amount);
+            NBTHelper.getNBT(container).setInteger(TAG_FLUID, amount);
         }
         return fluidExtracted > 0 ? new FluidStack(FluidRegistry.getFluid(pack.fuelFluid), fluidExtracted) : null;
     }

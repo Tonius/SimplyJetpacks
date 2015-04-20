@@ -11,12 +11,12 @@ import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.setup.ParticleType;
+import cofh.lib.util.helpers.MathHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientProxy extends CommonProxy {
     
     private static final Minecraft mc = Minecraft.getMinecraft();
-    private static final Random rand = new Random();
     
     @Override
     public void registerHandlers() {
@@ -35,14 +35,16 @@ public class ClientProxy extends CommonProxy {
                 userPos = userPos.addVector(0, 1.6D, 0);
             }
             
+            Random rand = MathHelper.RANDOM;
+            
             Vec3 vLeft = Vec3.createVectorHelper(-0.28D, -0.95D, -0.38D);
-            vLeft.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
+            vLeft.rotateAroundY((float) Math.toRadians(-wearer.renderYawOffset));
             
             Vec3 vRight = Vec3.createVectorHelper(0.28D, -0.95D, -0.38D);
-            vRight.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
+            vRight.rotateAroundY((float) Math.toRadians(-wearer.renderYawOffset));
             
             Vec3 vCenter = Vec3.createVectorHelper((rand.nextFloat() - 0.5F) * 0.25F, -0.95D, -0.38D);
-            vCenter.rotateAroundY(-wearer.renderYawOffset * (float) Math.PI / 180F);
+            vCenter.rotateAroundY((float) Math.toRadians(-wearer.renderYawOffset));
             
             vLeft = vLeft.addVector(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D);
             vRight = vRight.addVector(-wearer.motionX * 0.2D, -wearer.motionY * 0.2D, -wearer.motionZ * 0.2D);
