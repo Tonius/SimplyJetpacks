@@ -16,6 +16,7 @@ import tonius.simplyjetpacks.crafting.UpgradingRecipe;
 import tonius.simplyjetpacks.integration.EIOItems;
 import tonius.simplyjetpacks.integration.EIORecipes;
 import tonius.simplyjetpacks.integration.RAItems;
+import tonius.simplyjetpacks.integration.TDItems;
 import tonius.simplyjetpacks.integration.TEItems;
 import tonius.simplyjetpacks.integration.TERecipes;
 import tonius.simplyjetpacks.item.ItemMeta;
@@ -132,12 +133,14 @@ public abstract class ModItems {
     public static ItemStack particleRainbowSmoke = null;
     
     private static boolean teAvailable = false;
+    private static boolean tdAvailable = false;
     private static boolean raAvailable = false;
     private static boolean eioAvailable = false;
     private static boolean bcAvailable = false;
     
     public static void preInit() {
         teAvailable = ModType.THERMAL_EXPANSION.isLoaded() && Config.enableIntegrationTE;
+        tdAvailable = ModType.THERMAL_DYNAMICS.isLoaded() && teAvailable;
         raAvailable = ModType.REDSTONE_ARSENAL.isLoaded() && teAvailable;
         eioAvailable = ModType.ENDER_IO.isLoaded() && Config.enableIntegrationEIO;
         // bcAvailable = ModType.BUILDCRAFT.isLoaded() &&
@@ -150,6 +153,9 @@ public abstract class ModItems {
     public static void init() {
         if (teAvailable) {
             TEItems.init();
+            if (tdAvailable) {
+                TDItems.init();
+            }
             if (raAvailable) {
                 RAItems.init();
             }
@@ -326,10 +332,16 @@ public abstract class ModItems {
                 GameRegistry.addRecipe(new ShapedOreRecipe(armorFluxPlate, "I I", "III", "III", 'I', plateFlux));
             }
             
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE1, "ICI", "PGP", "DSD", 'I', "ingotLead", 'P', "blockGlass", 'C', TEItems.powerCoilGold, 'G', "gearCopper", 'D', TEItems.dynamoSteam, 'S', TEItems.pneumaticServo));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE2, "ICI", "PGP", "DSD", 'I', "ingotInvar", 'P', Blocks.redstone_block, 'C', TEItems.powerCoilGold, 'G', "gearBronze", 'D', TEItems.dynamoReactant, 'S', TEItems.pneumaticServo));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE3, "ICI", "PGP", "DSD", 'I', "ingotElectrum", 'P', "ingotSignalum", 'C', TEItems.powerCoilGold, 'G', "gearInvar", 'D', TEItems.dynamoMagmatic, 'S', TEItems.pneumaticServo));
-            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE4, "ICI", "PGP", "DSD", 'I', "ingotEnderium", 'P', "ingotLumium", 'C', TEItems.powerCoilGold, 'G', "gearElectrum", 'D', TEItems.dynamoEnervation, 'S', TEItems.pneumaticServo));
+            Object ductFluxLeadstone = tdAvailable ? TDItems.ductFluxLeadstone : "blockGlass";
+            Object ductFluxHardened = tdAvailable ? TDItems.ductFluxHardened : "blockGlass";
+            Object ductFluxRedstoneEnergy = tdAvailable ? TDItems.ductFluxRedstoneEnergy : "blockGlassHardened";
+            Object ductFluxResonant = tdAvailable ? TDItems.ductFluxResonant : "blockGlassHardened";
+            Object bucketRedstone = GameRegistry.findItemStack("ThermalFoundation", "bucketRedstone", 1);
+            
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE1, "ICI", "PDP", "IRI", 'I', "ingotLead", 'P', ductFluxLeadstone, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoSteam, 'R', "dustRedstone"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE2, "ICI", "PDP", "IRI", 'I', "ingotInvar", 'P', ductFluxHardened, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoReactant, 'R', "dustRedstone"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE3, "ICI", "PDP", "IRI", 'I', "ingotElectrum", 'P', ductFluxRedstoneEnergy, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoMagmatic, 'R', bucketRedstone));
+            GameRegistry.addRecipe(new ShapedOreRecipe(thrusterTE4, "ICI", "PDP", "IRI", 'I', "ingotEnderium", 'P', ductFluxResonant, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoEnervation, 'R', bucketRedstone));
             
             GameRegistry.addRecipe(new ShapedOreRecipe(armorPlatingTE1, "TIT", "III", "TIT", 'I', "ingotIron", 'T', "ingotTin"));
             
