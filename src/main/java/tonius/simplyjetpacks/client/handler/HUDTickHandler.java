@@ -29,7 +29,7 @@ public class HUDTickHandler {
                     IHUDInfoProvider provider = (IHUDInfoProvider) chestplate.getItem();
                     
                     List<String> info = new ArrayList<String>();
-                    provider.addHUDInfo(chestplate, info);
+                    provider.addHUDInfo(info, chestplate, Config.enableFuelHUD, Config.enableStateHUD);
                     if (info.isEmpty()) {
                         return;
                     }

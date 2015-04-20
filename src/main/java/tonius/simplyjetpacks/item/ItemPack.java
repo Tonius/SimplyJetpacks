@@ -464,13 +464,13 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     // HUD info
     @Override
     @SideOnly(Side.CLIENT)
-    public void addHUDInfo(ItemStack stack, List<String> list) {
+    public void addHUDInfo(List<String> list, ItemStack stack, boolean showFuel, boolean showState) {
         T pack = this.getPack(stack);
         if (pack != null) {
-            if (pack.hasFuelIndicator) {
+            if (showFuel && pack.hasFuelIndicator) {
                 list.add(pack.getHUDFuelInfo(stack, this));
             }
-            if (pack.hasStateIndicators) {
+            if (showState && pack.hasStateIndicators) {
                 list.add(pack.getHUDStatesInfo(stack, this));
             }
         }
