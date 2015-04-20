@@ -110,6 +110,9 @@ public class ClientTickHandler {
                 } else {
                     ParticleType particle = SyncHandler.getJetpackStates().get(currentEntity);
                     if (particle != null) {
+                        if (entity.isInWater() && particle != ParticleType.NONE) {
+                            particle = ParticleType.BUBBLE;
+                        }
                         SimplyJetpacks.proxy.showJetpackParticles(mc.theWorld, (EntityLivingBase) entity, particle);
                         if (Config.jetpackSounds && !SoundJetpack.isPlayingFor(entity.getEntityId())) {
                             Minecraft.getMinecraft().getSoundHandler().playSound(new SoundJetpack((EntityLivingBase) entity));

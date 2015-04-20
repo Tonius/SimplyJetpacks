@@ -3,6 +3,7 @@ package tonius.simplyjetpacks.client.util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.client.particle.EntityColoredSmokeFX;
+import tonius.simplyjetpacks.client.particle.EntityCustomBubbleFX;
 import tonius.simplyjetpacks.client.particle.EntityCustomFlameFX;
 import tonius.simplyjetpacks.client.particle.EntityCustomSmokeFX;
 import tonius.simplyjetpacks.setup.ParticleType;
@@ -23,6 +24,8 @@ public abstract class ParticleUtils {
         case RAINBOW_SMOKE:
             mc.effectRenderer.addEffect(EntityColoredSmokeFX.getRainbowSmoke(world, posX, posY, posZ, velX, velY - 0.1D, velZ));
             mc.effectRenderer.addEffect(EntityColoredSmokeFX.getRainbowSmoke(world, posX, posY - 0.2D, posZ, velX, velY - 0.1D, velZ));
+        case BUBBLE:
+            mc.effectRenderer.addEffect(new EntityCustomBubbleFX(world, posX, posY, posZ, velX, velY, velZ));
         }
     }
 }

@@ -59,7 +59,8 @@ public class Jetpack extends PackBase {
             double hoverSpeed = Config.invertHoverSneakingBehavior == SyncHandler.isDescendKeyDown(user) ? this.speedVerticalHoverSlow : this.speedVerticalHover;
             boolean flyKeyDown = force || SyncHandler.isFlyKeyDown(user);
             boolean descendKeyDown = SyncHandler.isDescendKeyDown(user);
-            double currentAccel = user.motionY < 0.3D ? this.accelVertical * 2.5 : this.accelVertical;
+            double currentAccel = this.accelVertical * (user.motionY < 0.3D ? 2.5D : 1.0D);
+            double currentSpeedVertical = this.speedVertical * (user.isInWater() ? 0.4D : 1.0D);
             
             if (flyKeyDown || hoverMode && !user.onGround) {
                 if (this.usesFuel) {
@@ -69,7 +70,7 @@ public class Jetpack extends PackBase {
                 if (item.getFuelStored(stack) > 0) {
                     if (flyKeyDown) {
                         if (!hoverMode) {
-                            user.motionY = Math.min(user.motionY + currentAccel, this.speedVertical);
+                            user.motionY = Math.min(user.motionY + currentAccel, currentSpeedVertical);
                         } else {
                             if (descendKeyDown) {
                                 user.motionY = Math.min(user.motionY + currentAccel, -this.speedVerticalHoverSlow);
