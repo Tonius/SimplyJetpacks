@@ -3,6 +3,8 @@ package tonius.simplyjetpacks.client.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import modwarriors.notenoughkeys.api.Api;
+import modwarriors.notenoughkeys.api.KeyBindingPressedEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemStack;
@@ -43,6 +45,16 @@ public class KeyHandler {
         new SJKeyBinding("mode.primary", Keyboard.KEY_X, ModKey.MODE_PRIMARY);
         new SJKeyBinding("mode.secondary", Keyboard.KEY_Z, ModKey.MODE_SECONDARY);
         new SJKeyBinding("openPackGUI", Keyboard.KEY_U, ModKey.OPEN_PACK_GUI);
+        
+        // Not Enough Keys support
+        if (Api.isLoaded()) {
+            String[] keyDescriptions = new String[keyBindings.size()];
+            for (int i = 0; i < keyBindings.size(); i++) {
+                SJKeyBinding key = keyBindings.get(i);
+                keyDescriptions[i] = key.getKeyDescription();
+            }
+            Api.registerMod("Simply Jetpacks", keyDescriptions);
+        }
     }
     
     public static void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
@@ -90,13 +102,23 @@ public class KeyHandler {
     
     @SubscribeEvent
     public void onKey(InputEvent evt) {
-        if (!mc.inGameHasFocus) {
+        if (Api.isLoaded() || !mc.inGameHasFocus) {
             return;
         }
         for (SJKeyBinding key : keyBindings) {
             if (key.isPressed()) {
                 key.handleKeyPress();
             }
+        }
+    }
+    
+    @SubscribeEvent
+    public void onKeyWithModifier(KeyBindingPressedEvent evt) {
+        if (!mc.inGameHasFocus) {
+            return;
+        }
+        if (evt.keyBinding instanceof SJKeyBinding && evt.keyBinding.getIsKeyPressed()) {
+            ((SJKeyBinding) evt.keyBinding).handleKeyPress();
         }
     }
     

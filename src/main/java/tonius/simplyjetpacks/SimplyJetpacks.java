@@ -25,7 +25,7 @@ public class SimplyJetpacks {
     public static final String MODID = "simplyjetpacks";
     public static final String PREFIX = MODID + ".";
     public static final String RESOURCE_PREFIX = MODID + ":";
-    public static final String DEPENDENCIES = "required-after:CoFHCore;after:ThermalExpansion;after:RedstoneArsenal;after:EnderIO;after:BuildCraft|Core";
+    public static final String DEPENDENCIES = "required-after:CoFHCore;after:notenoughkeys;after:ThermalExpansion;after:ThermalDynamics;after:RedstoneArsenal;after:EnderIO;after:BuildCraft|Core";
     public static final String GUI_FACTORY = "tonius.simplyjetpacks.config.ConfigGuiFactory";
     
     @Instance(MODID)

@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
@@ -24,8 +25,10 @@ public class ClientProxy extends CommonProxy {
         super.registerHandlers();
         
         FMLCommonHandler.instance().bus().register(new ClientTickHandler());
-        FMLCommonHandler.instance().bus().register(new KeyHandler());
         FMLCommonHandler.instance().bus().register(new HUDTickHandler());
+        KeyHandler keyHandler = new KeyHandler();
+        FMLCommonHandler.instance().bus().register(keyHandler);
+        MinecraftForge.EVENT_BUS.register(keyHandler);
     }
     
     @Override
