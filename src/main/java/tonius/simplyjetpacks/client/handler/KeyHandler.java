@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.SyncHandler;
-import tonius.simplyjetpacks.item.IControllable;
+import tonius.simplyjetpacks.item.IControllableArmor;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
 import tonius.simplyjetpacks.network.message.MessageModKey;
@@ -90,8 +90,13 @@ public class KeyHandler {
     
     @SubscribeEvent
     public void onKey(InputEvent evt) {
+        if (!mc.inGameHasFocus) {
+            return;
+        }
         for (SJKeyBinding key : keyBindings) {
-            key.handleKeyEvent();
+            if (key.isPressed()) {
+                key.handleKeyPress();
+            }
         }
     }
     
@@ -106,12 +111,10 @@ public class KeyHandler {
             keyBindings.add(this);
         }
         
-        private void handleKeyEvent() {
-            if (mc.inGameHasFocus && this.isPressed()) {
-                ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
-                if (itemStack != null && itemStack.getItem() instanceof IControllable) {
-                    PacketHandler.instance.sendToServer(new MessageModKey(this.keyType, Config.enableStateChatMessages));
-                }
+        private void handleKeyPress() {
+            ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
+            if (itemStack != null && itemStack.getItem() instanceof IControllableArmor) {
+                PacketHandler.instance.sendToServer(new MessageModKey(this.keyType, Config.enableStateChatMessages));
             }
         }
         

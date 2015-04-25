@@ -42,17 +42,15 @@ public class SimplyJetpacks {
         
         Packs.preInit();
         Config.preInit(evt);
-        
-        RecipeSorter.register(SimplyJetpacks.MODID + ":upgrading", UpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
         ModItems.preInit();
-        
-        proxy.registerHandlers();
     }
     
     @EventHandler
     public static void init(FMLInitializationEvent evt) {
-        ModItems.init();
+        RecipeSorter.register(SimplyJetpacks.MODID + ":upgrading", UpgradingRecipe.class, Category.SHAPED, "after:minecraft:shaped");
+        proxy.registerHandlers();
         PacketHandler.init();
+        ModItems.init();
     }
     
     @EventHandler

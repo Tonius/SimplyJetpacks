@@ -42,7 +42,7 @@ import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemPack<T extends PackBase> extends ItemArmor implements IControllable, ISpecialArmor, IEnergyContainerItem, IFluidContainerItem, IHUDInfoProvider {
+public class ItemPack<T extends PackBase> extends ItemArmor implements IControllableArmor, ISpecialArmor, IEnergyContainerItem, IFluidContainerItem, IHUDInfoProvider {
     
     private static final String TAG_ENERGY = "Energy";
     private static final String TAG_FLUID = "Fluid";

@@ -3,7 +3,7 @@ package tonius.simplyjetpacks.network.message;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import tonius.simplyjetpacks.item.IControllable;
+import tonius.simplyjetpacks.item.IControllableArmor;
 import tonius.simplyjetpacks.setup.ModKey;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -40,12 +40,12 @@ public class MessageModKey implements IMessage, IMessageHandler<MessageModKey, I
         
         if (entityPlayer != null) {
             ItemStack armor = entityPlayer.inventory.armorItemInSlot(2);
-            if (armor != null && armor.getItem() instanceof IControllable) {
+            if (armor != null && armor.getItem() instanceof IControllableArmor) {
                 if (msg.keyId < 0 || msg.keyId >= ModKey.values().length) {
                     return null;
                 }
                 ModKey key = ModKey.values()[msg.keyId];
-                ((IControllable) armor.getItem()).onKeyPressed(armor, entityPlayer, key, msg.showInChat);
+                ((IControllableArmor) armor.getItem()).onKeyPressed(armor, entityPlayer, key, msg.showInChat);
             }
         }
         return null;
