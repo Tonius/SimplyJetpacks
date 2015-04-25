@@ -55,7 +55,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + "pack" + modType.suffix);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        this.setCreativeTab(ModCreativeTab.tab);
+        this.setCreativeTab(ModCreativeTab.instance);
     }
     
     public ItemStack putPack(int meta, T pack, boolean returnFull) {

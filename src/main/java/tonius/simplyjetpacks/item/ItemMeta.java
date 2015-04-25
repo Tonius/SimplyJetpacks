@@ -30,7 +30,7 @@ public class ItemMeta extends Item {
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + fallbackName);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        this.setCreativeTab(ModCreativeTab.tab);
+        this.setCreativeTab(ModCreativeTab.instance);
     }
     
     public MetaItem getMetaItem(ItemStack itemStack) {

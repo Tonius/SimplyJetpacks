@@ -88,6 +88,7 @@ item.simplyjetpacks.particle.1.name=Particle Customizer (None)
 item.simplyjetpacks.particle.2.name=Particle Customizer (Smoke Only)
 item.simplyjetpacks.particle.3.name=Particle Customizer (Rainbow Smoke)
 
+item.simplyjetpacks.jetpackFueller.name=Jetpack Fueller
 item.simplyjetpacks.mysteriousPotato.name=Mysterious Potato
 
 simplyjetpacks.chat.enabled=enabled
@@ -129,6 +130,9 @@ simplyjetpacks.tooltip.jetplate.description.1=Allows flight and can charge items
 simplyjetpacks.tooltip.jetplate.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jetpack's particles.
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
+simplyjetpacks.tooltip.jetpackFueller.description.1=Fuels worn jetpacks by pulling fuel
+simplyjetpacks.tooltip.jetpackFueller.description.2=from blocks in the world.
+simplyjetpacks.tooltip.jetpackFueller.description.3=Use on blocks to pull fuel.
 simplyjetpacks.tooltip.mysteriousPotato.description=Can do the thing
 simplyjetpacks.tooltip.raReplacement.description.1=Redstone Arsenal is not installed.
 simplyjetpacks.tooltip.raReplacement.description.2=So instead, have this blatant rip-off

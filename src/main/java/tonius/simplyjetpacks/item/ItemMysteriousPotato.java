@@ -24,7 +24,7 @@ public class ItemMysteriousPotato extends Item {
     public ItemMysteriousPotato() {
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + "mysteriousPotato");
         this.setTextureName("potato_poisonous");
-        this.setCreativeTab(ModCreativeTab.tab);
+        this.setCreativeTab(ModCreativeTab.instance);
     }
     
     @Override

@@ -145,4 +145,8 @@ public abstract class SJStringHelper {
         }
     }
     
+    public static void addDescriptionLines(List<String> list, String base) {
+        addDescriptionLines(list, base, "");
+    }
+    
 }

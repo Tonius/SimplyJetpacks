@@ -8,7 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModCreativeTab extends CreativeTabs {
     
-    public static final ModCreativeTab tab = new ModCreativeTab();
+    public static final ModCreativeTab instance = new ModCreativeTab();
     
     private ModCreativeTab() {
         super("tabSimplyJetpacks");

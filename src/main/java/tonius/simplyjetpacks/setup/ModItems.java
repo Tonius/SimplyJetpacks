@@ -17,6 +17,7 @@ import tonius.simplyjetpacks.integration.RAItems;
 import tonius.simplyjetpacks.integration.TDItems;
 import tonius.simplyjetpacks.integration.TEItems;
 import tonius.simplyjetpacks.integration.TERecipes;
+import tonius.simplyjetpacks.item.ItemJetpackFueller;
 import tonius.simplyjetpacks.item.ItemMeta;
 import tonius.simplyjetpacks.item.ItemMeta.MetaItem;
 import tonius.simplyjetpacks.item.ItemMysteriousPotato;
@@ -41,6 +42,7 @@ public abstract class ModItems {
     public static ItemMeta components = null;
     public static ItemMeta armorPlatings = null;
     public static ItemMeta particleCustomizers = null;
+    public static ItemJetpackFueller jetpackFueller = null;
     public static ItemMysteriousPotato mysteriousPotato = null;
     
     public static ItemStack jetpackPotato = null;
@@ -227,6 +229,7 @@ public abstract class ModItems {
         components = new ItemMeta("components");
         armorPlatings = new ItemMeta("armorPlatings");
         particleCustomizers = new ItemMeta("particleCustomizers");
+        jetpackFueller = new ItemJetpackFueller();
         mysteriousPotato = new ItemMysteriousPotato();
         
         leatherStrap = components.addMetaItem(0, new MetaItem("leatherStrap", null, EnumRarity.common), true, false);
@@ -305,6 +308,7 @@ public abstract class ModItems {
         registerItem(components, "components");
         registerItem(armorPlatings, "armorPlatings");
         registerItem(particleCustomizers, "particleCustomizers");
+        registerItem(jetpackFueller, "jetpackFueller");
         registerItem(mysteriousPotato, "mysteriousPotato");
     }
     
@@ -322,6 +326,8 @@ public abstract class ModItems {
         ItemHelper.addShapedOreRecipe(particleNone, " D ", "DCD", " D ", 'C', dustCoal, 'D', "blockGlass");
         ItemHelper.addShapedOreRecipe(particleSmoke, " C ", "CCC", " C ", 'C', dustCoal);
         ItemHelper.addShapedOreRecipe(particleRainbowSmoke, " R ", " C ", "G B", 'C', dustCoal, 'R', "dyeRed", 'G', "dyeLime", 'B', "dyeBlue");
+        
+        ItemHelper.addShapedOreRecipe(jetpackFueller, "IY ", " IY", " SI", 'I', "ingotIron", 'Y', "dyeYellow", 'S', "stickWood");
         
         if (teAvailable) {
             if (!raAvailable) {
