@@ -148,10 +148,13 @@ public class Jetpack extends PackBase {
     }
     
     @Override
-    public void switchMode(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
-        if (!player.isSneaking() || !this.emergencyHoverMode || !sneakChangesToggleBehavior) {
-            this.switchHoverMode(stack, player, showInChat);
-        } else {
+    public void switchModePrimary(ItemStack stack, EntityPlayer player, boolean showInChat) {
+        this.switchHoverMode(stack, player, showInChat);
+    }
+    
+    @Override
+    public void switchModeSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
+        if (this.emergencyHoverMode) {
             this.switchEHover(stack, player);
         }
     }

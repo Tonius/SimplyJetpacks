@@ -76,11 +76,11 @@ public class JetpackPotato extends Jetpack {
     }
     
     @Override
-    public void toggleOn(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
+    public void togglePrimary(ItemStack stack, EntityPlayer player, boolean showInChat) {
     }
     
     @Override
-    public void switchMode(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
+    public void switchModePrimary(ItemStack stack, EntityPlayer player, boolean showInChat) {
     }
     
     @Override

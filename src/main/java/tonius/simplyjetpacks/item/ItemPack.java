@@ -33,6 +33,7 @@ import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.item.meta.PackBase;
 import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
+import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.setup.ModType;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
@@ -221,18 +222,26 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     
     // control
     @Override
-    public void toggle(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
+    public void onKeyPressed(ItemStack stack, EntityPlayer player, ModKey key, boolean showInChat) {
         T pack = this.getPack(stack);
         if (pack != null) {
-            pack.toggleOn(stack, player, sneakChangesToggleBehavior, showInChat);
-        }
-    }
-    
-    @Override
-    public void switchMode(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
-        T pack = this.getPack(stack);
-        if (pack != null) {
-            pack.switchMode(stack, player, sneakChangesToggleBehavior, showInChat);
+            switch (key) {
+            case TOGGLE_PRIMARY:
+                pack.togglePrimary(stack, player, showInChat);
+                break;
+            case TOGGLE_SECONDARY:
+                pack.toggleSecondary(stack, player, showInChat);
+                break;
+            case MODE_PRIMARY:
+                pack.switchModePrimary(stack, player, showInChat);
+                break;
+            case MODE_SECONDARY:
+                pack.switchModeSecondary(stack, player, showInChat);
+                break;
+            case OPEN_PACK_GUI:
+                break;
+            default:
+            }
         }
     }
     

@@ -197,11 +197,17 @@ public class PackBase {
         return NBTHelper.getNBTBoolean(stack, TAG_ON, true);
     }
     
-    public void toggleOn(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
+    public void togglePrimary(ItemStack stack, EntityPlayer player, boolean showInChat) {
         this.toggleState(this.isOn(stack), stack, null, TAG_ON, player, showInChat);
     }
     
-    public void switchMode(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
+    public void toggleSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
+    }
+    
+    public void switchModePrimary(ItemStack stack, EntityPlayer player, boolean showInChat) {
+    }
+    
+    public void switchModeSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
     }
     
     @SideOnly(Side.CLIENT)

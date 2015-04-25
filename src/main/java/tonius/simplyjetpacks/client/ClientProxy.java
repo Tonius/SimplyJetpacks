@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
+import tonius.simplyjetpacks.client.handler.KeyHandler;
 import tonius.simplyjetpacks.client.util.ParticleUtils;
 import tonius.simplyjetpacks.setup.ParticleType;
 import cofh.lib.util.helpers.MathHelper;
@@ -23,6 +24,7 @@ public class ClientProxy extends CommonProxy {
         super.registerHandlers();
         
         FMLCommonHandler.instance().bus().register(new ClientTickHandler());
+        FMLCommonHandler.instance().bus().register(new KeyHandler());
         FMLCommonHandler.instance().bus().register(new HUDTickHandler());
     }
     
@@ -62,8 +64,8 @@ public class ClientProxy extends CommonProxy {
     }
     
     @Override
-    public void updateCustomKeybinds() {
-        ClientTickHandler.updateCustomKeybinds();
+    public void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
+        KeyHandler.updateCustomKeybinds(flyKeyName, descendKeyName);
     }
     
 }

@@ -125,11 +125,8 @@ simplyjetpacks.tooltip.jetpack.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.jetpackPotato.warning=Clever! But not survivable.
 simplyjetpacks.tooltip.fluxpack.description.1=Charges armor and held items when active.
 simplyjetpacks.tooltip.fluxpack.description.2=Must be worn as a chestplate.
-simplyjetpacks.tooltip.jetplate.description.1=Allows flight when active.
-simplyjetpacks.tooltip.jetplate.description.2=Charges armor and held items when active.
-simplyjetpacks.tooltip.jetplate.description.3=Must be worn as a chestplate.
-simplyjetpacks.tooltip.jetplate.controls=Sneak while activating to toggle charger.
-simplyjetpacks.tooltip.jetplate.controls.command=Use '/sjs charger' to toggle charger.
+simplyjetpacks.tooltip.jetplate.description.1=Allows flight and can charge items when active.
+simplyjetpacks.tooltip.jetplate.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jetpack's particles.
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
 simplyjetpacks.tooltip.mysteriousPotato.description=Can do the thing
@@ -160,8 +157,11 @@ simplyjetpacks.command.switch.noJetpack=No jetpack equipped.
 simplyjetpacks.command.switch.noEmergencyHover=Jetpack does not support emergency hover mode.
 simplyjetpacks.command.switch.noCharger=No charger equipped.
 
-simplyjetpacks.keybind.toggle=Turn on/off
-simplyjetpacks.keybind.mode=Switch mode
+simplyjetpacks.keybind.toggle.primary=Toggle Engine / Flux Pack
+simplyjetpacks.keybind.toggle.secondary=Toggle JetPlate Charger
+simplyjetpacks.keybind.mode.primary=Toggle Hover Mode
+simplyjetpacks.keybind.mode.secondary=Toggle Emergency Hover Mode
+simplyjetpacks.keybind.openPackGUI=Open Pack GUI
 
 simplyjetpacks.config.title=Simply Jetpacks Configuration
 simplyjetpacks.config.integration=Integration Settings

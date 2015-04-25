@@ -23,7 +23,7 @@ public class CommonProxy {
     public void showJetpackParticles(World world, EntityLivingBase wearer, ParticleType particle) {
     }
     
-    public void updateCustomKeybinds() {
+    public void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
     }
     
 }

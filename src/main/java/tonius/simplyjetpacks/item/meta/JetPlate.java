@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
@@ -41,12 +40,8 @@ public class JetPlate extends Jetpack {
     }
     
     @Override
-    public void toggleOn(ItemStack stack, EntityPlayer player, boolean sneakChangesToggleBehavior, boolean showInChat) {
-        if (sneakChangesToggleBehavior && player.isSneaking()) {
-            this.toggleCharger(stack, player, showInChat);
-        } else {
-            super.toggleOn(stack, player, sneakChangesToggleBehavior, showInChat);
-        }
+    public void toggleSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
+        this.toggleCharger(stack, player, showInChat);
     }
     
     @Override
@@ -62,7 +57,6 @@ public class JetPlate extends Jetpack {
         list.add(SJStringHelper.getChargerRateText(this.fuelPerTickOut));
         list.add(SJStringHelper.getParticlesText(this.getParticleType(stack)));
         SJStringHelper.addDescriptionLines(list, "jetplate", StringHelper.BRIGHT_GREEN);
-        list.add(StringHelper.BRIGHT_BLUE + StringHelper.ITALIC + SJStringHelper.localize("tooltip.jetplate.controls" + (Config.sneakChangesToggleBehavior ? "" : ".command")));
     }
     
     @Override

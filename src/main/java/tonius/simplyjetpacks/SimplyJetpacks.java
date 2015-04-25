@@ -5,7 +5,6 @@ import net.minecraftforge.oredict.RecipeSorter.Category;
 
 import org.apache.logging.log4j.Logger;
 
-import tonius.simplyjetpacks.command.CommandSwitch;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.crafting.UpgradingRecipe;
 import tonius.simplyjetpacks.handler.SyncHandler;
@@ -18,7 +17,6 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
 @Mod(modid = SimplyJetpacks.MODID, dependencies = SimplyJetpacks.DEPENDENCIES, guiFactory = SimplyJetpacks.GUI_FACTORY)
@@ -55,11 +53,6 @@ public class SimplyJetpacks {
     public static void init(FMLInitializationEvent evt) {
         ModItems.init();
         PacketHandler.init();
-    }
-    
-    @EventHandler
-    public static void serverStarting(FMLServerStartingEvent evt) {
-        evt.registerServerCommand(new CommandSwitch());
     }
     
     @EventHandler

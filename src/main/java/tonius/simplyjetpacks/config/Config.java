@@ -32,7 +32,6 @@ public class Config {
     public static String flyKey = Defaults.flyKey;
     public static String descendKey = Defaults.descendKey;
     public static boolean invertHoverSneakingBehavior = Defaults.invertHoverSneakingBehavior;
-    public static boolean sneakChangesToggleBehavior = Defaults.sneakChangesToggleBehavior;
     
     // sounds
     public static boolean jetpackSounds = Defaults.jetpackSounds;
@@ -57,7 +56,7 @@ public class Config {
         configClient = new Configuration(new File(evt.getModConfigurationDirectory(), SimplyJetpacks.MODID + "-client.cfg"));
         
         syncConfig();
-        SimplyJetpacks.proxy.updateCustomKeybinds();
+        SimplyJetpacks.proxy.updateCustomKeybinds(flyKey, descendKey);
     }
     
     private static void syncConfig() {
@@ -75,7 +74,7 @@ public class Config {
     public static void onConfigChanged(String modid) {
         if (modid.equals(SimplyJetpacks.MODID)) {
             syncConfig();
-            SimplyJetpacks.proxy.updateCustomKeybinds();
+            SimplyJetpacks.proxy.updateCustomKeybinds(flyKey, descendKey);
         }
     }
     
@@ -90,7 +89,6 @@ public class Config {
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", Defaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", Defaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
         invertHoverSneakingBehavior = configClient.get(sectionControls.name, "Invert Hover Mode sneaking behavior", Defaults.invertHoverSneakingBehavior, "Invert Hover Mode sneaking behavior").getBoolean(Defaults.invertHoverSneakingBehavior);
-        sneakChangesToggleBehavior = configClient.get(sectionControls.name, "Sneak Changes Toggle Behavior", Defaults.sneakChangesToggleBehavior, "If enabled, when sneaking, the Turn on/off and Switch mode keys will respectively toggle JetPlate chargers and emergency hover mode. If not, use /simplyjetpacks_switch or /sjs to toggle these features.").getBoolean(Defaults.sneakChangesToggleBehavior);
         
         jetpackSounds = configClient.get(sectionSounds.name, "Jetpack Sounds", Defaults.jetpackSounds, "When enabled, jetpacks will make sounds when used.").getBoolean(Defaults.jetpackSounds);
         
