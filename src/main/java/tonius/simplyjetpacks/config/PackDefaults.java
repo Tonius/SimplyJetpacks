@@ -49,7 +49,7 @@ public class PackDefaults {
         d.accelVertical = 0.5D;
         
         d = new PackDefaults("jetpackCreative", "Creative Jetpack");
-        d.fuelPerTickOut = 20000;
+        d.fuelPerTickOut = 32000;
         d.armorReduction = 12;
         d.enchantability = 20;
         d.speedVertical = 0.9D;
@@ -61,7 +61,7 @@ public class PackDefaults {
         d.emergencyHoverMode = true;
         
         d = new PackDefaults("fluxPackCreative", "Creative Flux Pack");
-        d.fuelPerTickOut = 20000;
+        d.fuelPerTickOut = 32000;
         d.armorReduction = 8;
         d.enchantability = 10;
         
