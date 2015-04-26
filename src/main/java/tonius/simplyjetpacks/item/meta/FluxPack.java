@@ -30,6 +30,11 @@ public class FluxPack extends PackBase {
     }
     
     @Override
+    public String getGuiTitlePrefix() {
+        return "gui.fluxpack";
+    }
+    
+    @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {

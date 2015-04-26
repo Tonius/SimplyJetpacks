@@ -151,6 +151,11 @@ simplyjetpacks.gui.nei.recipe.armoring.output=after using while sneaking
 simplyjetpacks.gui.nei.recipe.dearmoring.input=in your hand
 simplyjetpacks.gui.nei.recipe.dearmoring.output=after using while sneaking
 simplyjetpacks.gui.nei.recipe.dearmoring.plating=will be returned
+simplyjetpacks.gui.jetpack.button.toggle.primary=Toggle engine
+simplyjetpacks.gui.jetpack.button.toggle.secondary=Toggle charger
+simplyjetpacks.gui.jetpack.button.mode.primary=Toggle Hover Mode
+simplyjetpacks.gui.jetpack.button.mode.secondary=Toggle Emergency Hover Mode
+simplyjetpacks.gui.fluxpack.button.toggle.primary=Toggle charger
 
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato

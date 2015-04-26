@@ -17,6 +17,7 @@ import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.config.PackDefaults;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.FuelType;
+import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.api.energy.IEnergyContainerItem;
@@ -178,8 +179,8 @@ public class PackBase {
         }
     }
     
-    public String getBaseName() {
-        return this.name + "." + this.tier + (this.isArmored && this.showArmored ? ".armored" : "");
+    public String getBaseName(boolean armoredInfo) {
+        return this.name + "." + this.tier + (armoredInfo && this.isArmored && this.showArmored ? ".armored" : "");
     }
     
     protected void toggleState(boolean on, ItemStack stack, String type, String tag, EntityPlayer player, boolean showInChat) {
@@ -208,6 +209,14 @@ public class PackBase {
     }
     
     public void switchModeSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
+    }
+    
+    public String getGuiTitlePrefix() {
+        return "gui.pack";
+    }
+    
+    public ModKey[] getGuiControls() {
+        return new ModKey[] { ModKey.TOGGLE_PRIMARY };
     }
     
     @SideOnly(Side.CLIENT)

@@ -7,6 +7,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import tonius.simplyjetpacks.item.ItemPack;
+import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.lib.util.helpers.StringHelper;
@@ -42,6 +43,15 @@ public class JetPlate extends Jetpack {
     @Override
     public void toggleSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
         this.toggleCharger(stack, player, showInChat);
+    }
+    
+    @Override
+    public ModKey[] getGuiControls() {
+        if (this.emergencyHoverMode) {
+            return new ModKey[] { ModKey.TOGGLE_PRIMARY, ModKey.MODE_PRIMARY, ModKey.TOGGLE_SECONDARY, ModKey.MODE_SECONDARY };
+        } else {
+            return new ModKey[] { ModKey.TOGGLE_PRIMARY, ModKey.MODE_PRIMARY, ModKey.TOGGLE_SECONDARY };
+        }
     }
     
     @Override

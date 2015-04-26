@@ -32,6 +32,7 @@ public class ItemJetpackFueller extends Item {
         this.setTextureName(SimplyJetpacks.RESOURCE_PREFIX + "jetpackFueller");
         this.setCreativeTab(ModCreativeTab.instance);
         this.setMaxStackSize(1);
+        this.setFull3D();
     }
     
     @Override

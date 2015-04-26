@@ -39,9 +39,9 @@ public class KeyHandler {
     
     public KeyHandler() {
         new SJKeyBinding("toggle.primary", Keyboard.KEY_F, ModKey.TOGGLE_PRIMARY);
-        new SJKeyBinding("toggle.secondary", Keyboard.KEY_H, ModKey.TOGGLE_SECONDARY);
-        new SJKeyBinding("mode.primary", Keyboard.KEY_X, ModKey.MODE_PRIMARY);
-        new SJKeyBinding("mode.secondary", Keyboard.KEY_Z, ModKey.MODE_SECONDARY);
+        new SJKeyBinding("toggle.secondary", Keyboard.KEY_G, ModKey.TOGGLE_SECONDARY);
+        new SJKeyBinding("mode.primary", Keyboard.KEY_C, ModKey.MODE_PRIMARY);
+        new SJKeyBinding("mode.secondary", Keyboard.KEY_X, ModKey.MODE_SECONDARY);
         new SJKeyBinding("openPackGUI", Keyboard.KEY_U, ModKey.OPEN_PACK_GUI);
     }
     
@@ -114,7 +114,7 @@ public class KeyHandler {
         private void handleKeyPress() {
             ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
             if (itemStack != null && itemStack.getItem() instanceof IControllableArmor) {
-                PacketHandler.instance.sendToServer(new MessageModKey(this.keyType, Config.enableStateChatMessages));
+                PacketHandler.instance.sendToServer(new MessageModKey(this.keyType, this.keyType.alwaysShowInChat || Config.enableStateChatMessages));
             }
         }
         

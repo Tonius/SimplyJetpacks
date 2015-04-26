@@ -28,6 +28,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.util.RenderUtils;
+import tonius.simplyjetpacks.handler.GuiHandler;
 import tonius.simplyjetpacks.item.meta.FluxPack;
 import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.item.meta.PackBase;
@@ -99,7 +100,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     public String getUnlocalizedName(ItemStack stack) {
         T pack = this.getPack(stack);
         if (pack != null) {
-            return "item." + SimplyJetpacks.PREFIX + pack.getBaseName() + this.modType.suffix;
+            return "item." + SimplyJetpacks.PREFIX + pack.getBaseName(true) + this.modType.suffix;
         }
         return super.getUnlocalizedName();
     }
@@ -183,7 +184,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
         for (T pack : this.packs.values()) {
-            pack.icon = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + pack.getBaseName() + this.modType.suffix);
+            pack.icon = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + pack.getBaseName(true) + this.modType.suffix);
         }
     }
     
@@ -202,7 +203,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
         T pack = this.getPack(stack);
         if (pack != null) {
-            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + pack.getBaseName() + this.modType.suffix + ".png";
+            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + pack.getBaseName(true) + this.modType.suffix + ".png";
         }
         return super.getArmorTexture(stack, entity, slot, type);
     }
@@ -239,6 +240,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
                 pack.switchModeSecondary(stack, player, showInChat);
                 break;
             case OPEN_PACK_GUI:
+                player.openGui(SimplyJetpacks.instance, GuiHandler.PACK, player.worldObj, 0, 0, 0);
                 break;
             default:
             }

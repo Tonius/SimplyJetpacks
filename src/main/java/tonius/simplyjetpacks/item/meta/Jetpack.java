@@ -15,6 +15,7 @@ import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.ItemPack;
+import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
@@ -155,7 +156,7 @@ public class Jetpack extends PackBase {
     @Override
     public void switchModeSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
         if (this.emergencyHoverMode) {
-            this.switchEHover(stack, player);
+            this.switchEHover(stack, player, showInChat);
         }
     }
     
@@ -163,8 +164,8 @@ public class Jetpack extends PackBase {
         this.toggleState(this.isHoverModeOn(stack), stack, "hoverMode", TAG_HOVERMODE_ON, player, showInChat);
     }
     
-    public void switchEHover(ItemStack stack, EntityPlayer player) {
-        this.toggleState(this.isEHoverOn(stack), stack, "emergencyHoverMode", TAG_EHOVER_ON, player, true);
+    public void switchEHover(ItemStack stack, EntityPlayer player, boolean showInChat) {
+        this.toggleState(this.isEHoverOn(stack), stack, "emergencyHoverMode", TAG_EHOVER_ON, player, showInChat);
     }
     
     public void setParticleType(ItemStack stack, ParticleType particle) {
@@ -189,6 +190,20 @@ public class Jetpack extends PackBase {
             return this.getParticleType(stack);
         }
         return null;
+    }
+    
+    @Override
+    public String getGuiTitlePrefix() {
+        return "gui.jetpack";
+    }
+    
+    @Override
+    public ModKey[] getGuiControls() {
+        if (this.emergencyHoverMode) {
+            return new ModKey[] { ModKey.TOGGLE_PRIMARY, ModKey.MODE_PRIMARY, ModKey.MODE_SECONDARY };
+        } else {
+            return new ModKey[] { ModKey.TOGGLE_PRIMARY, ModKey.MODE_PRIMARY };
+        }
     }
     
     @Override

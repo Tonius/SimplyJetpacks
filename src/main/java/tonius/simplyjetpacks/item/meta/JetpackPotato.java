@@ -13,6 +13,7 @@ import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.ItemPack;
+import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
@@ -81,6 +82,11 @@ public class JetpackPotato extends Jetpack {
     
     @Override
     public void switchModePrimary(ItemStack stack, EntityPlayer player, boolean showInChat) {
+    }
+    
+    @Override
+    public ModKey[] getGuiControls() {
+        return new ModKey[0];
     }
     
     @Override

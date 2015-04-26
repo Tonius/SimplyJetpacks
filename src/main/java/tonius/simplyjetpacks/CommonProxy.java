@@ -5,15 +5,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import tonius.simplyjetpacks.crafting.PlatingReturnHandler;
 import tonius.simplyjetpacks.handler.EntityInteractHandler;
+import tonius.simplyjetpacks.handler.GuiHandler;
 import tonius.simplyjetpacks.handler.LivingTickHandler;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.setup.ParticleType;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class CommonProxy {
     
     public void registerHandlers() {
         SimplyJetpacks.logger.info("Registering handlers");
+        NetworkRegistry.INSTANCE.registerGuiHandler(SimplyJetpacks.instance, new GuiHandler());
         FMLCommonHandler.instance().bus().register(new SyncHandler());
         FMLCommonHandler.instance().bus().register(new PlatingReturnHandler());
         MinecraftForge.EVENT_BUS.register(new EntityInteractHandler());
