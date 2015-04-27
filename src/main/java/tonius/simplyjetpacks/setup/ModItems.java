@@ -144,8 +144,7 @@ public abstract class ModItems {
         tdAvailable = ModType.THERMAL_DYNAMICS.isLoaded() && teAvailable;
         raAvailable = ModType.REDSTONE_ARSENAL.isLoaded() && teAvailable;
         eioAvailable = ModType.ENDER_IO.isLoaded() && Config.enableIntegrationEIO;
-        // bcAvailable = ModType.BUILDCRAFT.isLoaded() &&
-        // Config.enableIntegrationBC;
+        bcAvailable = ModType.BUILDCRAFT.isLoaded() && Config.enableIntegrationBC;
         
         constructItems();
         registerItems();
@@ -341,12 +340,11 @@ public abstract class ModItems {
             Object ductFluxHardened = tdAvailable ? TDItems.ductFluxHardened : "blockGlass";
             Object ductFluxRedstoneEnergy = tdAvailable ? TDItems.ductFluxRedstoneEnergy : "blockGlassHardened";
             Object ductFluxResonant = tdAvailable ? TDItems.ductFluxResonant : "blockGlassHardened";
-            Object bucketRedstone = GameRegistry.findItemStack("ThermalFoundation", "bucketRedstone", 1);
             
             ItemHelper.addShapedOreRecipe(thrusterTE1, "ICI", "PDP", "IRI", 'I', "ingotLead", 'P', ductFluxLeadstone, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoSteam, 'R', "dustRedstone");
             ItemHelper.addShapedOreRecipe(thrusterTE2, "ICI", "PDP", "IRI", 'I', "ingotInvar", 'P', ductFluxHardened, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoReactant, 'R', "dustRedstone");
-            ItemHelper.addShapedOreRecipe(thrusterTE3, "ICI", "PDP", "IRI", 'I', "ingotElectrum", 'P', ductFluxRedstoneEnergy, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoMagmatic, 'R', bucketRedstone);
-            ItemHelper.addShapedOreRecipe(thrusterTE4, "ICI", "PDP", "IRI", 'I', "ingotEnderium", 'P', ductFluxResonant, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoEnervation, 'R', bucketRedstone);
+            ItemHelper.addShapedOreRecipe(thrusterTE3, "ICI", "PDP", "IRI", 'I', "ingotElectrum", 'P', ductFluxRedstoneEnergy, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoMagmatic, 'R', "bucketRedstone");
+            ItemHelper.addShapedOreRecipe(thrusterTE4, "ICI", "PDP", "IRI", 'I', "ingotEnderium", 'P', ductFluxResonant, 'C', TEItems.powerCoilGold, 'D', TEItems.dynamoEnervation, 'R', "bucketRedstone");
             
             ItemHelper.addShapedOreRecipe(armorPlatingTE1, "TIT", "III", "TIT", 'I', "ingotIron", 'T', "ingotTin");
             

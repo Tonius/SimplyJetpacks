@@ -15,6 +15,7 @@ import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.ItemPack;
+import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.NBTHelper;
@@ -212,6 +213,9 @@ public class Jetpack extends PackBase {
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(SJStringHelper.getStateText(this.isOn(stack)));
         list.add(SJStringHelper.getHoverModeText(this.isHoverModeOn(stack)));
+        if (this.fuelType == FuelType.FLUID && this.fuelFluid != null) {
+            list.add(SJStringHelper.getFuelFluidText(this.fuelFluid));
+        }
         if (this.fuelUsage > 0) {
             list.add(SJStringHelper.getFuelUsageText(this.fuelType, this.fuelUsage));
         }

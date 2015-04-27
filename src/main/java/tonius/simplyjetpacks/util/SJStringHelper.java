@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidRegistry;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.setup.FuelType;
@@ -42,6 +43,11 @@ public abstract class SJStringHelper {
     public static String getChargerStateText(boolean state) {
         String onOrOff = state ? StringHelper.BRIGHT_GREEN + localize("tooltip.enabled") : StringHelper.LIGHT_RED + localize("tooltip.disabled");
         return StringHelper.ORANGE + localize("tooltip.chargerState") + ": " + onOrOff;
+    }
+    
+    public static String getFuelFluidText(String fluidName) {
+        fluidName = localize(FluidRegistry.getFluid(fluidName).getUnlocalizedName(), false, (Object[]) null);
+        return StringHelper.ORANGE + localize("tooltip.fuelFluid") + ": " + StringHelper.LIGHT_GRAY + fluidName;
     }
     
     public static String getFuelUsageText(FuelType fuelType, int usage) {

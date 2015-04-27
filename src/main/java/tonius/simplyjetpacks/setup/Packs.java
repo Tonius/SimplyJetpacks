@@ -98,15 +98,12 @@ public class Packs {
             fluxPackEIO4Armored = (FluxPack) new FluxPack(4, EnumRarity.rare, "fluxPackEIO4").setIsArmored(true).setPlatingMeta(13);
         }
         
-        // if (ModType.BUILDCRAFT.isLoaded()) {
-        // jetpackBC1 = (Jetpack) new Jetpack(1, EnumRarity.common,
-        // "jetpackBC1").setFuelFluid("fuel");
-        // jetpackBC1Armored = (Jetpack) new Jetpack(1, EnumRarity.common,
-        // "jetpackBC1").setFuelFluid("fuel").setIsArmored(true).setPlatingMeta(21);
-        // jetpackBC2 = new Jetpack(2, EnumRarity.uncommon, "jetpackBC2");
-        // jetpackBC2Armored = (Jetpack) new Jetpack(2, EnumRarity.uncommon,
-        // "jetpackBC2").setIsArmored(true).setPlatingMeta(22);
-        // }
+        if (ModType.BUILDCRAFT.isLoaded()) {
+            jetpackBC1 = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel");
+            jetpackBC1Armored = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel").setIsArmored(true).setPlatingMeta(21);
+            jetpackBC2 = new Jetpack(2, EnumRarity.uncommon, "jetpackBC2");
+            jetpackBC2Armored = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setIsArmored(true).setPlatingMeta(22);
+        }
     }
     
 }

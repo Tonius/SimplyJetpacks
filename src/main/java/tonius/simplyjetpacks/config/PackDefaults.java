@@ -291,39 +291,39 @@ public class PackDefaults {
             d.enchantability = 10;
         }
         
-        // if (ModType.BUILDCRAFT.isLoaded()) {
-        // d = new PackDefaults("jetpackBC1", "Combustion Jetpack (BC 1)");
-        // d.fuelCapacity = 20000;
-        // d.fuelUsage = 1;
-        // d.fuelPerTickIn = 2000;
-        // d.armorReduction = 5;
-        // d.armorFuelPerHit = 60;
-        // d.enchantability = 8;
-        // d.speedVertical = 0.35D;
-        // d.accelVertical = 0.12D;
-        // d.speedVerticalHover = 0.34D;
-        // d.speedVerticalHoverSlow = 0.03D;
-        // d.speedSideways = 0.1D;
-        // d.sprintSpeedModifier = 1.0D;
-        // d.sprintFuelModifier = 1.0D;
-        // d.emergencyHoverMode = false;
-        //
-        // d = new PackDefaults("jetpackBC2", "Kinetic Jetpack (BC 2)");
-        // d.fuelCapacity = 6000000;
-        // d.fuelUsage = 150;
-        // d.fuelPerTickIn = 10000;
-        // d.armorReduction = 8;
-        // d.armorFuelPerHit = 120;
-        // d.enchantability = 15;
-        // d.speedVertical = 0.55D;
-        // d.accelVertical = 0.15D;
-        // d.speedVerticalHover = 0.4D;
-        // d.speedVerticalHoverSlow = 0.005D;
-        // d.speedSideways = 0.15D;
-        // d.sprintSpeedModifier = 1.3D;
-        // d.sprintFuelModifier = 2.5D;
-        // d.emergencyHoverMode = true;
-        // }
+        if (ModType.BUILDCRAFT.isLoaded()) {
+            d = new PackDefaults("jetpackBC1", "Combustion Jetpack (BC 1)");
+            d.fuelCapacity = 20000;
+            d.fuelUsage = 2;
+            d.fuelPerTickIn = 400;
+            d.armorReduction = 5;
+            d.armorFuelPerHit = 60;
+            d.enchantability = 8;
+            d.speedVertical = 0.4D;
+            d.accelVertical = 0.12D;
+            d.speedVerticalHover = 0.34D;
+            d.speedVerticalHoverSlow = 0.03D;
+            d.speedSideways = 0.14D;
+            d.sprintSpeedModifier = 1.2D;
+            d.sprintFuelModifier = 2.0D;
+            d.emergencyHoverMode = false;
+            
+            d = new PackDefaults("jetpackBC2", "Kinetic Jetpack (BC 2)");
+            d.fuelCapacity = 5000000;
+            d.fuelUsage = 150;
+            d.fuelPerTickIn = 12500;
+            d.armorReduction = 8;
+            d.armorFuelPerHit = 120;
+            d.enchantability = 15;
+            d.speedVertical = 0.55D;
+            d.accelVertical = 0.15D;
+            d.speedVerticalHover = 0.4D;
+            d.speedVerticalHoverSlow = 0.005D;
+            d.speedSideways = 0.18D;
+            d.sprintSpeedModifier = 1.4D;
+            d.sprintFuelModifier = 2.5D;
+            d.emergencyHoverMode = true;
+        }
     }
     
 }

@@ -2,7 +2,6 @@ package tonius.simplyjetpacks.item;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -12,7 +11,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fluids.IFluidHandler;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.item.meta.PackBase;
@@ -77,7 +75,7 @@ public class ItemJetpackFueller extends Item {
             FuelType fuelType = pack.fuelType;
             
             ForgeDirection pullSide = ForgeDirection.values()[blockPos.sideHit];
-            Block block = player.worldObj.getBlock(blockPos.blockX, blockPos.blockY, blockPos.blockZ);
+            player.worldObj.getBlock(blockPos.blockX, blockPos.blockY, blockPos.blockZ);
             TileEntity tile = player.worldObj.getTileEntity(blockPos.blockX, blockPos.blockY, blockPos.blockZ);
             int toPull = Math.min(pack.fuelPerTickIn, packItem.getMaxFuelStored(chestplate) - packItem.getFuelStored(chestplate));
             int pulled = 0;
@@ -87,34 +85,15 @@ public class ItemJetpackFueller extends Item {
                 pulled = energyTile.extractEnergy(pullSide, toPull, false);
                 
             } else if (fuelType == FuelType.FLUID) {
-                FluidStack fluid = null;
                 if (tile instanceof IFluidHandler) {
                     IFluidHandler fluidTile = (IFluidHandler) tile;
-                    fluid = fluidTile.drain(pullSide, toPull, false);
-                    if (fluid == null || fluid.getFluid().getName().equals(pack.fuelFluid)) {
+                    FluidStack fluid = fluidTile.drain(pullSide, toPull, false);
+                    if (fluid == null || !fluid.getFluid().getName().equals(pack.fuelFluid)) {
                         return;
                     }
                     fluid = fluidTile.drain(pullSide, toPull, true);
-                    
-                } else if (block instanceof IFluidBlock) {
-                    IFluidBlock fluidBlock = (IFluidBlock) block;
-                    if (!fluidBlock.canDrain(player.worldObj, blockPos.blockX, blockPos.blockY, blockPos.blockZ)) {
-                        return;
-                    }
-                    if (fluidBlock.getFluid() == null || !fluidBlock.getFluid().getName().equals(pack.fuelFluid)) {
-                        return;
-                    }
-                    fluid = fluidBlock.drain(player.worldObj, blockPos.blockX, blockPos.blockY, blockPos.blockZ, false);
-                    if (fluid == null || fluid.amount > toPull) {
-                        return;
-                    }
-                    fluid = fluidBlock.drain(player.worldObj, blockPos.blockX, blockPos.blockY, blockPos.blockZ, true);
+                    pulled = fluid.amount;
                 }
-                
-                if (fluid == null) {
-                    return;
-                }
-                pulled = fluid.amount;
             }
             
             if (pulled > 0) {

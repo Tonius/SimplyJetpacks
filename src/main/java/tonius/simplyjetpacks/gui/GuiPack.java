@@ -9,7 +9,6 @@ import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.lib.gui.GuiBase;
 import cofh.lib.gui.element.ElementButton;
 import cofh.lib.gui.element.ElementEnergyStored;
-import cofh.lib.gui.element.ElementFluidTank;
 
 public class GuiPack extends GuiBase {
     
@@ -32,7 +31,7 @@ public class GuiPack extends GuiBase {
         if (this.container.energyStored != null) {
             this.addElement(new ElementEnergyStored(this, 12, 28, this.container.energyStored));
         } else if (this.container.fluidStored != null) {
-            this.addElement(new ElementFluidTank(this, 12, 24, this.container.fluidStored).setAlwaysShow(true));
+            this.addElement(new ElementFluidTankAdv(this, 12, 24, this.container.fluidStored).setAlwaysShow(true).setGauge(1));
         }
         
         ModKey[] controls = this.container.pack.getGuiControls();
