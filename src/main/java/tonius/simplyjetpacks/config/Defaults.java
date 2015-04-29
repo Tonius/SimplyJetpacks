@@ -1,7 +1,7 @@
 package tonius.simplyjetpacks.config;
 
 import tonius.simplyjetpacks.client.util.RenderUtils.HUDPositions;
-import tonius.simplyjetpacks.setup.ModType;
+import tonius.simplyjetpacks.integration.ModType;
 
 public abstract class Defaults {
     

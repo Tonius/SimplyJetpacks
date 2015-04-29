@@ -2,6 +2,7 @@ package tonius.simplyjetpacks.setup;
 
 import net.minecraft.item.EnumRarity;
 import tonius.simplyjetpacks.config.PackDefaults;
+import tonius.simplyjetpacks.integration.ModType;
 import tonius.simplyjetpacks.item.meta.FluxPack;
 import tonius.simplyjetpacks.item.meta.JetPlate;
 import tonius.simplyjetpacks.item.meta.Jetpack;

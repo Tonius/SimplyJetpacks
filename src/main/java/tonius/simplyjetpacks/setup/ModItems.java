@@ -11,8 +11,11 @@ import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.crafting.UpgradingRecipe;
+import tonius.simplyjetpacks.integration.BCItems;
+import tonius.simplyjetpacks.integration.BCRecipes;
 import tonius.simplyjetpacks.integration.EIOItems;
 import tonius.simplyjetpacks.integration.EIORecipes;
+import tonius.simplyjetpacks.integration.ModType;
 import tonius.simplyjetpacks.integration.RAItems;
 import tonius.simplyjetpacks.integration.TDItems;
 import tonius.simplyjetpacks.integration.TEItems;
@@ -162,6 +165,9 @@ public abstract class ModItems {
         }
         if (eioAvailable) {
             EIOItems.init();
+        }
+        if (bcAvailable) {
+            BCItems.init();
         }
         
         registerRecipes();
@@ -438,6 +444,24 @@ public abstract class ModItems {
             
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackEIO5, "J", "P", 'J', jetpackEIO5, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
         }
+        
+        if (bcAvailable) {
+            ItemHelper.addShapedOreRecipe(thrusterBC1, "IGI", "PEP", "IBI", 'I', "ingotIron", 'G', "gearIron", 'P', BCItems.pipeFluidStone, 'E', BCItems.engineCombustion, 'B', Blocks.iron_bars);
+            
+            ItemHelper.addShapedOreRecipe(armorPlatingBC1, /* y u */"LIL", "ILI", "LIL", 'I', "ingotIron", 'L', Items.leather);
+            ItemHelper.addShapedOreRecipe(armorPlatingBC2, "DDD", "DPD", "DDD", 'P', armorPlatingBC1, 'D', "gemDiamond");
+            
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "IBI", "IJI", "T T", 'I', "ingotIron", 'B', BCItems.tank, 'T', thrusterBC1, 'J', leatherStrap));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "IBI", "IJI", "T T", 'I', "ingotGold", 'B', "redstoneCrystal", 'T', thrusterBC2, 'J', jetpackBC1));
+            
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1Armored, "P", "J", 'J', jetpackBC1, 'P', armorPlatingBC1));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "J", 'J', jetpackBC1Armored));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2Armored, "P", "J", 'J', jetpackBC2, 'P', armorPlatingBC2));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "J", 'J', jetpackBC2Armored));
+            
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "J", "P", 'J', jetpackBC1, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "J", "P", 'J', jetpackBC2, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+        }
     }
     
     private static void doIMC() {
@@ -483,6 +507,12 @@ public abstract class ModItems {
             EIORecipes.addAlloySmelterRecipe("Enriched Soularium Alloy", 32000, ingotDarkSteel, ingotSoularium, EIOItems.pulsatingCrystal, richSoularium);
             
             EIORecipes.addSoulBinderRecipe("Flight Control Unit", 75000, 8, "Bat", unitFlightControlEmpty, unitFlightControl);
+        }
+        if (bcAvailable) {
+            ItemStack pipeEnergyGold = BCItems.pipeEnergyGold.copy();
+            pipeEnergyGold.stackSize = 2;
+            ItemStack[] inputs = new ItemStack[] { thrusterBC1.copy(), new ItemStack(Items.gold_ingot, 4), pipeEnergyGold, BCItems.chipsetGold.copy() };
+            BCRecipes.addAssemblyRecipe("kineticThruster", 1200000, inputs, thrusterBC2.copy());
         }
     }
     

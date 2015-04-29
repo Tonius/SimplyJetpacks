@@ -3,7 +3,7 @@ package tonius.simplyjetpacks.config;
 import java.util.HashMap;
 import java.util.Map;
 
-import tonius.simplyjetpacks.setup.ModType;
+import tonius.simplyjetpacks.integration.ModType;
 
 public class PackDefaults {
     
