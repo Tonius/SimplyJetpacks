@@ -1,35 +1,66 @@
 package tonius.simplyjetpacks.integration;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class BCItems {
     
     // Transport
-    public static ItemStack pipeFluidStone = null;
-    public static ItemStack pipeEnergyGold = null;
+    public static Object pipeFluidStone = null;
+    public static Object pipeEnergyGold = null;
     
     // Energy
-    public static ItemStack engineCombustion = null;
+    public static Object engineCombustion = null;
     
     // Factory
-    public static ItemStack tank = null;
+    public static Object tank = null;
     
     // Silicon
-    public static ItemStack chipsetGold = null;
+    public static Object chipsetGold = null;
     
     public static void init() {
         SimplyJetpacks.logger.info("Stealing BuildCraft's items");
         
-        pipeFluidStone = new ItemStack(GameRegistry.findItem("BuildCraft|Transport", "item.buildcraftPipe.pipefluidsstone"));
-        pipeEnergyGold = new ItemStack(GameRegistry.findItem("BuildCraft|Transport", "item.buildcraftPipe.pipepowergold"));
+        if (Loader.isModLoaded("BuildCraft|Transport")) {
+            pipeFluidStone = new ItemStack(GameRegistry.findItem("BuildCraft|Transport", "item.buildcraftPipe.pipefluidsstone"));
+            pipeEnergyGold = new ItemStack(GameRegistry.findItem("BuildCraft|Transport", "item.buildcraftPipe.pipepowergold"));
+        } else {
+            pipeFluidStone = "blockGlass";
+            pipeEnergyGold = "dustRedstone";
+        }
         
-        engineCombustion = new ItemStack(GameRegistry.findBlock("BuildCraft|Energy", "engineBlock"), 1, 2);
+        if (Loader.isModLoaded("BuildCraft|Energy")) {
+            engineCombustion = new ItemStack(GameRegistry.findBlock("BuildCraft|Energy", "engineBlock"), 1, 2);
+        } else {
+            engineCombustion = "gearIron";
+        }
         
-        tank = new ItemStack(GameRegistry.findBlock("BuildCraft|Factory", "tankBlock"));
+        if (Loader.isModLoaded("BuildCraft|Factory")) {
+            tank = new ItemStack(GameRegistry.findBlock("BuildCraft|Factory", "tankBlock"));
+        } else {
+            tank = "blockGlass";
+        }
         
-        chipsetGold = new ItemStack(GameRegistry.findItem("BuildCraft|Silicon", "redstoneChipset"), 1, 2);
+        if (Loader.isModLoaded("BuildCraft|Silicon")) {
+            chipsetGold = new ItemStack(GameRegistry.findItem("BuildCraft|Silicon", "redstoneChipset"), 1, 2);
+        } else {
+            chipsetGold = "gearGold";
+        }
+    }
+    
+    public static ItemStack getStack(Object o) {
+        if (o instanceof ItemStack) {
+            return (ItemStack) o;
+        }
+        
+        if (o instanceof String) {
+            return OreDictionary.getOres((String) o).get(0);
+        }
+        
+        return null;
     }
     
 }

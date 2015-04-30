@@ -7,6 +7,7 @@ import tonius.simplyjetpacks.item.meta.FluxPack;
 import tonius.simplyjetpacks.item.meta.JetPlate;
 import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.item.meta.JetpackPotato;
+import cpw.mods.fml.common.Loader;
 
 /**
  * for default pack tuning refer to {@link PackDefaults}
@@ -100,10 +101,13 @@ public class Packs {
         }
         
         if (ModType.BUILDCRAFT.isLoaded()) {
-            jetpackBC1 = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel");
-            jetpackBC1Armored = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel").setIsArmored(true).setPlatingMeta(21);
-            jetpackBC2 = new Jetpack(2, EnumRarity.uncommon, "jetpackBC2");
-            jetpackBC2Armored = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setIsArmored(true).setPlatingMeta(22);
+            boolean energyLoaded = Loader.isModLoaded("BuildCraft|Energy");
+            if (energyLoaded) {
+                jetpackBC1 = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel");
+                jetpackBC1Armored = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel").setIsArmored(true).setPlatingMeta(21);
+            }
+            jetpackBC2 = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setShowTier(energyLoaded);
+            jetpackBC2Armored = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setIsArmored(true).setPlatingMeta(22).setShowTier(energyLoaded);
         }
     }
     

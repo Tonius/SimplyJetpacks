@@ -27,6 +27,7 @@ import tonius.simplyjetpacks.item.ItemMysteriousPotato;
 import tonius.simplyjetpacks.item.ItemPack.ItemFluxPack;
 import tonius.simplyjetpacks.item.ItemPack.ItemJetpack;
 import cofh.lib.util.helpers.ItemHelper;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class ModItems {
@@ -225,8 +226,10 @@ public abstract class ModItems {
         }
         if (bcAvailable) {
             jetpacksBC = new ItemJetpack(ModType.BUILDCRAFT);
-            jetpackBC1 = jetpacksBC.putPack(1, Packs.jetpackBC1);
-            jetpackBC1Armored = jetpacksBC.putPack(101, Packs.jetpackBC1Armored);
+            if (Loader.isModLoaded("BuildCraft|Energy")) {
+                jetpackBC1 = jetpacksBC.putPack(1, Packs.jetpackBC1);
+                jetpackBC1Armored = jetpacksBC.putPack(101, Packs.jetpackBC1Armored);
+            }
             jetpackBC2 = jetpacksBC.putPack(2, Packs.jetpackBC2);
             jetpackBC2Armored = jetpacksBC.putPack(102, Packs.jetpackBC2Armored);
         }
@@ -281,7 +284,9 @@ public abstract class ModItems {
             armorPlatingEIO4 = armorPlatings.addMetaItem(14, new MetaItem("armorPlating.eio.4", null, EnumRarity.common), true, false);
         }
         if (bcAvailable) {
-            thrusterBC1 = components.addMetaItem(31, new MetaItem("thruster.bc.1", null, EnumRarity.common), true, false);
+            if (Loader.isModLoaded("BuildCraft|Energy")) {
+                thrusterBC1 = components.addMetaItem(31, new MetaItem("thruster.bc.1", null, EnumRarity.common), true, false);
+            }
             thrusterBC2 = components.addMetaItem(32, new MetaItem("thruster.bc.2", null, EnumRarity.uncommon), true, false);
             
             armorPlatingBC1 = armorPlatings.addMetaItem(21, new MetaItem("armorPlating.bc.1", null, EnumRarity.common), true, false);
@@ -446,20 +451,34 @@ public abstract class ModItems {
         }
         
         if (bcAvailable) {
-            ItemHelper.addShapedOreRecipe(thrusterBC1, "IGI", "PEP", "IBI", 'I', "ingotIron", 'G', "gearIron", 'P', BCItems.pipeFluidStone, 'E', BCItems.engineCombustion, 'B', Blocks.iron_bars);
+            ItemHelper.addShapedOreRecipe(armorPlatingBC1, /* listen here u */"LIL"/* shit */, "ILI", "LIL", 'I', "ingotIron", 'L', Items.leather);
+            ItemHelper.addSurroundRecipe(armorPlatingBC2, armorPlatingBC1, "gemDiamond");
             
-            ItemHelper.addShapedOreRecipe(armorPlatingBC1, /* y u */"LIL", "ILI", "LIL", 'I', "ingotIron", 'L', Items.leather);
-            ItemHelper.addShapedOreRecipe(armorPlatingBC2, "DDD", "DPD", "DDD", 'P', armorPlatingBC1, 'D', "gemDiamond");
+            if (Loader.isModLoaded("BuildCraft|Energy")) {
+                ItemHelper.addShapedOreRecipe(thrusterBC1, "IGI", "PEP", "IBI", 'I', "ingotIron", 'G', "gearIron", 'P', BCItems.pipeFluidStone, 'E', BCItems.engineCombustion, 'B', Blocks.iron_bars);
+                
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "IBI", "IJI", "T T", 'I', "ingotIron", 'B', BCItems.tank, 'T', thrusterBC1, 'J', leatherStrap));
+                
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1Armored, "P", "J", 'J', jetpackBC1, 'P', armorPlatingBC1));
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "J", 'J', jetpackBC1Armored));
+                
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "J", "P", 'J', jetpackBC1, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            }
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "IBI", "IJI", "T T", 'I', "ingotIron", 'B', BCItems.tank, 'T', thrusterBC1, 'J', leatherStrap));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "IBI", "IJI", "T T", 'I', "ingotGold", 'B', "redstoneCrystal", 'T', thrusterBC2, 'J', jetpackBC1));
+            if (Loader.isModLoaded("BuildCraft|Silicon")) {
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "IBI", "IJI", "T T", 'I', "ingotGold", 'B', "crystalRedstone" /* BC7 */, 'T', thrusterBC2, 'J', jetpackBC1));
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "IBI", "IJI", "T T", 'I', "ingotGold", 'B', "redstoneCrystal" /* BC6 */, 'T', thrusterBC2, 'J', jetpackBC1));
+            } else {
+                Object thruster = thrusterBC1 != null ? thrusterBC1 : "gearIron";
+                ItemHelper.addShapedOreRecipe(thrusterBC2, "IGI", "PEP", "IBI", 'I', "ingotGold", 'G', "gearGold", 'P', BCItems.pipeEnergyGold, 'E', thruster, 'B', Blocks.iron_bars);
+                
+                Object jetpack = jetpackBC1 != null ? jetpackBC1 : leatherStrap;
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "IBI", "IJI", "T T", 'I', "ingotGold", 'B', "gearDiamond", 'T', thrusterBC2, 'J', jetpack));
+            }
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1Armored, "P", "J", 'J', jetpackBC1, 'P', armorPlatingBC1));
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "J", 'J', jetpackBC1Armored));
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2Armored, "P", "J", 'J', jetpackBC2, 'P', armorPlatingBC2));
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "J", 'J', jetpackBC2Armored));
             
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "J", "P", 'J', jetpackBC1, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC2, "J", "P", 'J', jetpackBC2, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
         }
     }
@@ -508,10 +527,10 @@ public abstract class ModItems {
             
             EIORecipes.addSoulBinderRecipe("Flight Control Unit", 75000, 8, "Bat", unitFlightControlEmpty, unitFlightControl);
         }
-        if (bcAvailable) {
-            ItemStack pipeEnergyGold = BCItems.pipeEnergyGold.copy();
+        if (bcAvailable && Loader.isModLoaded("BuildCraft|Silicon")) {
+            ItemStack pipeEnergyGold = BCItems.getStack(BCItems.pipeEnergyGold).copy();
             pipeEnergyGold.stackSize = 2;
-            ItemStack[] inputs = new ItemStack[] { thrusterBC1.copy(), new ItemStack(Items.gold_ingot, 4), pipeEnergyGold, BCItems.chipsetGold.copy() };
+            ItemStack[] inputs = new ItemStack[] { thrusterBC1.copy(), new ItemStack(Items.gold_ingot, 4), pipeEnergyGold, BCItems.getStack(BCItems.chipsetGold).copy() };
             BCRecipes.addAssemblyRecipe("kineticThruster", 1200000, inputs, thrusterBC2.copy());
         }
     }

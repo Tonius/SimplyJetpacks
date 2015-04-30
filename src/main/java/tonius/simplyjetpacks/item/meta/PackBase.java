@@ -54,6 +54,7 @@ public class PackBase {
     public boolean hasStateIndicators = true;
     public boolean isArmored = false;
     public boolean showArmored = true;
+    public boolean showTier = true;
     public Integer platingMeta = null;
     public boolean isFluxBased = false;
     
@@ -145,6 +146,11 @@ public class PackBase {
         return this;
     }
     
+    public PackBase setShowTier(boolean showTier) {
+        this.showTier = showTier;
+        return this;
+    }
+    
     public PackBase setPlatingMeta(int platingMeta) {
         this.platingMeta = platingMeta;
         return this;
@@ -222,7 +228,9 @@ public class PackBase {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
-        list.add(SJStringHelper.getTierText(this.tier));
+        if (this.showTier) {
+            list.add(SJStringHelper.getTierText(this.tier));
+        }
         list.add(SJStringHelper.getFuelText(this.fuelType, item.getFuelStored(stack), this.fuelCapacity, !this.usesFuel));
     }
     

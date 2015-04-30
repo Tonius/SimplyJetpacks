@@ -10,7 +10,7 @@ public enum ModType {
     THERMAL_DYNAMICS(null, "ThermalDynamics"),
     REDSTONE_ARSENAL(null, "RedstoneArsenal"),
     ENDER_IO(".eio", "EnderIO"),
-    BUILDCRAFT(".bc", "BuildCraft|Core", "BuildCraft|Transport", "BuildCraft|Energy", "BuildCraft|Factory", "BuildCraft|Silicon");
+    BUILDCRAFT(".bc", "BuildCraft|Core");
     
     public final String suffix;
     public final String[] modids;
