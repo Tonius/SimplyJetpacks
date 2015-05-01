@@ -2,6 +2,7 @@ package tonius.simplyjetpacks.item.meta;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -9,8 +10,11 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.IFluidBlock;
 import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.SyncHandler;
@@ -105,6 +109,20 @@ public class Jetpack extends PackBase {
                         if (user instanceof EntityPlayerMP) {
                             ((EntityPlayerMP) user).playerNetServerHandler.floatingTickCount = 0;
                         }
+                        
+                        if (Config.flammableFluidsExplode) {
+                            if (!(user instanceof EntityPlayer) || !((EntityPlayer) user).capabilities.isCreativeMode) {
+                                int x = Math.round((float) user.posX - 0.5F);
+                                int y = Math.round((float) user.posY);
+                                int z = Math.round((float) user.posZ - 0.5F);
+                                Block fluidBlock = user.worldObj.getBlock(x, y, z);
+                                if (fluidBlock instanceof IFluidBlock && fluidBlock.isFlammable(user.worldObj, x, y, z, ForgeDirection.UNKNOWN)) {
+                                    user.worldObj.playSoundAtEntity(user, "mob.ghast.fireball", 2.0F, 1.0F);
+                                    user.worldObj.createExplosion(user, user.posX, user.posY, user.posZ, 3.5F, false);
+                                    user.attackEntityFrom(new EntityDamageSource("jetpackexplode", user), 100.0F);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -117,7 +135,10 @@ public class Jetpack extends PackBase {
                 } else if (user instanceof EntityPlayer) {
                     if (!((EntityPlayer) user).capabilities.isCreativeMode && user.fallDistance - 1.2F >= user.getHealth()) {
                         for (int i = 0; i <= 16; i++) {
-                            if (!user.worldObj.isAirBlock(Math.round((float) user.posX - 0.5F), Math.round((float) user.posY) - i, Math.round((float) user.posZ - 0.5F))) {
+                            int x = Math.round((float) user.posX - 0.5F);
+                            int y = Math.round((float) user.posY) - i;
+                            int z = Math.round((float) user.posZ - 0.5F);
+                            if (!user.worldObj.isAirBlock(x, y, z)) {
                                 this.doEHover(stack, user);
                                 break;
                             }

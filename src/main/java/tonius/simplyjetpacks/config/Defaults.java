@@ -5,6 +5,9 @@ import tonius.simplyjetpacks.integration.ModType;
 
 public abstract class Defaults {
     
+    // item
+    public static final boolean flammableFluidsExplode = false;
+    
     // integration
     public static final boolean enableIntegrationTE = ModType.THERMAL_EXPANSION.isLoaded();
     public static final boolean enableIntegrationEIO = ModType.ENDER_IO.isLoaded() && !enableIntegrationTE;

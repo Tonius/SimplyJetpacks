@@ -16,6 +16,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class Config {
     
     public static final List<Section> configSections = new ArrayList<Section>();
+    private static final Section sectionItem = new Section(false, "Item Settings", "item");
     private static final Section sectionIntegration = new Section(false, "Integration Settings", "integration");
     private static final Section sectionControls = new Section(true, "Controls Settings", "controls");
     private static final Section sectionAesthetics = new Section(true, "Aesthetics Settings", "aesthetics");
@@ -23,6 +24,10 @@ public class Config {
     private static final Section sectionGui = new Section(true, "GUI Settings", "gui");
     public static Configuration config;
     public static Configuration configClient;
+    
+    // item
+    public static boolean flammableFluidsExplode = Defaults.flammableFluidsExplode;
+    
     // integration
     public static boolean enableIntegrationTE = Defaults.enableIntegrationTE;
     public static boolean enableIntegrationEIO = Defaults.enableIntegrationEIO;
@@ -83,6 +88,8 @@ public class Config {
     }
     
     private static void processConfig() {
+        flammableFluidsExplode = config.get(sectionItem.name, "Jetpacks explode in flammable fluid blocks", Defaults.flammableFluidsExplode, "When enabled, jetpacks will explode and kill their users when they are being used to fly through flammable fluid blocks.").getBoolean(Defaults.flammableFluidsExplode);
+        
         enableIntegrationTE = config.get(sectionIntegration.name, "Thermal Expansion integration", Defaults.enableIntegrationTE, "When enabled, Simply Jetpacks will register its Thermal Expansion-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationTE);
         enableIntegrationEIO = config.get(sectionIntegration.name, "Ender IO integration", Defaults.enableIntegrationEIO, "When enabled, Simply Jetpacks will register its Ender IO-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationEIO);
         enableIntegrationBC = config.get(sectionIntegration.name, "BuildCraft integration", Defaults.enableIntegrationBC, "When enabled, Simply Jetpacks will register its BuildCraft-based jetpacks.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationBC);

@@ -161,6 +161,9 @@ simplyjetpacks.gui.fluxpack.button.toggle.primary=Toggle charger
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato
 death.attack.jetpackpotato.item=%1$s attempted to fly a potato
+death.attack.jetpackexplode=%1$s spontaneously detonated
+death.attack.jetpackexplode.player=%1$s spontaneously detonated
+death.attack.jetpackexplode.item=%1$s spontaneously detonated
 
 simplyjetpacks.command.switch.neither=No jetpack or charger equipped.
 simplyjetpacks.command.switch.noJetpack=No jetpack equipped.
@@ -174,6 +177,7 @@ simplyjetpacks.keybind.mode.secondary=Toggle Emergency Hover Mode
 simplyjetpacks.keybind.openPackGUI=Open Pack GUI
 
 simplyjetpacks.config.title=Simply Jetpacks Configuration
+simplyjetpacks.config.item=Item Settings
 simplyjetpacks.config.integration=Integration Settings
 simplyjetpacks.config.integration.tooltip=Turn integration with other mods on or off. Note that integrations for different mods are not explicitly balanced around each other!
 simplyjetpacks.config.controls=Controls Settings
