@@ -53,7 +53,7 @@ public abstract class BCItems {
     
     public static ItemStack getStack(Object o) {
         if (o instanceof ItemStack) {
-            return (ItemStack) o;
+            return ((ItemStack) o).copy();
         }
         
         if (o instanceof String) {
