@@ -27,7 +27,9 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.client.util.RenderUtils;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.GuiHandler;
 import tonius.simplyjetpacks.integration.ModType;
 import tonius.simplyjetpacks.item.meta.FluxPack;
@@ -203,7 +205,8 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
         T pack = this.getPack(stack);
         if (pack != null) {
-            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + pack.getBaseName(true) + this.modType.suffix + ".png";
+            String flat = Config.enableArmor3DModels || pack.armorModel == PackModelType.FLAT ? "" : ".flat";
+            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + pack.getBaseName(true) + this.modType.suffix + flat + ".png";
         }
         return super.getArmorTexture(stack, entity, slot, type);
     }
@@ -212,7 +215,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
         T pack = this.getPack(stack);
-        if (pack != null && pack.armorModel != null) {
+        if (pack != null && pack.armorModel != null && Config.enableArmor3DModels) {
             ModelBiped model = RenderUtils.getArmorModel(pack, entityLiving);
             if (model != null) {
                 return model;

@@ -18,6 +18,7 @@ public class Config {
     public static final List<Section> configSections = new ArrayList<Section>();
     private static final Section sectionIntegration = new Section(false, "Integration Settings", "integration");
     private static final Section sectionControls = new Section(true, "Controls Settings", "controls");
+    private static final Section sectionAesthetics = new Section(true, "Aesthetics Settings", "aesthetics");
     private static final Section sectionSounds = new Section(true, "Sound Settings", "sounds");
     private static final Section sectionGui = new Section(true, "GUI Settings", "gui");
     public static Configuration config;
@@ -32,6 +33,9 @@ public class Config {
     public static String flyKey = Defaults.flyKey;
     public static String descendKey = Defaults.descendKey;
     public static boolean invertHoverSneakingBehavior = Defaults.invertHoverSneakingBehavior;
+    
+    // aesthetics
+    public static boolean enableArmor3DModels = Defaults.enableArmor3DModels;
     
     // sounds
     public static boolean jetpackSounds = Defaults.jetpackSounds;
@@ -87,6 +91,8 @@ public class Config {
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", Defaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", Defaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
         invertHoverSneakingBehavior = configClient.get(sectionControls.name, "Invert Hover Mode sneaking behavior", Defaults.invertHoverSneakingBehavior, "Invert Hover Mode sneaking behavior").getBoolean(Defaults.invertHoverSneakingBehavior);
+        
+        enableArmor3DModels = configClient.get(sectionAesthetics.name, "Enable Armor 3D Models", Defaults.enableArmor3DModels, "When enabled, worn jetpacks and flux packs will have a 3D armor model. Otherwise, flat textures will be used.").getBoolean(Defaults.enableArmor3DModels);
         
         jetpackSounds = configClient.get(sectionSounds.name, "Jetpack Sounds", Defaults.jetpackSounds, "When enabled, jetpacks will make sounds when used.").getBoolean(Defaults.jetpackSounds);
         

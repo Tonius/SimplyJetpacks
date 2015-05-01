@@ -16,6 +16,9 @@ public abstract class Defaults {
     public static final String descendKey = "LSHIFT";
     public static final boolean invertHoverSneakingBehavior = false;
     
+    // aesthetics
+    public static final boolean enableArmor3DModels = true;
+    
     // sounds
     public static final boolean jetpackSounds = true;
     
