@@ -117,7 +117,7 @@ public class PackDefaults {
             
             d = new PackDefaults("jetpackTE4", "Resonant Jetpack (TE 4)");
             d.fuelCapacity = 20000000;
-            d.fuelUsage = 400;
+            d.fuelUsage = 450;
             d.fuelPerTickIn = 50000;
             d.armorReduction = 8;
             d.armorFuelPerHit = 160;
@@ -133,7 +133,7 @@ public class PackDefaults {
             
             d = new PackDefaults("jetpackTE5", "Flux-Infused JetPlate (TE 5)");
             d.fuelCapacity = 80000000;
-            d.fuelUsage = 640;
+            d.fuelUsage = 800;
             d.fuelPerTickIn = 200000;
             d.fuelPerTickOut = 32000;
             d.armorReduction = 12;
@@ -230,7 +230,7 @@ public class PackDefaults {
             
             d = new PackDefaults("jetpackEIO4", "Vibrant Jetpack (EIO 4)");
             d.fuelCapacity = 20000000;
-            d.fuelUsage = 400;
+            d.fuelUsage = 450;
             d.fuelPerTickIn = 50000;
             d.armorReduction = 8;
             d.armorFuelPerHit = 160;
@@ -246,7 +246,7 @@ public class PackDefaults {
             
             d = new PackDefaults("jetpackEIO5", "Dark Soularium JetPlate (EIO 5)");
             d.fuelCapacity = 80000000;
-            d.fuelUsage = 640;
+            d.fuelUsage = 800;
             d.fuelPerTickIn = 200000;
             d.fuelPerTickOut = 32000;
             d.armorReduction = 12;
