@@ -121,6 +121,10 @@ public abstract class SJStringHelper {
         }
     }
     
+    public static String getShiftText() {
+        return StringHelper.LIGHT_GRAY + String.format(localize("tooltip.holdShift"), StringHelper.YELLOW + StringHelper.ITALIC + localize("tooltip.holdShift.shift") + StringHelper.END + StringHelper.LIGHT_GRAY);
+    }
+    
     public static boolean canShowDetails() {
         return !Config.holdShiftForDetails || StringHelper.isShiftKeyDown();
     }

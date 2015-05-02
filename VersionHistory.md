@@ -1,6 +1,6 @@
 1.5.0 - (unreleased)
 ----------------------------------
-- Now depends on CoFH Core.
+- Now depends on CoFHLib. Using CoFH Core for this is recommended. CoFHLib also works, but it has to be build 152+ (from CurseForge).
 - Added support for BuildCraft 6! SJ now provides two kinds of BuildCraft-based jetpacks, based on which BC modules are installed. One is powered by Fuel, and one is powered by RF. Will hopefully also work with BuildCraft 7, though this is largely untested.
 - Added Jetpack Fueller item for filling jetpacks with Fluids from Tanks or similar.
 - Made TE-based Thrusters slightly cheaper and less annoying to craft.

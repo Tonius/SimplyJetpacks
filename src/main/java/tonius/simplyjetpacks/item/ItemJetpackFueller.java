@@ -19,7 +19,6 @@ import tonius.simplyjetpacks.setup.ModCreativeTab;
 import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.api.energy.IEnergyProvider;
 import cofh.lib.util.helpers.BlockHelper;
-import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -109,7 +108,7 @@ public class ItemJetpackFueller extends Item {
         if (SJStringHelper.canShowDetails()) {
             SJStringHelper.addDescriptionLines(list, "jetpackFueller");
         } else {
-            list.add(StringHelper.shiftForDetails());
+            list.add(SJStringHelper.getShiftText());
         }
     }
     

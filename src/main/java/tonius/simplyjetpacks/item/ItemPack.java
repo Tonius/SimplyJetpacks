@@ -41,7 +41,6 @@ import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.api.energy.IEnergyContainerItem;
-import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -161,7 +160,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
             if (SJStringHelper.canShowDetails()) {
                 pack.addShiftInformation(stack, this, player, list);
             } else {
-                list.add(StringHelper.shiftForDetails());
+                list.add(SJStringHelper.getShiftText());
             }
         }
     }

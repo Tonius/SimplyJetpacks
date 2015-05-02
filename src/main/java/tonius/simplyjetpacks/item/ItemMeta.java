@@ -86,7 +86,7 @@ public class ItemMeta extends Item {
             if (SJStringHelper.canShowDetails()) {
                 SJStringHelper.addDescriptionLines(list, metaItem.tooltipKey, StringHelper.LIGHT_GRAY);
             } else {
-                list.add(StringHelper.shiftForDetails());
+                list.add(SJStringHelper.getShiftText());
             }
         }
     }

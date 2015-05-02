@@ -2,13 +2,14 @@ package tonius.simplyjetpacks.gui;
 
 import net.minecraft.util.ResourceLocation;
 import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.gui.element.ElementEnergyStoredAdv;
+import tonius.simplyjetpacks.gui.element.ElementFluidTankAdv;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageModKey;
 import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.lib.gui.GuiBase;
 import cofh.lib.gui.element.ElementButton;
-import cofh.lib.gui.element.ElementEnergyStored;
 
 public class GuiPack extends GuiBase {
     
@@ -29,7 +30,7 @@ public class GuiPack extends GuiBase {
         super.initGui();
         
         if (this.container.energyStored != null) {
-            this.addElement(new ElementEnergyStored(this, 12, 28, this.container.energyStored));
+            this.addElement(new ElementEnergyStoredAdv(this, 12, 28, this.container.energyStored));
         } else if (this.container.fluidStored != null) {
             this.addElement(new ElementFluidTankAdv(this, 12, 24, this.container.fluidStored).setAlwaysShow(true).setGauge(1));
         }

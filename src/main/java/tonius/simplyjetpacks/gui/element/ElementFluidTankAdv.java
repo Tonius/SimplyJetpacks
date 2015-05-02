@@ -1,6 +1,8 @@
-package tonius.simplyjetpacks.gui;
+package tonius.simplyjetpacks.gui.element;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import cofh.lib.gui.GuiBase;
 import cofh.lib.gui.element.ElementFluidTank;
 import cofh.lib.render.RenderHelper;
@@ -9,6 +11,7 @@ public class ElementFluidTankAdv extends ElementFluidTank {
     
     public ElementFluidTankAdv(GuiBase gui, int posX, int posY, IFluidTank tank) {
         super(gui, posX, posY, tank);
+        this.texture = new ResourceLocation(SimplyJetpacks.RESOURCE_PREFIX + "textures/gui/elements/fluidTank.png");
     }
     
     @Override

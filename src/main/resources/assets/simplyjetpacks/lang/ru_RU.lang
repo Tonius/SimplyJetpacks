@@ -100,6 +100,9 @@ simplyjetpacks.chat.jetpack.emergencyHoverMode.msg=Пользователь пр
 simplyjetpacks.chat.jetpack.jetplate.charger.on=Реакт. кираса заряжает
 simplyjetpacks.chat.fluxpack.on=Флакс-ранец заряжает
 
+simplyjetpacks.tooltip.holdShift=Зажмите %s для информации
+simplyjetpacks.tooltip.holdShift.shift=Shift
+
 simplyjetpacks.tooltip.on=Вкл.
 simplyjetpacks.tooltip.off=Выкл.
 simplyjetpacks.tooltip.enabled=Включен

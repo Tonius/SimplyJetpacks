@@ -1,5 +1,7 @@
 package tonius.simplyjetpacks;
 
+import java.util.Iterator;
+
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 
@@ -14,6 +16,8 @@ import tonius.simplyjetpacks.setup.Packs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.ModAPIManager;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -25,7 +29,7 @@ public class SimplyJetpacks {
     public static final String MODID = "simplyjetpacks";
     public static final String PREFIX = MODID + ".";
     public static final String RESOURCE_PREFIX = MODID + ":";
-    public static final String DEPENDENCIES = "required-after:CoFHCore@[1.7.10R3.0.2,);after:ThermalExpansion;after:RedstoneArsenal;after:EnderIO;after:BuildCraft|Core";
+    public static final String DEPENDENCIES = "after:CoFHCore;after:ThermalExpansion;after:RedstoneArsenal;after:EnderIO;after:BuildCraft|Core";
     public static final String GUI_FACTORY = "tonius.simplyjetpacks.config.ConfigGuiFactory";
     
     @Instance(MODID)
@@ -39,6 +43,12 @@ public class SimplyJetpacks {
     public static void preInit(FMLPreInitializationEvent evt) {
         logger = evt.getModLog();
         logger.info("Starting Simply Jetpacks");
+        
+        if (!isCoFHLibLoaded()) {
+            logger.error("Could not find CoFHLib!");
+            throw new RuntimeException("Could not find CoFHLib. Please install the latest version of CoFH Core, or the latest build of CoFHLib.");
+        }
+        logger.info("Successfully found CoFHLib");
         
         Packs.preInit();
         Config.preInit(evt);
@@ -56,6 +66,17 @@ public class SimplyJetpacks {
     @EventHandler
     public static void serverStopping(FMLServerStoppingEvent evt) {
         SyncHandler.clearAll();
+    }
+    
+    private static boolean isCoFHLibLoaded() {
+        Iterable<? extends ModContainer> list = ModAPIManager.INSTANCE.getAPIList();
+        for (Iterator<? extends ModContainer> itr = list.iterator(); itr.hasNext();) {
+            ModContainer api = itr.next();
+            if (api.getName().equals("API: CoFHLib")) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }
