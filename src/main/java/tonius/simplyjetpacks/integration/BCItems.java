@@ -1,5 +1,6 @@
 package tonius.simplyjetpacks.integration;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import tonius.simplyjetpacks.SimplyJetpacks;
@@ -33,7 +34,11 @@ public abstract class BCItems {
         }
         
         if (Loader.isModLoaded("BuildCraft|Energy")) {
-            engineCombustion = new ItemStack(GameRegistry.findBlock("BuildCraft|Energy", "engineBlock"), 1, 2);
+            Block engine = GameRegistry.findBlock("BuildCraft|Energy", "engineBlock");
+            if (engine == null) {
+                engine = GameRegistry.findBlock("BuildCraft|Core", "engineBlock");
+            }
+            engineCombustion = new ItemStack(engine, 1, 2);
         } else {
             engineCombustion = "gearIron";
         }
