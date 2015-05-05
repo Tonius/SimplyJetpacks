@@ -2,8 +2,6 @@ package tonius.simplyjetpacks;
 
 import java.util.Iterator;
 
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiErrorScreen;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 
@@ -15,7 +13,6 @@ import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.setup.Packs;
-import cpw.mods.fml.client.CustomModLoadingErrorDisplayException;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -78,22 +75,7 @@ public class SimplyJetpacks {
             }
         }
         logger.error("Could not find CoFHLib!");
-        throw new CustomModLoadingErrorDisplayException() {
-            
-            @Override
-            public void initGui(GuiErrorScreen errorScreen, FontRenderer fontRenderer) {
-            }
-            
-            @Override
-            public void drawScreen(GuiErrorScreen gui, FontRenderer fontRenderer, int mouseRelX, int mouseRelY, float tickTime) {
-                gui.drawDefaultBackground();
-                gui.drawCenteredString(fontRenderer, "Simply Jetpacks Error - CoFHLib Not Found", gui.width / 2, 85, 0xFF5555);
-                
-                gui.drawCenteredString(fontRenderer, "CoFHLib is not installed. Please install the latest version of CoFH Core,", gui.width / 2, 100, 0xFFFFFF);
-                gui.drawCenteredString(fontRenderer, "or the latest build of standalone CoFHLib.", gui.width / 2, 110, 0xFFFFFF);
-            }
-            
-        };
+        proxy.throwCoFHLibException();
     }
     
 }

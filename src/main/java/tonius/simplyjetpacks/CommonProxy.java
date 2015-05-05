@@ -29,4 +29,8 @@ public class CommonProxy {
     public void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
     }
     
+    public void throwCoFHLibException() {
+        throw new RuntimeException("CoFHLib is not installed. Please install the latest version of CoFH Core, or the latest build of standalone CoFHLib.");
+    }
+    
 }
