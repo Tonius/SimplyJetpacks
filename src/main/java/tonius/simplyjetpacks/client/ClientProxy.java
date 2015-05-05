@@ -85,7 +85,7 @@ public class ClientProxy extends CommonProxy {
                 gui.drawCenteredString(fontRenderer, "Simply Jetpacks Error - CoFHLib Not Found", gui.width / 2, 85, 0xFF5555);
                 
                 gui.drawCenteredString(fontRenderer, "CoFHLib is not installed. Please install the latest version of CoFH Core,", gui.width / 2, 100, 0xFFFFFF);
-                gui.drawCenteredString(fontRenderer, "or the latest build of standalone CoFHLib.", gui.width / 2, 110, 0xFFFFFF);
+                gui.drawCenteredString(fontRenderer, "or the latest version of standalone CoFHLib.", gui.width / 2, 110, 0xFFFFFF);
             }
             
         };

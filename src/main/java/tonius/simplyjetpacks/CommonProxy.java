@@ -30,7 +30,7 @@ public class CommonProxy {
     }
     
     public void throwCoFHLibException() {
-        throw new RuntimeException("CoFHLib is not installed. Please install the latest version of CoFH Core, or the latest build of standalone CoFHLib.");
+        throw new RuntimeException("CoFHLib is not installed. Please install the latest version of CoFH Core, or the latest version of standalone CoFHLib.");
     }
     
 }
