@@ -1,7 +1,5 @@
 package tonius.simplyjetpacks;
 
-import java.util.Iterator;
-
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 
@@ -16,8 +14,6 @@ import tonius.simplyjetpacks.setup.Packs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.ModAPIManager;
-import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -30,7 +26,7 @@ public class SimplyJetpacks {
     public static final String VERSION = "1.5.0";
     public static final String PREFIX = MODID + ".";
     public static final String RESOURCE_PREFIX = MODID + ":";
-    public static final String DEPENDENCIES = "required-after:Forge@[10.13.2.1291,);after:CoFHCore;after:ThermalExpansion;after:RedstoneArsenal;after:EnderIO;after:BuildCraft|Core";
+    public static final String DEPENDENCIES = "required-after:Forge@[10.13.2.1291,);after:ThermalExpansion;after:RedstoneArsenal;after:EnderIO;after:BuildCraft|Core";
     public static final String GUI_FACTORY = "tonius.simplyjetpacks.config.ConfigGuiFactory";
     
     @Instance(MODID)
@@ -66,16 +62,15 @@ public class SimplyJetpacks {
     }
     
     private static void checkCoFHLib() {
-        Iterable<? extends ModContainer> list = ModAPIManager.INSTANCE.getAPIList();
-        for (Iterator<? extends ModContainer> itr = list.iterator(); itr.hasNext();) {
-            ModContainer api = itr.next();
-            if (api.getName().equals("API: CoFHLib")) {
-                logger.info("Successfully found CoFHLib");
-                return;
-            }
+        try {
+            Class.forName("cofh.lib.util.helpers.FireworksHelper$Explosion");
+            logger.info("Successfully found CoFHLib");
+            return;
+            
+        } catch (ClassNotFoundException e) {
+            logger.error("Could not find CoFHLib!");
+            proxy.throwCoFHLibException();
         }
-        logger.error("Could not find CoFHLib!");
-        proxy.throwCoFHLibException();
     }
     
 }
