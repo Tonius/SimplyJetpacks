@@ -35,10 +35,6 @@ jar {
     }
 }
 
-dependencies {
-    compile 'com.mod-buildcraft:buildcraft:6.4.+:dev'
-}
-
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
