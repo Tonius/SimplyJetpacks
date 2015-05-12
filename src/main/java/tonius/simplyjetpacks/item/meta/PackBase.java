@@ -4,6 +4,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -13,8 +15,11 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.model.PackModelType;
+import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.config.PackDefaults;
+import tonius.simplyjetpacks.integration.ModType;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.setup.ModKey;
@@ -223,6 +228,25 @@ public class PackBase {
     
     public ModKey[] getGuiControls() {
         return new ModKey[] { ModKey.TOGGLE_PRIMARY };
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister register, ModType modType) {
+        this.icon = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + this.getBaseName(true) + modType.suffix);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(ItemStack stack) {
+        if (this.icon != null) {
+            return this.icon;
+        }
+        return null;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, ModType modType) {
+        String flat = Config.enableArmor3DModels || this.armorModel == PackModelType.FLAT ? "" : ".flat";
+        return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + this.getBaseName(true) + modType.suffix + flat + ".png";
     }
     
     @SideOnly(Side.CLIENT)

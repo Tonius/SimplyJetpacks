@@ -27,7 +27,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import tonius.simplyjetpacks.SimplyJetpacks;
-import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.client.util.RenderUtils;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.GuiHandler;
@@ -185,18 +184,27 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
         for (T pack : this.packs.values()) {
-            pack.icon = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + pack.getBaseName(true) + this.modType.suffix);
+            pack.registerIcons(register, this.modType);
         }
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int damage) {
-        T pack = this.packs.get(damage);
-        if (pack != null && pack.icon != null) {
-            return pack.icon;
+    public IIcon getIcon(ItemStack stack, int pass) {
+        T pack = this.packs.get(stack.getItemDamage());
+        if (pack != null) {
+            IIcon icon = pack.getIcon(stack);
+            if (icon != null) {
+                return icon;
+            }
         }
-        return super.getIconFromDamage(damage);
+        return super.getIcon(stack, pass);
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean requiresMultipleRenderPasses() {
+        return true;
     }
     
     @Override
@@ -204,8 +212,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
         T pack = this.getPack(stack);
         if (pack != null) {
-            String flat = Config.enableArmor3DModels || pack.armorModel == PackModelType.FLAT ? "" : ".flat";
-            return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + pack.getBaseName(true) + this.modType.suffix + flat + ".png";
+            return pack.getArmorTexture(stack, entity, slot, this.modType);
         }
         return super.getArmorTexture(stack, entity, slot, type);
     }

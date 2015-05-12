@@ -116,6 +116,7 @@ public abstract class ModItems {
     public static ItemStack gemCrystalFlux = null;
     public static ItemStack plateFlux = null;
     public static ItemStack armorFluxPlate = null;
+    public static ItemStack enderiumUpgrade = null;
     public static ItemStack richSoularium = null;
     public static ItemStack reinforcedGliderWing = null;
     public static ItemStack unitFlightControlEmpty = null;
@@ -261,6 +262,9 @@ public abstract class ModItems {
                 plateFlux = components.addMetaItem(68, new MetaItem("plateFlux", "raReplacement", EnumRarity.uncommon), true, false);
                 armorFluxPlate = components.addMetaItem(69, new MetaItem("armorFluxPlate", "raReplacement", EnumRarity.uncommon), true, false);
             }
+            if (ModType.REDSTONE_ARMORY.isLoaded()) {
+                enderiumUpgrade = components.addMetaItem(59, new MetaItem("enderiumUpgrade", "enderiumUpgrade", EnumRarity.rare), true, false);
+            }
             
             armorPlatingTE1 = armorPlatings.addMetaItem(1, new MetaItem("armorPlating.te.1", null, EnumRarity.common), true, false);
             armorPlatingTE2 = armorPlatings.addMetaItem(2, new MetaItem("armorPlating.te.2", null, EnumRarity.common), true, false);
@@ -396,6 +400,10 @@ public abstract class ModItems {
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate != null ? RAItems.armorFluxPlate : armorFluxPlate, 'J', jetpackTE4Armored, 'O', unitCryotheum, 'C', fluxPackTE4Armored, 'T', thrusterTE5, 'P', RAItems.plateFlux != null ? RAItems.plateFlux : plateFlux));
             
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "J", "P", 'J', jetpackTE5, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+            
+            if (ModType.REDSTONE_ARMORY.isLoaded()) {
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "U", "J", 'J', jetpackTE5, 'U', enderiumUpgrade));
+            }
         }
         
         if (eioAvailable) {

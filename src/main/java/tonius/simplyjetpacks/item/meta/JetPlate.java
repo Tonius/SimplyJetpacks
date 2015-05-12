@@ -2,10 +2,17 @@ package tonius.simplyjetpacks.item.meta;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tonius.simplyjetpacks.SimplyJetpacks;
+import tonius.simplyjetpacks.client.model.PackModelType;
+import tonius.simplyjetpacks.config.Config;
+import tonius.simplyjetpacks.integration.ModType;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.util.NBTHelper;
@@ -17,6 +24,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class JetPlate extends Jetpack {
     
     protected static final String TAG_CHARGER_ON = "JetPlateChargerOn";
+    protected static final String TAG_ENDERIUM_UPGRADE = "JetPlateEnderiumUpgrade";
+    
+    public IIcon iconEnderium;
     
     public JetPlate(int tier, EnumRarity rarity, String defaultConfigKey) {
         super(tier, rarity, defaultConfigKey);
@@ -32,6 +42,11 @@ public class JetPlate extends Jetpack {
         }
     }
     
+    @Override
+    public void toggleSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
+        this.toggleCharger(stack, player, showInChat);
+    }
+    
     public boolean isChargerOn(ItemStack stack) {
         return NBTHelper.getNBTBoolean(stack, TAG_CHARGER_ON, true);
     }
@@ -40,9 +55,12 @@ public class JetPlate extends Jetpack {
         this.toggleState(this.isChargerOn(stack), stack, "jetplate.charger", TAG_CHARGER_ON, player, showInChat);
     }
     
-    @Override
-    public void toggleSecondary(ItemStack stack, EntityPlayer player, boolean showInChat) {
-        this.toggleCharger(stack, player, showInChat);
+    public boolean hasEnderiumUpgrade(ItemStack stack) {
+        return NBTHelper.getNBTBoolean(stack, TAG_ENDERIUM_UPGRADE, false);
+    }
+    
+    public void setEnderiumUpgrade(ItemStack stack, boolean enderUpgrade) {
+        NBTHelper.getNBT(stack).setBoolean(TAG_ENDERIUM_UPGRADE, enderUpgrade);
     }
     
     @Override
@@ -52,6 +70,36 @@ public class JetPlate extends Jetpack {
         } else {
             return new ModKey[] { ModKey.TOGGLE_PRIMARY, ModKey.MODE_PRIMARY, ModKey.TOGGLE_SECONDARY };
         }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister register, ModType modType) {
+        super.registerIcons(register, modType);
+        if (modType != ModType.THERMAL_EXPANSION) {
+            return;
+        }
+        this.iconEnderium = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + this.getBaseName(true) + modType.suffix + ".enderium");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(ItemStack stack) {
+        if (this.hasEnderiumUpgrade(stack)) {
+            return this.iconEnderium;
+        }
+        return super.getIcon(stack);
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, ModType modType) {
+        if (modType != ModType.THERMAL_EXPANSION) {
+            return super.getArmorTexture(stack, entity, slot, modType);
+        }
+        String flat = Config.enableArmor3DModels || this.armorModel == PackModelType.FLAT ? "" : ".flat";
+        String enderium = this.hasEnderiumUpgrade(stack) ? ".enderium" : "";
+        return SimplyJetpacks.RESOURCE_PREFIX + "textures/armor/" + this.getBaseName(true) + modType.suffix + enderium + flat + ".png";
     }
     
     @Override

@@ -64,6 +64,7 @@ item.simplyjetpacks.richSoularium.name=Enriched Soularium Alloy
 item.simplyjetpacks.reinforcedGliderWing.name=Reinforced Glider Wing
 item.simplyjetpacks.unitFlightControl.empty.name=Flight Control Unit (Empty)
 item.simplyjetpacks.unitFlightControl.name=Flight Control Unit
+item.simplyjetpacks.enderiumUpgrade.name=Enderium Flux Upgrade
 
 item.simplyjetpacks.dustElectrumFlux.name=Fluxed Electrum Blend
 item.simplyjetpacks.ingotElectrumFlux.name=Fluxed Electrum Ingot
@@ -141,6 +142,9 @@ simplyjetpacks.tooltip.mysteriousPotato.description=Can do the thing
 simplyjetpacks.tooltip.raReplacement.description.1=Redstone Arsenal is not installed.
 simplyjetpacks.tooltip.raReplacement.description.2=So instead, have this blatant rip-off
 simplyjetpacks.tooltip.raReplacement.description.3=of one if its items.
+simplyjetpacks.tooltip.enderiumUpgrade.description.1=Cosmetic
+simplyjetpacks.tooltip.enderiumUpgrade.description.2=Makes a Flux-Infused JetPlate look like
+simplyjetpacks.tooltip.enderiumUpgrade.description.3=an Enderium Flux armor piece.
 
 simplyjetpacks.gui.hud.jetpack.fuel=Jetpack fuel
 simplyjetpacks.gui.hud.fluxpack.fuel=Flux Pack energy
