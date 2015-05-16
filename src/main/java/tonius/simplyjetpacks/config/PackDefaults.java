@@ -132,8 +132,8 @@ public class PackDefaults {
             d.emergencyHoverMode = true;
             
             d = new PackDefaults("jetpackTE5", "Flux-Infused JetPlate (TE 5)");
-            d.fuelCapacity = 80000000;
-            d.fuelUsage = 800;
+            d.fuelCapacity = 60000000;
+            d.fuelUsage = 850;
             d.fuelPerTickIn = 200000;
             d.fuelPerTickOut = 32000;
             d.armorReduction = 12;
@@ -245,8 +245,8 @@ public class PackDefaults {
             d.emergencyHoverMode = true;
             
             d = new PackDefaults("jetpackEIO5", "Dark Soularium JetPlate (EIO 5)");
-            d.fuelCapacity = 80000000;
-            d.fuelUsage = 800;
+            d.fuelCapacity = 60000000;
+            d.fuelUsage = 850;
             d.fuelPerTickIn = 200000;
             d.fuelPerTickOut = 32000;
             d.armorReduction = 12;
