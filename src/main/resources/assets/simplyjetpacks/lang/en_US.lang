@@ -133,6 +133,7 @@ simplyjetpacks.tooltip.fluxpack.description.1=Charges armor and held items when 
 simplyjetpacks.tooltip.fluxpack.description.2=Must be worn as a chestplate.
 simplyjetpacks.tooltip.jetplate.description.1=Allows flight and can charge items when active.
 simplyjetpacks.tooltip.jetplate.description.2=Must be worn as a chestplate.
+simplyjetpacks.tooltip.jetplate.dank="JetPlates can't melt Dark Steel!"
 simplyjetpacks.tooltip.particleCustomizers.description.1=Used to customize a jetpack's particles.
 simplyjetpacks.tooltip.particleCustomizers.description.2=Craft with a jetpack to apply.
 simplyjetpacks.tooltip.jetpackFueller.description.1=Fuels worn jetpacks by pulling fuel

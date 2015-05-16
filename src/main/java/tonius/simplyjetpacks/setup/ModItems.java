@@ -402,6 +402,7 @@ public abstract class ModItems {
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "J", "P", 'J', jetpackTE5, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
             
             if (ModType.REDSTONE_ARMORY.isLoaded()) {
+                ItemHelper.addGearRecipe(enderiumUpgrade, "ingotEnderium", "slimeball");
                 GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "U", "J", 'J', jetpackTE5, 'U', enderiumUpgrade));
             }
         }

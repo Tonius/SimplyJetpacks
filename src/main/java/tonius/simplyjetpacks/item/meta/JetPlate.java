@@ -105,6 +105,16 @@ public class JetPlate extends Jetpack {
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
+    public void addInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
+        super.addInformation(stack, item, player, list);
+        if (StringHelper.isControlKeyDown()) {
+            list.add(StringHelper.GRAY + SJStringHelper.localize("tooltip.jetplate.dank"));
+        }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(SJStringHelper.getStateText(this.isOn(stack)));
         list.add(SJStringHelper.getHoverModeText(this.isHoverModeOn(stack)));
