@@ -265,6 +265,20 @@ public class PackBase {
     }
     
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
+    public void addSubItems(ItemPack item, int meta, List list) {
+        if (!this.showInCreativeTab) {
+            return;
+        }
+        if (this.showEmptyInCreativeTab) {
+            list.add(new ItemStack(item, 1, meta));
+        }
+        ItemStack full = new ItemStack(item, 1, meta);
+        item.addFuel(full, item.getMaxFuelStored(full), false);
+        list.add(full);
+    }
+    
+    @SideOnly(Side.CLIENT)
     public String getHUDFuelInfo(ItemStack stack, ItemPack item) {
         int fuel = item.getFuelStored(stack);
         int maxFuel = item.getMaxFuelStored(stack);

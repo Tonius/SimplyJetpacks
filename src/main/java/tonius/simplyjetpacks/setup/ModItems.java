@@ -145,11 +145,11 @@ public abstract class ModItems {
     private static boolean bcAvailable = false;
     
     public static void preInit() {
-        teAvailable = ModType.THERMAL_EXPANSION.isLoaded() && Config.enableIntegrationTE;
-        tdAvailable = ModType.THERMAL_DYNAMICS.isLoaded() && teAvailable;
-        raAvailable = ModType.REDSTONE_ARSENAL.isLoaded() && teAvailable;
-        eioAvailable = ModType.ENDER_IO.isLoaded() && Config.enableIntegrationEIO;
-        bcAvailable = ModType.BUILDCRAFT.isLoaded() && Config.enableIntegrationBC;
+        teAvailable = ModType.THERMAL_EXPANSION.loaded && Config.enableIntegrationTE;
+        tdAvailable = ModType.THERMAL_DYNAMICS.loaded && teAvailable;
+        raAvailable = ModType.REDSTONE_ARSENAL.loaded && teAvailable;
+        eioAvailable = ModType.ENDER_IO.loaded && Config.enableIntegrationEIO;
+        bcAvailable = ModType.BUILDCRAFT.loaded && Config.enableIntegrationBC;
         
         constructItems();
         registerItems();
@@ -262,7 +262,7 @@ public abstract class ModItems {
                 plateFlux = components.addMetaItem(68, new MetaItem("plateFlux", "raReplacement", EnumRarity.uncommon), true, false);
                 armorFluxPlate = components.addMetaItem(69, new MetaItem("armorFluxPlate", "raReplacement", EnumRarity.uncommon), true, false);
             }
-            if (ModType.REDSTONE_ARMORY.isLoaded()) {
+            if (ModType.REDSTONE_ARMORY.loaded) {
                 enderiumUpgrade = components.addMetaItem(59, new MetaItem("enderiumUpgrade", "enderiumUpgrade", EnumRarity.rare), true, false);
             }
             
@@ -401,7 +401,7 @@ public abstract class ModItems {
             
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "J", "P", 'J', jetpackTE5, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
             
-            if (ModType.REDSTONE_ARMORY.isLoaded()) {
+            if (ModType.REDSTONE_ARMORY.loaded) {
                 ItemHelper.addGearRecipe(enderiumUpgrade, "ingotEnderium", "slimeball");
                 GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "U", "J", 'J', jetpackTE5, 'U', enderiumUpgrade));
             }

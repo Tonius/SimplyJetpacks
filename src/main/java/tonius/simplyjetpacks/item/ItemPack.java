@@ -169,14 +169,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     @SuppressWarnings("unchecked")
     public void getSubItems(Item item, CreativeTabs tab, List list) {
         for (Entry<Integer, T> e : this.packs.entrySet()) {
-            if (e.getValue().showInCreativeTab) {
-                if (e.getValue().showEmptyInCreativeTab) {
-                    list.add(new ItemStack(this, 1, e.getKey()));
-                }
-                ItemStack full = new ItemStack(this, 1, e.getKey());
-                this.addFuel(full, this.getMaxFuelStored(full), false);
-                list.add(full);
-            }
+            e.getValue().addSubItems(this, e.getKey(), list);
         }
     }
     

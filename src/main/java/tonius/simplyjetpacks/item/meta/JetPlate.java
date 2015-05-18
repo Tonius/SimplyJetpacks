@@ -76,7 +76,7 @@ public class JetPlate extends Jetpack {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register, ModType modType) {
         super.registerIcons(register, modType);
-        if (modType != ModType.THERMAL_EXPANSION) {
+        if (modType != ModType.THERMAL_EXPANSION || !ModType.REDSTONE_ARMORY.loaded) {
             return;
         }
         this.iconEnderium = register.registerIcon(SimplyJetpacks.RESOURCE_PREFIX + this.getBaseName(true) + modType.suffix + ".enderium");
@@ -85,7 +85,7 @@ public class JetPlate extends Jetpack {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(ItemStack stack) {
-        if (this.hasEnderiumUpgrade(stack)) {
+        if (this.iconEnderium != null && this.hasEnderiumUpgrade(stack)) {
             return this.iconEnderium;
         }
         return super.getIcon(stack);
@@ -94,7 +94,7 @@ public class JetPlate extends Jetpack {
     @Override
     @SideOnly(Side.CLIENT)
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, ModType modType) {
-        if (modType != ModType.THERMAL_EXPANSION) {
+        if (modType != ModType.THERMAL_EXPANSION || !ModType.REDSTONE_ARMORY.loaded) {
             return super.getArmorTexture(stack, entity, slot, modType);
         }
         String flat = Config.enableArmor3DModels || this.armorModel == PackModelType.FLAT ? "" : ".flat";
@@ -125,6 +125,26 @@ public class JetPlate extends Jetpack {
         list.add(SJStringHelper.getChargerRateText(this.fuelPerTickOut));
         list.add(SJStringHelper.getParticlesText(this.getParticleType(stack)));
         SJStringHelper.addDescriptionLines(list, "jetplate", StringHelper.BRIGHT_GREEN);
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
+    public void addSubItems(ItemPack item, int meta, List list) {
+        super.addSubItems(item, meta, list);
+        if (!this.showInCreativeTab || item.modType != ModType.THERMAL_EXPANSION || !ModType.REDSTONE_ARMORY.loaded) {
+            return;
+        }
+        ItemStack stack;
+        if (this.showEmptyInCreativeTab) {
+            stack = new ItemStack(item, 1, meta);
+            this.setEnderiumUpgrade(stack, true);
+            list.add(stack);
+        }
+        stack = new ItemStack(item, 1, meta);
+        this.setEnderiumUpgrade(stack, true);
+        item.addFuel(stack, item.getMaxFuelStored(stack), false);
+        list.add(stack);
     }
     
     @Override

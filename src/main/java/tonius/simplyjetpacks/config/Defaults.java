@@ -9,9 +9,9 @@ public abstract class Defaults {
     public static final boolean flammableFluidsExplode = false;
     
     // integration
-    public static final boolean enableIntegrationTE = ModType.THERMAL_EXPANSION.isLoaded();
-    public static final boolean enableIntegrationEIO = ModType.ENDER_IO.isLoaded() && !enableIntegrationTE;
-    public static final boolean enableIntegrationBC = ModType.BUILDCRAFT.isLoaded() && !enableIntegrationTE && !enableIntegrationEIO;
+    public static final boolean enableIntegrationTE = ModType.THERMAL_EXPANSION.loaded;
+    public static final boolean enableIntegrationEIO = ModType.ENDER_IO.loaded && !enableIntegrationTE;
+    public static final boolean enableIntegrationBC = ModType.BUILDCRAFT.loaded && !enableIntegrationTE && !enableIntegrationEIO;
     
     // controls
     public static final boolean customControls = false;

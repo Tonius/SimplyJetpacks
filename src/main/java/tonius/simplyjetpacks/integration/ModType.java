@@ -15,19 +15,19 @@ public enum ModType {
     
     public final String suffix;
     public final String[] modids;
+    public final boolean loaded;
     
     private ModType(String suffix, String... modids) {
         this.suffix = suffix;
         this.modids = modids;
-    }
-    
-    public boolean isLoaded() {
+        
         for (String s : this.modids) {
             if (!Loader.isModLoaded(s)) {
-                return false;
+                this.loaded = false;
+                return;
             }
         }
-        return true;
+        this.loaded = true;
     }
     
 }

@@ -62,7 +62,7 @@ public class Packs {
         jetpackCreative = (Jetpack) new JetPlate(9001, EnumRarity.epic, "jetpackCreative").setDefaultParticleType(ParticleType.RAINBOW_SMOKE).setUsesFuel(false).setHasFuelIndicator(false).setShowEmptyInCreativeTab(false);
         fluxPackCreative = (FluxPack) new FluxPack(9001, EnumRarity.epic, "fluxPackCreative").setUsesFuel(false).setHasFuelIndicator(false).setShowEmptyInCreativeTab(false).setIsArmored(true).setShowArmored(false);
         
-        if (ModType.THERMAL_EXPANSION.isLoaded()) {
+        if (ModType.THERMAL_EXPANSION.loaded) {
             jetpackTE1 = new Jetpack(1, EnumRarity.common, "jetpackTE1");
             jetpackTE1Armored = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackTE1").setIsArmored(true).setPlatingMeta(1);
             jetpackTE2 = new Jetpack(2, EnumRarity.common, "jetpackTE2");
@@ -81,7 +81,7 @@ public class Packs {
             fluxPackTE4Armored = (FluxPack) new FluxPack(4, EnumRarity.rare, "fluxPackTE4").setIsArmored(true).setPlatingMeta(3);
         }
         
-        if (ModType.ENDER_IO.isLoaded()) {
+        if (ModType.ENDER_IO.loaded) {
             jetpackEIO1 = new Jetpack(1, EnumRarity.common, "jetpackEIO1");
             jetpackEIO1Armored = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackEIO1").setIsArmored(true).setPlatingMeta(11);
             jetpackEIO2 = new Jetpack(2, EnumRarity.common, "jetpackEIO2");
@@ -100,7 +100,7 @@ public class Packs {
             fluxPackEIO4Armored = (FluxPack) new FluxPack(4, EnumRarity.rare, "fluxPackEIO4").setIsArmored(true).setPlatingMeta(13);
         }
         
-        if (ModType.BUILDCRAFT.isLoaded()) {
+        if (ModType.BUILDCRAFT.loaded) {
             boolean energyLoaded = Loader.isModLoaded("BuildCraft|Energy");
             if (energyLoaded) {
                 jetpackBC1 = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel");

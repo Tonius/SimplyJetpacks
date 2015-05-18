@@ -66,7 +66,7 @@ public class PackDefaults {
         d.armorReduction = 8;
         d.enchantability = 10;
         
-        if (ModType.THERMAL_EXPANSION.isLoaded()) {
+        if (ModType.THERMAL_EXPANSION.loaded) {
             d = new PackDefaults("jetpackTE1", "Leadstone Jetpack (TE 1)");
             d.fuelCapacity = 80000;
             d.fuelUsage = 32;
@@ -179,7 +179,7 @@ public class PackDefaults {
             d.enchantability = 10;
         }
         
-        if (ModType.ENDER_IO.isLoaded()) {
+        if (ModType.ENDER_IO.loaded) {
             d = new PackDefaults("jetpackEIO1", "Conductive Iron Jetpack (EIO 1)");
             d.fuelCapacity = 80000;
             d.fuelUsage = 32;
@@ -292,7 +292,7 @@ public class PackDefaults {
             d.enchantability = 10;
         }
         
-        if (ModType.BUILDCRAFT.isLoaded()) {
+        if (ModType.BUILDCRAFT.loaded) {
             if (Loader.isModLoaded("BuildCraft|Energy")) {
                 d = new PackDefaults("jetpackBC1", "Combustion Jetpack (BC 1)");
                 d.fuelCapacity = 20000;
