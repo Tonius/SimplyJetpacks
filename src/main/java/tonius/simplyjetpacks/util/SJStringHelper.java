@@ -25,7 +25,7 @@ public abstract class SJStringHelper {
     
     public static String getFuelText(FuelType fuelType, int amount, int max, boolean infinite) {
         if (infinite) {
-            return StringHelper.LIGHT_GRAY + localize("tooltip.fuel.infinite");
+            return StringHelper.LIGHT_GRAY + localize("tooltip.fuel.infinite." + fuelType.toString().toLowerCase());
         }
         return StringHelper.LIGHT_GRAY + getFormattedNumber(amount) + " / " + getFormattedNumber(max) + fuelType.suffix;
     }
