@@ -33,12 +33,12 @@ public abstract class BCItems {
             pipeEnergyGold = "dustRedstone";
         }
         
-        Block engine = GameRegistry.findBlock("BuildCraft|Core", "engineBlock");
-        if (Loader.isModLoaded("BuildCraft|Energy") && engine == null) {
-            engine = GameRegistry.findBlock("BuildCraft|Energy", "engineBlock");
-        }
-        
-        if (engine != null) {
+        if (Loader.isModLoaded("BuildCraft|Energy")) {
+            Block engine = GameRegistry.findBlock("BuildCraft|Core", "engineBlock");
+            if (engine == null) {
+                engine = GameRegistry.findBlock("BuildCraft|Energy", "engineBlock");
+            }
+            
             engineCombustion = new ItemStack(engine, 1, 2);
         } else {
             engineCombustion = "gearIron";

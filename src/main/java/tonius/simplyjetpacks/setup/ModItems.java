@@ -227,7 +227,7 @@ public abstract class ModItems {
         }
         if (bcAvailable) {
             jetpacksBC = new ItemJetpack(ModType.BUILDCRAFT);
-            if (Loader.isModLoaded("BuildCraft|Energy")) {
+            if (Loader.isModLoaded("BuildCraft|Energy") && Loader.isModLoaded("BuildCraft|Factory")) {
                 jetpackBC1 = jetpacksBC.putPack(1, Packs.jetpackBC1);
                 jetpackBC1Armored = jetpacksBC.putPack(101, Packs.jetpackBC1Armored);
             }
@@ -288,7 +288,7 @@ public abstract class ModItems {
             armorPlatingEIO4 = armorPlatings.addMetaItem(14, new MetaItem("armorPlating.eio.4", null, EnumRarity.common), true, false);
         }
         if (bcAvailable) {
-            if (Loader.isModLoaded("BuildCraft|Energy")) {
+            if (Loader.isModLoaded("BuildCraft|Energy") && Loader.isModLoaded("BuildCraft|Factory")) {
                 thrusterBC1 = components.addMetaItem(31, new MetaItem("thruster.bc.1", null, EnumRarity.common), true, false);
             }
             thrusterBC2 = components.addMetaItem(32, new MetaItem("thruster.bc.2", null, EnumRarity.uncommon), true, false);
@@ -463,7 +463,7 @@ public abstract class ModItems {
             ItemHelper.addShapedOreRecipe(armorPlatingBC1, /* listen here u */"LIL"/* shit */, "ILI", "LIL", 'I', "ingotIron", 'L', Items.leather);
             ItemHelper.addSurroundRecipe(armorPlatingBC2, armorPlatingBC1, "gemDiamond");
             
-            if (Loader.isModLoaded("BuildCraft|Energy")) {
+            if (jetpackBC1 != null) {
                 ItemHelper.addShapedOreRecipe(thrusterBC1, "IGI", "PEP", "IBI", 'I', "ingotIron", 'G', "gearIron", 'P', BCItems.pipeFluidStone, 'E', BCItems.engineCombustion, 'B', Blocks.iron_bars);
                 
                 GameRegistry.addRecipe(new UpgradingRecipe(jetpackBC1, "IBI", "IJI", "T T", 'I', "ingotIron", 'B', BCItems.tank, 'T', thrusterBC1, 'J', leatherStrap));

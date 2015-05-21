@@ -72,6 +72,7 @@ public class ClientProxy extends CommonProxy {
     }
     
     @Override
+    @SuppressWarnings("serial")
     public void throwCoFHLibException() {
         throw new CustomModLoadingErrorDisplayException() {
             

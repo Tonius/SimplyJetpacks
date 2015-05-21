@@ -101,13 +101,13 @@ public class Packs {
         }
         
         if (ModType.BUILDCRAFT.loaded) {
-            boolean energyLoaded = Loader.isModLoaded("BuildCraft|Energy");
-            if (energyLoaded) {
+            boolean energyFactoryLoaded = Loader.isModLoaded("BuildCraft|Energy") && Loader.isModLoaded("BuildCraft|Factory");
+            if (energyFactoryLoaded) {
                 jetpackBC1 = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel");
                 jetpackBC1Armored = (Jetpack) new Jetpack(1, EnumRarity.common, "jetpackBC1").setFuelFluid("fuel").setIsArmored(true).setPlatingMeta(21);
             }
-            jetpackBC2 = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setShowTier(energyLoaded);
-            jetpackBC2Armored = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setIsArmored(true).setPlatingMeta(22).setShowTier(energyLoaded);
+            jetpackBC2 = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setShowTier(energyFactoryLoaded);
+            jetpackBC2Armored = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setIsArmored(true).setPlatingMeta(22).setShowTier(energyFactoryLoaded);
         }
     }
     

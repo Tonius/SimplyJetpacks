@@ -293,7 +293,7 @@ public class PackDefaults {
         }
         
         if (ModType.BUILDCRAFT.loaded) {
-            if (Loader.isModLoaded("BuildCraft|Energy")) {
+            if (Loader.isModLoaded("BuildCraft|Energy") && Loader.isModLoaded("BuildCraft|Factory")) {
                 d = new PackDefaults("jetpackBC1", "Combustion Jetpack (BC 1)");
                 d.fuelCapacity = 20000;
                 d.fuelUsage = 2;
