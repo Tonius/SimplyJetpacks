@@ -18,6 +18,7 @@ public abstract class Defaults {
     public static final String flyKey = "SPACE";
     public static final String descendKey = "LSHIFT";
     public static final boolean invertHoverSneakingBehavior = false;
+    public static final boolean doubleTapSprintInAir = true;
     
     // aesthetics
     public static final boolean enableArmor3DModels = true;

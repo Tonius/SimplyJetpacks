@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.audio.SoundJetpack;
 import tonius.simplyjetpacks.config.Config;
@@ -21,27 +22,38 @@ public class ClientTickHandler {
     
     private static final Minecraft mc = Minecraft.getMinecraft();
     private static ParticleType lastJetpackState = null;
+    private static boolean wearingJetpack = false;
+    private static boolean sprintKeyCheck = false;
     
     private static void tickStart() {
-        if (mc.thePlayer != null) {
-            ParticleType jetpackState = null;
-            ItemStack armor = mc.thePlayer.getEquipmentInSlot(3);
-            if (armor != null && armor.getItem() instanceof ItemJetpack) {
-                Jetpack jetpack = ((ItemJetpack) armor.getItem()).getPack(armor);
-                if (jetpack != null) {
-                    jetpackState = jetpack.getDisplayParticleType(armor, (ItemJetpack) armor.getItem(), mc.thePlayer);
-                }
+        if (mc.thePlayer == null) {
+            return;
+        }
+        
+        ParticleType jetpackState = null;
+        ItemStack armor = mc.thePlayer.getEquipmentInSlot(3);
+        if (armor != null && armor.getItem() instanceof ItemJetpack) {
+            Jetpack jetpack = ((ItemJetpack) armor.getItem()).getPack(armor);
+            if (jetpack != null) {
+                jetpackState = jetpack.getDisplayParticleType(armor, (ItemJetpack) armor.getItem(), mc.thePlayer);
             }
-            
-            if (jetpackState != lastJetpackState) {
-                lastJetpackState = jetpackState;
-                SyncHandler.processJetpackUpdate(mc.thePlayer.getEntityId(), jetpackState);
-            }
+            wearingJetpack = true;
+        } else {
+            wearingJetpack = false;
+        }
+        
+        if (jetpackState != lastJetpackState) {
+            lastJetpackState = jetpackState;
+            SyncHandler.processJetpackUpdate(mc.thePlayer.getEntityId(), jetpackState);
         }
     }
     
     private static void tickEnd() {
-        if (mc.thePlayer != null && mc.theWorld != null && !mc.isGamePaused()) {
+        if (mc.thePlayer == null || mc.theWorld == null) {
+            return;
+        }
+        
+        if (!mc.isGamePaused()) {
             Iterator<Integer> itr = SyncHandler.getJetpackStates().keySet().iterator();
             int currentEntity;
             while (itr.hasNext()) {
@@ -64,6 +76,29 @@ public class ClientTickHandler {
                     }
                 }
             }
+        }
+        
+        if (sprintKeyCheck && mc.thePlayer.movementInput.moveForward < 1.0F) {
+            sprintKeyCheck = false;
+        }
+        
+        if (!Config.doubleTapSprintInAir || !wearingJetpack || mc.thePlayer.onGround || mc.thePlayer.isSprinting() || mc.thePlayer.isUsingItem() || mc.thePlayer.isPotionActive(Potion.blindness)) {
+            return;
+        }
+        
+        boolean flag = mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying;
+        
+        if (mc.thePlayer.movementInput.moveForward >= 1.0F && flag) {
+            if (mc.thePlayer.sprintToggleTimer <= 0 && !mc.gameSettings.keyBindSprint.getIsKeyPressed()) {
+                mc.thePlayer.sprintToggleTimer = 7;
+                sprintKeyCheck = true;
+            } else if (!sprintKeyCheck) {
+                mc.thePlayer.setSprinting(true);
+            }
+        }
+        
+        if (mc.thePlayer.isSprinting() && (mc.thePlayer.isCollidedHorizontally || !flag)) {
+            mc.thePlayer.setSprinting(false);
         }
     }
     

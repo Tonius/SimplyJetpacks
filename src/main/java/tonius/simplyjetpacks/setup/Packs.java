@@ -14,49 +14,6 @@ import cpw.mods.fml.common.Loader;
  */
 public class Packs {
     
-    public static Jetpack jetpackPotato;
-    public static Jetpack jetpackCreative;
-    public static FluxPack fluxPackCreative;
-    
-    public static Jetpack jetpackTE1;
-    public static Jetpack jetpackTE1Armored;
-    public static Jetpack jetpackTE2;
-    public static Jetpack jetpackTE2Armored;
-    public static Jetpack jetpackTE3;
-    public static Jetpack jetpackTE3Armored;
-    public static Jetpack jetpackTE4;
-    public static Jetpack jetpackTE4Armored;
-    public static Jetpack jetpackTE5;
-    public static FluxPack fluxPackTE1;
-    public static FluxPack fluxPackTE2;
-    public static FluxPack fluxPackTE2Armored;
-    public static FluxPack fluxPackTE3;
-    public static FluxPack fluxPackTE3Armored;
-    public static FluxPack fluxPackTE4;
-    public static FluxPack fluxPackTE4Armored;
-    
-    public static Jetpack jetpackEIO1;
-    public static Jetpack jetpackEIO1Armored;
-    public static Jetpack jetpackEIO2;
-    public static Jetpack jetpackEIO2Armored;
-    public static Jetpack jetpackEIO3;
-    public static Jetpack jetpackEIO3Armored;
-    public static Jetpack jetpackEIO4;
-    public static Jetpack jetpackEIO4Armored;
-    public static Jetpack jetpackEIO5;
-    public static FluxPack fluxPackEIO1;
-    public static FluxPack fluxPackEIO2;
-    public static FluxPack fluxPackEIO2Armored;
-    public static FluxPack fluxPackEIO3;
-    public static FluxPack fluxPackEIO3Armored;
-    public static FluxPack fluxPackEIO4;
-    public static FluxPack fluxPackEIO4Armored;
-    
-    public static Jetpack jetpackBC1;
-    public static Jetpack jetpackBC1Armored;
-    public static Jetpack jetpackBC2;
-    public static Jetpack jetpackBC2Armored;
-    
     public static void preInit() {
         jetpackPotato = new JetpackPotato(0, EnumRarity.common, "jetpackPotato");
         jetpackCreative = (Jetpack) new JetPlate(9001, EnumRarity.epic, "jetpackCreative").setDefaultParticleType(ParticleType.RAINBOW_SMOKE).setUsesFuel(false).setHasFuelIndicator(false).setShowEmptyInCreativeTab(false);
@@ -110,5 +67,48 @@ public class Packs {
             jetpackBC2Armored = (Jetpack) new Jetpack(2, EnumRarity.uncommon, "jetpackBC2").setIsArmored(true).setPlatingMeta(22).setShowTier(energyFactoryLoaded);
         }
     }
+    
+    public static Jetpack jetpackPotato;
+    public static Jetpack jetpackCreative;
+    public static FluxPack fluxPackCreative;
+    
+    public static Jetpack jetpackTE1;
+    public static Jetpack jetpackTE1Armored;
+    public static Jetpack jetpackTE2;
+    public static Jetpack jetpackTE2Armored;
+    public static Jetpack jetpackTE3;
+    public static Jetpack jetpackTE3Armored;
+    public static Jetpack jetpackTE4;
+    public static Jetpack jetpackTE4Armored;
+    public static Jetpack jetpackTE5;
+    public static FluxPack fluxPackTE1;
+    public static FluxPack fluxPackTE2;
+    public static FluxPack fluxPackTE2Armored;
+    public static FluxPack fluxPackTE3;
+    public static FluxPack fluxPackTE3Armored;
+    public static FluxPack fluxPackTE4;
+    public static FluxPack fluxPackTE4Armored;
+    
+    public static Jetpack jetpackEIO1;
+    public static Jetpack jetpackEIO1Armored;
+    public static Jetpack jetpackEIO2;
+    public static Jetpack jetpackEIO2Armored;
+    public static Jetpack jetpackEIO3;
+    public static Jetpack jetpackEIO3Armored;
+    public static Jetpack jetpackEIO4;
+    public static Jetpack jetpackEIO4Armored;
+    public static Jetpack jetpackEIO5;
+    public static FluxPack fluxPackEIO1;
+    public static FluxPack fluxPackEIO2;
+    public static FluxPack fluxPackEIO2Armored;
+    public static FluxPack fluxPackEIO3;
+    public static FluxPack fluxPackEIO3Armored;
+    public static FluxPack fluxPackEIO4;
+    public static FluxPack fluxPackEIO4Armored;
+    
+    public static Jetpack jetpackBC1;
+    public static Jetpack jetpackBC1Armored;
+    public static Jetpack jetpackBC2;
+    public static Jetpack jetpackBC2Armored;
     
 }

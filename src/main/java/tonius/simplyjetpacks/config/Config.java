@@ -38,6 +38,7 @@ public class Config {
     public static String flyKey = Defaults.flyKey;
     public static String descendKey = Defaults.descendKey;
     public static boolean invertHoverSneakingBehavior = Defaults.invertHoverSneakingBehavior;
+    public static boolean doubleTapSprintInAir = Defaults.doubleTapSprintInAir;
     
     // aesthetics
     public static boolean enableArmor3DModels = Defaults.enableArmor3DModels;
@@ -98,6 +99,7 @@ public class Config {
         flyKey = configClient.get(sectionControls.name, "Custom Fly key", Defaults.flyKey, "The name of the Fly key when custom controls are enabled.").getString();
         descendKey = configClient.get(sectionControls.name, "Custom Descend key", Defaults.descendKey, "The name of the Descend key when custom controls are enabled.").getString();
         invertHoverSneakingBehavior = configClient.get(sectionControls.name, "Invert Hover Mode sneaking behavior", Defaults.invertHoverSneakingBehavior, "Invert Hover Mode sneaking behavior").getBoolean(Defaults.invertHoverSneakingBehavior);
+        doubleTapSprintInAir = configClient.get(sectionControls.name, "Allow double-tap sprinting while flying", Defaults.doubleTapSprintInAir, "When enabled, sprinting by double-tapping the forward key will work while flying with a jetpack. Can be used as an easier way to activate a jetpack's boost while airborne (the sprint key also works).").getBoolean(Defaults.doubleTapSprintInAir);
         
         enableArmor3DModels = configClient.get(sectionAesthetics.name, "Enable Armor 3D Models", Defaults.enableArmor3DModels, "When enabled, worn jetpacks and flux packs will have a 3D armor model. Otherwise, flat textures will be used.").getBoolean(Defaults.enableArmor3DModels);
         

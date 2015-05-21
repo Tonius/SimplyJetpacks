@@ -32,112 +32,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class ModItems {
     
-    public static ItemJetpack jetpacksCommon = null;
-    public static ItemFluxPack fluxPacksCommon = null;
-    
-    public static ItemJetpack jetpacksTE = null;
-    public static ItemFluxPack fluxPacksTE = null;
-    
-    public static ItemJetpack jetpacksEIO = null;
-    public static ItemFluxPack fluxPacksEIO = null;
-    
-    public static ItemJetpack jetpacksBC = null;
-    
-    public static ItemMeta components = null;
-    public static ItemMeta armorPlatings = null;
-    public static ItemMeta particleCustomizers = null;
-    public static ItemJetpackFueller jetpackFueller = null;
-    public static ItemMysteriousPotato mysteriousPotato = null;
-    
-    public static ItemStack jetpackPotato = null;
-    public static ItemStack jetpackCreative = null;
-    public static ItemStack fluxPackCreative = null;
-    
-    public static ItemStack jetpackTE1 = null;
-    public static ItemStack jetpackTE1Armored = null;
-    public static ItemStack jetpackTE2 = null;
-    public static ItemStack jetpackTE2Armored = null;
-    public static ItemStack jetpackTE3 = null;
-    public static ItemStack jetpackTE3Armored = null;
-    public static ItemStack jetpackTE4 = null;
-    public static ItemStack jetpackTE4Armored = null;
-    public static ItemStack jetpackTE5 = null;
-    public static ItemStack fluxPackTE1 = null;
-    public static ItemStack fluxPackTE2 = null;
-    public static ItemStack fluxPackTE2Armored = null;
-    public static ItemStack fluxPackTE3 = null;
-    public static ItemStack fluxPackTE3Armored = null;
-    public static ItemStack fluxPackTE4 = null;
-    public static ItemStack fluxPackTE4Armored = null;
-    
-    public static ItemStack jetpackEIO1 = null;
-    public static ItemStack jetpackEIO1Armored = null;
-    public static ItemStack jetpackEIO2 = null;
-    public static ItemStack jetpackEIO2Armored = null;
-    public static ItemStack jetpackEIO3 = null;
-    public static ItemStack jetpackEIO3Armored = null;
-    public static ItemStack jetpackEIO4 = null;
-    public static ItemStack jetpackEIO4Armored = null;
-    public static ItemStack jetpackEIO5 = null;
-    public static ItemStack fluxPackEIO1 = null;
-    public static ItemStack fluxPackEIO2 = null;
-    public static ItemStack fluxPackEIO2Armored = null;
-    public static ItemStack fluxPackEIO3 = null;
-    public static ItemStack fluxPackEIO3Armored = null;
-    public static ItemStack fluxPackEIO4 = null;
-    public static ItemStack fluxPackEIO4Armored = null;
-    
-    public static ItemStack jetpackBC1 = null;
-    public static ItemStack jetpackBC1Armored = null;
-    public static ItemStack jetpackBC2 = null;
-    public static ItemStack jetpackBC2Armored = null;
-    
-    public static ItemStack leatherStrap = null;
-    public static ItemStack jetpackIcon = null;
-    public static ItemStack thrusterTE1 = null;
-    public static ItemStack thrusterTE2 = null;
-    public static ItemStack thrusterTE3 = null;
-    public static ItemStack thrusterTE4 = null;
-    public static ItemStack thrusterTE5 = null;
-    public static ItemStack thrusterEIO1 = null;
-    public static ItemStack thrusterEIO2 = null;
-    public static ItemStack thrusterEIO3 = null;
-    public static ItemStack thrusterEIO4 = null;
-    public static ItemStack thrusterEIO5 = null;
-    public static ItemStack thrusterBC1 = null;
-    public static ItemStack thrusterBC2 = null;
-    public static ItemStack unitGlowstoneEmpty = null;
-    public static ItemStack unitGlowstone = null;
-    public static ItemStack unitCryotheumEmpty = null;
-    public static ItemStack unitCryotheum = null;
-    public static ItemStack dustElectrumFlux = null;
-    public static ItemStack ingotElectrumFlux = null;
-    public static ItemStack nuggetElectrumFlux = null;
-    public static ItemStack gemCrystalFlux = null;
-    public static ItemStack plateFlux = null;
-    public static ItemStack armorFluxPlate = null;
-    public static ItemStack enderiumUpgrade = null;
-    public static ItemStack richSoularium = null;
-    public static ItemStack reinforcedGliderWing = null;
-    public static ItemStack unitFlightControlEmpty = null;
-    public static ItemStack unitFlightControl = null;
-    
-    public static ItemStack armorPlatingTE1 = null;
-    public static ItemStack armorPlatingTE2 = null;
-    public static ItemStack armorPlatingTE3 = null;
-    public static ItemStack armorPlatingTE4 = null;
-    public static ItemStack armorPlatingEIO1 = null;
-    public static ItemStack armorPlatingEIO2 = null;
-    public static ItemStack armorPlatingEIO3 = null;
-    public static ItemStack armorPlatingEIO4 = null;
-    public static ItemStack armorPlatingBC1 = null;
-    public static ItemStack armorPlatingBC2 = null;
-    
-    public static ItemStack particleDefault = null;
-    public static ItemStack particleNone = null;
-    public static ItemStack particleSmoke = null;
-    public static ItemStack particleRainbowSmoke = null;
-    
     private static boolean teAvailable = false;
     private static boolean tdAvailable = false;
     private static boolean raAvailable = false;
@@ -554,5 +448,107 @@ public abstract class ModItems {
             GameRegistry.registerItem(item, name);
         }
     }
+    
+    public static ItemJetpack jetpacksCommon = null;
+    public static ItemFluxPack fluxPacksCommon = null;
+    public static ItemJetpack jetpacksTE = null;
+    public static ItemFluxPack fluxPacksTE = null;
+    public static ItemJetpack jetpacksEIO = null;
+    public static ItemFluxPack fluxPacksEIO = null;
+    public static ItemJetpack jetpacksBC = null;
+    public static ItemMeta components = null;
+    public static ItemMeta armorPlatings = null;
+    public static ItemMeta particleCustomizers = null;
+    public static ItemJetpackFueller jetpackFueller = null;
+    public static ItemMysteriousPotato mysteriousPotato = null;
+    
+    public static ItemStack jetpackPotato = null;
+    public static ItemStack jetpackCreative = null;
+    public static ItemStack fluxPackCreative = null;
+    
+    public static ItemStack jetpackTE1 = null;
+    public static ItemStack jetpackTE1Armored = null;
+    public static ItemStack jetpackTE2 = null;
+    public static ItemStack jetpackTE2Armored = null;
+    public static ItemStack jetpackTE3 = null;
+    public static ItemStack jetpackTE3Armored = null;
+    public static ItemStack jetpackTE4 = null;
+    public static ItemStack jetpackTE4Armored = null;
+    public static ItemStack jetpackTE5 = null;
+    public static ItemStack fluxPackTE1 = null;
+    public static ItemStack fluxPackTE2 = null;
+    public static ItemStack fluxPackTE2Armored = null;
+    public static ItemStack fluxPackTE3 = null;
+    public static ItemStack fluxPackTE3Armored = null;
+    public static ItemStack fluxPackTE4 = null;
+    public static ItemStack fluxPackTE4Armored = null;
+    
+    public static ItemStack jetpackEIO1 = null;
+    public static ItemStack jetpackEIO1Armored = null;
+    public static ItemStack jetpackEIO2 = null;
+    public static ItemStack jetpackEIO2Armored = null;
+    public static ItemStack jetpackEIO3 = null;
+    public static ItemStack jetpackEIO3Armored = null;
+    public static ItemStack jetpackEIO4 = null;
+    public static ItemStack jetpackEIO4Armored = null;
+    public static ItemStack jetpackEIO5 = null;
+    public static ItemStack fluxPackEIO1 = null;
+    public static ItemStack fluxPackEIO2 = null;
+    public static ItemStack fluxPackEIO2Armored = null;
+    public static ItemStack fluxPackEIO3 = null;
+    public static ItemStack fluxPackEIO3Armored = null;
+    public static ItemStack fluxPackEIO4 = null;
+    public static ItemStack fluxPackEIO4Armored = null;
+    
+    public static ItemStack jetpackBC1 = null;
+    public static ItemStack jetpackBC1Armored = null;
+    public static ItemStack jetpackBC2 = null;
+    public static ItemStack jetpackBC2Armored = null;
+    
+    public static ItemStack leatherStrap = null;
+    public static ItemStack jetpackIcon = null;
+    public static ItemStack thrusterTE1 = null;
+    public static ItemStack thrusterTE2 = null;
+    public static ItemStack thrusterTE3 = null;
+    public static ItemStack thrusterTE4 = null;
+    public static ItemStack thrusterTE5 = null;
+    public static ItemStack thrusterEIO1 = null;
+    public static ItemStack thrusterEIO2 = null;
+    public static ItemStack thrusterEIO3 = null;
+    public static ItemStack thrusterEIO4 = null;
+    public static ItemStack thrusterEIO5 = null;
+    public static ItemStack thrusterBC1 = null;
+    public static ItemStack thrusterBC2 = null;
+    public static ItemStack unitGlowstoneEmpty = null;
+    public static ItemStack unitGlowstone = null;
+    public static ItemStack unitCryotheumEmpty = null;
+    public static ItemStack unitCryotheum = null;
+    public static ItemStack dustElectrumFlux = null;
+    public static ItemStack ingotElectrumFlux = null;
+    public static ItemStack nuggetElectrumFlux = null;
+    public static ItemStack gemCrystalFlux = null;
+    public static ItemStack plateFlux = null;
+    public static ItemStack armorFluxPlate = null;
+    public static ItemStack enderiumUpgrade = null;
+    public static ItemStack richSoularium = null;
+    public static ItemStack reinforcedGliderWing = null;
+    public static ItemStack unitFlightControlEmpty = null;
+    public static ItemStack unitFlightControl = null;
+    
+    public static ItemStack armorPlatingTE1 = null;
+    public static ItemStack armorPlatingTE2 = null;
+    public static ItemStack armorPlatingTE3 = null;
+    public static ItemStack armorPlatingTE4 = null;
+    public static ItemStack armorPlatingEIO1 = null;
+    public static ItemStack armorPlatingEIO2 = null;
+    public static ItemStack armorPlatingEIO3 = null;
+    public static ItemStack armorPlatingEIO4 = null;
+    public static ItemStack armorPlatingBC1 = null;
+    public static ItemStack armorPlatingBC2 = null;
+    
+    public static ItemStack particleDefault = null;
+    public static ItemStack particleNone = null;
+    public static ItemStack particleSmoke = null;
+    public static ItemStack particleRainbowSmoke = null;
     
 }
