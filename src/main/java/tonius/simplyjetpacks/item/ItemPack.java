@@ -264,7 +264,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
             }
             int energyPerDamage = this.getFuelPerDamage(armor, pack);
             int maxAbsorbed = energyPerDamage > 0 ? 25 * (this.getFuelStored(armor) / energyPerDamage) : 0;
-            return new ArmorProperties(0, 0.75D * (pack.armorReduction / 20.0D), maxAbsorbed);
+            return new ArmorProperties(0, 0.85D * (pack.armorReduction / 20.0D), maxAbsorbed);
         }
         return new ArmorProperties(0, 1, 0);
     }
