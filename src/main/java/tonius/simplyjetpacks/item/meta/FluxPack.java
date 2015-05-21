@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.FuelType;
@@ -44,6 +45,10 @@ public class FluxPack extends PackBase {
             list.add(SJStringHelper.getEnergyReceiveText(this.fuelPerTickIn));
         }
         SJStringHelper.addDescriptionLines(list, "fluxpack", StringHelper.BRIGHT_GREEN);
+        String key = SimplyJetpacks.proxy.getPackGUIKey();
+        if (key != null) {
+            list.add(SJStringHelper.getPackGUIText(key));
+        }
     }
     
     @Override

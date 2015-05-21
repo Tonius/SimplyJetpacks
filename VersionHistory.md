@@ -1,12 +1,12 @@
 1.5.0 - (unreleased)
 ----------------------------------
-- Now depends on CoFHLib. Using CoFH Core for this is recommended. CoFHLib also works, but it has to be build 152+ (from CurseForge).
+- *Now depends on CoFHLib.* Using either CoFH Core 3.0.2+ or CoFHLib standalone 1.0.2+ works for this.
 - Added support for BuildCraft 6! SJ now provides two kinds of BuildCraft-based jetpacks, based on which BC modules are installed. One is powered by Fuel, and one is powered by RF. Will hopefully also work with BuildCraft 7, though this is largely untested.
-- Added Jetpack Fueller item for filling jetpacks with Fluids from Tanks or similar.
-- Made TE-based Thrusters slightly cheaper and less annoying to craft.
+- Added Jetpack Fueller item for filling fluid-based jetpacks with fluids from Tanks or similar.
+- Altered recipes for TE-based thrusters to be less annoying and to... make more sense, I guess.
 - Only one kind of mod integration is now enabled by default: always TE if it is present, or always EIO if TE is not present, or lastly BC if neither of the previous are present.
-- Split 'secondary' (sneak-activated) keybinds into keybinds of their own.
-- Added a GUI for worn jetpacks and flux packs, opened by pressing a key (U by default). It shows their current fuel levels, and lets you turn various features on and off. This allows you to unmap some keybinds that do the same things.
+- Added a GUI for worn jetpacks and flux packs, opened by pressing a key (U by default). It shows their current fuel levels, and lets you turn various features on and off.
+- Split 'secondary' (sneak-activated) keybinds into keybinds of their own. Not bound by default in favour of the new GUI.
 - Updated default energy-related config options to reflect recent changes in TE's default config options.
 - Using a jetpack underwater is now a bit slower, and makes it produce bubbles.
 - Added a config option to make jetpacks explode and kill their user when flying through flammable fluids. Blame Vexatos for this idea. Disabled by default.

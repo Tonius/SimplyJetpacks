@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidBlock;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.model.PackModelType;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.SyncHandler;
@@ -242,6 +243,10 @@ public class Jetpack extends PackBase {
         }
         list.add(SJStringHelper.getParticlesText(this.getParticleType(stack)));
         SJStringHelper.addDescriptionLines(list, "jetpack", StringHelper.BRIGHT_GREEN);
+        String key = SimplyJetpacks.proxy.getPackGUIKey();
+        if (key != null) {
+            list.add(SJStringHelper.getPackGUIText(key));
+        }
     }
     
     @Override

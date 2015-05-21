@@ -4,20 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.item.ItemStack;
 
 import org.lwjgl.input.Keyboard;
 
-import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.SyncHandler;
-import tonius.simplyjetpacks.item.IControllableArmor;
 import tonius.simplyjetpacks.network.PacketHandler;
 import tonius.simplyjetpacks.network.message.MessageKeyboardSync;
-import tonius.simplyjetpacks.network.message.MessageModKey;
 import tonius.simplyjetpacks.setup.ModKey;
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -25,8 +19,14 @@ import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 
 public class KeyHandler {
     
-    private static final Minecraft mc = Minecraft.getMinecraft();
-    private static final List<SJKeyBinding> keyBindings = new ArrayList<SJKeyBinding>();
+    static final Minecraft mc = Minecraft.getMinecraft();
+    static final List<SJKeyBinding> keyBindings = new ArrayList<SJKeyBinding>();
+    
+    public static final SJKeyBinding keyTogglePrimary = new SJKeyBinding("toggle.primary", Keyboard.KEY_F, ModKey.TOGGLE_PRIMARY);
+    public static final SJKeyBinding keyToggleSecondary = new SJKeyBinding("toggle.secondary", Keyboard.KEY_NONE, ModKey.TOGGLE_SECONDARY);
+    public static final SJKeyBinding keyModePrimary = new SJKeyBinding("mode.primary", Keyboard.KEY_C, ModKey.MODE_PRIMARY);
+    public static final SJKeyBinding keyModeSecondary = new SJKeyBinding("mode.secondary", Keyboard.KEY_NONE, ModKey.MODE_SECONDARY);
+    public static final SJKeyBinding keyOpenPackGUI = new SJKeyBinding("openPackGUI", Keyboard.KEY_U, ModKey.OPEN_PACK_GUI);
     
     private static int flyKey;
     private static int descendKey;
@@ -36,14 +36,6 @@ public class KeyHandler {
     private static boolean lastBackwardState = false;
     private static boolean lastLeftState = false;
     private static boolean lastRightState = false;
-    
-    public KeyHandler() {
-        new SJKeyBinding("toggle.primary", Keyboard.KEY_F, ModKey.TOGGLE_PRIMARY);
-        new SJKeyBinding("toggle.secondary", Keyboard.KEY_G, ModKey.TOGGLE_SECONDARY);
-        new SJKeyBinding("mode.primary", Keyboard.KEY_C, ModKey.MODE_PRIMARY);
-        new SJKeyBinding("mode.secondary", Keyboard.KEY_X, ModKey.MODE_SECONDARY);
-        new SJKeyBinding("openPackGUI", Keyboard.KEY_U, ModKey.OPEN_PACK_GUI);
-    }
     
     public static void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
         flyKey = Keyboard.getKeyIndex(flyKeyName);
@@ -98,25 +90,5 @@ public class KeyHandler {
                 key.handleKeyPress();
             }
         }
-    }
-    
-    private static class SJKeyBinding extends KeyBinding {
-        
-        private ModKey keyType;
-        
-        private SJKeyBinding(String name, int keyId, ModKey keyType) {
-            super(SimplyJetpacks.PREFIX + "keybind." + name, keyId, "Simply Jetpacks");
-            this.keyType = keyType;
-            ClientRegistry.registerKeyBinding(this);
-            keyBindings.add(this);
-        }
-        
-        private void handleKeyPress() {
-            ItemStack itemStack = mc.thePlayer.getEquipmentInSlot(3);
-            if (itemStack != null && itemStack.getItem() instanceof IControllableArmor) {
-                PacketHandler.instance.sendToServer(new MessageModKey(this.keyType, this.keyType.alwaysShowInChat || Config.enableStateChatMessages));
-            }
-        }
-        
     }
 }

@@ -262,6 +262,10 @@ public class PackBase {
     @SuppressWarnings("unchecked")
     public void addShiftInformation(ItemStack stack, ItemPack item, EntityPlayer player, List list) {
         list.add(SJStringHelper.getStateText(this.isOn(stack)));
+        String key = SimplyJetpacks.proxy.getPackGUIKey();
+        if (key != null) {
+            list.add(SJStringHelper.getPackGUIText(key));
+        }
     }
     
     @SideOnly(Side.CLIENT)

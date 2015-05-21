@@ -73,6 +73,10 @@ public abstract class SJStringHelper {
         return StringHelper.ORANGE + localize("tooltip.particles") + ": " + StringHelper.LIGHT_GRAY + localize("tooltip.particles." + particle.ordinal());
     }
     
+    public static String getPackGUIText(String key) {
+        return StringHelper.BRIGHT_BLUE + StringHelper.ITALIC + localize("tooltip.packGUIKey", key);
+    }
+    
     public static String getHUDFuelText(String prefix, int percent, FuelType fuelType, int fuel) {
         String text = "";
         if (!Config.minimalFuelHUD) {

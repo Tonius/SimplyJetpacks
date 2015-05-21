@@ -125,6 +125,10 @@ public class JetPlate extends Jetpack {
         list.add(SJStringHelper.getChargerRateText(this.fuelPerTickOut));
         list.add(SJStringHelper.getParticlesText(this.getParticleType(stack)));
         SJStringHelper.addDescriptionLines(list, "jetplate", StringHelper.BRIGHT_GREEN);
+        String key = SimplyJetpacks.proxy.getPackGUIKey();
+        if (key != null) {
+            list.add(SJStringHelper.getPackGUIText(key));
+        }
     }
     
     @Override

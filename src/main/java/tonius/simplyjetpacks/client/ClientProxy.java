@@ -8,6 +8,9 @@ import net.minecraft.client.gui.GuiErrorScreen;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import org.lwjgl.input.Keyboard;
+
 import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
@@ -69,6 +72,14 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void updateCustomKeybinds(String flyKeyName, String descendKeyName) {
         KeyHandler.updateCustomKeybinds(flyKeyName, descendKeyName);
+    }
+    
+    @Override
+    public String getPackGUIKey() {
+        if (KeyHandler.keyOpenPackGUI.getKeyCode() > 0) {
+            return Keyboard.getKeyName(KeyHandler.keyOpenPackGUI.getKeyCode());
+        }
+        return null;
     }
     
     @Override
