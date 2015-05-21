@@ -64,7 +64,7 @@ item.simplyjetpacks.richSoularium.name=Enriched Soularium Alloy
 item.simplyjetpacks.reinforcedGliderWing.name=Reinforced Glider Wing
 item.simplyjetpacks.unitFlightControl.empty.name=Flight Control Unit (Empty)
 item.simplyjetpacks.unitFlightControl.name=Flight Control Unit
-item.simplyjetpacks.enderiumUpgrade.name=Enderium Flux Upgrade
+item.simplyjetpacks.enderiumUpgrade.name=Enderium Flux Overlay
 
 item.simplyjetpacks.dustElectrumFlux.name=Fluxed Electrum Blend
 item.simplyjetpacks.ingotElectrumFlux.name=Fluxed Electrum Ingot
@@ -74,7 +74,7 @@ item.simplyjetpacks.plateFlux.name=Fluxed Armor Plating
 item.simplyjetpacks.armorFluxPlate.name=Flux-Infused Chestplate Assembly
 
 item.simplyjetpacks.armorPlating.te.1.name=Iron Armor Plating
-item.simplyjetpacks.armorPlating.te.2.name=Tinker's Alloy Armor Plating
+item.simplyjetpacks.armorPlating.te.2.name=Bronze Armor Plating
 item.simplyjetpacks.armorPlating.te.3.name=Invar Armor Plating
 item.simplyjetpacks.armorPlating.te.4.name=Enderium Armor Plating
 item.simplyjetpacks.armorPlating.eio.1.name=Silicon Armor Plating
