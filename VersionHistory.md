@@ -1,18 +1,21 @@
 1.5.0 - (unreleased)
 ----------------------------------
-- *Now depends on CoFHLib.* Using either CoFH Core 3.0.2+ or CoFHLib standalone 1.0.2+ works for this.
-- Added support for BuildCraft 6! SJ now provides two kinds of BuildCraft-based jetpacks, based on which BC modules are installed. One is powered by Fuel, and one is powered by RF. Will hopefully also work with BuildCraft 7, though this is largely untested.
-- Added Jetpack Fueller item for filling fluid-based jetpacks with fluids from Tanks or similar.
-- Altered recipes for TE-based thrusters to be less annoying and to... make more sense, I guess.
-- Only one kind of mod integration is now enabled by default: always TE if it is present, or always EIO if TE is not present, or lastly BC if neither of the previous are present.
-- Added a GUI for worn jetpacks and flux packs, opened by pressing a key (U by default). It shows their current fuel levels, and lets you turn various features on and off.
-- Split 'secondary' (sneak-activated) keybinds into keybinds of their own. Not bound by default in favour of the new GUI.
-- Added a somewhat rare enchantment 'Fuel Efficiency'. This enchantment decreases the amount of fuel used by jetpacks and flux packs when flying or being damaged.
-- Using a jetpack underwater is now a bit slower, and makes it produce bubbles.
-- It is now possible to enable sprinting in the air while wearing a jetpack by double-tapping the forward key. This can be disabled in the client config if it gets annoying.
-- Added a config option to make jetpacks explode and kill their user when flying through flammable fluids. Blame Vexatos for this idea. Disabled by default.
-- Readded the option to disable 3D armor models. This is for people that experience issues with the armor models and mods like Smart Moving.
-- Fixed not being able to turn off only part of the HUD.
+- CHANGED: **Now depends on CoFHLib.** Using either CoFH Core 3.0.2+ or CoFHLib standalone 1.0.2+ works for this.
+
+- ADDED: Support for BuildCraft 6! SJ now provides two kinds of BuildCraft-based jetpacks, based on which BC modules are installed. One is powered by Fuel, and one is powered by RF. Will hopefully also work with BuildCraft 7, though this is largely untested.
+- ADDED: Jetpack Fueller item for filling fluid-based jetpacks with fluids from Tanks or similar.
+- ADDED: GUI for worn jetpacks and flux packs, opened by pressing a key (U by default). It shows their current fuel levels, and lets you turn various features on and off.
+- ADDED: Fuel Efficiency enchantment. This somewhat rare enchantment decreases the amount of fuel used by jetpacks and flux packs when flying or being damaged.
+- ADDED: Config option to make jetpacks explode and kill their user when flying through flammable fluids. Blame Vexatos for this idea. Disabled by default.
+- ADDED: Readded the option to disable 3D armor models. This is for people that experience issues with the armor models and mods like Smart Moving.
+
+- CHANGED: Recipes for TE-based thrusters to be less annoying and to... make more sense, I guess.
+- CHANGED: Only one kind of mod integration is now enabled by default: always TE if it is present, or always EIO if TE is not present, or lastly BC if neither of the previous are present.
+- CHANGED: Split 'secondary' (sneak-activated) keybinds into keybinds of their own. Not bound by default in favour of the new GUI.
+- CHANGED: Using a jetpack underwater is now a bit slower, and makes it produce bubbles.
+- CHANGED: It is now possible to enable sprinting in the air while wearing a jetpack by double-tapping the forward key. This can be disabled in the client config if it gets annoying.
+
+- FIXED: Not being able to turn off only part of the HUD
 
 1.4.1 - 2015-02-20
 ----------------------------------
