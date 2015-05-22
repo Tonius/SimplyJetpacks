@@ -9,6 +9,7 @@
 - Split 'secondary' (sneak-activated) keybinds into keybinds of their own. Not bound by default in favour of the new GUI.
 - Updated default energy-related config options to reflect recent changes in TE's default config options.
 - Using a jetpack underwater is now a bit slower, and makes it produce bubbles.
+- It is now possible to enable sprinting in the air while wearing a jetpack by double-tapping the forward key. This can be disabled in the client config if it gets annoying.
 - Added a config option to make jetpacks explode and kill their user when flying through flammable fluids. Blame Vexatos for this idea. Disabled by default.
 - Readded the option to disable 3D armor models. This is for people that experience issues with the armor models and mods like Smart Moving.
 - Fixed not being able to turn off only part of the HUD.

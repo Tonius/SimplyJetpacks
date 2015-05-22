@@ -86,19 +86,13 @@ public class ClientTickHandler {
             return;
         }
         
-        boolean flag = mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying;
-        
-        if (mc.thePlayer.movementInput.moveForward >= 1.0F && flag) {
+        if (!sprintKeyCheck && mc.thePlayer.movementInput.moveForward >= 1.0F && !mc.thePlayer.isCollidedHorizontally && (mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying)) {
             if (mc.thePlayer.sprintToggleTimer <= 0 && !mc.gameSettings.keyBindSprint.getIsKeyPressed()) {
                 mc.thePlayer.sprintToggleTimer = 7;
                 sprintKeyCheck = true;
-            } else if (!sprintKeyCheck) {
+            } else {
                 mc.thePlayer.setSprinting(true);
             }
-        }
-        
-        if (mc.thePlayer.isSprinting() && (mc.thePlayer.isCollidedHorizontally || !flag)) {
-            mc.thePlayer.setSprinting(false);
         }
     }
     
