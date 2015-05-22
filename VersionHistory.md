@@ -5,6 +5,7 @@
 - ADDED: Jetpack Fueller item for filling fluid-based jetpacks with fluids from Tanks or similar.
 - ADDED: GUI for worn jetpacks and flux packs, opened by pressing a key (U by default). It shows their current fuel levels, and lets you turn various features on and off.
 - ADDED: Fuel Efficiency enchantment. This somewhat rare enchantment decreases the amount of fuel used by jetpacks and flux packs when flying or being damaged.
+- ADDED: Enderium Flux Overlay to make a Flux-Infused JetPlate look like an Enderium Flux armor piece. Available when Redstone Armory is installed.
 - ADDED: Config option to make jetpacks explode and kill their user when flying through flammable fluids. Blame Vexatos for this idea. Disabled by default.
 - ADDED: Readded the option to disable 3D armor models. This is for people that experience issues with the armor models and mods like Smart Moving.
 - CHANGED: Recipes for TE-based thrusters to be less annoying and to... make more sense, I guess.
