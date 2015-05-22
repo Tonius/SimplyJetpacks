@@ -75,7 +75,7 @@ public class Jetpack extends PackBase {
             
             if (flyKeyDown || hoverMode && !user.onGround) {
                 if (this.usesFuel) {
-                    item.useFuel(stack, (int) (user.isSprinting() ? Math.round(this.getFuelUsage(stack) * this.sprintFuelModifier) : this.fuelUsage), false);
+                    item.useFuel(stack, (int) (user.isSprinting() ? Math.round(this.getFuelUsage(stack) * this.sprintFuelModifier) : this.getFuelUsage(stack)), false);
                 }
                 
                 if (item.getFuelStored(stack) > 0) {
