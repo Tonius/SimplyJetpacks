@@ -167,6 +167,8 @@ simplyjetpacks.gui.jetpack.button.mode.primary=Toggle Hover Mode
 simplyjetpacks.gui.jetpack.button.mode.secondary=Toggle Emergency Hover Mode
 simplyjetpacks.gui.fluxpack.button.toggle.primary=Toggle charger
 
+simplyjetpacks.enchantment.fuelEfficiency=Fuel Efficiency
+
 death.attack.jetpackpotato=%1$s attempted to fly a potato
 death.attack.jetpackpotato.player=%1$s attempted to fly a potato
 death.attack.jetpackpotato.item=%1$s attempted to fly a potato

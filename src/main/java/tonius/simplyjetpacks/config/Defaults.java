@@ -6,6 +6,7 @@ import tonius.simplyjetpacks.integration.ModType;
 public abstract class Defaults {
     
     // item
+    public static final int enchantFuelEfficiencyID = 110;
     public static final boolean flammableFluidsExplode = false;
     
     // integration

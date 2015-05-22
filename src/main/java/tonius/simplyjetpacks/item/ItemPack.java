@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,6 +34,7 @@ import tonius.simplyjetpacks.item.meta.Jetpack;
 import tonius.simplyjetpacks.item.meta.PackBase;
 import tonius.simplyjetpacks.setup.FuelType;
 import tonius.simplyjetpacks.setup.ModCreativeTab;
+import tonius.simplyjetpacks.setup.ModEnchantments;
 import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
@@ -150,15 +150,6 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     }
     
     @Override
-    public boolean isDamageable() {
-        return true;
-    }
-    
-    @Override
-    public void setDamage(ItemStack stack, int damage) {
-    }
-    
-    @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
@@ -260,8 +251,12 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     
     // armor
     protected int getFuelPerDamage(ItemStack stack, T pack) {
-        int unbreakingLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
-        return (int) Math.round(pack.armorFuelPerHit * (5 - unbreakingLevel) / 5.0D);
+        if (ModEnchantments.fuelEffeciency == null) {
+            return pack.armorFuelPerHit;
+        }
+        
+        int fuelEfficiencyLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(ModEnchantments.fuelEffeciency.effectId, stack), 0, 4);
+        return (int) Math.round(pack.armorFuelPerHit * (5 - fuelEfficiencyLevel) / 5.0D);
     }
     
     @Override

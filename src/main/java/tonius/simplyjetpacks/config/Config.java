@@ -26,6 +26,7 @@ public class Config {
     public static Configuration configClient;
     
     // item
+    public static int enchantFuelEfficiencyID = Defaults.enchantFuelEfficiencyID;
     public static boolean flammableFluidsExplode = Defaults.flammableFluidsExplode;
     
     // integration
@@ -89,6 +90,7 @@ public class Config {
     }
     
     private static void processConfig() {
+        enchantFuelEfficiencyID = config.get(sectionItem.name, "Fuel Efficiency enchant ID", Defaults.enchantFuelEfficiencyID, "The ID of the Fuel Efficiency enchantment. Set to 0 to disable.").setMinValue(0).setMaxValue(255).setRequiresMcRestart(true).getInt();
         flammableFluidsExplode = config.get(sectionItem.name, "Jetpacks explode in flammable fluid blocks", Defaults.flammableFluidsExplode, "When enabled, jetpacks will explode and kill their users when they are being used to fly through flammable fluid blocks.").getBoolean(Defaults.flammableFluidsExplode);
         
         enableIntegrationTE = config.get(sectionIntegration.name, "Thermal Expansion integration", Defaults.enableIntegrationTE, "When enabled, Simply Jetpacks will register its Thermal Expansion-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationTE);

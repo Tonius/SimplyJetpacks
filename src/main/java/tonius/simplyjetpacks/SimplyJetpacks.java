@@ -9,6 +9,7 @@ import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.crafting.UpgradingRecipe;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.network.PacketHandler;
+import tonius.simplyjetpacks.setup.ModEnchantments;
 import tonius.simplyjetpacks.setup.ModItems;
 import tonius.simplyjetpacks.setup.Packs;
 import cpw.mods.fml.common.Mod;
@@ -54,6 +55,7 @@ public class SimplyJetpacks {
         proxy.registerHandlers();
         PacketHandler.init();
         ModItems.init();
+        ModEnchantments.init();
     }
     
     @EventHandler

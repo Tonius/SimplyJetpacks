@@ -3,7 +3,6 @@ package tonius.simplyjetpacks.item.meta;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,6 +22,7 @@ import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.handler.SyncHandler;
 import tonius.simplyjetpacks.item.ItemPack;
 import tonius.simplyjetpacks.setup.FuelType;
+import tonius.simplyjetpacks.setup.ModEnchantments;
 import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.NBTHelper;
@@ -154,8 +154,12 @@ public class Jetpack extends PackBase {
     }
     
     protected int getFuelUsage(ItemStack stack) {
-        int unbreakingLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
-        return (int) Math.round(this.fuelUsage * (20 - unbreakingLevel) / 20.0D);
+        if (ModEnchantments.fuelEffeciency == null) {
+            return this.fuelUsage;
+        }
+        
+        int fuelEfficiencyLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(ModEnchantments.fuelEffeciency.effectId, stack), 0, 4);
+        return (int) Math.round(this.fuelUsage * (20 - fuelEfficiencyLevel) / 20.0D);
     }
     
     public void doEHover(ItemStack armor, EntityLivingBase user) {
