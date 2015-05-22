@@ -1,4 +1,4 @@
-1.5.0 - (unreleased)
+1.5.0 - 2015-05-22
 ----------------------------------
 - CHANGED: **Now depends on CoFHLib.** Using either CoFH Core 3.0.2+ or CoFHLib standalone 1.0.2+ works for this.
 - ADDED: Support for BuildCraft 6! SJ now provides two kinds of BuildCraft-based jetpacks, based on which BC modules are installed. One is powered by Fuel, and one is powered by RF. Will hopefully also work with BuildCraft 7, though this is largely untested.
