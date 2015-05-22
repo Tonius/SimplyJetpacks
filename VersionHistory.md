@@ -7,7 +7,7 @@
 - Only one kind of mod integration is now enabled by default: always TE if it is present, or always EIO if TE is not present, or lastly BC if neither of the previous are present.
 - Added a GUI for worn jetpacks and flux packs, opened by pressing a key (U by default). It shows their current fuel levels, and lets you turn various features on and off.
 - Split 'secondary' (sneak-activated) keybinds into keybinds of their own. Not bound by default in favour of the new GUI.
-- Updated default energy-related config options to reflect recent changes in TE's default config options.
+- Jetpacks and flux packs can now be enchanted with Unbreaking. With jetpacks, this will lower their fuel consumption.
 - Using a jetpack underwater is now a bit slower, and makes it produce bubbles.
 - It is now possible to enable sprinting in the air while wearing a jetpack by double-tapping the forward key. This can be disabled in the client config if it gets annoying.
 - Added a config option to make jetpacks explode and kill their user when flying through flammable fluids. Blame Vexatos for this idea. Disabled by default.

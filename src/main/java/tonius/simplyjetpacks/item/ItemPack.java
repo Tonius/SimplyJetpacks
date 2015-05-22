@@ -20,7 +20,6 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -40,6 +39,7 @@ import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.api.energy.IEnergyContainerItem;
+import cofh.lib.util.helpers.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -150,6 +150,15 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     }
     
     @Override
+    public boolean isDamageable() {
+        return true;
+    }
+    
+    @Override
+    public void setDamage(ItemStack stack, int damage) {
+    }
+    
+    @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
@@ -251,7 +260,7 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     
     // armor
     protected int getFuelPerDamage(ItemStack stack, T pack) {
-        int unbreakingLevel = MathHelper.clamp_int(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
+        int unbreakingLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
         return (int) Math.round(pack.armorFuelPerHit * (5 - unbreakingLevel) / 5.0D);
     }
     

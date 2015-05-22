@@ -3,6 +3,8 @@ package tonius.simplyjetpacks.item.meta;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -25,6 +27,7 @@ import tonius.simplyjetpacks.setup.ModKey;
 import tonius.simplyjetpacks.setup.ParticleType;
 import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
+import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -72,7 +75,7 @@ public class Jetpack extends PackBase {
             
             if (flyKeyDown || hoverMode && !user.onGround) {
                 if (this.usesFuel) {
-                    item.useFuel(stack, (int) (user.isSprinting() ? Math.round(this.fuelUsage * this.sprintFuelModifier) : this.fuelUsage), false);
+                    item.useFuel(stack, (int) (user.isSprinting() ? Math.round(this.getFuelUsage(stack) * this.sprintFuelModifier) : this.fuelUsage), false);
                 }
                 
                 if (item.getFuelStored(stack) > 0) {
@@ -148,6 +151,11 @@ public class Jetpack extends PackBase {
                 }
             }
         }
+    }
+    
+    protected int getFuelUsage(ItemStack stack) {
+        int unbreakingLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
+        return (int) Math.round(this.fuelUsage * (20 - unbreakingLevel) / 20.0D);
     }
     
     public void doEHover(ItemStack armor, EntityLivingBase user) {
@@ -239,7 +247,7 @@ public class Jetpack extends PackBase {
             list.add(SJStringHelper.getFuelFluidText(this.fuelFluid));
         }
         if (this.fuelUsage > 0) {
-            list.add(SJStringHelper.getFuelUsageText(this.fuelType, this.fuelUsage));
+            list.add(SJStringHelper.getFuelUsageText(this.fuelType, this.getFuelUsage(stack)));
         }
         list.add(SJStringHelper.getParticlesText(this.getParticleType(stack)));
         SJStringHelper.addDescriptionLines(list, "jetpack", StringHelper.BRIGHT_GREEN);

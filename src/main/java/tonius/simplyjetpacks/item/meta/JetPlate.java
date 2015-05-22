@@ -120,7 +120,7 @@ public class JetPlate extends Jetpack {
         list.add(SJStringHelper.getHoverModeText(this.isHoverModeOn(stack)));
         list.add(SJStringHelper.getChargerStateText(this.isChargerOn(stack)));
         if (this.fuelUsage > 0) {
-            list.add(SJStringHelper.getFuelUsageText(this.fuelType, this.fuelUsage));
+            list.add(SJStringHelper.getFuelUsageText(this.fuelType, this.getFuelUsage(stack)));
         }
         list.add(SJStringHelper.getChargerRateText(this.fuelPerTickOut));
         list.add(SJStringHelper.getParticlesText(this.getParticleType(stack)));
