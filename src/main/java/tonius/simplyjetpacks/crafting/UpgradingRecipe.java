@@ -36,7 +36,7 @@ public class UpgradingRecipe extends ShapedOreRecipe {
         ItemStack slotStack;
         for (int i = 0; i < inventoryCrafting.getSizeInventory(); i++) {
             slotStack = inventoryCrafting.getStackInSlot(i);
-            if (slotStack != null) {
+            if (slotStack != null && slotStack.getItem() != null) {
                 if (slotStack.getItem() instanceof ItemPack) {
                     tags = (NBTTagCompound) NBTHelper.getNBT(slotStack).copy();
                 }
@@ -44,7 +44,7 @@ public class UpgradingRecipe extends ShapedOreRecipe {
                     addedEnergy += ((IEnergyContainerItem) slotStack.getItem()).getEnergyStored(slotStack);
                 } else if (slotStack.getItem() == ModItems.particleCustomizers) {
                     particleType = ParticleType.values()[slotStack.getItemDamage()];
-                } else if (slotStack.getItem() == ModItems.components && slotStack.getItemDamage() == ModItems.enderiumUpgrade.getItemDamage()) {
+                } else if (ModItems.enderiumUpgrade != null && slotStack.getItem() == ModItems.enderiumUpgrade.getItem() && slotStack.getItemDamage() == ModItems.enderiumUpgrade.getItemDamage()) {
                     enderiumUpgrade = true;
                 }
             }
