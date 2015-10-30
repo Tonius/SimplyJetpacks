@@ -8,6 +8,7 @@ public abstract class Defaults {
     // item
     public static final int enchantFuelEfficiencyID = 110;
     public static final boolean flammableFluidsExplode = false;
+    public static final boolean addRAItemsIfNotInstalled = true;
     
     // integration
     public static final boolean enableIntegrationTE = ModType.THERMAL_EXPANSION.loaded;

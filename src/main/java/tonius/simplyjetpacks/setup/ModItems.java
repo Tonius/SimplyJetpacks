@@ -89,7 +89,9 @@ public abstract class ModItems {
             jetpackTE3Armored = jetpacksTE.putPack(103, Packs.jetpackTE3Armored);
             jetpackTE4 = jetpacksTE.putPack(4, Packs.jetpackTE4);
             jetpackTE4Armored = jetpacksTE.putPack(104, Packs.jetpackTE4Armored);
-            jetpackTE5 = jetpacksTE.putPack(5, Packs.jetpackTE5);
+            if (raAvailable || Config.addRAItemsIfNotInstalled) {
+                jetpackTE5 = jetpacksTE.putPack(5, Packs.jetpackTE5);
+            }
             fluxPacksTE = new ItemFluxPack(ModType.THERMAL_EXPANSION);
             fluxPackTE1 = fluxPacksTE.putPack(1, Packs.fluxPackTE1);
             fluxPackTE2 = fluxPacksTE.putPack(2, Packs.fluxPackTE2);
@@ -143,12 +145,14 @@ public abstract class ModItems {
             thrusterTE2 = components.addMetaItem(12, new MetaItem("thruster.te.2", null, EnumRarity.common), true, false);
             thrusterTE3 = components.addMetaItem(13, new MetaItem("thruster.te.3", null, EnumRarity.uncommon), true, false);
             thrusterTE4 = components.addMetaItem(14, new MetaItem("thruster.te.4", null, EnumRarity.rare), true, false);
-            thrusterTE5 = components.addMetaItem(15, new MetaItem("thruster.te.5", null, EnumRarity.epic), true, false);
-            unitGlowstoneEmpty = components.addMetaItem(60, new MetaItem("unitGlowstone.empty", null, EnumRarity.common), true, false);
-            unitGlowstone = components.addMetaItem(61, new MetaItem("unitGlowstone", null, EnumRarity.uncommon), true, false);
-            unitCryotheumEmpty = components.addMetaItem(62, new MetaItem("unitCryotheum.empty", null, EnumRarity.common), true, false);
-            unitCryotheum = components.addMetaItem(63, new MetaItem("unitCryotheum", null, EnumRarity.rare), true, false);
-            if (!raAvailable) {
+            if (raAvailable || Config.addRAItemsIfNotInstalled) {
+                thrusterTE5 = components.addMetaItem(15, new MetaItem("thruster.te.5", null, EnumRarity.epic), true, false);
+                unitGlowstoneEmpty = components.addMetaItem(60, new MetaItem("unitGlowstone.empty", null, EnumRarity.common), true, false);
+                unitGlowstone = components.addMetaItem(61, new MetaItem("unitGlowstone", null, EnumRarity.uncommon), true, false);
+                unitCryotheumEmpty = components.addMetaItem(62, new MetaItem("unitCryotheum.empty", null, EnumRarity.common), true, false);
+                unitCryotheum = components.addMetaItem(63, new MetaItem("unitCryotheum", null, EnumRarity.rare), true, false);
+            }
+            if (!raAvailable && Config.addRAItemsIfNotInstalled) {
                 dustElectrumFlux = components.addMetaItem(64, new MetaItem("dustElectrumFlux", "raReplacement", EnumRarity.uncommon), true, true);
                 ingotElectrumFlux = components.addMetaItem(65, new MetaItem("ingotElectrumFlux", "raReplacement", EnumRarity.uncommon), true, true);
                 nuggetElectrumFlux = components.addMetaItem(66, new MetaItem("nuggetElectrumFlux", "raReplacement", EnumRarity.uncommon), true, true);
@@ -238,7 +242,7 @@ public abstract class ModItems {
         ItemHelper.addShapedOreRecipe(jetpackFueller, "IY ", " IY", " SI", 'I', "ingotIron", 'Y', "dyeYellow", 'S', "stickWood");
         
         if (teAvailable) {
-            if (!raAvailable) {
+            if (!raAvailable && Config.addRAItemsIfNotInstalled) {
                 ItemHelper.addReverseStorageRecipe(nuggetElectrumFlux, "ingotElectrumFlux");
                 ItemHelper.addStorageRecipe(ingotElectrumFlux, "nuggetElectrumFlux");
                 ItemHelper.addShapedOreRecipe(plateFlux, "NNN", "GIG", "NNN", 'G', "gemCrystalFlux", 'I', "ingotElectrumFlux", 'N', "nuggetElectrumFlux");
@@ -288,16 +292,18 @@ public abstract class ModItems {
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE3, "J", "P", 'J', jetpackTE3, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
             GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE4, "J", "P", 'J', jetpackTE4, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
             
-            ItemHelper.addShapedOreRecipe(unitGlowstoneEmpty, "FLF", "LHL", "FLF", 'L', "ingotLumium", 'F', "ingotElectrumFlux", 'H', TEItems.frameIlluminator);
-            ItemHelper.addShapedOreRecipe(unitCryotheumEmpty, "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', "blockGlassHardened");
-            ItemHelper.addShapedOreRecipe(thrusterTE5, "FPF", "GRG", 'G', unitGlowstone, 'P', RAItems.plateFlux != null ? RAItems.plateFlux : plateFlux, 'R', thrusterTE4, 'F', "ingotElectrumFlux");
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate != null ? RAItems.armorFluxPlate : armorFluxPlate, 'J', jetpackTE4Armored, 'O', unitCryotheum, 'C', fluxPackTE4Armored, 'T', thrusterTE5, 'P', RAItems.plateFlux != null ? RAItems.plateFlux : plateFlux));
-            
-            GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "J", "P", 'J', jetpackTE5, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
-            
-            if (ModType.REDSTONE_ARMORY.loaded) {
-                ItemHelper.addGearRecipe(enderiumUpgrade, "ingotEnderium", "slimeball");
-                GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "U", "J", 'J', jetpackTE5, 'U', enderiumUpgrade));
+            if (raAvailable || Config.addRAItemsIfNotInstalled) {
+                ItemHelper.addShapedOreRecipe(unitGlowstoneEmpty, "FLF", "LHL", "FLF", 'L', "ingotLumium", 'F', "ingotElectrumFlux", 'H', TEItems.frameIlluminator);
+                ItemHelper.addShapedOreRecipe(unitCryotheumEmpty, "FTF", "THT", "FTF", 'T', "ingotTin", 'F', "ingotElectrumFlux", 'H', "blockGlassHardened");
+                ItemHelper.addShapedOreRecipe(thrusterTE5, "FPF", "GRG", 'G', unitGlowstone, 'P', RAItems.plateFlux != null ? RAItems.plateFlux : plateFlux, 'R', thrusterTE4, 'F', "ingotElectrumFlux");
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "PAP", "OJO", "TCT", 'A', RAItems.armorFluxPlate != null ? RAItems.armorFluxPlate : armorFluxPlate, 'J', jetpackTE4Armored, 'O', unitCryotheum, 'C', fluxPackTE4Armored, 'T', thrusterTE5, 'P', RAItems.plateFlux != null ? RAItems.plateFlux : plateFlux));
+
+                GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "J", "P", 'J', jetpackTE5, 'P', new ItemStack(particleCustomizers, 1, OreDictionary.WILDCARD_VALUE)));
+
+                if (ModType.REDSTONE_ARMORY.loaded) {
+                    ItemHelper.addGearRecipe(enderiumUpgrade, "ingotEnderium", "slimeball");
+                    GameRegistry.addRecipe(new UpgradingRecipe(jetpackTE5, "U", "J", 'J', jetpackTE5, 'U', enderiumUpgrade));
+                }
             }
         }
         
@@ -390,7 +396,7 @@ public abstract class ModItems {
         SimplyJetpacks.logger.info("Doing intermod communication");
         
         if (teAvailable) {
-            if (!raAvailable) {
+            if (!raAvailable && Config.addRAItemsIfNotInstalled) {
                 TERecipes.addTransposerFill(8000, new ItemStack(Items.diamond), gemCrystalFlux, new FluidStack(FluidRegistry.getFluid("redstone"), 200), false);
                 TERecipes.addTransposerFill(4000, OreDictionary.getOres("dustElectrum").get(0), dustElectrumFlux, new FluidStack(FluidRegistry.getFluid("redstone"), 200), false);
                 TERecipes.addSmelterBlastOre("ElectrumFlux");
@@ -408,8 +414,10 @@ public abstract class ModItems {
             i.stackSize = 10;
             TERecipes.addSmelterRecipe(6400, armorPlatingTE3, i, armorPlatingTE4, null, 0);
             
-            TERecipes.addTransposerFill(6400, unitGlowstoneEmpty, unitGlowstone, new FluidStack(FluidRegistry.getFluid("glowstone"), 4000), false);
-            TERecipes.addTransposerFill(6400, unitCryotheumEmpty, unitCryotheum, new FluidStack(FluidRegistry.getFluid("cryotheum"), 4000), false);
+            if (raAvailable || Config.addRAItemsIfNotInstalled) {
+                TERecipes.addTransposerFill(6400, unitGlowstoneEmpty, unitGlowstone, new FluidStack(FluidRegistry.getFluid("glowstone"), 4000), false);
+                TERecipes.addTransposerFill(6400, unitCryotheumEmpty, unitCryotheum, new FluidStack(FluidRegistry.getFluid("cryotheum"), 4000), false);
+            }
         }
         if (eioAvailable) {
             ItemStack ingotConductiveIron = OreDictionary.getOres("ingotConductiveIron").get(0).copy();
