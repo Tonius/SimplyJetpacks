@@ -1,3 +1,7 @@
+1.5.1 - 2015-05-23
+----------------------------------
+- FIXED: Crash when trying to craft jetpacks if Redstone Armory is not installed
+
 1.5.0 - 2015-05-22
 ----------------------------------
 - CHANGED: **Now depends on CoFHLib.** Using either CoFH Core 3.0.2+ or CoFHLib standalone 1.0.2+ works for this.
