@@ -36,7 +36,7 @@ public class ItemMysteriousPotato extends Item {
     
     @Override
     public EnumRarity getRarity(ItemStack itemStack) {
-        return EnumRarity.uncommon;
+        return EnumRarity.epic;
     }
     
     @Override
