@@ -6,6 +6,7 @@ import java.util.Map;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import tonius.simplyjetpacks.SimplyJetpacks;
 import tonius.simplyjetpacks.client.audio.SoundJetpack;
 import tonius.simplyjetpacks.config.Config;
 import tonius.simplyjetpacks.network.PacketHandler;
@@ -109,7 +110,7 @@ public class SyncHandler {
     @SubscribeEvent
     public void onClientDisconnectedFromServer(ClientDisconnectionFromServerEvent evt) {
         SoundJetpack.clearPlayingFor();
-        Config.onConfigChanged("simplyjetpacks");
+        Config.onConfigChanged(SimplyJetpacks.MODID);
     }
     
 }
