@@ -1,3 +1,12 @@
+1.5.2 - (unreleased)
+----------------------------------
+- ADDED: Config option to disable Redstone Arsenal items being registered if that mod is not installed. This disables the Flux-Infused JetPlate.
+- CHANGED: Updated the texture of the Flux-Infused JetPlate with the Enderium Flux Overlay installed to match Redstone Armory's newer textures.
+- CHANGED: Renamed Enriched Soularium Alloy to Dark Soularium Ingot. Now also registered in the Ore Dictionary as `ingotDarkSoularium`
+- FIXED: Pack GUI key not showing in jetpack/flux pack tooltips if the control is bound to a mouse button
+- FIXED: Config files being (over)written on disk every time the game starts; now only done when their contents are actually changed.
+
+
 1.5.1 - 2015-05-23
 ----------------------------------
 - FIXED: Crash when trying to craft jetpacks if Redstone Armory is not installed
