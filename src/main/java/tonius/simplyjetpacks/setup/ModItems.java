@@ -175,7 +175,7 @@ public abstract class ModItems {
             thrusterEIO3 = components.addMetaItem(23, new MetaItem("thruster.eio.3", null, EnumRarity.uncommon), true, false);
             thrusterEIO4 = components.addMetaItem(24, new MetaItem("thruster.eio.4", null, EnumRarity.rare), true, false);
             thrusterEIO5 = components.addMetaItem(25, new MetaItem("thruster.eio.5", null, EnumRarity.epic), true, false);
-            ingotDarkSoularium = components.addMetaItem(70, new MetaItem("ingotDarkSoularium", null, EnumRarity.uncommon, true, false), true, false);
+            ingotDarkSoularium = components.addMetaItem(70, new MetaItem("ingotDarkSoularium", null, EnumRarity.uncommon, true, false), true, true);
             reinforcedGliderWing = components.addMetaItem(71, new MetaItem("reinforcedGliderWing", null, EnumRarity.uncommon), true, false);
             unitFlightControlEmpty = components.addMetaItem(72, new MetaItem("unitFlightControl.empty", null, EnumRarity.common), true, false);
             unitFlightControl = components.addMetaItem(73, new MetaItem("unitFlightControl", null, EnumRarity.uncommon), true, false);
@@ -222,10 +222,6 @@ public abstract class ModItems {
         registerItem(particleCustomizers, "particleCustomizers");
         registerItem(jetpackFueller, "jetpackFueller");
         registerItem(mysteriousPotato, "mysteriousPotato");
-        
-        if (integrateEIO) {
-            OreDictionary.registerOre("ingotDarkSoularium", ingotDarkSoularium.copy());
-        }
     }
     
     private static void registerRecipes() {
