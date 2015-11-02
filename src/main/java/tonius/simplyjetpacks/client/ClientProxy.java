@@ -5,12 +5,10 @@ import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiErrorScreen;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-import org.lwjgl.input.Keyboard;
-
 import tonius.simplyjetpacks.CommonProxy;
 import tonius.simplyjetpacks.client.handler.ClientTickHandler;
 import tonius.simplyjetpacks.client.handler.HUDTickHandler;
@@ -76,10 +74,11 @@ public class ClientProxy extends CommonProxy {
     
     @Override
     public String getPackGUIKey() {
-        if (KeyHandler.keyOpenPackGUI.getKeyCode() > 0) {
-            return Keyboard.getKeyName(KeyHandler.keyOpenPackGUI.getKeyCode());
+        int keyCode = KeyHandler.keyOpenPackGUI.getKeyCode();
+        if (keyCode == 0) {
+            return null;
         }
-        return null;
+        return GameSettings.getKeyDisplayString(keyCode);
     }
     
     @Override

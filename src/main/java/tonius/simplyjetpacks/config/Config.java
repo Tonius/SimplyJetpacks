@@ -28,6 +28,7 @@ public class Config {
     // item
     public static int enchantFuelEfficiencyID = Defaults.enchantFuelEfficiencyID;
     public static boolean flammableFluidsExplode = Defaults.flammableFluidsExplode;
+    public static boolean addRAItemsIfNotInstalled = Defaults.addRAItemsIfNotInstalled;
     
     // integration
     public static boolean enableIntegrationTE = Defaults.enableIntegrationTE;
@@ -77,8 +78,12 @@ public class Config {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            config.save();
-            configClient.save();
+            if (config.hasChanged()) {
+                config.save();
+            }
+            if (configClient.hasChanged()) {
+                configClient.save();
+            }
         }
     }
     
@@ -92,6 +97,7 @@ public class Config {
     private static void processConfig() {
         enchantFuelEfficiencyID = config.get(sectionItem.name, "Fuel Efficiency enchant ID", Defaults.enchantFuelEfficiencyID, "The ID of the Fuel Efficiency enchantment. Set to 0 to disable.").setMinValue(0).setMaxValue(255).setRequiresMcRestart(true).getInt();
         flammableFluidsExplode = config.get(sectionItem.name, "Jetpacks explode in flammable fluid blocks", Defaults.flammableFluidsExplode, "When enabled, jetpacks will explode and kill their users when they are being used to fly through flammable fluid blocks.").getBoolean(Defaults.flammableFluidsExplode);
+        addRAItemsIfNotInstalled = config.get(sectionItem.name, "Add Redstone Arsenal items if not installed", Defaults.addRAItemsIfNotInstalled, "When enabled, Simply Jetpacks will register some crafting components from Redstone Arsenal to make the Flux-Infused JetPlate craftable if Redstone Arsenal is not installed.").setRequiresMcRestart(true).getBoolean(Defaults.addRAItemsIfNotInstalled);
         
         enableIntegrationTE = config.get(sectionIntegration.name, "Thermal Expansion integration", Defaults.enableIntegrationTE, "When enabled, Simply Jetpacks will register its Thermal Expansion-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationTE);
         enableIntegrationEIO = config.get(sectionIntegration.name, "Ender IO integration", Defaults.enableIntegrationEIO, "When enabled, Simply Jetpacks will register its Ender IO-based jetpacks and flux packs.").setRequiresMcRestart(true).getBoolean(Defaults.enableIntegrationEIO);
