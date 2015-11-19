@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagFloat;
@@ -19,9 +18,11 @@ import tonius.simplyjetpacks.util.SJStringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemMysteriousPotato extends Item {
+public class ItemMysteriousPotato extends ItemRegistered {
     
-    public ItemMysteriousPotato() {
+    public ItemMysteriousPotato(String registryName) {
+        super(registryName);
+        
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + "mysteriousPotato");
         this.setTextureName("potato_poisonous");
         this.setCreativeTab(ModCreativeTab.instance);

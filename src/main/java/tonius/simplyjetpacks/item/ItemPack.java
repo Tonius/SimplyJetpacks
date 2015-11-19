@@ -40,6 +40,7 @@ import tonius.simplyjetpacks.util.NBTHelper;
 import tonius.simplyjetpacks.util.SJStringHelper;
 import cofh.api.energy.IEnergyContainerItem;
 import cofh.lib.util.helpers.MathHelper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -50,13 +51,15 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     public final ModType modType;
     private final Map<Integer, T> packs = new LinkedHashMap<Integer, T>();
     
-    public ItemPack(ModType modType) {
+    public ItemPack(ModType modType, String registryName) {
         super(ArmorMaterial.IRON, 2, 1);
         this.modType = modType;
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + "pack" + modType.suffix);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setCreativeTab(ModCreativeTab.instance);
+        
+        GameRegistry.registerItem(this, registryName);
     }
     
     public ItemStack putPack(int meta, T pack, boolean returnFull) {
@@ -496,16 +499,16 @@ public class ItemPack<T extends PackBase> extends ItemArmor implements IControll
     
     public static class ItemJetpack extends ItemPack<Jetpack> {
         
-        public ItemJetpack(ModType modType) {
-            super(modType);
+        public ItemJetpack(ModType modType, String registryName) {
+            super(modType, registryName);
         }
         
     }
     
     public static class ItemFluxPack extends ItemPack<FluxPack> {
         
-        public ItemFluxPack(ModType modType) {
-            super(modType);
+        public ItemFluxPack(ModType modType, String registryName) {
+            super(modType, registryName);
         }
         
     }

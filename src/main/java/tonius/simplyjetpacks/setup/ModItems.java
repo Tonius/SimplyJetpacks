@@ -3,7 +3,6 @@ package tonius.simplyjetpacks.setup;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -45,7 +44,6 @@ public abstract class ModItems {
         integrateEIO = ModType.ENDER_IO.loaded && Config.enableIntegrationEIO;
         integrateBC = ModType.BUILDCRAFT.loaded && Config.enableIntegrationBC;
         
-        constructItems();
         registerItems();
     }
     
@@ -70,17 +68,19 @@ public abstract class ModItems {
         doIMC();
     }
     
-    private static void constructItems() {
-        SimplyJetpacks.logger.info("Constructing items");
+    private static void registerItems() {
+        SimplyJetpacks.logger.info("Registering items");
         
-        jetpacksCommon = new ItemJetpack(ModType.SIMPLY_JETPACKS);
+        // For compatibility, do not change item IDs until 1.8+
+        
+        jetpacksCommon = new ItemJetpack(ModType.SIMPLY_JETPACKS, "jetpacksCommon");
         jetpackPotato = jetpacksCommon.putPack(0, Packs.jetpackPotato, true);
         jetpackCreative = jetpacksCommon.putPack(9001, Packs.jetpackCreative);
-        fluxPacksCommon = new ItemFluxPack(ModType.SIMPLY_JETPACKS);
+        fluxPacksCommon = new ItemFluxPack(ModType.SIMPLY_JETPACKS, "fluxpacksCommon");
         fluxPackCreative = fluxPacksCommon.putPack(9001, Packs.fluxPackCreative);
         
         if (integrateTE) {
-            jetpacksTE = new ItemJetpack(ModType.THERMAL_EXPANSION);
+            jetpacksTE = new ItemJetpack(ModType.THERMAL_EXPANSION, "jetpacks");
             jetpackTE1 = jetpacksTE.putPack(1, Packs.jetpackTE1);
             jetpackTE1Armored = jetpacksTE.putPack(101, Packs.jetpackTE1Armored);
             jetpackTE2 = jetpacksTE.putPack(2, Packs.jetpackTE2);
@@ -92,7 +92,7 @@ public abstract class ModItems {
             if (integrateRA || Config.addRAItemsIfNotInstalled) {
                 jetpackTE5 = jetpacksTE.putPack(5, Packs.jetpackTE5);
             }
-            fluxPacksTE = new ItemFluxPack(ModType.THERMAL_EXPANSION);
+            fluxPacksTE = new ItemFluxPack(ModType.THERMAL_EXPANSION, "fluxpacks");
             fluxPackTE1 = fluxPacksTE.putPack(1, Packs.fluxPackTE1);
             fluxPackTE2 = fluxPacksTE.putPack(2, Packs.fluxPackTE2);
             fluxPackTE2Armored = fluxPacksTE.putPack(102, Packs.fluxPackTE2Armored);
@@ -102,7 +102,7 @@ public abstract class ModItems {
             fluxPackTE4Armored = fluxPacksTE.putPack(104, Packs.fluxPackTE4Armored);
         }
         if (integrateEIO) {
-            jetpacksEIO = new ItemJetpack(ModType.ENDER_IO);
+            jetpacksEIO = new ItemJetpack(ModType.ENDER_IO, "jetpacksEIO");
             jetpackEIO1 = jetpacksEIO.putPack(1, Packs.jetpackEIO1);
             jetpackEIO1Armored = jetpacksEIO.putPack(101, Packs.jetpackEIO1Armored);
             jetpackEIO2 = jetpacksEIO.putPack(2, Packs.jetpackEIO2);
@@ -112,7 +112,7 @@ public abstract class ModItems {
             jetpackEIO4 = jetpacksEIO.putPack(4, Packs.jetpackEIO4);
             jetpackEIO4Armored = jetpacksEIO.putPack(104, Packs.jetpackEIO4Armored);
             jetpackEIO5 = jetpacksEIO.putPack(5, Packs.jetpackEIO5);
-            fluxPacksEIO = new ItemFluxPack(ModType.ENDER_IO);
+            fluxPacksEIO = new ItemFluxPack(ModType.ENDER_IO, "fluxpacksEIO");
             fluxPackEIO1 = fluxPacksEIO.putPack(1, Packs.fluxPackEIO1);
             fluxPackEIO2 = fluxPacksEIO.putPack(2, Packs.fluxPackEIO2);
             fluxPackEIO2Armored = fluxPacksEIO.putPack(102, Packs.fluxPackEIO2Armored);
@@ -122,7 +122,7 @@ public abstract class ModItems {
             fluxPackEIO4Armored = fluxPacksEIO.putPack(104, Packs.fluxPackEIO4Armored);
         }
         if (integrateBC) {
-            jetpacksBC = new ItemJetpack(ModType.BUILDCRAFT);
+            jetpacksBC = new ItemJetpack(ModType.BUILDCRAFT, "jetpacksBC");
             if (Loader.isModLoaded("BuildCraft|Energy") && Loader.isModLoaded("BuildCraft|Factory")) {
                 jetpackBC1 = jetpacksBC.putPack(1, Packs.jetpackBC1);
                 jetpackBC1Armored = jetpacksBC.putPack(101, Packs.jetpackBC1Armored);
@@ -134,8 +134,8 @@ public abstract class ModItems {
         components = new ItemMeta("components");
         armorPlatings = new ItemMeta("armorPlatings");
         particleCustomizers = new ItemMeta("particleCustomizers");
-        jetpackFueller = new ItemJetpackFueller();
-        mysteriousPotato = new ItemMysteriousPotato();
+        jetpackFueller = new ItemJetpackFueller("jetpackFueller");
+        mysteriousPotato = new ItemMysteriousPotato("mysteriousPotato");
         
         leatherStrap = components.addMetaItem(0, new MetaItem("leatherStrap", null, EnumRarity.common), true, false);
         jetpackIcon = components.addMetaItem(1, new MetaItem("jetpack.icon", null, EnumRarity.common, false, true), false, false);
@@ -199,29 +199,6 @@ public abstract class ModItems {
         particleNone = particleCustomizers.addMetaItem(1, new MetaItem("particle.1", "particleCustomizers", EnumRarity.common), true, false);
         particleSmoke = particleCustomizers.addMetaItem(2, new MetaItem("particle.2", "particleCustomizers", EnumRarity.common), true, false);
         particleRainbowSmoke = particleCustomizers.addMetaItem(3, new MetaItem("particle.3", "particleCustomizers", EnumRarity.common), true, false);
-    }
-    
-    private static void registerItems() {
-        SimplyJetpacks.logger.info("Registering items");
-        
-        // For compatibility, do not change the following IDs until 1.8+
-        
-        registerItem(jetpacksCommon, "jetpacksCommon");
-        registerItem(fluxPacksCommon, "fluxpacksCommon");
-        
-        registerItem(jetpacksTE, "jetpacks");
-        registerItem(fluxPacksTE, "fluxpacks");
-        
-        registerItem(jetpacksEIO, "jetpacksEIO");
-        registerItem(fluxPacksEIO, "fluxpacksEIO");
-        
-        registerItem(jetpacksBC, "jetpacksBC");
-        
-        registerItem(components, "components");
-        registerItem(armorPlatings, "armorPlatings");
-        registerItem(particleCustomizers, "particleCustomizers");
-        registerItem(jetpackFueller, "jetpackFueller");
-        registerItem(mysteriousPotato, "mysteriousPotato");
     }
     
     private static void registerRecipes() {
@@ -448,12 +425,6 @@ public abstract class ModItems {
                 inputs = new ItemStack[] { BCItems.getStack(BCItems.engineCombustion), new ItemStack(Items.gold_ingot, 4), pipeEnergyGold, BCItems.getStack(BCItems.chipsetGold), new ItemStack(Blocks.iron_bars) };
             }
             BCRecipes.addAssemblyRecipe("kineticThruster", 1200000, inputs, thrusterBC2.copy());
-        }
-    }
-    
-    private static void registerItem(Item item, String name) {
-        if (item != null) {
-            GameRegistry.registerItem(item, name);
         }
     }
     
