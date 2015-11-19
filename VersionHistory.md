@@ -1,4 +1,4 @@
-1.5.2 - (unreleased)
+1.5.2 - 2015-11-02
 ----------------------------------
 - ADDED: Config option to disable Redstone Arsenal items being registered if that mod is not installed. This disables the Flux-Infused JetPlate.
 - CHANGED: Updated the texture of the Flux-Infused JetPlate with the Enderium Flux Overlay installed to match Redstone Armory's newer textures.
