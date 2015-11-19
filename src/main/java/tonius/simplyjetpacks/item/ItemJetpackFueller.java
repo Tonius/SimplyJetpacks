@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
@@ -22,9 +21,11 @@ import cofh.lib.util.helpers.BlockHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemJetpackFueller extends Item {
+public class ItemJetpackFueller extends ItemRegistered {
     
-    public ItemJetpackFueller() {
+    public ItemJetpackFueller(String registryName) {
+        super(registryName);
+        
         this.setUnlocalizedName(SimplyJetpacks.PREFIX + "jetpackFueller");
         this.setTextureName(SimplyJetpacks.RESOURCE_PREFIX + "jetpackFueller");
         this.setCreativeTab(ModCreativeTab.instance);

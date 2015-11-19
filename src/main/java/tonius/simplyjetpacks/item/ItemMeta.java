@@ -20,14 +20,16 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemMeta extends Item {
+public class ItemMeta extends ItemRegistered {
     
     protected final Map<Integer, MetaItem> metaItems = new HashMap<Integer, MetaItem>();
     protected final Map<Integer, IIcon> icons = new HashMap<Integer, IIcon>();
     protected int highestMeta = 0;
     
-    public ItemMeta(String fallbackName) {
-        this.setUnlocalizedName(SimplyJetpacks.PREFIX + fallbackName);
+    public ItemMeta(String registryName) {
+        super(registryName);
+        
+        this.setUnlocalizedName(SimplyJetpacks.PREFIX + registryName);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setCreativeTab(ModCreativeTab.instance);
