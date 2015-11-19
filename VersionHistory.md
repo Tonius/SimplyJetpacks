@@ -1,3 +1,9 @@
+1.5.3 - 2015-11-19
+----------------------------------
+- FIXED: Errors / log spam during startup when using newer versions of Forge
+
+
+
 1.5.2 - 2015-11-02
 ----------------------------------
 - ADDED: Config option to disable Redstone Arsenal items being registered if that mod is not installed. This disables the Flux-Infused JetPlate.
